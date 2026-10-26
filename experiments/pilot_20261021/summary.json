@@ -1,0 +1,55 @@
+{
+  "wall_seconds": 9.951487772000007,
+  "targets": 24,
+  "rows": 144,
+  "groups": {
+    "loose/A": {
+      "qualified": 24,
+      "requests": 24,
+      "unchanged": 24,
+      "mean_gate_count_all": 27.5,
+      "mean_depth_all": 20.0,
+      "mean_fidelity_all": 0.9999999999999997
+    },
+    "loose/B": {
+      "qualified": 24,
+      "requests": 24,
+      "unchanged": 0,
+      "mean_gate_count_all": 20.541666666666668,
+      "mean_depth_all": 16.041666666666668,
+      "mean_fidelity_all": 0.9999999999999997
+    },
+    "loose/C": {
+      "qualified": 24,
+      "requests": 24,
+      "unchanged": 4,
+      "mean_gate_count_all": 24.833333333333332,
+      "mean_depth_all": 17.333333333333332,
+      "mean_fidelity_all": 0.999887434085653
+    },
+    "tight/A": {
+      "qualified": 0,
+      "requests": 24,
+      "unchanged": 0,
+      "mean_gate_count_all": 27.5,
+      "mean_depth_all": 20.0,
+      "mean_fidelity_all": 0.9999999999999997
+    },
+    "tight/B": {
+      "qualified": 24,
+      "requests": 24,
+      "unchanged": 0,
+      "mean_gate_count_all": 20.541666666666668,
+      "mean_depth_all": 16.041666666666668,
+      "mean_fidelity_all": 0.9999999999999997
+    },
+    "tight/C": {
+      "qualified": 20,
+      "requests": 24,
+      "unchanged": 0,
+      "mean_gate_count_all": 24.833333333333332,
+      "mean_depth_all": 17.333333333333332,
+      "mean_fidelity_all": 0.999887434085653
+    }
+  }
+}

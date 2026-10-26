@@ -1,0 +1,25 @@
+{
+  "replayed_pilot_rows": 144,
+  "gate_repair_rows": 96,
+  "target_hashes_verified": 24,
+  "max_independent_fidelity_error": 1.1102230246251565e-15,
+  "wall_seconds": 0.4351147630000014,
+  "gate_repair_summary": {
+    "seed_a": {
+      "qualified": 0,
+      "total": 24
+    },
+    "seed_a_exact_repair": {
+      "qualified": 24,
+      "total": 24
+    },
+    "seed_b": {
+      "qualified": 0,
+      "total": 24
+    },
+    "seed_b_exact_repair": {
+      "qualified": 24,
+      "total": 24
+    }
+  }
+}

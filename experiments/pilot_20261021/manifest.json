@@ -1,0 +1,153 @@
+{
+  "rng_seed": 20261021,
+  "transpiler_seed": 17,
+  "threshold": 0.999,
+  "basis": [
+    "rz",
+    "sx",
+    "x",
+    "cx"
+  ],
+  "versions": {
+    "python": "3.12.14",
+    "numpy": "2.3.4",
+    "qiskit": "2.2.3",
+    "scipy": "1.16.3"
+  },
+  "target_sha256": {
+    "n2_haar_00": "7f0a9ceaecccf33312bef0de49346da423909ba508ddca0b57c88bf2a36e2d5a",
+    "n2_product_01": "4181e08bb02ba646f72c4a7540f2b2bb43e073907189d7df59a4d9d4c58bfde8",
+    "n2_ghz_02": "76f11f0e5c54ef37bcc0dd17704803fd5f4eb4129649bf2942ed432f96cde40f",
+    "n2_witness_03": "058194702fb1d4e5d302758bfc9c1c9a54c1917cc3251a9000160f4649106ba7",
+    "n2_haar_04": "6654220d042b2868baf1034c997fb40aaed3b7b34fd40f7409c098eb2f780613",
+    "n2_product_05": "8430ec28c8d7fd5316ddc76dace0a066b54b5e260b7dd92cbd703191af3194a9",
+    "n2_ghz_06": "fa297708fce6b3746d0d8c93f57c1697f29749bb78545385b40c178d6f8706e5",
+    "n2_witness_07": "727b2aa11236206fac77007e97269fa5b626a9ddcb53eba4b53101f66445b20c",
+    "n2_haar_08": "969d930fb404b44ebe7e6aa419fa223b46fbb466597ef75a4db5646e64ec6c59",
+    "n2_product_09": "8af638d6495b9bf787d43183ad63c301bbf1e057af64c041dfe1df56bc9fab63",
+    "n2_ghz_10": "e90003db102ec7511ef1b830c82a9aa6ce2b88accd768d6eeb0ab7f3c388c772",
+    "n2_witness_11": "6dc9d18c99119d393b75bc03f78ce6f49b5dc4b5b72edcf7313c5daf317975b1",
+    "n3_haar_00": "e3a2eaebe19046918ba4700fa791973d4a9ffac9b9bc197893e57daf84280eaa",
+    "n3_product_01": "560b1ab714c754b5f5f90cd714abea9e4f906689fc37d1f541fdda84e2e4913c",
+    "n3_ghz_02": "57c347283f0acd2ed40368aba51079ec18299bde1c8bb60d7def1710bbe65f45",
+    "n3_witness_03": "7e6f3af798f51019d6d1e61052d8e494c3a759a53cea8883d66f58f3dc25ac7f",
+    "n3_haar_04": "a99d58a98b57d6fa7c2b7ab62ac696fb441e54f03e6bd1657277ff009c108c9b",
+    "n3_product_05": "c41799bce753996293be79f52a5e71b668c35678cf7ca6b3585b70033af77e24",
+    "n3_ghz_06": "84260475fcaf2fe7cedf38cf634043b8fd59ca75185ea12367dfcbd514ad7a5c",
+    "n3_witness_07": "465895b88a5638e3db3d6a0a08ee7d20b13554cec0e3ed683490b068728b4255",
+    "n3_haar_08": "0f7426ff6346526fa876655da0aa9554de88cd0fde4a1990819b7392a0b44fbc",
+    "n3_product_09": "c949ca86cb6258c5cb3b532120d74ad7a84190bd287fad3f95ab5c5d56b27fc8",
+    "n3_ghz_10": "8aaa8307c662812ce313ca12883886865aa1bd3e1a46cb75be36d6228aa76b94",
+    "n3_witness_11": "f2eb01a16d61d7a4bb0cac5c27ddb94bbb1d71e6b86b3be827eafb914345cb4f"
+  },
+  "protocol_sha256": "85197333ad7ff7fe5eefbf8cd5701b43c3f570fbc78982d8469bdfb845c5a7c1",
+  "registry": {
+    "x": {
+      "arity": 1,
+      "classical_arity": 0,
+      "roles": [
+        "wire_0"
+      ],
+      "parameter_period": null,
+      "simulator_support": true,
+      "checkpoint_generation_support": false,
+      "hardware_support": false
+    },
+    "h": {
+      "arity": 1,
+      "classical_arity": 0,
+      "roles": [
+        "wire_0"
+      ],
+      "parameter_period": null,
+      "simulator_support": true,
+      "checkpoint_generation_support": false,
+      "hardware_support": false
+    },
+    "sx": {
+      "arity": 1,
+      "classical_arity": 0,
+      "roles": [
+        "wire_0"
+      ],
+      "parameter_period": null,
+      "simulator_support": true,
+      "checkpoint_generation_support": false,
+      "hardware_support": false
+    },
+    "ry": {
+      "arity": 1,
+      "classical_arity": 0,
+      "roles": [
+        "wire_0"
+      ],
+      "parameter_period": 12.566370614359172,
+      "simulator_support": true,
+      "checkpoint_generation_support": false,
+      "hardware_support": false
+    },
+    "rz": {
+      "arity": 1,
+      "classical_arity": 0,
+      "roles": [
+        "wire_0"
+      ],
+      "parameter_period": 12.566370614359172,
+      "simulator_support": true,
+      "checkpoint_generation_support": false,
+      "hardware_support": false
+    },
+    "cx": {
+      "arity": 2,
+      "classical_arity": 0,
+      "roles": [
+        "control",
+        "target"
+      ],
+      "parameter_period": null,
+      "simulator_support": true,
+      "checkpoint_generation_support": false,
+      "hardware_support": false
+    },
+    "swap": {
+      "arity": 2,
+      "classical_arity": 0,
+      "roles": [
+        "wire_0",
+        "wire_1"
+      ],
+      "parameter_period": null,
+      "simulator_support": true,
+      "checkpoint_generation_support": false,
+      "hardware_support": false
+    },
+    "cswap": {
+      "arity": 3,
+      "classical_arity": 0,
+      "roles": [
+        "control",
+        "swap_target_1",
+        "swap_target_2"
+      ],
+      "parameter_period": null,
+      "simulator_support": true,
+      "checkpoint_generation_support": false,
+      "hardware_support": false
+    },
+    "ccx": {
+      "arity": 3,
+      "classical_arity": 0,
+      "roles": [
+        "control_1",
+        "control_2",
+        "target"
+      ],
+      "parameter_period": null,
+      "simulator_support": true,
+      "checkpoint_generation_support": false,
+      "hardware_support": false
+    }
+  },
+  "training": "not run",
+  "prior_compute_budget_consumption": "unknown"
+}

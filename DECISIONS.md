@@ -1,0 +1,14 @@
+# Decisions
+
+- Basis order is Qiskit little endian. Operands are ordered, with control first for CX/CCX/CSWAP. Angles are serialized as full precision floats in radians.
+- Fidelity is abs(vdot(target, state))**2 at end of preparation. Target arrays must be normalized, finite pure states; initial state is zero. Global phase is irrelevant.
+- Counts include only explicit unitary operations in logical scope; depth is full-circuit wire dependency depth with unit gate duration. Two-qubit depth counts only arity-two operations while retaining wire ordering. CSWAP counts once, has arity three, and is excluded from two-qubit depth.
+- Unsupported semantics fail closed. Hard constraints only determine acceptance; preferences never establish feasibility. A violating seed is not a qualifying fallback.
+- Search exhaustion means no_qualifying_solution_within_budget, not infeasibility. Only direct contradictions prove inconsistency.
+- Classical candidates are simulated in full against the original target. A complete-circuit gate deletion is not claimed to be neural suffix replacement. Wire DAG edges preserve operand roles; upstream LayerDAG is unchanged.
+- No hardware, publication, paid resources, or background jobs. This is the handoff's bounded CPU profile. The supplied handoff establishes a six-hour aggregate ceiling, 30-minute training-job caps, two-qubit neural workload, and at most two diagnosis-driven revisions. Historic consumption before this workspace remains unknown and is never treated as zero.
+- DGL is absent. The portable path uses native PyTorch index-add aggregation and will be tested against a dense oracle on fixed tiny graphs. This is a source-informed LayerDAG adaptation, not runtime parity with upstream.
+- The tiny continuous model uses a 16-bin periodic angle category plus a bounded residual per rotation. It preserves emitted continuous angles and reports pre-optimizer fidelity; no post-generation optimizer is used at this gate.
+- The first learned DAG run is retained but invalidated because its declared layers were not always earliest physical layers. Corrected data are canonicalized from ordered operations and assert serialized layer count equals recomputed dependency depth. This is a correctness repair, not a model-hypothesis retry.
+- The corrected tiny DAG condition-use interval excluded zero; the matched grid interval did not. One fixed 128-target development training stage is allowed to distinguish insufficient tiny data from a persistent grid conditioning failure. No tuning follows from its validation outcomes.
+- On development data the grid passed conditioning while the width-64 DAG failed and retained about twice the teacher-forced loss. The last allowed diagnosis increases DAG width to 80 to reduce the 184k-versus-265k parameter mismatch. Because this choice follows validation inspection, it is diagnostic only and cannot establish a representation effect.

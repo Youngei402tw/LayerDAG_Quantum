@@ -1,0 +1,5927 @@
+{
+  "representation": "dag",
+  "seed": 0,
+  "data_sha256": "46436dd2817e3a494c11e4dc7681b2752cbd59899b915a820157a3c94d5532f5",
+  "checkpoint": "dag_best.pt",
+  "training": {
+    "representation": "dag",
+    "width": 64,
+    "updates": 5000,
+    "elapsed_seconds": 209.02952122700003,
+    "best_teacher_forced_loss": 0.013700259538988272,
+    "status": "loss_gate_reached",
+    "parameters": 184213
+  },
+  "history": [
+    {
+      "update": 1,
+      "loss": 7.103342533111572,
+      "teacher_forced_loss": 7.079949855804443,
+      "elapsed_seconds": 0.08647088099996836
+    },
+    {
+      "update": 100,
+      "loss": 4.189196586608887,
+      "teacher_forced_loss": 3.8056907653808594,
+      "elapsed_seconds": 3.6560284800000318
+    },
+    {
+      "update": 200,
+      "loss": 3.0259907245635986,
+      "teacher_forced_loss": 2.740915536880493,
+      "elapsed_seconds": 7.191626395999947
+    },
+    {
+      "update": 300,
+      "loss": 2.6361095905303955,
+      "teacher_forced_loss": 2.3705724080403647,
+      "elapsed_seconds": 10.796750385999985
+    },
+    {
+      "update": 400,
+      "loss": 2.3306939601898193,
+      "teacher_forced_loss": 2.1288549105326333,
+      "elapsed_seconds": 14.473098813999968
+    },
+    {
+      "update": 500,
+      "loss": 2.3326563835144043,
+      "teacher_forced_loss": 1.944551150004069,
+      "elapsed_seconds": 18.12013912999987
+    },
+    {
+      "update": 600,
+      "loss": 2.324512481689453,
+      "teacher_forced_loss": 1.800592581431071,
+      "elapsed_seconds": 21.72884915999998
+    },
+    {
+      "update": 700,
+      "loss": 1.995497703552246,
+      "teacher_forced_loss": 1.6356212298075359,
+      "elapsed_seconds": 25.876287580000053
+    },
+    {
+      "update": 800,
+      "loss": 2.244403123855591,
+      "teacher_forced_loss": 1.4447619517644246,
+      "elapsed_seconds": 30.028160722999928
+    },
+    {
+      "update": 900,
+      "loss": 1.7925559282302856,
+      "teacher_forced_loss": 1.2431036631266277,
+      "elapsed_seconds": 34.189210398999876
+    },
+    {
+      "update": 1000,
+      "loss": 1.2944904565811157,
+      "teacher_forced_loss": 1.0700049599011738,
+      "elapsed_seconds": 38.41296148099991
+    },
+    {
+      "update": 1100,
+      "loss": 1.5049586296081543,
+      "teacher_forced_loss": 0.9029499292373657,
+      "elapsed_seconds": 42.61968822199992
+    },
+    {
+      "update": 1200,
+      "loss": 1.0942878723144531,
+      "teacher_forced_loss": 0.8316070834795634,
+      "elapsed_seconds": 46.79720500500002
+    },
+    {
+      "update": 1300,
+      "loss": 0.987579882144928,
+      "teacher_forced_loss": 0.6928315957387289,
+      "elapsed_seconds": 50.976534508999976
+    },
+    {
+      "update": 1400,
+      "loss": 1.2288777828216553,
+      "teacher_forced_loss": 0.5830784738063812,
+      "elapsed_seconds": 55.17317766499991
+    },
+    {
+      "update": 1500,
+      "loss": 0.7346867322921753,
+      "teacher_forced_loss": 0.5205581486225128,
+      "elapsed_seconds": 59.33921041899998
+    },
+    {
+      "update": 1600,
+      "loss": 0.746313214302063,
+      "teacher_forced_loss": 0.422254741191864,
+      "elapsed_seconds": 63.51664199499987
+    },
+    {
+      "update": 1700,
+      "loss": 0.5651232600212097,
+      "teacher_forced_loss": 0.35737618803977966,
+      "elapsed_seconds": 67.810143466
+    },
+    {
+      "update": 1800,
+      "loss": 0.6132839322090149,
+      "teacher_forced_loss": 0.2957163800795873,
+      "elapsed_seconds": 72.14312363199997
+    },
+    {
+      "update": 1900,
+      "loss": 0.6784239411354065,
+      "teacher_forced_loss": 0.24557814002037048,
+      "elapsed_seconds": 76.42813838699999
+    },
+    {
+      "update": 2000,
+      "loss": 0.4684566855430603,
+      "teacher_forced_loss": 0.22918772200743356,
+      "elapsed_seconds": 80.91432896499987
+    },
+    {
+      "update": 2100,
+      "loss": 0.38460394740104675,
+      "teacher_forced_loss": 0.18530202905337015,
+      "elapsed_seconds": 85.25827278399993
+    },
+    {
+      "update": 2200,
+      "loss": 0.4435257017612457,
+      "teacher_forced_loss": 0.1524228701988856,
+      "elapsed_seconds": 89.61383706799984
+    },
+    {
+      "update": 2300,
+      "loss": 0.3333355188369751,
+      "teacher_forced_loss": 0.13547227531671524,
+      "elapsed_seconds": 93.99846651600001
+    },
+    {
+      "update": 2400,
+      "loss": 0.3232119679450989,
+      "teacher_forced_loss": 0.11137391378482182,
+      "elapsed_seconds": 98.40051009099989
+    },
+    {
+      "update": 2500,
+      "loss": 0.31938034296035767,
+      "teacher_forced_loss": 0.11010270317395528,
+      "elapsed_seconds": 102.77281546099994
+    },
+    {
+      "update": 2600,
+      "loss": 0.3658861517906189,
+      "teacher_forced_loss": 0.10769275824228923,
+      "elapsed_seconds": 107.269514501
+    },
+    {
+      "update": 2700,
+      "loss": 0.3872988224029541,
+      "teacher_forced_loss": 0.07593891769647598,
+      "elapsed_seconds": 111.64478549
+    },
+    {
+      "update": 2800,
+      "loss": 0.23300538957118988,
+      "teacher_forced_loss": 0.07238120213150978,
+      "elapsed_seconds": 116.05538545299987
+    },
+    {
+      "update": 2900,
+      "loss": 0.39248740673065186,
+      "teacher_forced_loss": 0.05629286045829455,
+      "elapsed_seconds": 120.50947434399995
+    },
+    {
+      "update": 3000,
+      "loss": 0.2671685218811035,
+      "teacher_forced_loss": 0.0551261268556118,
+      "elapsed_seconds": 124.77011430199991
+    },
+    {
+      "update": 3100,
+      "loss": 0.19779729843139648,
+      "teacher_forced_loss": 0.04187669108311335,
+      "elapsed_seconds": 128.3185891789999
+    },
+    {
+      "update": 3200,
+      "loss": 0.17116641998291016,
+      "teacher_forced_loss": 0.042049859960873924,
+      "elapsed_seconds": 131.93616577199987
+    },
+    {
+      "update": 3300,
+      "loss": 0.21109916269779205,
+      "teacher_forced_loss": 0.05074793100357056,
+      "elapsed_seconds": 135.48591943499991
+    },
+    {
+      "update": 3400,
+      "loss": 0.18140442669391632,
+      "teacher_forced_loss": 0.04202385743459066,
+      "elapsed_seconds": 139.04674736699985
+    },
+    {
+      "update": 3500,
+      "loss": 0.1580326408147812,
+      "teacher_forced_loss": 0.03762518366177877,
+      "elapsed_seconds": 142.65567808399987
+    },
+    {
+      "update": 3600,
+      "loss": 0.13758046925067902,
+      "teacher_forced_loss": 0.0365758960445722,
+      "elapsed_seconds": 146.94604642800005
+    },
+    {
+      "update": 3700,
+      "loss": 0.10592347383499146,
+      "teacher_forced_loss": 0.04169929896791776,
+      "elapsed_seconds": 151.51970649999998
+    },
+    {
+      "update": 3800,
+      "loss": 0.08292756974697113,
+      "teacher_forced_loss": 0.02169814333319664,
+      "elapsed_seconds": 155.923845305
+    },
+    {
+      "update": 3900,
+      "loss": 0.12766391038894653,
+      "teacher_forced_loss": 0.026447632660468418,
+      "elapsed_seconds": 160.37759558599987
+    },
+    {
+      "update": 4000,
+      "loss": 0.04804005101323128,
+      "teacher_forced_loss": 0.02385035033027331,
+      "elapsed_seconds": 164.864948293
+    },
+    {
+      "update": 4100,
+      "loss": 0.04408630356192589,
+      "teacher_forced_loss": 0.030253568043311436,
+      "elapsed_seconds": 168.64375518199995
+    },
+    {
+      "update": 4200,
+      "loss": 0.05480402335524559,
+      "teacher_forced_loss": 0.03531434014439583,
+      "elapsed_seconds": 172.396245315
+    },
+    {
+      "update": 4300,
+      "loss": 0.0473346933722496,
+      "teacher_forced_loss": 0.020631737386186916,
+      "elapsed_seconds": 176.1233954239999
+    },
+    {
+      "update": 4400,
+      "loss": 0.09258793294429779,
+      "teacher_forced_loss": 0.023178984100619953,
+      "elapsed_seconds": 179.66704298399986
+    },
+    {
+      "update": 4500,
+      "loss": 0.10740160942077637,
+      "teacher_forced_loss": 0.018506822486718495,
+      "elapsed_seconds": 183.30725150499984
+    },
+    {
+      "update": 4600,
+      "loss": 0.03833596780896187,
+      "teacher_forced_loss": 0.021968795607487362,
+      "elapsed_seconds": 188.44603409599995
+    },
+    {
+      "update": 4700,
+      "loss": 0.05148696526885033,
+      "teacher_forced_loss": 0.025161826362212498,
+      "elapsed_seconds": 194.26290838599994
+    },
+    {
+      "update": 4800,
+      "loss": 0.0462024062871933,
+      "teacher_forced_loss": 0.027394477277994156,
+      "elapsed_seconds": 198.8851623359999
+    },
+    {
+      "update": 4900,
+      "loss": 0.0543014295399189,
+      "teacher_forced_loss": 0.016553661475578945,
+      "elapsed_seconds": 203.99863966599992
+    },
+    {
+      "update": 5000,
+      "loss": 0.11008571833372116,
+      "teacher_forced_loss": 0.013700259538988272,
+      "elapsed_seconds": 209.02776948099995
+    }
+  ],
+  "evaluation": {
+    "summary": {
+      "scratch": {
+        "targets": 32,
+        "k1_success": 25,
+        "k32_success": 32,
+        "mean_k1_fidelity": 0.8326428803040415,
+        "mean_k32_fidelity": 0.9992102619870917,
+        "all_candidates_feasible": true,
+        "unchanged_prefix_qualified": 1
+      },
+      "suffix_repair": {
+        "targets": 32,
+        "k1_success": 31,
+        "k32_success": 31,
+        "mean_k1_fidelity": 0.9992863452350877,
+        "mean_k32_fidelity": 0.9992863452350877,
+        "all_candidates_feasible": true,
+        "unchanged_prefix_qualified": 0
+      }
+    },
+    "rows": [
+      {
+        "request_id": "tiny_00",
+        "mode": "scratch",
+        "prefix_fidelity": 0.855503818653763,
+        "k1_fidelity": 0.9999424198471426,
+        "k1_success": true,
+        "k32_fidelity": 0.9999424198471426,
+        "k32_success": true,
+        "best_resources": {
+          "gate_counts": {
+            "cx": 3,
+            "rz": 3,
+            "ry": 1
+          },
+          "unitary_gate_count": 7,
+          "depth": 6,
+          "two_qubit_depth": 3
+        },
+        "best_layers": [
+          [
+            {
+              "gate": "cx",
+              "wires": [
+                0,
+                1
+              ],
+              "params": []
+            }
+          ],
+          [
+            {
+              "gate": "cx",
+              "wires": [
+                1,
+                0
+              ],
+              "params": []
+            }
+          ],
+          [
+            {
+              "gate": "cx",
+              "wires": [
+                0,
+                1
+              ],
+              "params": []
+            }
+          ],
+          [
+            {
+              "gate": "rz",
+              "wires": [
+                0
+              ],
+              "params": [
+                -1.7644952884394758
+              ]
+            },
+            {
+              "gate": "rz",
+              "wires": [
+                1
+              ],
+              "params": [
+                -1.3332815793641803
+              ]
+            }
+          ],
+          [
+            {
+              "gate": "rz",
+              "wires": [
+                1
+              ],
+              "params": [
+                0.4842817097897356
+              ]
+            }
+          ],
+          [
+            {
+              "gate": "ry",
+              "wires": [
+                1
+              ],
+              "params": [
+                -0.7646897271270578
+              ]
+            }
+          ]
+        ],
+        "all_candidates_feasible": true,
+        "model_calls": 1728,
+        "unchanged_prefix_qualifies": false
+      },
+      {
+        "request_id": "tiny_01",
+        "mode": "scratch",
+        "prefix_fidelity": 0.6768792629293713,
+        "k1_fidelity": 0.9999274144142366,
+        "k1_success": true,
+        "k32_fidelity": 0.9999274144142366,
+        "k32_success": true,
+        "best_resources": {
+          "gate_counts": {
+            "rz": 2,
+            "ry": 1,
+            "cx": 1
+          },
+          "unitary_gate_count": 4,
+          "depth": 3,
+          "two_qubit_depth": 1
+        },
+        "best_layers": [
+          [
+            {
+              "gate": "rz",
+              "wires": [
+                0
+              ],
+              "params": [
+                0.4232313320035761
+              ]
+            },
+            {
+              "gate": "ry",
+              "wires": [
+                1
+              ],
+              "params": [
+                1.1921702538915868
+              ]
+            }
+          ],
+          [
+            {
+              "gate": "rz",
+              "wires": [
+                0
+              ],
+              "params": [
+                -1.3953645442911384
+              ]
+            }
+          ],
+          [
+            {
+              "gate": "cx",
+              "wires": [
+                0,
+                1
+              ],
+              "params": []
+            }
+          ]
+        ],
+        "all_candidates_feasible": true,
+        "model_calls": 864,
+        "unchanged_prefix_qualifies": false
+      },
+      {
+        "request_id": "tiny_02",
+        "mode": "scratch",
+        "prefix_fidelity": 0.9829094384546694,
+        "k1_fidelity": 0.9994771428162385,
+        "k1_success": true,
+        "k32_fidelity": 0.9994771428162385,
+        "k32_success": true,
+        "best_resources": {
+          "gate_counts": {
+            "cx": 2,
+            "ry": 1
+          },
+          "unitary_gate_count": 3,
+          "depth": 3,
+          "two_qubit_depth": 2
+        },
+        "best_layers": [
+          [
+            {
+              "gate": "cx",
+              "wires": [
+                0,
+                1
+              ],
+              "params": []
+            }
+          ],
+          [
+            {
+              "gate": "ry",
+              "wires": [
+                1
+              ],
+              "params": [
+                -0.21647616301957218
+              ]
+            }
+          ],
+          [
+            {
+              "gate": "cx",
+              "wires": [
+                0,
+                1
+              ],
+              "params": []
+            }
+          ]
+        ],
+        "all_candidates_feasible": true,
+        "model_calls": 864,
+        "unchanged_prefix_qualifies": false
+      },
+      {
+        "request_id": "tiny_03",
+        "mode": "scratch",
+        "prefix_fidelity": 0.18224811756881118,
+        "k1_fidelity": 0.015350368237249244,
+        "k1_success": false,
+        "k32_fidelity": 0.999240580842794,
+        "k32_success": true,
+        "best_resources": {
+          "gate_counts": {
+            "ry": 2,
+            "rz": 1,
+            "cx": 2
+          },
+          "unitary_gate_count": 5,
+          "depth": 4,
+          "two_qubit_depth": 2
+        },
+        "best_layers": [
+          [
+            {
+              "gate": "ry",
+              "wires": [
+                0
+              ],
+              "params": [
+                1.5904012426719154
+              ]
+            },
+            {
+              "gate": "rz",
+              "wires": [
+                1
+              ],
+              "params": [
+                -1.2246728753038643
+              ]
+            }
+          ],
+          [
+            {
+              "gate": "ry",
+              "wires": [
+                1
+              ],
+              "params": [
+                -1.783068034051367
+              ]
+            }
+          ],
+          [
+            {
+              "gate": "cx",
+              "wires": [
+                0,
+                1
+              ],
+              "params": []
+            }
+          ],
+          [
+            {
+              "gate": "cx",
+              "wires": [
+                0,
+                1
+              ],
+              "params": []
+            }
+          ]
+        ],
+        "all_candidates_feasible": true,
+        "model_calls": 1107,
+        "unchanged_prefix_qualifies": false
+      },
+      {
+        "request_id": "tiny_04",
+        "mode": "scratch",
+        "prefix_fidelity": 0.002374947831050469,
+        "k1_fidelity": 0.03681200459389806,
+        "k1_success": false,
+        "k32_fidelity": 0.9999263200373426,
+        "k32_success": true,
+        "best_resources": {
+          "gate_counts": {
+            "ry": 1,
+            "rz": 2,
+            "cx": 2
+          },
+          "unitary_gate_count": 5,
+          "depth": 4,
+          "two_qubit_depth": 2
+        },
+        "best_layers": [
+          [
+            {
+              "gate": "ry",
+              "wires": [
+                0
+              ],
+              "params": [
+                3.0612547770117855
+              ]
+            },
+            {
+              "gate": "rz",
+              "wires": [
+                1
+              ],
+              "params": [
+                0.8089948172362362
+              ]
+            }
+          ],
+          [
+            {
+              "gate": "rz",
+              "wires": [
+                1
+              ],
+              "params": [
+                1.2978692715355153
+              ]
+            }
+          ],
+          [
+            {
+              "gate": "cx",
+              "wires": [
+                0,
+                1
+              ],
+              "params": []
+            }
+          ],
+          [
+            {
+              "gate": "cx",
+              "wires": [
+                1,
+                0
+              ],
+              "params": []
+            }
+          ]
+        ],
+        "all_candidates_feasible": true,
+        "model_calls": 1080,
+        "unchanged_prefix_qualifies": false
+      },
+      {
+        "request_id": "tiny_05",
+        "mode": "scratch",
+        "prefix_fidelity": 0.028439522316167302,
+        "k1_fidelity": 0.9993136461924125,
+        "k1_success": true,
+        "k32_fidelity": 0.9993136461924125,
+        "k32_success": true,
+        "best_resources": {
+          "gate_counts": {
+            "ry": 5,
+            "rz": 2,
+            "cx": 2
+          },
+          "unitary_gate_count": 9,
+          "depth": 6,
+          "two_qubit_depth": 2
+        },
+        "best_layers": [
+          [
+            {
+              "gate": "ry",
+              "wires": [
+                0
+              ],
+              "params": [
+                2.988156948236141
+              ]
+            },
+            {
+              "gate": "rz",
+              "wires": [
+                1
+              ],
+              "params": [
+                -1.2040039514490364
+              ]
+            }
+          ],
+          [
+            {
+              "gate": "ry",
+              "wires": [
+                1
+              ],
+              "params": [
+                0.8908874640853917
+              ]
+            }
+          ],
+          [
+            {
+              "gate": "cx",
+              "wires": [
+                0,
+                1
+              ],
+              "params": []
+            }
+          ],
+          [
+            {
+              "gate": "ry",
+              "wires": [
+                0
+              ],
+              "params": [
+                -2.703162956732358
+              ]
+            },
+            {
+              "gate": "ry",
+              "wires": [
+                1
+              ],
+              "params": [
+                2.4778984149275676
+              ]
+            }
+          ],
+          [
+            {
+              "gate": "cx",
+              "wires": [
+                0,
+                1
+              ],
+              "params": []
+            }
+          ],
+          [
+            {
+              "gate": "rz",
+              "wires": [
+                0
+              ],
+              "params": [
+                -1.0120765461267744
+              ]
+            },
+            {
+              "gate": "ry",
+              "wires": [
+                1
+              ],
+              "params": [
+                -1.1977762048431633
+              ]
+            }
+          ]
+        ],
+        "all_candidates_feasible": true,
+        "model_calls": 1683,
+        "unchanged_prefix_qualifies": false
+      },
+      {
+        "request_id": "tiny_06",
+        "mode": "scratch",
+        "prefix_fidelity": 0.42674769123898165,
+        "k1_fidelity": 0.9988700262604177,
+        "k1_success": true,
+        "k32_fidelity": 0.9988700262604177,
+        "k32_success": true,
+        "best_resources": {
+          "gate_counts": {
+            "cx": 2,
+            "ry": 3,
+            "rz": 2
+          },
+          "unitary_gate_count": 7,
+          "depth": 5,
+          "two_qubit_depth": 2
+        },
+        "best_layers": [
+          [
+            {
+              "gate": "cx",
+              "wires": [
+                1,
+                0
+              ],
+              "params": []
+            }
+          ],
+          [
+            {
+              "gate": "ry",
+              "wires": [
+                0
+              ],
+              "params": [
+                -1.657152931390711
+              ]
+            },
+            {
+              "gate": "ry",
+              "wires": [
+                1
+              ],
+              "params": [
+                -2.0009658927700684
+              ]
+            }
+          ],
+          [
+            {
+              "gate": "rz",
+              "wires": [
+                0
+              ],
+              "params": [
+                0.5350568391377752
+              ]
+            },
+            {
+              "gate": "ry",
+              "wires": [
+                1
+              ],
+              "params": [
+                2.4773109813509837
+              ]
+            }
+          ],
+          [
+            {
+              "gate": "rz",
+              "wires": [
+                0
+              ],
+              "params": [
+                0.7754774227733439
+              ]
+            }
+          ],
+          [
+            {
+              "gate": "cx",
+              "wires": [
+                0,
+                1
+              ],
+              "params": []
+            }
+          ]
+        ],
+        "all_candidates_feasible": true,
+        "model_calls": 1431,
+        "unchanged_prefix_qualifies": false
+      },
+      {
+        "request_id": "tiny_07",
+        "mode": "scratch",
+        "prefix_fidelity": 0.7898486657477105,
+        "k1_fidelity": 0.9988971652876311,
+        "k1_success": true,
+        "k32_fidelity": 0.9988971652876311,
+        "k32_success": true,
+        "best_resources": {
+          "gate_counts": {
+            "cx": 2,
+            "rz": 2,
+            "ry": 3
+          },
+          "unitary_gate_count": 7,
+          "depth": 5,
+          "two_qubit_depth": 2
+        },
+        "best_layers": [
+          [
+            {
+              "gate": "cx",
+              "wires": [
+                0,
+                1
+              ],
+              "params": []
+            }
+          ],
+          [
+            {
+              "gate": "cx",
+              "wires": [
+                0,
+                1
+              ],
+              "params": []
+            }
+          ],
+          [
+            {
+              "gate": "rz",
+              "wires": [
+                0
+              ],
+              "params": [
+                -2.742430153983678
+              ]
+            },
+            {
+              "gate": "ry",
+              "wires": [
+                1
+              ],
+              "params": [
+                -2.4375958924470797
+              ]
+            }
+          ],
+          [
+            {
+              "gate": "ry",
+              "wires": [
+                0
+              ],
+              "params": [
+                -0.8973546872528111
+              ]
+            },
+            {
+              "gate": "ry",
+              "wires": [
+                1
+              ],
+              "params": [
+                2.1110654505572484
+              ]
+            }
+          ],
+          [
+            {
+              "gate": "rz",
+              "wires": [
+                1
+              ],
+              "params": [
+                0.8537590975554501
+              ]
+            }
+          ]
+        ],
+        "all_candidates_feasible": true,
+        "model_calls": 1440,
+        "unchanged_prefix_qualifies": false
+      },
+      {
+        "request_id": "tiny_08",
+        "mode": "scratch",
+        "prefix_fidelity": 0.6142067947801007,
+        "k1_fidelity": 0.9995840324471634,
+        "k1_success": true,
+        "k32_fidelity": 0.9995840324471634,
+        "k32_success": true,
+        "best_resources": {
+          "gate_counts": {
+            "ry": 3,
+            "cx": 1,
+            "rz": 1
+          },
+          "unitary_gate_count": 5,
+          "depth": 4,
+          "two_qubit_depth": 1
+        },
+        "best_layers": [
+          [
+            {
+              "gate": "ry",
+              "wires": [
+                0
+              ],
+              "params": [
+                2.3430432821295426
+              ]
+            }
+          ],
+          [
+            {
+              "gate": "ry",
+              "wires": [
+                0
+              ],
+              "params": [
+                -2.775551714000616
+              ]
+            }
+          ],
+          [
+            {
+              "gate": "cx",
+              "wires": [
+                0,
+                1
+              ],
+              "params": []
+            }
+          ],
+          [
+            {
+              "gate": "rz",
+              "wires": [
+                0
+              ],
+              "params": [
+                -0.9798187945650731
+              ]
+            },
+            {
+              "gate": "ry",
+              "wires": [
+                1
+              ],
+              "params": [
+                -1.2380472188183067
+              ]
+            }
+          ]
+        ],
+        "all_candidates_feasible": true,
+        "model_calls": 1161,
+        "unchanged_prefix_qualifies": false
+      },
+      {
+        "request_id": "tiny_09",
+        "mode": "scratch",
+        "prefix_fidelity": 0.004629161338686232,
+        "k1_fidelity": 0.025202766136931266,
+        "k1_success": false,
+        "k32_fidelity": 0.9994876926800161,
+        "k32_success": true,
+        "best_resources": {
+          "gate_counts": {
+            "cx": 3,
+            "rz": 2,
+            "ry": 4
+          },
+          "unitary_gate_count": 9,
+          "depth": 6,
+          "two_qubit_depth": 3
+        },
+        "best_layers": [
+          [
+            {
+              "gate": "cx",
+              "wires": [
+                1,
+                0
+              ],
+              "params": []
+            }
+          ],
+          [
+            {
+              "gate": "rz",
+              "wires": [
+                0
+              ],
+              "params": [
+                0.0399912541109666
+              ]
+            },
+            {
+              "gate": "ry",
+              "wires": [
+                1
+              ],
+              "params": [
+                3.13845244794837
+              ]
+            }
+          ],
+          [
+            {
+              "gate": "ry",
+              "wires": [
+                0
+              ],
+              "params": [
+                -3.0237089171980953
+              ]
+            },
+            {
+              "gate": "ry",
+              "wires": [
+                1
+              ],
+              "params": [
+                -0.2915653233725175
+              ]
+            }
+          ],
+          [
+            {
+              "gate": "rz",
+              "wires": [
+                0
+              ],
+              "params": [
+                2.935981949788842
+              ]
+            },
+            {
+              "gate": "ry",
+              "wires": [
+                1
+              ],
+              "params": [
+                -2.5911839229343787
+              ]
+            }
+          ],
+          [
+            {
+              "gate": "cx",
+              "wires": [
+                0,
+                1
+              ],
+              "params": []
+            }
+          ],
+          [
+            {
+              "gate": "cx",
+              "wires": [
+                1,
+                0
+              ],
+              "params": []
+            }
+          ]
+        ],
+        "all_candidates_feasible": true,
+        "model_calls": 1719,
+        "unchanged_prefix_qualifies": false
+      },
+      {
+        "request_id": "tiny_10",
+        "mode": "scratch",
+        "prefix_fidelity": 0.06686447811009687,
+        "k1_fidelity": 0.9999825325334459,
+        "k1_success": true,
+        "k32_fidelity": 0.9999825325334459,
+        "k32_success": true,
+        "best_resources": {
+          "gate_counts": {
+            "cx": 1,
+            "ry": 5
+          },
+          "unitary_gate_count": 6,
+          "depth": 4,
+          "two_qubit_depth": 1
+        },
+        "best_layers": [
+          [
+            {
+              "gate": "cx",
+              "wires": [
+                1,
+                0
+              ],
+              "params": []
+            }
+          ],
+          [
+            {
+              "gate": "ry",
+              "wires": [
+                0
+              ],
+              "params": [
+                -2.3295173043987916
+              ]
+            },
+            {
+              "gate": "ry",
+              "wires": [
+                1
+              ],
+              "params": [
+                0.7772281303996866
+              ]
+            }
+          ],
+          [
+            {
+              "gate": "ry",
+              "wires": [
+                0
+              ],
+              "params": [
+                -2.735336024063672
+              ]
+            },
+            {
+              "gate": "ry",
+              "wires": [
+                1
+              ],
+              "params": [
+                0.8232381219656979
+              ]
+            }
+          ],
+          [
+            {
+              "gate": "ry",
+              "wires": [
+                0
+              ],
+              "params": [
+                1.1681111777813946
+              ]
+            }
+          ]
+        ],
+        "all_candidates_feasible": true,
+        "model_calls": 1161,
+        "unchanged_prefix_qualifies": false
+      },
+      {
+        "request_id": "tiny_11",
+        "mode": "scratch",
+        "prefix_fidelity": 0.0007872016722747151,
+        "k1_fidelity": 0.047167731946640666,
+        "k1_success": false,
+        "k32_fidelity": 0.9998948827105544,
+        "k32_success": true,
+        "best_resources": {
+          "gate_counts": {
+            "ry": 4,
+            "rz": 1,
+            "cx": 1
+          },
+          "unitary_gate_count": 6,
+          "depth": 4,
+          "two_qubit_depth": 1
+        },
+        "best_layers": [
+          [
+            {
+              "gate": "ry",
+              "wires": [
+                0
+              ],
+              "params": [
+                -0.48866934925268346
+              ]
+            },
+            {
+              "gate": "rz",
+              "wires": [
+                1
+              ],
+              "params": [
+                1.8902996286735023
+              ]
+            }
+          ],
+          [
+            {
+              "gate": "ry",
+              "wires": [
+                1
+              ],
+              "params": [
+                -1.4570723017045257
+              ]
+            }
+          ],
+          [
+            {
+              "gate": "cx",
+              "wires": [
+                0,
+                1
+              ],
+              "params": []
+            }
+          ],
+          [
+            {
+              "gate": "ry",
+              "wires": [
+                0
+              ],
+              "params": [
+                2.2242030794403718
+              ]
+            },
+            {
+              "gate": "ry",
+              "wires": [
+                1
+              ],
+              "params": [
+                -1.6165955618009054
+              ]
+            }
+          ]
+        ],
+        "all_candidates_feasible": true,
+        "model_calls": 1152,
+        "unchanged_prefix_qualifies": false
+      },
+      {
+        "request_id": "tiny_12",
+        "mode": "scratch",
+        "prefix_fidelity": 0.06372630502717155,
+        "k1_fidelity": 0.9996788066666912,
+        "k1_success": true,
+        "k32_fidelity": 0.9996788066666912,
+        "k32_success": true,
+        "best_resources": {
+          "gate_counts": {
+            "rz": 2,
+            "ry": 5,
+            "cx": 1
+          },
+          "unitary_gate_count": 8,
+          "depth": 5,
+          "two_qubit_depth": 1
+        },
+        "best_layers": [
+          [
+            {
+              "gate": "rz",
+              "wires": [
+                0
+              ],
+              "params": [
+                -1.4333319952079056
+              ]
+            },
+            {
+              "gate": "ry",
+              "wires": [
+                1
+              ],
+              "params": [
+                2.7434229140458957
+              ]
+            }
+          ],
+          [
+            {
+              "gate": "ry",
+              "wires": [
+                0
+              ],
+              "params": [
+                2.6291802411256686
+              ]
+            },
+            {
+              "gate": "ry",
+              "wires": [
+                1
+              ],
+              "params": [
+                -1.2203780477234123
+              ]
+            }
+          ],
+          [
+            {
+              "gate": "ry",
+              "wires": [
+                1
+              ],
+              "params": [
+                2.1915059904239342
+              ]
+            }
+          ],
+          [
+            {
+              "gate": "cx",
+              "wires": [
+                1,
+                0
+              ],
+              "params": []
+            }
+          ],
+          [
+            {
+              "gate": "ry",
+              "wires": [
+                0
+              ],
+              "params": [
+                2.780984215435896
+              ]
+            },
+            {
+              "gate": "rz",
+              "wires": [
+                1
+              ],
+              "params": [
+                -2.104133210577743
+              ]
+            }
+          ]
+        ],
+        "all_candidates_feasible": true,
+        "model_calls": 1440,
+        "unchanged_prefix_qualifies": false
+      },
+      {
+        "request_id": "tiny_13",
+        "mode": "scratch",
+        "prefix_fidelity": 0.060770477230326005,
+        "k1_fidelity": 0.998571384887516,
+        "k1_success": true,
+        "k32_fidelity": 0.998571384887516,
+        "k32_success": true,
+        "best_resources": {
+          "gate_counts": {
+            "cx": 1,
+            "ry": 2,
+            "rz": 2
+          },
+          "unitary_gate_count": 5,
+          "depth": 3,
+          "two_qubit_depth": 1
+        },
+        "best_layers": [
+          [
+            {
+              "gate": "cx",
+              "wires": [
+                1,
+                0
+              ],
+              "params": []
+            }
+          ],
+          [
+            {
+              "gate": "ry",
+              "wires": [
+                0
+              ],
+              "params": [
+                -2.337109669544475
+              ]
+            },
+            {
+              "gate": "ry",
+              "wires": [
+                1
+              ],
+              "params": [
+                1.8512107238158668
+              ]
+            }
+          ],
+          [
+            {
+              "gate": "rz",
+              "wires": [
+                0
+              ],
+              "params": [
+                -2.7643093690251446
+              ]
+            },
+            {
+              "gate": "rz",
+              "wires": [
+                1
+              ],
+              "params": [
+                2.265732988216655
+              ]
+            }
+          ]
+        ],
+        "all_candidates_feasible": true,
+        "model_calls": 864,
+        "unchanged_prefix_qualifies": false
+      },
+      {
+        "request_id": "tiny_14",
+        "mode": "scratch",
+        "prefix_fidelity": 1.0,
+        "k1_fidelity": 1.0,
+        "k1_success": true,
+        "k32_fidelity": 1.0,
+        "k32_success": true,
+        "best_resources": {
+          "gate_counts": {
+            "cx": 4
+          },
+          "unitary_gate_count": 4,
+          "depth": 4,
+          "two_qubit_depth": 4
+        },
+        "best_layers": [
+          [
+            {
+              "gate": "cx",
+              "wires": [
+                0,
+                1
+              ],
+              "params": []
+            }
+          ],
+          [
+            {
+              "gate": "cx",
+              "wires": [
+                1,
+                0
+              ],
+              "params": []
+            }
+          ],
+          [
+            {
+              "gate": "cx",
+              "wires": [
+                0,
+                1
+              ],
+              "params": []
+            }
+          ],
+          [
+            {
+              "gate": "cx",
+              "wires": [
+                1,
+                0
+              ],
+              "params": []
+            }
+          ]
+        ],
+        "all_candidates_feasible": true,
+        "model_calls": 1152,
+        "unchanged_prefix_qualifies": true
+      },
+      {
+        "request_id": "tiny_15",
+        "mode": "scratch",
+        "prefix_fidelity": 0.2426989150104866,
+        "k1_fidelity": 0.9988619143939725,
+        "k1_success": true,
+        "k32_fidelity": 0.9988619143939725,
+        "k32_success": true,
+        "best_resources": {
+          "gate_counts": {
+            "rz": 5,
+            "ry": 3,
+            "cx": 1
+          },
+          "unitary_gate_count": 9,
+          "depth": 5,
+          "two_qubit_depth": 1
+        },
+        "best_layers": [
+          [
+            {
+              "gate": "rz",
+              "wires": [
+                0
+              ],
+              "params": [
+                1.3735744273239705
+              ]
+            },
+            {
+              "gate": "ry",
+              "wires": [
+                1
+              ],
+              "params": [
+                -1.8496807619914495
+              ]
+            }
+          ],
+          [
+            {
+              "gate": "ry",
+              "wires": [
+                0
+              ],
+              "params": [
+                1.075884478786758
+              ]
+            },
+            {
+              "gate": "rz",
+              "wires": [
+                1
+              ],
+              "params": [
+                0.16344127257648555
+              ]
+            }
+          ],
+          [
+            {
+              "gate": "rz",
+              "wires": [
+                0
+              ],
+              "params": [
+                2.5723885649172917
+              ]
+            },
+            {
+              "gate": "rz",
+              "wires": [
+                1
+              ],
+              "params": [
+                1.5048186992594
+              ]
+            }
+          ],
+          [
+            {
+              "gate": "cx",
+              "wires": [
+                1,
+                0
+              ],
+              "params": []
+            }
+          ],
+          [
+            {
+              "gate": "ry",
+              "wires": [
+                0
+              ],
+              "params": [
+                2.224486976363437
+              ]
+            },
+            {
+              "gate": "rz",
+              "wires": [
+                1
+              ],
+              "params": [
+                0.42867180556009465
+              ]
+            }
+          ]
+        ],
+        "all_candidates_feasible": true,
+        "model_calls": 1440,
+        "unchanged_prefix_qualifies": false
+      },
+      {
+        "request_id": "tiny_16",
+        "mode": "scratch",
+        "prefix_fidelity": 0.2392279060866209,
+        "k1_fidelity": 0.9996911827101737,
+        "k1_success": true,
+        "k32_fidelity": 0.9996911827101737,
+        "k32_success": true,
+        "best_resources": {
+          "gate_counts": {
+            "ry": 4,
+            "rz": 1,
+            "cx": 2
+          },
+          "unitary_gate_count": 7,
+          "depth": 6,
+          "two_qubit_depth": 2
+        },
+        "best_layers": [
+          [
+            {
+              "gate": "ry",
+              "wires": [
+                0
+              ],
+              "params": [
+                0.962769982093743
+              ]
+            },
+            {
+              "gate": "ry",
+              "wires": [
+                1
+              ],
+              "params": [
+                -0.013476947446499743
+              ]
+            }
+          ],
+          [
+            {
+              "gate": "rz",
+              "wires": [
+                1
+              ],
+              "params": [
+                1.9531453505143608
+              ]
+            }
+          ],
+          [
+            {
+              "gate": "ry",
+              "wires": [
+                1
+              ],
+              "params": [
+                1.60786671489329
+              ]
+            }
+          ],
+          [
+            {
+              "gate": "cx",
+              "wires": [
+                1,
+                0
+              ],
+              "params": []
+            }
+          ],
+          [
+            {
+              "gate": "cx",
+              "wires": [
+                0,
+                1
+              ],
+              "params": []
+            }
+          ],
+          [
+            {
+              "gate": "ry",
+              "wires": [
+                1
+              ],
+              "params": [
+                -2.552355114236507
+              ]
+            }
+          ]
+        ],
+        "all_candidates_feasible": true,
+        "model_calls": 1683,
+        "unchanged_prefix_qualifies": false
+      },
+      {
+        "request_id": "tiny_17",
+        "mode": "scratch",
+        "prefix_fidelity": 0.9726839877678888,
+        "k1_fidelity": 0.999634905122686,
+        "k1_success": true,
+        "k32_fidelity": 0.999634905122686,
+        "k32_success": true,
+        "best_resources": {
+          "gate_counts": {
+            "cx": 1,
+            "rz": 4,
+            "ry": 2
+          },
+          "unitary_gate_count": 7,
+          "depth": 4,
+          "two_qubit_depth": 1
+        },
+        "best_layers": [
+          [
+            {
+              "gate": "cx",
+              "wires": [
+                1,
+                0
+              ],
+              "params": []
+            }
+          ],
+          [
+            {
+              "gate": "rz",
+              "wires": [
+                0
+              ],
+              "params": [
+                -2.5465977152167216
+              ]
+            },
+            {
+              "gate": "rz",
+              "wires": [
+                1
+              ],
+              "params": [
+                2.5871964429794208
+              ]
+            }
+          ],
+          [
+            {
+              "gate": "ry",
+              "wires": [
+                0
+              ],
+              "params": [
+                -1.8615177303537809
+              ]
+            },
+            {
+              "gate": "rz",
+              "wires": [
+                1
+              ],
+              "params": [
+                2.563464915129389
+              ]
+            }
+          ],
+          [
+            {
+              "gate": "ry",
+              "wires": [
+                0
+              ],
+              "params": [
+                1.5676601444669958
+              ]
+            },
+            {
+              "gate": "rz",
+              "wires": [
+                1
+              ],
+              "params": [
+                -2.3417525435469315
+              ]
+            }
+          ]
+        ],
+        "all_candidates_feasible": true,
+        "model_calls": 1152,
+        "unchanged_prefix_qualifies": false
+      },
+      {
+        "request_id": "tiny_18",
+        "mode": "scratch",
+        "prefix_fidelity": 0.09726609691570949,
+        "k1_fidelity": 0.9989603833215506,
+        "k1_success": true,
+        "k32_fidelity": 0.9989603833215506,
+        "k32_success": true,
+        "best_resources": {
+          "gate_counts": {
+            "ry": 3,
+            "rz": 3,
+            "cx": 1
+          },
+          "unitary_gate_count": 7,
+          "depth": 5,
+          "two_qubit_depth": 1
+        },
+        "best_layers": [
+          [
+            {
+              "gate": "ry",
+              "wires": [
+                0
+              ],
+              "params": [
+                -2.2317720870158837
+              ]
+            },
+            {
+              "gate": "ry",
+              "wires": [
+                1
+              ],
+              "params": [
+                2.6648963799057857
+              ]
+            }
+          ],
+          [
+            {
+              "gate": "rz",
+              "wires": [
+                0
+              ],
+              "params": [
+                0.9008679787309681
+              ]
+            },
+            {
+              "gate": "ry",
+              "wires": [
+                1
+              ],
+              "params": [
+                2.056241981186645
+              ]
+            }
+          ],
+          [
+            {
+              "gate": "cx",
+              "wires": [
+                1,
+                0
+              ],
+              "params": []
+            }
+          ],
+          [
+            {
+              "gate": "rz",
+              "wires": [
+                0
+              ],
+              "params": [
+                -0.5964688671747869
+              ]
+            }
+          ],
+          [
+            {
+              "gate": "rz",
+              "wires": [
+                0
+              ],
+              "params": [
+                -1.9286003664121114
+              ]
+            }
+          ]
+        ],
+        "all_candidates_feasible": true,
+        "model_calls": 1440,
+        "unchanged_prefix_qualifies": false
+      },
+      {
+        "request_id": "tiny_19",
+        "mode": "scratch",
+        "prefix_fidelity": 0.09592255676074227,
+        "k1_fidelity": 0.999565332080001,
+        "k1_success": true,
+        "k32_fidelity": 0.999565332080001,
+        "k32_success": true,
+        "best_resources": {
+          "gate_counts": {
+            "rz": 2,
+            "ry": 2,
+            "cx": 1
+          },
+          "unitary_gate_count": 5,
+          "depth": 3,
+          "two_qubit_depth": 1
+        },
+        "best_layers": [
+          [
+            {
+              "gate": "rz",
+              "wires": [
+                0
+              ],
+              "params": [
+                -0.7186398789281672
+              ]
+            },
+            {
+              "gate": "rz",
+              "wires": [
+                1
+              ],
+              "params": [
+                -0.2791100983816728
+              ]
+            }
+          ],
+          [
+            {
+              "gate": "ry",
+              "wires": [
+                0
+              ],
+              "params": [
+                2.4585784037886516
+              ]
+            },
+            {
+              "gate": "ry",
+              "wires": [
+                1
+              ],
+              "params": [
+                -0.6558109953994578
+              ]
+            }
+          ],
+          [
+            {
+              "gate": "cx",
+              "wires": [
+                0,
+                1
+              ],
+              "params": []
+            }
+          ]
+        ],
+        "all_candidates_feasible": true,
+        "model_calls": 882,
+        "unchanged_prefix_qualifies": false
+      },
+      {
+        "request_id": "tiny_20",
+        "mode": "scratch",
+        "prefix_fidelity": 0.6082229407244159,
+        "k1_fidelity": 0.013514654098296056,
+        "k1_success": false,
+        "k32_fidelity": 0.9994406724573476,
+        "k32_success": true,
+        "best_resources": {
+          "gate_counts": {
+            "rz": 2,
+            "ry": 4,
+            "cx": 1
+          },
+          "unitary_gate_count": 7,
+          "depth": 5,
+          "two_qubit_depth": 1
+        },
+        "best_layers": [
+          [
+            {
+              "gate": "rz",
+              "wires": [
+                0
+              ],
+              "params": [
+                -1.9751404220841096
+              ]
+            },
+            {
+              "gate": "rz",
+              "wires": [
+                1
+              ],
+              "params": [
+                1.5684853111692663
+              ]
+            }
+          ],
+          [
+            {
+              "gate": "ry",
+              "wires": [
+                0
+              ],
+              "params": [
+                -1.3056061928459404
+              ]
+            },
+            {
+              "gate": "ry",
+              "wires": [
+                1
+              ],
+              "params": [
+                1.1775950069220578
+              ]
+            }
+          ],
+          [
+            {
+              "gate": "cx",
+              "wires": [
+                0,
+                1
+              ],
+              "params": []
+            }
+          ],
+          [
+            {
+              "gate": "ry",
+              "wires": [
+                1
+              ],
+              "params": [
+                -0.24120765378061382
+              ]
+            }
+          ],
+          [
+            {
+              "gate": "ry",
+              "wires": [
+                1
+              ],
+              "params": [
+                -1.3598517122977374
+              ]
+            }
+          ]
+        ],
+        "all_candidates_feasible": true,
+        "model_calls": 1476,
+        "unchanged_prefix_qualifies": false
+      },
+      {
+        "request_id": "tiny_21",
+        "mode": "scratch",
+        "prefix_fidelity": 0.9895701645481235,
+        "k1_fidelity": 0.9781648618090237,
+        "k1_success": false,
+        "k32_fidelity": 0.9975271064146484,
+        "k32_success": true,
+        "best_resources": {
+          "gate_counts": {
+            "ry": 2,
+            "cx": 2,
+            "rz": 1
+          },
+          "unitary_gate_count": 5,
+          "depth": 5,
+          "two_qubit_depth": 2
+        },
+        "best_layers": [
+          [
+            {
+              "gate": "ry",
+              "wires": [
+                1
+              ],
+              "params": [
+                0.6557060465211695
+              ]
+            }
+          ],
+          [
+            {
+              "gate": "ry",
+              "wires": [
+                1
+              ],
+              "params": [
+                -0.3518218343454942
+              ]
+            }
+          ],
+          [
+            {
+              "gate": "cx",
+              "wires": [
+                0,
+                1
+              ],
+              "params": []
+            }
+          ],
+          [
+            {
+              "gate": "rz",
+              "wires": [
+                1
+              ],
+              "params": [
+                2.6605166902123347
+              ]
+            }
+          ],
+          [
+            {
+              "gate": "cx",
+              "wires": [
+                1,
+                0
+              ],
+              "params": []
+            }
+          ]
+        ],
+        "all_candidates_feasible": true,
+        "model_calls": 1386,
+        "unchanged_prefix_qualifies": false
+      },
+      {
+        "request_id": "tiny_22",
+        "mode": "scratch",
+        "prefix_fidelity": 0.6105118936809509,
+        "k1_fidelity": 0.9996984865631539,
+        "k1_success": true,
+        "k32_fidelity": 0.9996984865631539,
+        "k32_success": true,
+        "best_resources": {
+          "gate_counts": {
+            "ry": 3,
+            "cx": 1,
+            "rz": 1
+          },
+          "unitary_gate_count": 5,
+          "depth": 4,
+          "two_qubit_depth": 1
+        },
+        "best_layers": [
+          [
+            {
+              "gate": "ry",
+              "wires": [
+                0
+              ],
+              "params": [
+                -0.3583958690363511
+              ]
+            },
+            {
+              "gate": "ry",
+              "wires": [
+                1
+              ],
+              "params": [
+                -1.1040607566626583
+              ]
+            }
+          ],
+          [
+            {
+              "gate": "ry",
+              "wires": [
+                0
+              ],
+              "params": [
+                1.1165333713086163
+              ]
+            }
+          ],
+          [
+            {
+              "gate": "cx",
+              "wires": [
+                0,
+                1
+              ],
+              "params": []
+            }
+          ],
+          [
+            {
+              "gate": "rz",
+              "wires": [
+                1
+              ],
+              "params": [
+                2.2172045888981984
+              ]
+            }
+          ]
+        ],
+        "all_candidates_feasible": true,
+        "model_calls": 1152,
+        "unchanged_prefix_qualifies": false
+      },
+      {
+        "request_id": "tiny_23",
+        "mode": "scratch",
+        "prefix_fidelity": 0.9147234581550412,
+        "k1_fidelity": 0.9997669585307863,
+        "k1_success": true,
+        "k32_fidelity": 0.9997669585307863,
+        "k32_success": true,
+        "best_resources": {
+          "gate_counts": {
+            "cx": 2,
+            "ry": 2
+          },
+          "unitary_gate_count": 4,
+          "depth": 4,
+          "two_qubit_depth": 2
+        },
+        "best_layers": [
+          [
+            {
+              "gate": "cx",
+              "wires": [
+                1,
+                0
+              ],
+              "params": []
+            }
+          ],
+          [
+            {
+              "gate": "ry",
+              "wires": [
+                0
+              ],
+              "params": [
+                2.995951049027357
+              ]
+            }
+          ],
+          [
+            {
+              "gate": "ry",
+              "wires": [
+                0
+              ],
+              "params": [
+                2.664022158580865
+              ]
+            }
+          ],
+          [
+            {
+              "gate": "cx",
+              "wires": [
+                1,
+                0
+              ],
+              "params": []
+            }
+          ]
+        ],
+        "all_candidates_feasible": true,
+        "model_calls": 1152,
+        "unchanged_prefix_qualifies": false
+      },
+      {
+        "request_id": "tiny_24",
+        "mode": "scratch",
+        "prefix_fidelity": 0.02892183920963572,
+        "k1_fidelity": 0.9991844131262282,
+        "k1_success": true,
+        "k32_fidelity": 0.9991844131262282,
+        "k32_success": true,
+        "best_resources": {
+          "gate_counts": {
+            "ry": 4,
+            "rz": 2,
+            "cx": 1
+          },
+          "unitary_gate_count": 7,
+          "depth": 4,
+          "two_qubit_depth": 1
+        },
+        "best_layers": [
+          [
+            {
+              "gate": "ry",
+              "wires": [
+                0
+              ],
+              "params": [
+                1.3436842941977973
+              ]
+            },
+            {
+              "gate": "ry",
+              "wires": [
+                1
+              ],
+              "params": [
+                -0.9821902991477707
+              ]
+            }
+          ],
+          [
+            {
+              "gate": "rz",
+              "wires": [
+                0
+              ],
+              "params": [
+                -1.7298056103274309
+              ]
+            },
+            {
+              "gate": "rz",
+              "wires": [
+                1
+              ],
+              "params": [
+                2.640612091618623
+              ]
+            }
+          ],
+          [
+            {
+              "gate": "cx",
+              "wires": [
+                1,
+                0
+              ],
+              "params": []
+            }
+          ],
+          [
+            {
+              "gate": "ry",
+              "wires": [
+                0
+              ],
+              "params": [
+                -2.138749084868209
+              ]
+            },
+            {
+              "gate": "ry",
+              "wires": [
+                1
+              ],
+              "params": [
+                1.4991488148757215
+              ]
+            }
+          ]
+        ],
+        "all_candidates_feasible": true,
+        "model_calls": 1152,
+        "unchanged_prefix_qualifies": false
+      },
+      {
+        "request_id": "tiny_25",
+        "mode": "scratch",
+        "prefix_fidelity": 0.8964454251658895,
+        "k1_fidelity": 0.5483458340591326,
+        "k1_success": false,
+        "k32_fidelity": 0.9991971795960731,
+        "k32_success": true,
+        "best_resources": {
+          "gate_counts": {
+            "rz": 2,
+            "ry": 1,
+            "cx": 1
+          },
+          "unitary_gate_count": 4,
+          "depth": 3,
+          "two_qubit_depth": 1
+        },
+        "best_layers": [
+          [
+            {
+              "gate": "rz",
+              "wires": [
+                0
+              ],
+              "params": [
+                -0.8869604418666874
+              ]
+            },
+            {
+              "gate": "rz",
+              "wires": [
+                1
+              ],
+              "params": [
+                2.7862908616637325
+              ]
+            }
+          ],
+          [
+            {
+              "gate": "ry",
+              "wires": [
+                1
+              ],
+              "params": [
+                -0.5985820604483312
+              ]
+            }
+          ],
+          [
+            {
+              "gate": "cx",
+              "wires": [
+                1,
+                0
+              ],
+              "params": []
+            }
+          ]
+        ],
+        "all_candidates_feasible": true,
+        "model_calls": 864,
+        "unchanged_prefix_qualifies": false
+      },
+      {
+        "request_id": "tiny_26",
+        "mode": "scratch",
+        "prefix_fidelity": 0.36201256898249706,
+        "k1_fidelity": 0.9983669794394644,
+        "k1_success": true,
+        "k32_fidelity": 0.9983669794394644,
+        "k32_success": true,
+        "best_resources": {
+          "gate_counts": {
+            "rz": 1,
+            "ry": 3,
+            "cx": 1
+          },
+          "unitary_gate_count": 5,
+          "depth": 3,
+          "two_qubit_depth": 1
+        },
+        "best_layers": [
+          [
+            {
+              "gate": "rz",
+              "wires": [
+                0
+              ],
+              "params": [
+                3.129662297663603
+              ]
+            },
+            {
+              "gate": "ry",
+              "wires": [
+                1
+              ],
+              "params": [
+                3.044037215409193
+              ]
+            }
+          ],
+          [
+            {
+              "gate": "ry",
+              "wires": [
+                0
+              ],
+              "params": [
+                -1.2720851739236114
+              ]
+            },
+            {
+              "gate": "ry",
+              "wires": [
+                1
+              ],
+              "params": [
+                -1.5040750121065376
+              ]
+            }
+          ],
+          [
+            {
+              "gate": "cx",
+              "wires": [
+                1,
+                0
+              ],
+              "params": []
+            }
+          ]
+        ],
+        "all_candidates_feasible": true,
+        "model_calls": 864,
+        "unchanged_prefix_qualifies": false
+      },
+      {
+        "request_id": "tiny_27",
+        "mode": "scratch",
+        "prefix_fidelity": 0.41025346862501316,
+        "k1_fidelity": 0.9986377772868833,
+        "k1_success": true,
+        "k32_fidelity": 0.9986377772868833,
+        "k32_success": true,
+        "best_resources": {
+          "gate_counts": {
+            "cx": 2,
+            "ry": 3
+          },
+          "unitary_gate_count": 5,
+          "depth": 4,
+          "two_qubit_depth": 2
+        },
+        "best_layers": [
+          [
+            {
+              "gate": "cx",
+              "wires": [
+                1,
+                0
+              ],
+              "params": []
+            }
+          ],
+          [
+            {
+              "gate": "cx",
+              "wires": [
+                1,
+                0
+              ],
+              "params": []
+            }
+          ],
+          [
+            {
+              "gate": "ry",
+              "wires": [
+                0
+              ],
+              "params": [
+                1.0316565545888459
+              ]
+            },
+            {
+              "gate": "ry",
+              "wires": [
+                1
+              ],
+              "params": [
+                -2.418276671069707
+              ]
+            }
+          ],
+          [
+            {
+              "gate": "ry",
+              "wires": [
+                1
+              ],
+              "params": [
+                0.9767480643147444
+              ]
+            }
+          ]
+        ],
+        "all_candidates_feasible": true,
+        "model_calls": 1134,
+        "unchanged_prefix_qualifies": false
+      },
+      {
+        "request_id": "tiny_28",
+        "mode": "scratch",
+        "prefix_fidelity": 0.7134472844105411,
+        "k1_fidelity": 0.9999954397903162,
+        "k1_success": true,
+        "k32_fidelity": 0.9999954397903162,
+        "k32_success": true,
+        "best_resources": {
+          "gate_counts": {
+            "cx": 3,
+            "rz": 4,
+            "ry": 1
+          },
+          "unitary_gate_count": 8,
+          "depth": 6,
+          "two_qubit_depth": 3
+        },
+        "best_layers": [
+          [
+            {
+              "gate": "cx",
+              "wires": [
+                1,
+                0
+              ],
+              "params": []
+            }
+          ],
+          [
+            {
+              "gate": "rz",
+              "wires": [
+                0
+              ],
+              "params": [
+                0.028246218462620654
+              ]
+            },
+            {
+              "gate": "rz",
+              "wires": [
+                1
+              ],
+              "params": [
+                -0.24675662641707508
+              ]
+            }
+          ],
+          [
+            {
+              "gate": "cx",
+              "wires": [
+                0,
+                1
+              ],
+              "params": []
+            }
+          ],
+          [
+            {
+              "gate": "ry",
+              "wires": [
+                0
+              ],
+              "params": [
+                1.1254694784672772
+              ]
+            },
+            {
+              "gate": "rz",
+              "wires": [
+                1
+              ],
+              "params": [
+                -1.4411840503402946
+              ]
+            }
+          ],
+          [
+            {
+              "gate": "rz",
+              "wires": [
+                1
+              ],
+              "params": [
+                -1.7830890558645212
+              ]
+            }
+          ],
+          [
+            {
+              "gate": "cx",
+              "wires": [
+                1,
+                0
+              ],
+              "params": []
+            }
+          ]
+        ],
+        "all_candidates_feasible": true,
+        "model_calls": 1719,
+        "unchanged_prefix_qualifies": false
+      },
+      {
+        "request_id": "tiny_29",
+        "mode": "scratch",
+        "prefix_fidelity": 0.14308485393433648,
+        "k1_fidelity": 0.9993529772598387,
+        "k1_success": true,
+        "k32_fidelity": 0.9993529772598387,
+        "k32_success": true,
+        "best_resources": {
+          "gate_counts": {
+            "rz": 6,
+            "ry": 3,
+            "cx": 1
+          },
+          "unitary_gate_count": 10,
+          "depth": 6,
+          "two_qubit_depth": 1
+        },
+        "best_layers": [
+          [
+            {
+              "gate": "rz",
+              "wires": [
+                0
+              ],
+              "params": [
+                -2.8052283003901577
+              ]
+            },
+            {
+              "gate": "ry",
+              "wires": [
+                1
+              ],
+              "params": [
+                1.659382897613951
+              ]
+            }
+          ],
+          [
+            {
+              "gate": "rz",
+              "wires": [
+                0
+              ],
+              "params": [
+                -0.2788787280518159
+              ]
+            },
+            {
+              "gate": "rz",
+              "wires": [
+                1
+              ],
+              "params": [
+                1.957269306479403
+              ]
+            }
+          ],
+          [
+            {
+              "gate": "rz",
+              "wires": [
+                0
+              ],
+              "params": [
+                1.5858176752910103
+              ]
+            },
+            {
+              "gate": "rz",
+              "wires": [
+                1
+              ],
+              "params": [
+                -1.4825901975222824
+              ]
+            }
+          ],
+          [
+            {
+              "gate": "rz",
+              "wires": [
+                0
+              ],
+              "params": [
+                1.866824242471167
+              ]
+            },
+            {
+              "gate": "ry",
+              "wires": [
+                1
+              ],
+              "params": [
+                0.7083616018290346
+              ]
+            }
+          ],
+          [
+            {
+              "gate": "cx",
+              "wires": [
+                1,
+                0
+              ],
+              "params": []
+            }
+          ],
+          [
+            {
+              "gate": "ry",
+              "wires": [
+                1
+              ],
+              "params": [
+                -0.9633902615548884
+              ]
+            }
+          ]
+        ],
+        "all_candidates_feasible": true,
+        "model_calls": 1728,
+        "unchanged_prefix_qualifies": false
+      },
+      {
+        "request_id": "tiny_30",
+        "mode": "scratch",
+        "prefix_fidelity": 0.007620980559552486,
+        "k1_fidelity": 0.9942502740063677,
+        "k1_success": true,
+        "k32_fidelity": 0.9942502740063677,
+        "k32_success": true,
+        "best_resources": {
+          "gate_counts": {
+            "ry": 3,
+            "cx": 2,
+            "rz": 1
+          },
+          "unitary_gate_count": 6,
+          "depth": 5,
+          "two_qubit_depth": 2
+        },
+        "best_layers": [
+          [
+            {
+              "gate": "ry",
+              "wires": [
+                1
+              ],
+              "params": [
+                -0.572176982089383
+              ]
+            }
+          ],
+          [
+            {
+              "gate": "cx",
+              "wires": [
+                0,
+                1
+              ],
+              "params": []
+            }
+          ],
+          [
+            {
+              "gate": "rz",
+              "wires": [
+                0
+              ],
+              "params": [
+                2.518998145806636
+              ]
+            },
+            {
+              "gate": "ry",
+              "wires": [
+                1
+              ],
+              "params": [
+                -0.48004669547031575
+              ]
+            }
+          ],
+          [
+            {
+              "gate": "ry",
+              "wires": [
+                1
+              ],
+              "params": [
+                -2.112388360746877
+              ]
+            }
+          ],
+          [
+            {
+              "gate": "cx",
+              "wires": [
+                1,
+                0
+              ],
+              "params": []
+            }
+          ]
+        ],
+        "all_candidates_feasible": true,
+        "model_calls": 1431,
+        "unchanged_prefix_qualifies": false
+      },
+      {
+        "request_id": "tiny_31",
+        "mode": "scratch",
+        "prefix_fidelity": 0.06974037234035238,
+        "k1_fidelity": 0.9998023538638411,
+        "k1_success": true,
+        "k32_fidelity": 0.9998023538638411,
+        "k32_success": true,
+        "best_resources": {
+          "gate_counts": {
+            "ry": 2,
+            "rz": 5,
+            "cx": 1
+          },
+          "unitary_gate_count": 8,
+          "depth": 5,
+          "two_qubit_depth": 1
+        },
+        "best_layers": [
+          [
+            {
+              "gate": "ry",
+              "wires": [
+                0
+              ],
+              "params": [
+                0.1501233895618066
+              ]
+            },
+            {
+              "gate": "rz",
+              "wires": [
+                1
+              ],
+              "params": [
+                -0.45067494958589727
+              ]
+            }
+          ],
+          [
+            {
+              "gate": "rz",
+              "wires": [
+                0
+              ],
+              "params": [
+                -2.988692332056675
+              ]
+            },
+            {
+              "gate": "rz",
+              "wires": [
+                1
+              ],
+              "params": [
+                2.502441156405057
+              ]
+            }
+          ],
+          [
+            {
+              "gate": "rz",
+              "wires": [
+                1
+              ],
+              "params": [
+                -2.9620238319014645
+              ]
+            }
+          ],
+          [
+            {
+              "gate": "cx",
+              "wires": [
+                1,
+                0
+              ],
+              "params": []
+            }
+          ],
+          [
+            {
+              "gate": "ry",
+              "wires": [
+                0
+              ],
+              "params": [
+                -2.4343016852913753
+              ]
+            },
+            {
+              "gate": "rz",
+              "wires": [
+                1
+              ],
+              "params": [
+                3.0435274094318485
+              ]
+            }
+          ]
+        ],
+        "all_candidates_feasible": true,
+        "model_calls": 1440,
+        "unchanged_prefix_qualifies": false
+      },
+      {
+        "request_id": "tiny_00",
+        "mode": "suffix_repair",
+        "prefix_fidelity": 0.8555038186537632,
+        "k1_fidelity": 0.9999480864611198,
+        "k1_success": true,
+        "k32_fidelity": 0.9999480864611198,
+        "k32_success": true,
+        "best_resources": {
+          "gate_counts": {
+            "cx": 3,
+            "rz": 3,
+            "ry": 1
+          },
+          "unitary_gate_count": 7,
+          "depth": 6,
+          "two_qubit_depth": 3
+        },
+        "best_layers": [
+          [
+            {
+              "gate": "cx",
+              "wires": [
+                0,
+                1
+              ],
+              "params": []
+            }
+          ],
+          [
+            {
+              "gate": "cx",
+              "wires": [
+                1,
+                0
+              ],
+              "params": []
+            }
+          ],
+          [
+            {
+              "gate": "cx",
+              "wires": [
+                0,
+                1
+              ],
+              "params": []
+            }
+          ],
+          [
+            {
+              "gate": "rz",
+              "wires": [
+                0
+              ],
+              "params": [
+                -1.7596190460662318
+              ]
+            },
+            {
+              "gate": "rz",
+              "wires": [
+                1
+              ],
+              "params": [
+                -1.3821626303844912
+              ]
+            }
+          ],
+          [
+            {
+              "gate": "rz",
+              "wires": [
+                1
+              ],
+              "params": [
+                0.4533683227427323
+              ]
+            }
+          ],
+          [
+            {
+              "gate": "ry",
+              "wires": [
+                1
+              ],
+              "params": [
+                -0.7654558554286783
+              ]
+            }
+          ]
+        ],
+        "all_candidates_feasible": true,
+        "model_calls": 288,
+        "unchanged_prefix_qualifies": false
+      },
+      {
+        "request_id": "tiny_01",
+        "mode": "suffix_repair",
+        "prefix_fidelity": 0.6768792629293713,
+        "k1_fidelity": 0.9999274144142366,
+        "k1_success": true,
+        "k32_fidelity": 0.9999274144142366,
+        "k32_success": true,
+        "best_resources": {
+          "gate_counts": {
+            "rz": 2,
+            "ry": 1,
+            "cx": 1
+          },
+          "unitary_gate_count": 4,
+          "depth": 3,
+          "two_qubit_depth": 1
+        },
+        "best_layers": [
+          [
+            {
+              "gate": "rz",
+              "wires": [
+                0
+              ],
+              "params": [
+                0.4232313320035761
+              ]
+            },
+            {
+              "gate": "ry",
+              "wires": [
+                1
+              ],
+              "params": [
+                1.1921702538915868
+              ]
+            }
+          ],
+          [
+            {
+              "gate": "rz",
+              "wires": [
+                0
+              ],
+              "params": [
+                -1.3953645442911384
+              ]
+            }
+          ],
+          [
+            {
+              "gate": "cx",
+              "wires": [
+                0,
+                1
+              ],
+              "params": []
+            }
+          ]
+        ],
+        "all_candidates_feasible": true,
+        "model_calls": 864,
+        "unchanged_prefix_qualifies": false
+      },
+      {
+        "request_id": "tiny_02",
+        "mode": "suffix_repair",
+        "prefix_fidelity": 0.9829094384546694,
+        "k1_fidelity": 0.9994771428162385,
+        "k1_success": true,
+        "k32_fidelity": 0.9994771428162385,
+        "k32_success": true,
+        "best_resources": {
+          "gate_counts": {
+            "cx": 2,
+            "ry": 1
+          },
+          "unitary_gate_count": 3,
+          "depth": 3,
+          "two_qubit_depth": 2
+        },
+        "best_layers": [
+          [
+            {
+              "gate": "cx",
+              "wires": [
+                0,
+                1
+              ],
+              "params": []
+            }
+          ],
+          [
+            {
+              "gate": "ry",
+              "wires": [
+                1
+              ],
+              "params": [
+                -0.21647616301957218
+              ]
+            }
+          ],
+          [
+            {
+              "gate": "cx",
+              "wires": [
+                0,
+                1
+              ],
+              "params": []
+            }
+          ]
+        ],
+        "all_candidates_feasible": true,
+        "model_calls": 576,
+        "unchanged_prefix_qualifies": false
+      },
+      {
+        "request_id": "tiny_03",
+        "mode": "suffix_repair",
+        "prefix_fidelity": 0.003893431636668713,
+        "k1_fidelity": 1.0,
+        "k1_success": true,
+        "k32_fidelity": 1.0,
+        "k32_success": true,
+        "best_resources": {
+          "gate_counts": {
+            "ry": 2,
+            "rz": 1,
+            "cx": 2
+          },
+          "unitary_gate_count": 5,
+          "depth": 4,
+          "two_qubit_depth": 2
+        },
+        "best_layers": [
+          [
+            {
+              "gate": "ry",
+              "wires": [
+                0
+              ],
+              "params": [
+                1.645501132413055
+              ]
+            },
+            {
+              "gate": "rz",
+              "wires": [
+                1
+              ],
+              "params": [
+                -1.255332201308131
+              ]
+            }
+          ],
+          [
+            {
+              "gate": "ry",
+              "wires": [
+                1
+              ],
+              "params": [
+                -1.7846328557948319
+              ]
+            }
+          ],
+          [
+            {
+              "gate": "cx",
+              "wires": [
+                0,
+                1
+              ],
+              "params": []
+            }
+          ],
+          [
+            {
+              "gate": "cx",
+              "wires": [
+                0,
+                1
+              ],
+              "params": []
+            }
+          ]
+        ],
+        "all_candidates_feasible": true,
+        "model_calls": 288,
+        "unchanged_prefix_qualifies": false
+      },
+      {
+        "request_id": "tiny_04",
+        "mode": "suffix_repair",
+        "prefix_fidelity": 5.640377200211325e-06,
+        "k1_fidelity": 1.0000000000000004,
+        "k1_success": true,
+        "k32_fidelity": 1.0000000000000004,
+        "k32_success": true,
+        "best_resources": {
+          "gate_counts": {
+            "ry": 1,
+            "rz": 2,
+            "cx": 2
+          },
+          "unitary_gate_count": 5,
+          "depth": 4,
+          "two_qubit_depth": 2
+        },
+        "best_layers": [
+          [
+            {
+              "gate": "ry",
+              "wires": [
+                0
+              ],
+              "params": [
+                3.0440871595524586
+              ]
+            },
+            {
+              "gate": "rz",
+              "wires": [
+                1
+              ],
+              "params": [
+                0.7858385695574825
+              ]
+            }
+          ],
+          [
+            {
+              "gate": "rz",
+              "wires": [
+                1
+              ],
+              "params": [
+                1.290657321894959
+              ]
+            }
+          ],
+          [
+            {
+              "gate": "cx",
+              "wires": [
+                0,
+                1
+              ],
+              "params": []
+            }
+          ],
+          [
+            {
+              "gate": "cx",
+              "wires": [
+                1,
+                0
+              ],
+              "params": []
+            }
+          ]
+        ],
+        "all_candidates_feasible": true,
+        "model_calls": 288,
+        "unchanged_prefix_qualifies": false
+      },
+      {
+        "request_id": "tiny_05",
+        "mode": "suffix_repair",
+        "prefix_fidelity": 0.6575572795052135,
+        "k1_fidelity": 0.9998483810149659,
+        "k1_success": true,
+        "k32_fidelity": 0.9998483810149659,
+        "k32_success": true,
+        "best_resources": {
+          "gate_counts": {
+            "ry": 5,
+            "rz": 2,
+            "cx": 2
+          },
+          "unitary_gate_count": 9,
+          "depth": 6,
+          "two_qubit_depth": 2
+        },
+        "best_layers": [
+          [
+            {
+              "gate": "ry",
+              "wires": [
+                0
+              ],
+              "params": [
+                3.0071291256870474
+              ]
+            },
+            {
+              "gate": "rz",
+              "wires": [
+                1
+              ],
+              "params": [
+                -1.2194914817810316
+              ]
+            }
+          ],
+          [
+            {
+              "gate": "ry",
+              "wires": [
+                1
+              ],
+              "params": [
+                0.8997978104144853
+              ]
+            }
+          ],
+          [
+            {
+              "gate": "cx",
+              "wires": [
+                0,
+                1
+              ],
+              "params": []
+            }
+          ],
+          [
+            {
+              "gate": "ry",
+              "wires": [
+                0
+              ],
+              "params": [
+                -2.6772403982631
+              ]
+            },
+            {
+              "gate": "ry",
+              "wires": [
+                1
+              ],
+              "params": [
+                2.4757310101108487
+              ]
+            }
+          ],
+          [
+            {
+              "gate": "cx",
+              "wires": [
+                0,
+                1
+              ],
+              "params": []
+            }
+          ],
+          [
+            {
+              "gate": "rz",
+              "wires": [
+                0
+              ],
+              "params": [
+                -1.0050350266190087
+              ]
+            },
+            {
+              "gate": "ry",
+              "wires": [
+                1
+              ],
+              "params": [
+                -1.1982273076959846
+              ]
+            }
+          ]
+        ],
+        "all_candidates_feasible": true,
+        "model_calls": 288,
+        "unchanged_prefix_qualifies": false
+      },
+      {
+        "request_id": "tiny_06",
+        "mode": "suffix_repair",
+        "prefix_fidelity": 0.4469652673165625,
+        "k1_fidelity": 1.0,
+        "k1_success": true,
+        "k32_fidelity": 1.0,
+        "k32_success": true,
+        "best_resources": {
+          "gate_counts": {
+            "cx": 2,
+            "ry": 3,
+            "rz": 2
+          },
+          "unitary_gate_count": 7,
+          "depth": 5,
+          "two_qubit_depth": 2
+        },
+        "best_layers": [
+          [
+            {
+              "gate": "cx",
+              "wires": [
+                1,
+                0
+              ],
+              "params": []
+            }
+          ],
+          [
+            {
+              "gate": "ry",
+              "wires": [
+                0
+              ],
+              "params": [
+                -1.6798910013614197
+              ]
+            },
+            {
+              "gate": "ry",
+              "wires": [
+                1
+              ],
+              "params": [
+                -2.0579207278345795
+              ]
+            }
+          ],
+          [
+            {
+              "gate": "rz",
+              "wires": [
+                0
+              ],
+              "params": [
+                0.5425875527559527
+              ]
+            },
+            {
+              "gate": "ry",
+              "wires": [
+                1
+              ],
+              "params": [
+                2.4718360107505823
+              ]
+            }
+          ],
+          [
+            {
+              "gate": "rz",
+              "wires": [
+                0
+              ],
+              "params": [
+                0.7575382081822712
+              ]
+            }
+          ],
+          [
+            {
+              "gate": "cx",
+              "wires": [
+                0,
+                1
+              ],
+              "params": []
+            }
+          ]
+        ],
+        "all_candidates_feasible": true,
+        "model_calls": 288,
+        "unchanged_prefix_qualifies": false
+      },
+      {
+        "request_id": "tiny_07",
+        "mode": "suffix_repair",
+        "prefix_fidelity": 0.9763149255760405,
+        "k1_fidelity": 0.9999887849099304,
+        "k1_success": true,
+        "k32_fidelity": 0.9999887849099304,
+        "k32_success": true,
+        "best_resources": {
+          "gate_counts": {
+            "cx": 2,
+            "rz": 2,
+            "ry": 3
+          },
+          "unitary_gate_count": 7,
+          "depth": 5,
+          "two_qubit_depth": 2
+        },
+        "best_layers": [
+          [
+            {
+              "gate": "cx",
+              "wires": [
+                0,
+                1
+              ],
+              "params": []
+            }
+          ],
+          [
+            {
+              "gate": "cx",
+              "wires": [
+                0,
+                1
+              ],
+              "params": []
+            }
+          ],
+          [
+            {
+              "gate": "rz",
+              "wires": [
+                0
+              ],
+              "params": [
+                -2.73062583866521
+              ]
+            },
+            {
+              "gate": "ry",
+              "wires": [
+                1
+              ],
+              "params": [
+                -2.47260579443836
+              ]
+            }
+          ],
+          [
+            {
+              "gate": "ry",
+              "wires": [
+                0
+              ],
+              "params": [
+                -0.8750783009307175
+              ]
+            },
+            {
+              "gate": "ry",
+              "wires": [
+                1
+              ],
+              "params": [
+                2.0837946826354843
+              ]
+            }
+          ],
+          [
+            {
+              "gate": "rz",
+              "wires": [
+                1
+              ],
+              "params": [
+                0.8537540311606442
+              ]
+            }
+          ]
+        ],
+        "all_candidates_feasible": true,
+        "model_calls": 288,
+        "unchanged_prefix_qualifies": false
+      },
+      {
+        "request_id": "tiny_08",
+        "mode": "suffix_repair",
+        "prefix_fidelity": 0.6195722977974685,
+        "k1_fidelity": 0.9995841563062292,
+        "k1_success": true,
+        "k32_fidelity": 0.9995841563062292,
+        "k32_success": true,
+        "best_resources": {
+          "gate_counts": {
+            "ry": 3,
+            "cx": 1,
+            "rz": 1
+          },
+          "unitary_gate_count": 5,
+          "depth": 4,
+          "two_qubit_depth": 1
+        },
+        "best_layers": [
+          [
+            {
+              "gate": "ry",
+              "wires": [
+                0
+              ],
+              "params": [
+                2.3403268367641026
+              ]
+            }
+          ],
+          [
+            {
+              "gate": "ry",
+              "wires": [
+                0
+              ],
+              "params": [
+                -2.7751266837823634
+              ]
+            }
+          ],
+          [
+            {
+              "gate": "cx",
+              "wires": [
+                0,
+                1
+              ],
+              "params": []
+            }
+          ],
+          [
+            {
+              "gate": "rz",
+              "wires": [
+                0
+              ],
+              "params": [
+                -0.9797942667880868
+              ]
+            },
+            {
+              "gate": "ry",
+              "wires": [
+                1
+              ],
+              "params": [
+                -1.2379889999815223
+              ]
+            }
+          ]
+        ],
+        "all_candidates_feasible": true,
+        "model_calls": 288,
+        "unchanged_prefix_qualifies": false
+      },
+      {
+        "request_id": "tiny_09",
+        "mode": "suffix_repair",
+        "prefix_fidelity": 0.0009227526958558832,
+        "k1_fidelity": 1.0,
+        "k1_success": true,
+        "k32_fidelity": 1.0,
+        "k32_success": true,
+        "best_resources": {
+          "gate_counts": {
+            "cx": 3,
+            "rz": 2,
+            "ry": 4
+          },
+          "unitary_gate_count": 9,
+          "depth": 6,
+          "two_qubit_depth": 3
+        },
+        "best_layers": [
+          [
+            {
+              "gate": "cx",
+              "wires": [
+                1,
+                0
+              ],
+              "params": []
+            }
+          ],
+          [
+            {
+              "gate": "rz",
+              "wires": [
+                0
+              ],
+              "params": [
+                0.054899975222125086
+              ]
+            },
+            {
+              "gate": "ry",
+              "wires": [
+                1
+              ],
+              "params": [
+                3.108597047253906
+              ]
+            }
+          ],
+          [
+            {
+              "gate": "ry",
+              "wires": [
+                0
+              ],
+              "params": [
+                -3.0046213306868323
+              ]
+            },
+            {
+              "gate": "ry",
+              "wires": [
+                1
+              ],
+              "params": [
+                -0.29254895517486856
+              ]
+            }
+          ],
+          [
+            {
+              "gate": "rz",
+              "wires": [
+                0
+              ],
+              "params": [
+                2.9609940813362208
+              ]
+            },
+            {
+              "gate": "ry",
+              "wires": [
+                1
+              ],
+              "params": [
+                -2.6012746952079295
+              ]
+            }
+          ],
+          [
+            {
+              "gate": "cx",
+              "wires": [
+                0,
+                1
+              ],
+              "params": []
+            }
+          ],
+          [
+            {
+              "gate": "cx",
+              "wires": [
+                1,
+                0
+              ],
+              "params": []
+            }
+          ]
+        ],
+        "all_candidates_feasible": true,
+        "model_calls": 288,
+        "unchanged_prefix_qualifies": false
+      },
+      {
+        "request_id": "tiny_10",
+        "mode": "suffix_repair",
+        "prefix_fidelity": 0.6952750647045437,
+        "k1_fidelity": 0.9999993588884499,
+        "k1_success": true,
+        "k32_fidelity": 0.9999993588884499,
+        "k32_success": true,
+        "best_resources": {
+          "gate_counts": {
+            "cx": 1,
+            "ry": 5
+          },
+          "unitary_gate_count": 6,
+          "depth": 4,
+          "two_qubit_depth": 1
+        },
+        "best_layers": [
+          [
+            {
+              "gate": "cx",
+              "wires": [
+                1,
+                0
+              ],
+              "params": []
+            }
+          ],
+          [
+            {
+              "gate": "ry",
+              "wires": [
+                0
+              ],
+              "params": [
+                -2.3377417037718757
+              ]
+            },
+            {
+              "gate": "ry",
+              "wires": [
+                1
+              ],
+              "params": [
+                0.7800722629779702
+              ]
+            }
+          ],
+          [
+            {
+              "gate": "ry",
+              "wires": [
+                0
+              ],
+              "params": [
+                -2.7308055993734213
+              ]
+            },
+            {
+              "gate": "ry",
+              "wires": [
+                1
+              ],
+              "params": [
+                0.812340296926934
+              ]
+            }
+          ],
+          [
+            {
+              "gate": "ry",
+              "wires": [
+                0
+              ],
+              "params": [
+                1.1679658318551098
+              ]
+            }
+          ]
+        ],
+        "all_candidates_feasible": true,
+        "model_calls": 288,
+        "unchanged_prefix_qualifies": false
+      },
+      {
+        "request_id": "tiny_11",
+        "mode": "suffix_repair",
+        "prefix_fidelity": 0.11263629553990383,
+        "k1_fidelity": 0.9999607769487979,
+        "k1_success": true,
+        "k32_fidelity": 0.9999607769487979,
+        "k32_success": true,
+        "best_resources": {
+          "gate_counts": {
+            "ry": 4,
+            "rz": 1,
+            "cx": 1
+          },
+          "unitary_gate_count": 6,
+          "depth": 4,
+          "two_qubit_depth": 1
+        },
+        "best_layers": [
+          [
+            {
+              "gate": "ry",
+              "wires": [
+                0
+              ],
+              "params": [
+                -0.47982834536940233
+              ]
+            },
+            {
+              "gate": "rz",
+              "wires": [
+                1
+              ],
+              "params": [
+                1.8427670218554075
+              ]
+            }
+          ],
+          [
+            {
+              "gate": "ry",
+              "wires": [
+                1
+              ],
+              "params": [
+                -1.4636048346315897
+              ]
+            }
+          ],
+          [
+            {
+              "gate": "cx",
+              "wires": [
+                0,
+                1
+              ],
+              "params": []
+            }
+          ],
+          [
+            {
+              "gate": "ry",
+              "wires": [
+                0
+              ],
+              "params": [
+                2.225460633137004
+              ]
+            },
+            {
+              "gate": "ry",
+              "wires": [
+                1
+              ],
+              "params": [
+                -1.6171076700076543
+              ]
+            }
+          ]
+        ],
+        "all_candidates_feasible": true,
+        "model_calls": 288,
+        "unchanged_prefix_qualifies": false
+      },
+      {
+        "request_id": "tiny_12",
+        "mode": "suffix_repair",
+        "prefix_fidelity": 0.022786259314660957,
+        "k1_fidelity": 0.999720849772371,
+        "k1_success": true,
+        "k32_fidelity": 0.999720849772371,
+        "k32_success": true,
+        "best_resources": {
+          "gate_counts": {
+            "rz": 2,
+            "ry": 5,
+            "cx": 1
+          },
+          "unitary_gate_count": 8,
+          "depth": 5,
+          "two_qubit_depth": 1
+        },
+        "best_layers": [
+          [
+            {
+              "gate": "rz",
+              "wires": [
+                0
+              ],
+              "params": [
+                -1.3927778806848563
+              ]
+            },
+            {
+              "gate": "ry",
+              "wires": [
+                1
+              ],
+              "params": [
+                2.744452491295065
+              ]
+            }
+          ],
+          [
+            {
+              "gate": "ry",
+              "wires": [
+                0
+              ],
+              "params": [
+                2.6569311720584734
+              ]
+            },
+            {
+              "gate": "ry",
+              "wires": [
+                1
+              ],
+              "params": [
+                -1.2326643227463365
+              ]
+            }
+          ],
+          [
+            {
+              "gate": "ry",
+              "wires": [
+                1
+              ],
+              "params": [
+                2.188488551076941
+              ]
+            }
+          ],
+          [
+            {
+              "gate": "cx",
+              "wires": [
+                1,
+                0
+              ],
+              "params": []
+            }
+          ],
+          [
+            {
+              "gate": "ry",
+              "wires": [
+                0
+              ],
+              "params": [
+                2.778901644048605
+              ]
+            },
+            {
+              "gate": "rz",
+              "wires": [
+                1
+              ],
+              "params": [
+                -2.106565132238643
+              ]
+            }
+          ]
+        ],
+        "all_candidates_feasible": true,
+        "model_calls": 288,
+        "unchanged_prefix_qualifies": false
+      },
+      {
+        "request_id": "tiny_13",
+        "mode": "suffix_repair",
+        "prefix_fidelity": 0.11122239889171173,
+        "k1_fidelity": 0.9998547021416676,
+        "k1_success": true,
+        "k32_fidelity": 0.9998547021416676,
+        "k32_success": true,
+        "best_resources": {
+          "gate_counts": {
+            "cx": 1,
+            "ry": 2,
+            "rz": 2
+          },
+          "unitary_gate_count": 5,
+          "depth": 3,
+          "two_qubit_depth": 1
+        },
+        "best_layers": [
+          [
+            {
+              "gate": "cx",
+              "wires": [
+                1,
+                0
+              ],
+              "params": []
+            }
+          ],
+          [
+            {
+              "gate": "ry",
+              "wires": [
+                0
+              ],
+              "params": [
+                -2.335718824858353
+              ]
+            },
+            {
+              "gate": "ry",
+              "wires": [
+                1
+              ],
+              "params": [
+                1.7818991238949984
+              ]
+            }
+          ],
+          [
+            {
+              "gate": "rz",
+              "wires": [
+                0
+              ],
+              "params": [
+                -2.7670746967171764
+              ]
+            },
+            {
+              "gate": "rz",
+              "wires": [
+                1
+              ],
+              "params": [
+                2.2588451350710557
+              ]
+            }
+          ]
+        ],
+        "all_candidates_feasible": true,
+        "model_calls": 288,
+        "unchanged_prefix_qualifies": false
+      },
+      {
+        "request_id": "tiny_14",
+        "mode": "suffix_repair",
+        "prefix_fidelity": 0.9808775817655263,
+        "k1_fidelity": 0.9808775817655263,
+        "k1_success": false,
+        "k32_fidelity": 0.9808775817655263,
+        "k32_success": false,
+        "best_resources": {
+          "gate_counts": {
+            "ry": 2,
+            "cx": 2
+          },
+          "unitary_gate_count": 4,
+          "depth": 3,
+          "two_qubit_depth": 2
+        },
+        "best_layers": [
+          [
+            {
+              "gate": "ry",
+              "wires": [
+                0
+              ],
+              "params": [
+                -0.1963495408493623
+              ]
+            },
+            {
+              "gate": "ry",
+              "wires": [
+                1
+              ],
+              "params": [
+                -0.1963495408493623
+              ]
+            }
+          ],
+          [
+            {
+              "gate": "cx",
+              "wires": [
+                0,
+                1
+              ],
+              "params": []
+            }
+          ],
+          [
+            {
+              "gate": "cx",
+              "wires": [
+                0,
+                1
+              ],
+              "params": []
+            }
+          ]
+        ],
+        "all_candidates_feasible": true,
+        "model_calls": 576,
+        "unchanged_prefix_qualifies": false
+      },
+      {
+        "request_id": "tiny_15",
+        "mode": "suffix_repair",
+        "prefix_fidelity": 0.13238592054158368,
+        "k1_fidelity": 0.9999525452699622,
+        "k1_success": true,
+        "k32_fidelity": 0.9999525452699622,
+        "k32_success": true,
+        "best_resources": {
+          "gate_counts": {
+            "rz": 5,
+            "ry": 3,
+            "cx": 1
+          },
+          "unitary_gate_count": 9,
+          "depth": 5,
+          "two_qubit_depth": 1
+        },
+        "best_layers": [
+          [
+            {
+              "gate": "rz",
+              "wires": [
+                0
+              ],
+              "params": [
+                1.3647179745699374
+              ]
+            },
+            {
+              "gate": "ry",
+              "wires": [
+                1
+              ],
+              "params": [
+                -1.8485827132323462
+              ]
+            }
+          ],
+          [
+            {
+              "gate": "ry",
+              "wires": [
+                0
+              ],
+              "params": [
+                1.1188263122694009
+              ]
+            },
+            {
+              "gate": "rz",
+              "wires": [
+                1
+              ],
+              "params": [
+                0.1312195121201114
+              ]
+            }
+          ],
+          [
+            {
+              "gate": "rz",
+              "wires": [
+                0
+              ],
+              "params": [
+                2.6029459603510707
+              ]
+            },
+            {
+              "gate": "rz",
+              "wires": [
+                1
+              ],
+              "params": [
+                1.4823920522226492
+              ]
+            }
+          ],
+          [
+            {
+              "gate": "cx",
+              "wires": [
+                1,
+                0
+              ],
+              "params": []
+            }
+          ],
+          [
+            {
+              "gate": "ry",
+              "wires": [
+                0
+              ],
+              "params": [
+                2.227271303035991
+              ]
+            },
+            {
+              "gate": "rz",
+              "wires": [
+                1
+              ],
+              "params": [
+                0.4291706368322199
+              ]
+            }
+          ]
+        ],
+        "all_candidates_feasible": true,
+        "model_calls": 288,
+        "unchanged_prefix_qualifies": false
+      },
+      {
+        "request_id": "tiny_16",
+        "mode": "suffix_repair",
+        "prefix_fidelity": 0.0745147414737274,
+        "k1_fidelity": 0.9996870816832669,
+        "k1_success": true,
+        "k32_fidelity": 0.9996870816832669,
+        "k32_success": true,
+        "best_resources": {
+          "gate_counts": {
+            "ry": 4,
+            "rz": 1,
+            "cx": 2
+          },
+          "unitary_gate_count": 7,
+          "depth": 6,
+          "two_qubit_depth": 2
+        },
+        "best_layers": [
+          [
+            {
+              "gate": "ry",
+              "wires": [
+                0
+              ],
+              "params": [
+                0.9662513252210152
+              ]
+            },
+            {
+              "gate": "ry",
+              "wires": [
+                1
+              ],
+              "params": [
+                -0.019900284522764267
+              ]
+            }
+          ],
+          [
+            {
+              "gate": "rz",
+              "wires": [
+                1
+              ],
+              "params": [
+                1.9450176216008659
+              ]
+            }
+          ],
+          [
+            {
+              "gate": "ry",
+              "wires": [
+                1
+              ],
+              "params": [
+                1.5944926418691798
+              ]
+            }
+          ],
+          [
+            {
+              "gate": "cx",
+              "wires": [
+                1,
+                0
+              ],
+              "params": []
+            }
+          ],
+          [
+            {
+              "gate": "cx",
+              "wires": [
+                0,
+                1
+              ],
+              "params": []
+            }
+          ],
+          [
+            {
+              "gate": "ry",
+              "wires": [
+                1
+              ],
+              "params": [
+                -2.5532458761995986
+              ]
+            }
+          ]
+        ],
+        "all_candidates_feasible": true,
+        "model_calls": 288,
+        "unchanged_prefix_qualifies": false
+      },
+      {
+        "request_id": "tiny_17",
+        "mode": "suffix_repair",
+        "prefix_fidelity": 0.5217161917028491,
+        "k1_fidelity": 0.9995957248199692,
+        "k1_success": true,
+        "k32_fidelity": 0.9995957248199692,
+        "k32_success": true,
+        "best_resources": {
+          "gate_counts": {
+            "cx": 1,
+            "rz": 4,
+            "ry": 2
+          },
+          "unitary_gate_count": 7,
+          "depth": 4,
+          "two_qubit_depth": 1
+        },
+        "best_layers": [
+          [
+            {
+              "gate": "cx",
+              "wires": [
+                1,
+                0
+              ],
+              "params": []
+            }
+          ],
+          [
+            {
+              "gate": "rz",
+              "wires": [
+                0
+              ],
+              "params": [
+                -2.5216929347613606
+              ]
+            },
+            {
+              "gate": "rz",
+              "wires": [
+                1
+              ],
+              "params": [
+                2.4904570457038995
+              ]
+            }
+          ],
+          [
+            {
+              "gate": "ry",
+              "wires": [
+                0
+              ],
+              "params": [
+                -1.8594251005924336
+              ]
+            },
+            {
+              "gate": "rz",
+              "wires": [
+                1
+              ],
+              "params": [
+                2.5348991131530854
+              ]
+            }
+          ],
+          [
+            {
+              "gate": "ry",
+              "wires": [
+                0
+              ],
+              "params": [
+                1.5675661777445073
+              ]
+            },
+            {
+              "gate": "rz",
+              "wires": [
+                1
+              ],
+              "params": [
+                -2.3415762628100083
+              ]
+            }
+          ]
+        ],
+        "all_candidates_feasible": true,
+        "model_calls": 288,
+        "unchanged_prefix_qualifies": false
+      },
+      {
+        "request_id": "tiny_18",
+        "mode": "suffix_repair",
+        "prefix_fidelity": 0.3343647816024175,
+        "k1_fidelity": 0.9999178821680034,
+        "k1_success": true,
+        "k32_fidelity": 0.9999178821680034,
+        "k32_success": true,
+        "best_resources": {
+          "gate_counts": {
+            "ry": 3,
+            "rz": 3,
+            "cx": 1
+          },
+          "unitary_gate_count": 7,
+          "depth": 5,
+          "two_qubit_depth": 1
+        },
+        "best_layers": [
+          [
+            {
+              "gate": "ry",
+              "wires": [
+                0
+              ],
+              "params": [
+                -2.227369369381305
+              ]
+            },
+            {
+              "gate": "ry",
+              "wires": [
+                1
+              ],
+              "params": [
+                2.6539377710691348
+              ]
+            }
+          ],
+          [
+            {
+              "gate": "rz",
+              "wires": [
+                0
+              ],
+              "params": [
+                0.9689405400380906
+              ]
+            },
+            {
+              "gate": "ry",
+              "wires": [
+                1
+              ],
+              "params": [
+                2.057091780846485
+              ]
+            }
+          ],
+          [
+            {
+              "gate": "cx",
+              "wires": [
+                1,
+                0
+              ],
+              "params": []
+            }
+          ],
+          [
+            {
+              "gate": "rz",
+              "wires": [
+                0
+              ],
+              "params": [
+                -0.5829909005734941
+              ]
+            }
+          ],
+          [
+            {
+              "gate": "rz",
+              "wires": [
+                0
+              ],
+              "params": [
+                -1.9265710517749273
+              ]
+            }
+          ]
+        ],
+        "all_candidates_feasible": true,
+        "model_calls": 288,
+        "unchanged_prefix_qualifies": false
+      },
+      {
+        "request_id": "tiny_19",
+        "mode": "suffix_repair",
+        "prefix_fidelity": 0.2143105350270931,
+        "k1_fidelity": 0.9999999999999998,
+        "k1_success": true,
+        "k32_fidelity": 0.9999999999999998,
+        "k32_success": true,
+        "best_resources": {
+          "gate_counts": {
+            "rz": 2,
+            "ry": 2,
+            "cx": 1
+          },
+          "unitary_gate_count": 5,
+          "depth": 3,
+          "two_qubit_depth": 1
+        },
+        "best_layers": [
+          [
+            {
+              "gate": "rz",
+              "wires": [
+                0
+              ],
+              "params": [
+                -0.7277743310874443
+              ]
+            },
+            {
+              "gate": "rz",
+              "wires": [
+                1
+              ],
+              "params": [
+                -0.3269390398859966
+              ]
+            }
+          ],
+          [
+            {
+              "gate": "ry",
+              "wires": [
+                0
+              ],
+              "params": [
+                2.470139153269585
+              ]
+            },
+            {
+              "gate": "ry",
+              "wires": [
+                1
+              ],
+              "params": [
+                -0.6958770733751312
+              ]
+            }
+          ],
+          [
+            {
+              "gate": "cx",
+              "wires": [
+                0,
+                1
+              ],
+              "params": []
+            }
+          ]
+        ],
+        "all_candidates_feasible": true,
+        "model_calls": 288,
+        "unchanged_prefix_qualifies": false
+      },
+      {
+        "request_id": "tiny_20",
+        "mode": "suffix_repair",
+        "prefix_fidelity": 0.593061092917365,
+        "k1_fidelity": 0.999857664541809,
+        "k1_success": true,
+        "k32_fidelity": 0.999857664541809,
+        "k32_success": true,
+        "best_resources": {
+          "gate_counts": {
+            "rz": 2,
+            "ry": 4,
+            "cx": 1
+          },
+          "unitary_gate_count": 7,
+          "depth": 5,
+          "two_qubit_depth": 1
+        },
+        "best_layers": [
+          [
+            {
+              "gate": "rz",
+              "wires": [
+                0
+              ],
+              "params": [
+                -2.0223831221799835
+              ]
+            },
+            {
+              "gate": "rz",
+              "wires": [
+                1
+              ],
+              "params": [
+                1.5195215656927648
+              ]
+            }
+          ],
+          [
+            {
+              "gate": "ry",
+              "wires": [
+                0
+              ],
+              "params": [
+                -1.2811681330658022
+              ]
+            },
+            {
+              "gate": "ry",
+              "wires": [
+                1
+              ],
+              "params": [
+                1.171258741255385
+              ]
+            }
+          ],
+          [
+            {
+              "gate": "cx",
+              "wires": [
+                0,
+                1
+              ],
+              "params": []
+            }
+          ],
+          [
+            {
+              "gate": "ry",
+              "wires": [
+                1
+              ],
+              "params": [
+                -0.2557847163122675
+              ]
+            }
+          ],
+          [
+            {
+              "gate": "ry",
+              "wires": [
+                1
+              ],
+              "params": [
+                -1.3597209937238095
+              ]
+            }
+          ]
+        ],
+        "all_candidates_feasible": true,
+        "model_calls": 288,
+        "unchanged_prefix_qualifies": false
+      },
+      {
+        "request_id": "tiny_21",
+        "mode": "suffix_repair",
+        "prefix_fidelity": 0.9792491105638003,
+        "k1_fidelity": 0.9999999999999998,
+        "k1_success": true,
+        "k32_fidelity": 0.9999999999999998,
+        "k32_success": true,
+        "best_resources": {
+          "gate_counts": {
+            "ry": 2,
+            "cx": 2,
+            "rz": 1
+          },
+          "unitary_gate_count": 5,
+          "depth": 5,
+          "two_qubit_depth": 2
+        },
+        "best_layers": [
+          [
+            {
+              "gate": "ry",
+              "wires": [
+                1
+              ],
+              "params": [
+                0.5551411682746483
+              ]
+            }
+          ],
+          [
+            {
+              "gate": "ry",
+              "wires": [
+                1
+              ],
+              "params": [
+                -0.35053130531205445
+              ]
+            }
+          ],
+          [
+            {
+              "gate": "cx",
+              "wires": [
+                0,
+                1
+              ],
+              "params": []
+            }
+          ],
+          [
+            {
+              "gate": "rz",
+              "wires": [
+                1
+              ],
+              "params": [
+                2.633532022527061
+              ]
+            }
+          ],
+          [
+            {
+              "gate": "cx",
+              "wires": [
+                1,
+                0
+              ],
+              "params": []
+            }
+          ]
+        ],
+        "all_candidates_feasible": true,
+        "model_calls": 288,
+        "unchanged_prefix_qualifies": false
+      },
+      {
+        "request_id": "tiny_22",
+        "mode": "suffix_repair",
+        "prefix_fidelity": 0.27670776474000536,
+        "k1_fidelity": 0.9999339483527441,
+        "k1_success": true,
+        "k32_fidelity": 0.9999339483527441,
+        "k32_success": true,
+        "best_resources": {
+          "gate_counts": {
+            "ry": 3,
+            "cx": 1,
+            "rz": 1
+          },
+          "unitary_gate_count": 5,
+          "depth": 4,
+          "two_qubit_depth": 1
+        },
+        "best_layers": [
+          [
+            {
+              "gate": "ry",
+              "wires": [
+                0
+              ],
+              "params": [
+                -0.35419265806147493
+              ]
+            },
+            {
+              "gate": "ry",
+              "wires": [
+                1
+              ],
+              "params": [
+                -1.1311898997616145
+              ]
+            }
+          ],
+          [
+            {
+              "gate": "ry",
+              "wires": [
+                0
+              ],
+              "params": [
+                1.1311981177504276
+              ]
+            }
+          ],
+          [
+            {
+              "gate": "cx",
+              "wires": [
+                0,
+                1
+              ],
+              "params": []
+            }
+          ],
+          [
+            {
+              "gate": "rz",
+              "wires": [
+                1
+              ],
+              "params": [
+                2.2230027089498208
+              ]
+            }
+          ]
+        ],
+        "all_candidates_feasible": true,
+        "model_calls": 288,
+        "unchanged_prefix_qualifies": false
+      },
+      {
+        "request_id": "tiny_23",
+        "mode": "suffix_repair",
+        "prefix_fidelity": 0.05207440278752425,
+        "k1_fidelity": 0.9999148018850095,
+        "k1_success": true,
+        "k32_fidelity": 0.9999148018850095,
+        "k32_success": true,
+        "best_resources": {
+          "gate_counts": {
+            "cx": 2,
+            "ry": 2
+          },
+          "unitary_gate_count": 4,
+          "depth": 4,
+          "two_qubit_depth": 2
+        },
+        "best_layers": [
+          [
+            {
+              "gate": "cx",
+              "wires": [
+                1,
+                0
+              ],
+              "params": []
+            }
+          ],
+          [
+            {
+              "gate": "ry",
+              "wires": [
+                0
+              ],
+              "params": [
+                3.0093663627200957
+              ]
+            }
+          ],
+          [
+            {
+              "gate": "ry",
+              "wires": [
+                0
+              ],
+              "params": [
+                2.6626785953818217
+              ]
+            }
+          ],
+          [
+            {
+              "gate": "cx",
+              "wires": [
+                1,
+                0
+              ],
+              "params": []
+            }
+          ]
+        ],
+        "all_candidates_feasible": true,
+        "model_calls": 576,
+        "unchanged_prefix_qualifies": false
+      },
+      {
+        "request_id": "tiny_24",
+        "mode": "suffix_repair",
+        "prefix_fidelity": 0.18498267387722492,
+        "k1_fidelity": 0.999717854006217,
+        "k1_success": true,
+        "k32_fidelity": 0.999717854006217,
+        "k32_success": true,
+        "best_resources": {
+          "gate_counts": {
+            "ry": 4,
+            "rz": 2,
+            "cx": 1
+          },
+          "unitary_gate_count": 7,
+          "depth": 4,
+          "two_qubit_depth": 1
+        },
+        "best_layers": [
+          [
+            {
+              "gate": "ry",
+              "wires": [
+                0
+              ],
+              "params": [
+                1.3142882227221229
+              ]
+            },
+            {
+              "gate": "ry",
+              "wires": [
+                1
+              ],
+              "params": [
+                -1.0082714615019959
+              ]
+            }
+          ],
+          [
+            {
+              "gate": "rz",
+              "wires": [
+                0
+              ],
+              "params": [
+                -1.7050297767228129
+              ]
+            },
+            {
+              "gate": "rz",
+              "wires": [
+                1
+              ],
+              "params": [
+                2.624726722722307
+              ]
+            }
+          ],
+          [
+            {
+              "gate": "cx",
+              "wires": [
+                1,
+                0
+              ],
+              "params": []
+            }
+          ],
+          [
+            {
+              "gate": "ry",
+              "wires": [
+                0
+              ],
+              "params": [
+                -2.137084371843116
+              ]
+            },
+            {
+              "gate": "ry",
+              "wires": [
+                1
+              ],
+              "params": [
+                1.5007490133234258
+              ]
+            }
+          ]
+        ],
+        "all_candidates_feasible": true,
+        "model_calls": 288,
+        "unchanged_prefix_qualifies": false
+      },
+      {
+        "request_id": "tiny_25",
+        "mode": "suffix_repair",
+        "prefix_fidelity": 0.8036144003008525,
+        "k1_fidelity": 1.0000000000000004,
+        "k1_success": true,
+        "k32_fidelity": 1.0000000000000004,
+        "k32_success": true,
+        "best_resources": {
+          "gate_counts": {
+            "rz": 2,
+            "ry": 1,
+            "cx": 1
+          },
+          "unitary_gate_count": 4,
+          "depth": 3,
+          "two_qubit_depth": 1
+        },
+        "best_layers": [
+          [
+            {
+              "gate": "rz",
+              "wires": [
+                0
+              ],
+              "params": [
+                -0.8923959783836191
+              ]
+            },
+            {
+              "gate": "rz",
+              "wires": [
+                1
+              ],
+              "params": [
+                2.7632018220088606
+              ]
+            }
+          ],
+          [
+            {
+              "gate": "ry",
+              "wires": [
+                1
+              ],
+              "params": [
+                -0.6552578166819494
+              ]
+            }
+          ],
+          [
+            {
+              "gate": "cx",
+              "wires": [
+                1,
+                0
+              ],
+              "params": []
+            }
+          ]
+        ],
+        "all_candidates_feasible": true,
+        "model_calls": 288,
+        "unchanged_prefix_qualifies": false
+      },
+      {
+        "request_id": "tiny_26",
+        "mode": "suffix_repair",
+        "prefix_fidelity": 0.017382069647929568,
+        "k1_fidelity": 0.9999999999999996,
+        "k1_success": true,
+        "k32_fidelity": 0.9999999999999996,
+        "k32_success": true,
+        "best_resources": {
+          "gate_counts": {
+            "rz": 1,
+            "ry": 3,
+            "cx": 1
+          },
+          "unitary_gate_count": 5,
+          "depth": 3,
+          "two_qubit_depth": 1
+        },
+        "best_layers": [
+          [
+            {
+              "gate": "rz",
+              "wires": [
+                0
+              ],
+              "params": [
+                3.12525220477987
+              ]
+            },
+            {
+              "gate": "ry",
+              "wires": [
+                1
+              ],
+              "params": [
+                2.9497942958242147
+              ]
+            }
+          ],
+          [
+            {
+              "gate": "ry",
+              "wires": [
+                0
+              ],
+              "params": [
+                -1.2623994013055613
+              ]
+            },
+            {
+              "gate": "ry",
+              "wires": [
+                1
+              ],
+              "params": [
+                -1.4900933982233926
+              ]
+            }
+          ],
+          [
+            {
+              "gate": "cx",
+              "wires": [
+                1,
+                0
+              ],
+              "params": []
+            }
+          ]
+        ],
+        "all_candidates_feasible": true,
+        "model_calls": 288,
+        "unchanged_prefix_qualifies": false
+      },
+      {
+        "request_id": "tiny_27",
+        "mode": "suffix_repair",
+        "prefix_fidelity": 0.7954903134136221,
+        "k1_fidelity": 0.9995888618163881,
+        "k1_success": true,
+        "k32_fidelity": 0.9995888618163881,
+        "k32_success": true,
+        "best_resources": {
+          "gate_counts": {
+            "cx": 2,
+            "ry": 3
+          },
+          "unitary_gate_count": 5,
+          "depth": 4,
+          "two_qubit_depth": 2
+        },
+        "best_layers": [
+          [
+            {
+              "gate": "cx",
+              "wires": [
+                1,
+                0
+              ],
+              "params": []
+            }
+          ],
+          [
+            {
+              "gate": "cx",
+              "wires": [
+                1,
+                0
+              ],
+              "params": []
+            }
+          ],
+          [
+            {
+              "gate": "ry",
+              "wires": [
+                0
+              ],
+              "params": [
+                0.997346820792333
+              ]
+            },
+            {
+              "gate": "ry",
+              "wires": [
+                1
+              ],
+              "params": [
+                -2.44543165122586
+              ]
+            }
+          ],
+          [
+            {
+              "gate": "ry",
+              "wires": [
+                1
+              ],
+              "params": [
+                0.979078266924045
+              ]
+            }
+          ]
+        ],
+        "all_candidates_feasible": true,
+        "model_calls": 288,
+        "unchanged_prefix_qualifies": false
+      },
+      {
+        "request_id": "tiny_28",
+        "mode": "suffix_repair",
+        "prefix_fidelity": 0.7134472844105408,
+        "k1_fidelity": 0.9999980668488507,
+        "k1_success": true,
+        "k32_fidelity": 0.9999980668488507,
+        "k32_success": true,
+        "best_resources": {
+          "gate_counts": {
+            "cx": 3,
+            "rz": 4,
+            "ry": 1
+          },
+          "unitary_gate_count": 8,
+          "depth": 6,
+          "two_qubit_depth": 3
+        },
+        "best_layers": [
+          [
+            {
+              "gate": "cx",
+              "wires": [
+                1,
+                0
+              ],
+              "params": []
+            }
+          ],
+          [
+            {
+              "gate": "rz",
+              "wires": [
+                0
+              ],
+              "params": [
+                0.03859487727604627
+              ]
+            },
+            {
+              "gate": "rz",
+              "wires": [
+                1
+              ],
+              "params": [
+                -0.2958136694146938
+              ]
+            }
+          ],
+          [
+            {
+              "gate": "cx",
+              "wires": [
+                0,
+                1
+              ],
+              "params": []
+            }
+          ],
+          [
+            {
+              "gate": "ry",
+              "wires": [
+                0
+              ],
+              "params": [
+                1.1269596541913067
+              ]
+            },
+            {
+              "gate": "rz",
+              "wires": [
+                1
+              ],
+              "params": [
+                -1.4413952966519592
+              ]
+            }
+          ],
+          [
+            {
+              "gate": "rz",
+              "wires": [
+                1
+              ],
+              "params": [
+                -1.7827608726903879
+              ]
+            }
+          ],
+          [
+            {
+              "gate": "cx",
+              "wires": [
+                1,
+                0
+              ],
+              "params": []
+            }
+          ]
+        ],
+        "all_candidates_feasible": true,
+        "model_calls": 864,
+        "unchanged_prefix_qualifies": false
+      },
+      {
+        "request_id": "tiny_29",
+        "mode": "suffix_repair",
+        "prefix_fidelity": 0.7740783676306212,
+        "k1_fidelity": 0.9998135458114259,
+        "k1_success": true,
+        "k32_fidelity": 0.9998135458114259,
+        "k32_success": true,
+        "best_resources": {
+          "gate_counts": {
+            "rz": 6,
+            "ry": 3,
+            "cx": 1
+          },
+          "unitary_gate_count": 10,
+          "depth": 6,
+          "two_qubit_depth": 1
+        },
+        "best_layers": [
+          [
+            {
+              "gate": "rz",
+              "wires": [
+                0
+              ],
+              "params": [
+                -2.8094983787735783
+              ]
+            },
+            {
+              "gate": "ry",
+              "wires": [
+                1
+              ],
+              "params": [
+                1.6395723027756715
+              ]
+            }
+          ],
+          [
+            {
+              "gate": "rz",
+              "wires": [
+                0
+              ],
+              "params": [
+                -0.23857615918575092
+              ]
+            },
+            {
+              "gate": "rz",
+              "wires": [
+                1
+              ],
+              "params": [
+                1.9445410085798303
+              ]
+            }
+          ],
+          [
+            {
+              "gate": "rz",
+              "wires": [
+                0
+              ],
+              "params": [
+                1.59202656740095
+              ]
+            },
+            {
+              "gate": "rz",
+              "wires": [
+                1
+              ],
+              "params": [
+                -1.4996750677477646
+              ]
+            }
+          ],
+          [
+            {
+              "gate": "rz",
+              "wires": [
+                0
+              ],
+              "params": [
+                1.8908168523074682
+              ]
+            },
+            {
+              "gate": "ry",
+              "wires": [
+                1
+              ],
+              "params": [
+                0.6962947885144892
+              ]
+            }
+          ],
+          [
+            {
+              "gate": "cx",
+              "wires": [
+                1,
+                0
+              ],
+              "params": []
+            }
+          ],
+          [
+            {
+              "gate": "ry",
+              "wires": [
+                1
+              ],
+              "params": [
+                -0.963327062004975
+              ]
+            }
+          ]
+        ],
+        "all_candidates_feasible": true,
+        "model_calls": 288,
+        "unchanged_prefix_qualifies": false
+      },
+      {
+        "request_id": "tiny_30",
+        "mode": "suffix_repair",
+        "prefix_fidelity": 5.8079344689076914e-05,
+        "k1_fidelity": 0.9999999999999998,
+        "k1_success": true,
+        "k32_fidelity": 0.9999999999999998,
+        "k32_success": true,
+        "best_resources": {
+          "gate_counts": {
+            "ry": 3,
+            "cx": 2,
+            "rz": 1
+          },
+          "unitary_gate_count": 6,
+          "depth": 5,
+          "two_qubit_depth": 2
+        },
+        "best_layers": [
+          [
+            {
+              "gate": "ry",
+              "wires": [
+                1
+              ],
+              "params": [
+                -0.6501012074288215
+              ]
+            }
+          ],
+          [
+            {
+              "gate": "cx",
+              "wires": [
+                0,
+                1
+              ],
+              "params": []
+            }
+          ],
+          [
+            {
+              "gate": "rz",
+              "wires": [
+                0
+              ],
+              "params": [
+                2.5276666437494013
+              ]
+            },
+            {
+              "gate": "ry",
+              "wires": [
+                1
+              ],
+              "params": [
+                -0.5095871317311107
+              ]
+            }
+          ],
+          [
+            {
+              "gate": "ry",
+              "wires": [
+                1
+              ],
+              "params": [
+                -2.1567232998634047
+              ]
+            }
+          ],
+          [
+            {
+              "gate": "cx",
+              "wires": [
+                1,
+                0
+              ],
+              "params": []
+            }
+          ]
+        ],
+        "all_candidates_feasible": true,
+        "model_calls": 288,
+        "unchanged_prefix_qualifies": false
+      },
+      {
+        "request_id": "tiny_31",
+        "mode": "suffix_repair",
+        "prefix_fidelity": 0.12308314645676104,
+        "k1_fidelity": 0.9999978348796306,
+        "k1_success": true,
+        "k32_fidelity": 0.9999978348796306,
+        "k32_success": true,
+        "best_resources": {
+          "gate_counts": {
+            "ry": 2,
+            "rz": 5,
+            "cx": 1
+          },
+          "unitary_gate_count": 8,
+          "depth": 5,
+          "two_qubit_depth": 1
+        },
+        "best_layers": [
+          [
+            {
+              "gate": "ry",
+              "wires": [
+                0
+              ],
+              "params": [
+                0.18349023790359364
+              ]
+            },
+            {
+              "gate": "rz",
+              "wires": [
+                1
+              ],
+              "params": [
+                -0.4606652231488031
+              ]
+            }
+          ],
+          [
+            {
+              "gate": "rz",
+              "wires": [
+                0
+              ],
+              "params": [
+                -2.949508015885696
+              ]
+            },
+            {
+              "gate": "rz",
+              "wires": [
+                1
+              ],
+              "params": [
+                2.4984532406674553
+              ]
+            }
+          ],
+          [
+            {
+              "gate": "rz",
+              "wires": [
+                1
+              ],
+              "params": [
+                -2.9724797891721066
+              ]
+            }
+          ],
+          [
+            {
+              "gate": "cx",
+              "wires": [
+                1,
+                0
+              ],
+              "params": []
+            }
+          ],
+          [
+            {
+              "gate": "ry",
+              "wires": [
+                0
+              ],
+              "params": [
+                -2.4308669303832904
+              ]
+            },
+            {
+              "gate": "rz",
+              "wires": [
+                1
+              ],
+              "params": [
+                3.045740522441778
+              ]
+            }
+          ]
+        ],
+        "all_candidates_feasible": true,
+        "model_calls": 288,
+        "unchanged_prefix_qualifies": false
+      }
+    ]
+  },
+  "total_wall_seconds": 435.30826517000014,
+  "learning_gate_passed": true,
+  "guidance": "off",
+  "angle_refinement": "off",
+  "final_test_claim": false
+}
