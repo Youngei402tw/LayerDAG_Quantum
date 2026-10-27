@@ -3,8 +3,9 @@ import torch
 
 from qdag.core import Op, simulate
 from qdag.learning import (
-    CATALOG, NativeMPNN, angle_bin, bin_angle, canonical_layers, decode_layer, dense_message_oracle,
-    damaged_prefix, density_features, encode_layer, legal_mask,
+    CATALOG, MASK, FactorizedFrontierModel, FrontierAwareMPNN, NativeMPNN, action_components,
+    angle_bin, bin_angle, canonical_layers, decode_layer, dense_message_oracle, damaged_prefix,
+    density_features, encode_layer, legal_mask,
 )
 
 
@@ -79,3 +80,25 @@ def test_canonical_layers_match_physical_depth_and_merge_disjoint_ops():
     assert len(layers) == 3
     assert layers[0] == ops[:2]
     assert [op for layer in layers for op in layer] == ops
+
+
+def test_factorized_catalog_components_reconstruct_every_action():
+    assert len({action_components(action) for action in CATALOG}) == len(CATALOG)
+    assert action_components(CATALOG[0]) == (0, 0, 0)
+    model = FactorizedFrontierModel("dag", width=8)
+    target = torch.zeros((1, 32))
+    prefix = torch.zeros((1, 32))
+    remaining = torch.ones((1, 3))
+    logits, residual = model([[]], target, prefix, remaining, torch.tensor([MASK]), torch.tensor([8]))
+    assert logits.shape == (1, len(CATALOG))
+    assert residual.shape == (1, 2)
+    assert torch.isfinite(logits).all()
+
+
+def test_frontier_aware_encoder_distinguishes_wire_frontiers():
+    torch.manual_seed(5)
+    encoder = FrontierAwareMPNN(width=8)
+    a = [[Op("ry", (0,), (0.2,))], [Op("rz", (1,), (0.3,))]]
+    b = [[Op("rz", (1,), (0.3,))], [Op("ry", (0,), (0.2,))]]
+    outputs = encoder([a, b])
+    assert not torch.allclose(outputs[0], outputs[1])

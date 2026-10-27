@@ -311,6 +311,43 @@ class GridEncoder(nn.Module):
         return torch.stack([encoded[i, length - 1] if sequences[i] != [STOP] else encoded[i, 0] * 0 for i, length in enumerate(lengths)])
 
 
+class FrontierAwareMPNN(NativeMPNN):
+    """Wire-aware DAG encoder that preserves the two dependency frontiers.
+
+    Global mean pooling alone makes circuits with different final wire states
+    unnecessarily hard to distinguish.  State preparation decisions are made
+    at the dependency frontier, so pool the final embedding globally and at
+    the last operation touching each logical wire.
+    """
+    def __init__(self, width: int = 64):
+        super().__init__(width)
+        self.out = nn.Linear(width * 3, width)
+
+    def forward(self, batch_layers: list[list[list[Op]]]) -> torch.Tensor:
+        outputs = []
+        device = self.node_in.weight.device
+        for layers in batch_layers:
+            x, edge, attr = self.tensors(layers, device)
+            if len(x) == 0:
+                outputs.append(torch.zeros(self.out.out_features, device=device))
+                continue
+            h = F.gelu(self.node_in(x))
+            for fwd, bwd, self_layer in zip(self.forward_layers, self.backward_layers, self.self_layers):
+                aggregate_f = torch.zeros_like(h)
+                aggregate_b = torch.zeros_like(h)
+                if edge.shape[1]:
+                    aggregate_f.index_add_(0, edge[1], fwd(torch.cat([h[edge[0]], attr], dim=1)))
+                    aggregate_b.index_add_(0, edge[0], bwd(torch.cat([h[edge[1]], attr], dim=1)))
+                h = F.gelu(self_layer(h) + aggregate_f + aggregate_b)
+            last = [None, None]
+            for index, op in enumerate(flatten(layers)):
+                for wire in op.wires:
+                    last[wire] = index
+            frontier = [h[index] if index is not None else torch.zeros_like(h[0]) for index in last]
+            outputs.append(self.out(torch.cat([h.mean(0), *frontier])))
+        return torch.stack(outputs)
+
+
 class FrontierModel(nn.Module):
     def __init__(self, representation: str, width: int = 64):
         super().__init__()
@@ -328,6 +365,54 @@ class FrontierModel(nn.Module):
         physics = self.physics(torch.cat([target_features, prefix_features, remaining], dim=1))
         h = self.body(torch.cat([graph, physics, self.noisy_embedding(noisy), self.time_embedding(step)], dim=1))
         logits = self.action_head(h)
+        residual = torch.tanh(self.residual_head(h)) * (BIN_WIDTH / 2)
+        return logits, residual
+
+
+def action_components(action: LayerAction) -> tuple[int, int, int]:
+    """Return shared type and per-wire tokens for a catalog action."""
+    if action.kind == "stop":
+        return 0, 0, 0
+    if action.kind == "cx":
+        return 1 + int(action.control), 0, 0
+    left = 0 if action.left_gate is None else 1 + (action.left_gate == "rz") * NBINS + int(action.left_bin)
+    right = 0 if action.right_gate is None else 1 + (action.right_gate == "rz") * NBINS + int(action.right_bin)
+    return 3, left, right
+
+
+ACTION_COMPONENTS = [action_components(action) for action in CATALOG]
+
+
+class FactorizedFrontierModel(nn.Module):
+    """Masked frontier predictor with compositional gate/wire/angle logits."""
+    architecture = "factorized_masked_v2"
+
+    def __init__(self, representation: str, width: int = 64):
+        super().__init__()
+        self.representation = representation
+        self.prefix_encoder = FrontierAwareMPNN(width) if representation == "dag" else GridEncoder(width)
+        self.physics = nn.Sequential(nn.Linear(67, width), nn.GELU(), nn.Linear(width, width))
+        self.noisy_embedding = nn.Embedding(len(CATALOG) + 1, 32)
+        self.time_embedding = nn.Embedding(DIFFUSION_STEPS + 1, 16)
+        self.body = nn.Sequential(nn.Linear(width * 2 + 48, width * 2), nn.GELU(), nn.Linear(width * 2, width), nn.GELU())
+        self.type_head = nn.Linear(width, 4)
+        self.wire_heads = nn.ModuleList([nn.Linear(width, 1 + 2 * NBINS) for _ in range(2)])
+        self.residual_head = nn.Linear(width, 2)
+        self.register_buffer("component_type", torch.tensor([x[0] for x in ACTION_COMPONENTS], dtype=torch.long))
+        self.register_buffer("component_left", torch.tensor([x[1] for x in ACTION_COMPONENTS], dtype=torch.long))
+        self.register_buffer("component_right", torch.tensor([x[2] for x in ACTION_COMPONENTS], dtype=torch.long))
+
+    def forward(self, layers, target_features, prefix_features, remaining, noisy, step):
+        graph = self.prefix_encoder(layers)
+        physics = self.physics(torch.cat([target_features, prefix_features, remaining], dim=1))
+        h = self.body(torch.cat([graph, physics, self.noisy_embedding(noisy), self.time_embedding(step)], dim=1))
+        type_logits = self.type_head(h)
+        left_logits, right_logits = (head(h) for head in self.wire_heads)
+        logits = type_logits[:, self.component_type]
+        rotation = self.component_type == 3
+        logits[:, rotation] = (logits[:, rotation]
+                               + left_logits[:, self.component_left[rotation]]
+                               + right_logits[:, self.component_right[rotation]])
         residual = torch.tanh(self.residual_head(h)) * (BIN_WIDTH / 2)
         return logits, residual
 
@@ -350,7 +435,7 @@ def make_examples(payload: dict) -> list[dict]:
     return examples
 
 
-def batch_tensors(model: FrontierModel, batch: list[dict], rng: np.random.Generator, train: bool = True):
+def batch_tensors(model: nn.Module, batch: list[dict], rng: np.random.Generator, train: bool = True):
     device = next(model.parameters()).device
     target = torch.tensor(np.stack([density_features(x["target"]) for x in batch]), device=device)
     prefix_states = [simulate(NQ, flatten(x["layers"])) for x in batch]
@@ -358,7 +443,18 @@ def batch_tensors(model: FrontierModel, batch: list[dict], rng: np.random.Genera
     remaining = torch.tensor(np.array([x["remaining"] for x in batch], np.float32) / np.array([12, MAX_LAYERS, MAX_LAYERS], np.float32), device=device)
     clean = torch.tensor([x["action"] for x in batch], dtype=torch.long, device=device)
     residual = torch.tensor([x["residual"] for x in batch], dtype=torch.float32, device=device)
-    if train:
+    if getattr(model, "architecture", None) == "factorized_masked_v2":
+        # Generation starts from the absorbing mask.  Always train and select
+        # checkpoints on that same prediction problem; exposing `clean` here
+        # leaks the label through the noisy-action embedding.
+        steps_np = rng.integers(1, DIFFUSION_STEPS + 1, size=len(batch)) if train else np.full(len(batch), DIFFUSION_STEPS)
+        corrupt = np.ones(len(batch), dtype=bool)
+        if train:
+            # Classifier-free target dropout makes the null condition an
+            # in-distribution diagnostic and discourages brittle memorization.
+            dropped = rng.random(len(batch)) < 0.1
+            target[torch.tensor(dropped, device=device)] = 0
+    elif train:
         steps_np = rng.integers(1, DIFFUSION_STEPS + 1, size=len(batch))
         corrupt = rng.random(len(batch)) < steps_np / DIFFUSION_STEPS
     else:
@@ -384,15 +480,23 @@ def parameter_count(model: nn.Module) -> int:
     return sum(p.numel() for p in model.parameters())
 
 
-def train_model(representation: str, payload: dict, output: Path, seed: int, max_updates: int = 20000, cap_seconds: int = 1800, width: int = 64):
+def train_model(representation: str, payload: dict, output: Path, seed: int, max_updates: int = 20000,
+                cap_seconds: int = 1800, width: int = 64, architecture: str = "legacy"):
     torch.manual_seed(seed)
     random.seed(seed)
     np.random.seed(seed)
     torch.set_num_threads(2)
-    model = FrontierModel(representation, width)
+    model = FactorizedFrontierModel(representation, width) if architecture == "factorized" else FrontierModel(representation, width)
     optimizer = torch.optim.AdamW(model.parameters(), lr=3e-4)
     examples = make_examples(payload)
     rng = np.random.default_rng(seed)
+    if architecture == "factorized" and len(examples) > 2048:
+        monitor_indices = np.linspace(0, len(examples) - 1, 2048, dtype=int)
+        monitor_examples = [examples[int(i)] for i in monitor_indices]
+        monitor_every = 250
+    else:
+        monitor_examples = examples
+        monitor_every = 100
     started = time.monotonic()
     best_loss = float("inf")
     best_state = None
@@ -402,7 +506,17 @@ def train_model(representation: str, payload: dict, output: Path, seed: int, max
         if time.monotonic() - started >= cap_seconds:
             status = "training_cap_reached"
             break
-        selection = rng.integers(0, len(examples), size=batch_size)
+        if architecture == "factorized":
+            # Prefix-zero decisions cannot be solved by copying the circuit
+            # history, so give them equal representation in every update.
+            initial = [i for i, example in enumerate(examples) if not example["layers"]]
+            selection = np.concatenate([
+                rng.choice(initial, size=batch_size // 2),
+                rng.integers(0, len(examples), size=batch_size - batch_size // 2),
+            ])
+            rng.shuffle(selection)
+        else:
+            selection = rng.integers(0, len(examples), size=batch_size)
         batch = [examples[int(i)] for i in selection]
         tensors = batch_tensors(model, batch, rng, train=True)
         logits, predicted_residual = model([x["layers"] for x in batch], tensors[0], tensors[1], tensors[2], tensors[5], tensors[6])
@@ -414,14 +528,14 @@ def train_model(representation: str, payload: dict, output: Path, seed: int, max
         loss.backward()
         nn.utils.clip_grad_norm_(model.parameters(), 1.0)
         optimizer.step()
-        if update % 100 == 0 or update == 1:
+        if update % monitor_every == 0 or update == 1:
             full_losses = []
             model.eval()
             with torch.no_grad():
-                for start in range(0, len(examples), 64):
-                    eval_batch = examples[start:start + 64]
+                for start in range(0, len(monitor_examples), 64):
+                    eval_batch = monitor_examples[start:start + 64]
                     et = batch_tensors(model, eval_batch, rng, train=False)
-                    el, er = model([x["layers"] for x in eval_batch], et[0], et[1], et[2], et[3], torch.zeros(len(eval_batch), dtype=torch.long))
+                    el, er = model([x["layers"] for x in eval_batch], et[0], et[1], et[2], et[5], et[6])
                     em = residual_mask(et[3])
                     full_losses.append((F.cross_entropy(el, et[3]) + 10.0 * ((((er - et[4]) ** 2) * em).sum() / em.sum().clamp(min=1))).item())
             validation_loss = float(np.mean(full_losses))
@@ -444,12 +558,14 @@ def train_model(representation: str, payload: dict, output: Path, seed: int, max
         "torch_rng": torch.get_rng_state(),
         "numpy_rng": rng.bit_generator.state,
         "representation": representation,
+        "architecture": getattr(model, "architecture", "legacy_joint_v1"),
         "width": width,
         "updates": update,
         "elapsed_seconds": elapsed,
         "best_teacher_forced_loss": best_loss,
         "status": status,
         "parameters": parameter_count(model),
+        "checkpoint_monitor_examples": len(monitor_examples),
     }
     output.parent.mkdir(parents=True, exist_ok=True)
     torch.save(checkpoint, output)
@@ -462,30 +578,50 @@ def remaining_budget(budgets: tuple[int, int, int], layers: list[list[Op]]) -> t
 
 
 @torch.no_grad()
-def sample_frontier(model: FrontierModel, condition_target: np.ndarray | None, layers: list[list[Op]], remaining: tuple[int, int, int], rng: np.random.Generator):
+def sample_frontier(model: nn.Module, condition_target: np.ndarray | None, layers: list[list[Op]],
+                    remaining: tuple[int, int, int], rng: np.random.Generator, guidance_scale: float = 1.0):
     device = next(model.parameters()).device
     condition = np.zeros(32, np.float32) if condition_target is None else density_features(condition_target)
     target_f = torch.tensor(condition[None, :], device=device)
     prefix_f = torch.tensor(density_features(simulate(NQ, flatten(layers)))[None, :], device=device)
     budget_f = torch.tensor((np.array(remaining, np.float32) / np.array([12, MAX_LAYERS, MAX_LAYERS], np.float32))[None, :], device=device)
-    noisy_id = MASK
-    chosen = STOP
-    for step in range(DIFFUSION_STEPS, 0, -1):
-        noisy = torch.tensor([noisy_id], dtype=torch.long, device=device)
-        step_t = torch.tensor([step], dtype=torch.long, device=device)
-        logits, _ = model([layers], target_f, prefix_f, budget_f, noisy, step_t)
+    def predict(noisy: torch.Tensor, step_t: torch.Tensor, clean_target: torch.Tensor = target_f):
+        logits, residual = model([layers], clean_target, prefix_f, budget_f, noisy, step_t)
+        if guidance_scale != 1.0 and condition_target is not None:
+            null_target = torch.zeros_like(target_f)
+            null_logits, null_residual = model([layers], null_target, prefix_f, budget_f, noisy, step_t)
+            logits = null_logits + guidance_scale * (logits - null_logits)
+            residual = null_residual + guidance_scale * (residual - null_residual)
+        return logits, residual
+
+    if getattr(model, "architecture", None) == "factorized_masked_v2":
+        noisy = torch.tensor([MASK], dtype=torch.long, device=device)
+        step_t = torch.tensor([DIFFUSION_STEPS], dtype=torch.long, device=device)
+        logits, _ = predict(noisy, step_t)
         allowed = legal_mask(remaining, device)
         logits[0, ~allowed] = -torch.inf
-        probabilities = torch.softmax(logits[0], dim=0).cpu().numpy()
-        chosen = int(rng.choice(len(CATALOG), p=probabilities))
-        if rng.random() <= 1.0 / step:
-            noisy_id = chosen
+        chosen = int(rng.choice(len(CATALOG), p=torch.softmax(logits[0], dim=0).cpu().numpy()))
+    else:
+        noisy_id = MASK
+        chosen = STOP
+        for step in range(DIFFUSION_STEPS, 0, -1):
+            noisy = torch.tensor([noisy_id], dtype=torch.long, device=device)
+            step_t = torch.tensor([step], dtype=torch.long, device=device)
+            logits, _ = predict(noisy, step_t)
+            allowed = legal_mask(remaining, device)
+            logits[0, ~allowed] = -torch.inf
+            probabilities = torch.softmax(logits[0], dim=0).cpu().numpy()
+            chosen = int(rng.choice(len(CATALOG), p=probabilities))
+            if rng.random() <= 1.0 / step:
+                noisy_id = chosen
     clean = torch.tensor([chosen], dtype=torch.long, device=device)
-    _, residual = model([layers], target_f, prefix_f, budget_f, clean, torch.zeros(1, dtype=torch.long, device=device))
-    return chosen, residual[0].cpu().numpy()
+    _, residual = predict(clean, torch.zeros(1, dtype=torch.long, device=device))
+    return chosen, np.clip(residual[0].cpu().numpy(), -BIN_WIDTH / 2, BIN_WIDTH / 2)
 
 
-def sample_circuit(model: FrontierModel, target: np.ndarray, budgets: tuple[int, int, int], prefix: list[list[Op]], rng: np.random.Generator, condition_target: np.ndarray | None | str = "correct"):
+def sample_circuit(model: nn.Module, target: np.ndarray, budgets: tuple[int, int, int], prefix: list[list[Op]],
+                   rng: np.random.Generator, condition_target: np.ndarray | None | str = "correct",
+                   guidance_scale: float = 1.0):
     layers = [list(layer) for layer in prefix]
     model_calls = 0
     condition = target if isinstance(condition_target, str) else condition_target
@@ -493,8 +629,8 @@ def sample_circuit(model: FrontierModel, target: np.ndarray, budgets: tuple[int,
         remaining = remaining_budget(budgets, layers)
         if remaining[1] <= 0 or remaining[0] <= 0:
             break
-        action, residual = sample_frontier(model, condition, layers, remaining, rng)
-        model_calls += DIFFUSION_STEPS + 1
+        action, residual = sample_frontier(model, condition, layers, remaining, rng, guidance_scale)
+        model_calls += 2 if getattr(model, "architecture", None) == "factorized_masked_v2" else DIFFUSION_STEPS + 1
         if action == STOP:
             break
         layer = decode_layer(action, residual)
@@ -534,7 +670,7 @@ def damaged_prefix(target: np.ndarray, witness_layers: list[list[Op]], budgets: 
     return max(candidates, key=lambda item: item[0])[1]
 
 
-def evaluate_model(model: FrontierModel, payload: dict, samples: int = 32) -> dict:
+def evaluate_model(model: nn.Module, payload: dict, samples: int = 32) -> dict:
     model.eval()
     rows = []
     for mode in ("scratch", "suffix_repair"):
@@ -591,7 +727,7 @@ def bootstrap_interval(values: np.ndarray, seed: int = 20261021, draws: int = 10
     return float(np.quantile(means, 0.025)), float(np.quantile(means, 0.975))
 
 
-def conditioning_evaluation(model: FrontierModel, payload: dict, samples: int = 8) -> dict:
+def conditioning_evaluation(model: nn.Module, payload: dict, samples: int = 8, guidance_scale: float = 1.0) -> dict:
     """Paired held-out correct/permuted/null target diagnostic."""
     model.eval()
     records = payload["records"]
@@ -607,7 +743,8 @@ def conditioning_evaluation(model: FrontierModel, payload: dict, samples: int = 
             for k in range(samples):
                 digest = hashlib.sha256(f"conditioning:{record['request_id']}:{k}".encode()).digest()
                 rng = np.random.default_rng(int.from_bytes(digest[:8], "little"))
-                layers, _ = sample_circuit(model, requested, budgets, [], rng, condition_target=condition)
+                layers, _ = sample_circuit(model, requested, budgets, [], rng, condition_target=condition,
+                                           guidance_scale=guidance_scale)
                 fidelities.append(float(abs(np.vdot(requested, simulate(NQ, flatten(layers)))) ** 2))
             scores[label] = max(fidelities)
         rows.append({"request_id": record["request_id"], **scores})
@@ -618,6 +755,7 @@ def conditioning_evaluation(model: FrontierModel, payload: dict, samples: int = 
     interval = bootstrap_interval(delta)
     return {
         "targets": len(rows), "samples_per_condition": samples,
+        "guidance_scale": guidance_scale,
         "mean_correct_fidelity": float(correct.mean()),
         "mean_permuted_fidelity": float(permuted.mean()),
         "mean_null_fidelity": float(null.mean()),
@@ -663,12 +801,18 @@ def run(output_dir: Path, representation: str, seed: int, max_updates: int, cap_
     return result
 
 
+def model_from_checkpoint(checkpoint: dict) -> nn.Module:
+    if checkpoint.get("architecture") == "factorized_masked_v2":
+        return FactorizedFrontierModel(checkpoint["representation"], checkpoint["width"])
+    return FrontierModel(checkpoint["representation"], checkpoint["width"])
+
+
 def replay_checkpoint(output_dir: Path, representation: str) -> dict:
     data_path = output_dir / "tiny_targets.json"
     payload = load_targets(data_path)
     checkpoint_path = output_dir / f"{representation}_best.pt"
     checkpoint = torch.load(checkpoint_path, map_location="cpu", weights_only=False)
-    model = FrontierModel(representation, checkpoint["width"])
+    model = model_from_checkpoint(checkpoint)
     model.load_state_dict(checkpoint["state_dict"])
     started = time.monotonic()
     evaluation = evaluate_model(model, payload)
@@ -687,7 +831,7 @@ def evaluate_conditioning(output_dir: Path, representation: str) -> dict:
     validation_path = output_dir / "conditioning_validation_targets.json"
     payload = load_targets(validation_path) if validation_path.exists() else generate_targets(validation_path, seed=20261022, count=32)
     checkpoint = torch.load(output_dir / f"{representation}_best.pt", map_location="cpu", weights_only=False)
-    model = FrontierModel(representation, checkpoint["width"])
+    model = model_from_checkpoint(checkpoint)
     model.load_state_dict(checkpoint["state_dict"])
     started = time.monotonic()
     result = conditioning_evaluation(model, payload)
@@ -706,7 +850,8 @@ def assert_disjoint_targets(train_payload: dict, validation_payload: dict, toler
         raise ValueError(f"cross-split near duplicate at distance {minimum}")
 
 
-def run_development(output_dir: Path, representation: str, seed: int, max_updates: int = 10000, cap_seconds: int = 900, width: int = 64) -> dict:
+def run_development(output_dir: Path, representation: str, seed: int, max_updates: int = 10000,
+                    cap_seconds: int = 900, width: int = 64, architecture: str = "legacy") -> dict:
     output_dir.mkdir(parents=True, exist_ok=True)
     train_path = output_dir / "development_train_targets.json"
     validation_path = output_dir / "development_validation_targets.json"
@@ -715,7 +860,8 @@ def run_development(output_dir: Path, representation: str, seed: int, max_update
     assert_disjoint_targets(train_payload, validation_payload)
     started = time.monotonic()
     checkpoint_path = output_dir / f"{representation}_development_best.pt"
-    model, checkpoint, history = train_model(representation, train_payload, checkpoint_path, seed, max_updates, cap_seconds, width)
+    model, checkpoint, history = train_model(representation, train_payload, checkpoint_path, seed,
+                                              max_updates, cap_seconds, width, architecture)
     conditioning = conditioning_evaluation(model, validation_payload, samples=8)
     result = {
         "representation": representation,
@@ -735,6 +881,129 @@ def run_development(output_dir: Path, representation: str, seed: int, max_update
     return result
 
 
+def run_revision(output_dir: Path, representation: str, seed: int, max_updates: int = 10000,
+                 cap_seconds: int = 900, width: int = 64) -> dict:
+    """Fresh split for the masked, factorized architecture repair.
+
+    Validation is used once as a condition-use gate.  The final split is only
+    evaluated when that gate passes and is never used for model selection.
+    """
+    output_dir.mkdir(parents=True, exist_ok=True)
+    train_path = output_dir / "train_targets.json"
+    validation_path = output_dir / "validation_targets.json"
+    final_path = output_dir / "final_targets.json"
+    train_payload = load_targets(train_path) if train_path.exists() else generate_targets(train_path, seed=20261027, count=256)
+    validation_payload = (load_targets(validation_path) if validation_path.exists()
+                          else generate_targets(validation_path, seed=20261028, count=64, exclude_payload=train_payload))
+    combined = {"records": train_payload["records"] + validation_payload["records"]}
+    final_payload = (load_targets(final_path) if final_path.exists()
+                     else generate_targets(final_path, seed=20261029, count=64, exclude_payload=combined))
+    assert_disjoint_targets(train_payload, validation_payload)
+    assert_disjoint_targets(combined, final_payload)
+    started = time.monotonic()
+    checkpoint_path = output_dir / f"{representation}_factorized_best.pt"
+    model, checkpoint, history = train_model(representation, train_payload, checkpoint_path, seed,
+                                              max_updates, cap_seconds, width, "factorized")
+    validation = conditioning_evaluation(model, validation_payload, samples=8)
+    final = conditioning_evaluation(model, final_payload, samples=8) if validation["condition_use_gate_passed"] else None
+    result = {
+        "protocol": "fresh 256/64/64 target-disjoint repair split; final evaluated only after validation pass",
+        "representation": representation,
+        "seed": seed,
+        "train_data_sha256": hashlib.sha256(train_path.read_bytes()).hexdigest(),
+        "validation_data_sha256": hashlib.sha256(validation_path.read_bytes()).hexdigest(),
+        "final_data_sha256": hashlib.sha256(final_path.read_bytes()).hexdigest(),
+        "training": {k: v for k, v in checkpoint.items() if k not in ("state_dict", "optimizer", "torch_rng", "numpy_rng")},
+        "history": history,
+        "validation_conditioning": validation,
+        "final_conditioning": final,
+        "total_wall_seconds": time.monotonic() - started,
+        "final_test_claim": final is not None,
+    }
+    (output_dir / f"{representation}_revision_result.json").write_text(json.dumps(result, indent=2))
+    print(json.dumps({
+        "representation": representation,
+        "training": result["training"],
+        "validation": {k: v for k, v in validation.items() if k != "rows"},
+        "final": None if final is None else {k: v for k, v in final.items() if k != "rows"},
+        "total_wall_seconds": result["total_wall_seconds"],
+    }, indent=2))
+    return result
+
+
+def run_guidance_sweep(output_dir: Path, representation: str) -> dict:
+    """Select CFG scale on validation, then evaluate the untouched final split once."""
+    checkpoint = torch.load(output_dir / f"{representation}_factorized_best.pt", map_location="cpu", weights_only=False)
+    model = model_from_checkpoint(checkpoint)
+    model.load_state_dict(checkpoint["state_dict"])
+    validation_payload = load_targets(output_dir / "validation_targets.json")
+    final_payload = load_targets(output_dir / "final_targets.json")
+    scales = (1.0, 2.0, 4.0, 8.0)
+    validation = {str(scale): conditioning_evaluation(model, validation_payload, samples=8, guidance_scale=scale)
+                  for scale in scales}
+    selected = max(scales, key=lambda scale: validation[str(scale)]["mean_correct_fidelity"])
+    final = conditioning_evaluation(model, final_payload, samples=8, guidance_scale=selected)
+    result = {
+        "selection_rule": "maximum validation mean correct-condition best-of-8 fidelity",
+        "candidate_scales": scales,
+        "selected_scale": selected,
+        "validation": validation,
+        "final": final,
+    }
+    (output_dir / f"{representation}_guidance_result.json").write_text(json.dumps(result, indent=2))
+    print(json.dumps({
+        "selected_scale": selected,
+        "validation": {scale: {k: v for k, v in row.items() if k != "rows"} for scale, row in validation.items()},
+        "final": {k: v for k, v in final.items() if k != "rows"},
+    }, indent=2))
+    return result
+
+
+def run_scaled_revision(output_dir: Path, representation: str, seed: int, max_updates: int = 30000,
+                        cap_seconds: int = 900, width: int = 64) -> dict:
+    """Test whether the repaired model generalizes once data exceeds capacity."""
+    output_dir.mkdir(parents=True, exist_ok=True)
+    train_path = output_dir / "train_targets.json"
+    validation_path = output_dir / "validation_targets.json"
+    final_path = output_dir / "final_targets.json"
+    train_payload = load_targets(train_path) if train_path.exists() else generate_targets(train_path, seed=20261030, count=2048)
+    validation_payload = (load_targets(validation_path) if validation_path.exists()
+                          else generate_targets(validation_path, seed=20261031, count=128, exclude_payload=train_payload))
+    combined = {"records": train_payload["records"] + validation_payload["records"]}
+    final_payload = (load_targets(final_path) if final_path.exists()
+                     else generate_targets(final_path, seed=20261101, count=128, exclude_payload=combined))
+    assert_disjoint_targets(train_payload, validation_payload)
+    assert_disjoint_targets(combined, final_payload)
+    checkpoint_path = output_dir / f"{representation}_scaled_best.pt"
+    started = time.monotonic()
+    model, checkpoint, history = train_model(representation, train_payload, checkpoint_path, seed,
+                                              max_updates, cap_seconds, width, "factorized")
+    validation = conditioning_evaluation(model, validation_payload, samples=8)
+    final = conditioning_evaluation(model, final_payload, samples=8) if validation["condition_use_gate_passed"] else None
+    result = {
+        "protocol": "fresh target-disjoint 2048/128/128 scale diagnosis",
+        "representation": representation,
+        "seed": seed,
+        "train_data_sha256": hashlib.sha256(train_path.read_bytes()).hexdigest(),
+        "validation_data_sha256": hashlib.sha256(validation_path.read_bytes()).hexdigest(),
+        "final_data_sha256": hashlib.sha256(final_path.read_bytes()).hexdigest(),
+        "training": {k: v for k, v in checkpoint.items() if k not in ("state_dict", "optimizer", "torch_rng", "numpy_rng")},
+        "history": history,
+        "validation_conditioning": validation,
+        "final_conditioning": final,
+        "total_wall_seconds": time.monotonic() - started,
+        "final_test_claim": final is not None,
+    }
+    (output_dir / f"{representation}_scaled_result.json").write_text(json.dumps(result, indent=2))
+    print(json.dumps({
+        "training": result["training"],
+        "validation": {k: v for k, v in validation.items() if k != "rows"},
+        "final": None if final is None else {k: v for k, v in final.items() if k != "rows"},
+        "total_wall_seconds": result["total_wall_seconds"],
+    }, indent=2))
+    return result
+
+
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--output", type=Path, default=Path("experiments/tiny_learning_20261021"))
@@ -745,10 +1014,21 @@ def main():
     parser.add_argument("--eval-only", action="store_true")
     parser.add_argument("--conditioning-only", action="store_true")
     parser.add_argument("--development", action="store_true")
+    parser.add_argument("--revision", action="store_true")
+    parser.add_argument("--guidance-sweep", action="store_true")
+    parser.add_argument("--scaled-revision", action="store_true")
+    parser.add_argument("--architecture", choices=("legacy", "factorized"), default="legacy")
     parser.add_argument("--width", type=int, default=64)
     args = parser.parse_args()
-    if args.development:
-        run_development(args.output, args.representation, args.seed, min(args.max_updates, 10000), min(args.cap_seconds, 900), args.width)
+    if args.scaled_revision:
+        run_scaled_revision(args.output, args.representation, args.seed, min(args.max_updates, 30000),
+                            min(args.cap_seconds, 900), args.width)
+    elif args.guidance_sweep:
+        run_guidance_sweep(args.output, args.representation)
+    elif args.revision:
+        run_revision(args.output, args.representation, args.seed, min(args.max_updates, 10000), min(args.cap_seconds, 900), args.width)
+    elif args.development:
+        run_development(args.output, args.representation, args.seed, min(args.max_updates, 10000), min(args.cap_seconds, 900), args.width, args.architecture)
     elif args.conditioning_only:
         evaluate_conditioning(args.output, args.representation)
     elif args.eval_only:

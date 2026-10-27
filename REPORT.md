@@ -1,8 +1,8 @@
-# qdag-stateprep experiment report — 26 October 2026
+# qdag-stateprep experiment report — 27 October 2026
 
 ## Outcome
 
-**SCIENTIFIC GATE FAILED.** The physical contract, compiler baselines and tiny guided-OFF repair path work. A grid control demonstrated held-out target dependence, while the LayerDAG-derived model did not meet the predeclared condition-use threshold after the bounded capacity diagnosis. No DAG representation benefit or learned improvement over the compiler is supported.
+**TARGET-CONDITIONING GATE PASSED AFTER IMPLEMENTATION REPAIR AND DATA SCALING.** The final DAG model shows reproducible held-out target dependence. Its absolute fidelity and 0.99 success rate remain far below the exact compiler, and no DAG-over-grid representation advantage is claimed.
 
 ## Compiler-seeded baseline
 
@@ -39,11 +39,31 @@ An initial held-out check trained only on the 32-target tiny set gave a positive
 | Grid width 64 | 265,301 | 7,800 | 0.01326 | 0.6882 | 0.5582 | 0.5907 | +0.1300 [+0.0133, +0.2407] | Passed |
 | DAG width 80 diagnostic | 241,701 | 10,000 | 0.01590 | 0.6376 | 0.5358 | 0.5990 | +0.1018 [-0.0073, +0.2118] | Failed |
 
-The width-80 run was chosen after inspecting validation behavior to address capacity mismatch. It is diagnostic and cannot be used as an unbiased representation comparison. It improved loss and the paired mean, but the interval still crossed zero. The bounded diagnosis allowance is exhausted; scaling and guidance experiments stopped.
+The width-80 run was chosen after inspecting validation behavior to address capacity mismatch. It is diagnostic and cannot be used as an unbiased representation comparison. It improved loss and the paired mean, but the interval still crossed zero. These original runs are retained as negative evidence. A later user-authorized iteration audited and repaired the learning path.
+
+## Learning-path audit and repair
+
+The audit found four interacting causes of the weak DAG result:
+
+1. checkpoint scoring supplied the clean action through the noisy-action input, making the reported low loss partly label copying;
+2. 44% of training examples also exposed the clean action although generation always began from the absorbing mask;
+3. the 1,091-class joint output could not share evidence across the two wires' gate and angle choices, and global mean graph pooling blurred each wire's active frontier;
+4. after those fixes, 256 continuously parameterized training targets were still small enough for a 117,848-parameter model to memorize.
+
+The repaired model always predicts from a mask, factorizes action type and per-wire gate/angle logits, pools the last DAG node on each wire, applies 10% null-target dropout, and gives empty-prefix decisions half of each minibatch. A classifier-free guidance sweep over scales 1, 2, 4 and 8 did not help; scale 1 remained best.
+
+The decisive scaled run used 2,048 fresh training targets, 128 validation targets and 128 untouched final targets. All splits reject phase-invariant duplicates. The architecture and optimizer were frozen before this run.
+
+| Split | Correct | Permuted | Null | Correct - permuted, 95% CI | F>=0.99 correct |
+|---|---:|---:|---:|---|---:|
+| Validation (128) | 0.7398 | 0.6338 | 0.6299 | +0.1061 [+0.0663, +0.1456] | 6/128 |
+| Final (128) | 0.7260 | 0.6216 | 0.6355 | +0.1045 [+0.0616, +0.1490] | 9/128 |
+
+These are matched best-of-8 results. They establish target use on this distribution, including replication on the gated final split. They do not show competitive state preparation: only 7.0% of final targets reached fidelity 0.99, versus exact fidelity from the compiler baseline.
 
 ## Verification and provenance
 
-- Tests: 19 passed, covering matrices and operand direction, continuous-angle round trips, global-phase density features, layer-zero STOP, hard masks, contradictions/statuses, canonical scheduling and native index-add aggregation against a dense oracle.
+- Tests: 21 passed, covering matrices and operand direction, continuous-angle round trips, global-phase density features, layer-zero STOP, hard masks, contradictions/statuses, canonical scheduling, factorized action uniqueness, wire-frontier readout and native index-add aggregation against a dense oracle.
 - Compiler replay: 144 original and 96 gate-repair rows verified; 24 target hashes matched; maximum NumPy/Qiskit fidelity difference 1.11e-15.
 - Source: official LayerDAG checkout, clean at `bc22fed6f112c3eef2e991551bb0677038df3467`. Upstream code was inspected and kept read-only. The portable model reimplements bidirectional sparse aggregation with native PyTorch; DGL/upstream runtime parity is unverified.
 - Runtime: Python 3.12, PyTorch 2.8.0+cpu, Qiskit 2.2.3, NumPy 2.3.4, SciPy 1.16.3, pytest 8.4.2.
@@ -53,6 +73,6 @@ The width-80 run was chosen after inspecting validation behavior to address capa
 
 ## Compute and limits
 
-Measured compute-job wall time in this workspace is 2,274.45 seconds (37.91 minutes), including the invalidated 315.05-second run. This is well below the handoff's six-hour CPU ceiling and every training job remained below 30 minutes. Evaluation/report reserve was maintained. Failed setup/replay attempts, process startup and engineering time were not all measured, and historic consumption before this workspace is unknown.
+Measured compute-job wall time with internal timers is at least 3,608.07 seconds (60.13 minutes), including the invalidated run, repaired 256-target run, and scaled run. The guidance sweep did not record its own timer and is excluded from that lower bound. Every training job remained below 30 minutes. Failed setup/replay attempts, process startup and engineering time were not all measured, and historic consumption before this workspace is unknown.
 
-No GPU, paid resource, external dashboard, publication or deployment was used. Artifact size is about 19 MiB. The large-data/multi-seed matrix, completion guidance, internal-window editor, terminal measurements and dynamic/hardware extensions remain unrun. The failed DAG conditioning gate is the reason those stages were not launched.
+No GPU, paid resource, external dashboard, publication or deployment was used. The multi-seed representation matrix, fidelity-aligned completion guidance, internal-window editor, terminal measurements and dynamic/hardware extensions remain unrun.

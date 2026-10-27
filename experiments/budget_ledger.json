@@ -1,5 +1,5 @@
 {
-  "execution_date": "2026-10-21 through 2026-10-26",
+  "execution_date": "2026-10-21 through 2026-10-27",
   "profile": "handoff_cpu_development",
   "global_cpu_ceiling_seconds": 21600,
   "prior_consumption_seconds": null,
@@ -9,21 +9,32 @@
   "pilot_measured_wall_seconds": 9.951487772000007,
   "initial_replay_and_gate_repair_wall_seconds": 0.4124010330000374,
   "final_replay_and_gate_repair_wall_seconds": 0.4441006879999918,
-  "test_body_wall_seconds": [1.23, 0.55],
+  "test_body_wall_seconds": [
+    1.23,
+    0.55
+  ],
   "accounting_limits": "Measured in-process wall durations, not CPU core-seconds. Engineering/tool time, startup, two failed validation-generation attempts, and failed replay attempts are not fully timed. The invalid noncanonical learned run is included. Historic consumption before this workspace remains unknown.",
   "gpu_job_hours": 0,
-  "measured_compute_job_wall_seconds": 2274.450778097,
-  "measured_compute_job_wall_minutes": 37.9075129683,
-  "nominal_ceiling_remaining_seconds_if_no_historic_usage": 19325.549221903,
-  "minimum_reserved_seconds_if_no_historic_usage": 4831.38730547575,
+  "measured_compute_job_wall_seconds": 3608.065767266,
+  "measured_compute_job_wall_minutes": 60.1344294544,
+  "nominal_ceiling_remaining_seconds_if_no_historic_usage": 17991.934232734,
+  "minimum_reserved_seconds_if_no_historic_usage": 4497.9835581835,
   "checkpoint": "multiple; see runs/registry.jsonl",
-  "learned_training_runs": 6,
+  "learned_training_runs": 8,
   "invalidated_learned_training_runs": 1,
   "cpu_training_job_cap_seconds": 1800,
   "cpu_neural_qubits": 2,
   "maximum_diagnosis_driven_revisions": 2,
   "diagnosis_driven_revisions_used": 2,
-  "unmeasured_metrics": ["full process startup", "engineering time", "failed setup/replay wall time", "amortized training cost"],
+  "unmeasured_metrics": [
+    "full process startup",
+    "engineering time",
+    "failed setup/replay wall time",
+    "amortized training cost"
+  ],
   "matched_compute_comparison": false,
-  "paid_resources_allocated": false
+  "paid_resources_allocated": false,
+  "user_authorized_repair_iteration_training_runs": 2,
+  "repair_iteration_guidance_sweep_wall_seconds": "not internally recorded; excluded from measured lower bound",
+  "repair_iteration_status": "scaled target-conditioning gate passed on validation and untouched final split"
 }
