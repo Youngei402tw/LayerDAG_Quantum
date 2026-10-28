@@ -8,6 +8,12 @@ Qiskit's exact compiler remains the practical winner. On an untouched
 0.7260 versus 0.6216 for permuted targets (paired +0.1045, bootstrap 95% CI
 [0.0616, 0.1490]). See `REPORT.md` and `STATUS.md`.
 
+A separate frozen three-seed compiler benchmark identifies a specific DAG
+advantage: depth-critical gate prediction transfers better to larger circuits.
+On 9–12-qubit, 64–96-gate circuits, the wire-dependency DAG reached AUROC
+0.8078 versus 0.7861 for a parameter-matched canonical grid, winning all three
+paired seeds. The grid remained better in-distribution.
+
 Install and verify from `/workspace`:
 
 ```sh

@@ -1,0 +1,77 @@
+{
+  "protocol": "development only; 1000 train, 256 validation, 256 reordered, 256 larger OOD",
+  "seed": 41,
+  "results": {
+    "dag_recurrent": {
+      "training": {
+        "kind": "dag_recurrent",
+        "seed": 41,
+        "updates": 1000,
+        "parameters": 57481,
+        "width": 60,
+        "train_seconds": 278.5151207859999,
+        "best_validation_auc": 0.7635953186128865,
+        "history": [
+          {
+            "update": 250,
+            "loss": 0.5664721131324768,
+            "nodes": 10097,
+            "positive_fraction": 0.5047043561935425,
+            "auc": 0.7573754479873256,
+            "f1": 0.6626846903489468,
+            "accuracy": 0.6811924333960583
+          },
+          {
+            "update": 500,
+            "loss": 0.5885464549064636,
+            "nodes": 10097,
+            "positive_fraction": 0.5047043561935425,
+            "auc": 0.7613474557835685,
+            "f1": 0.7070802300367681,
+            "accuracy": 0.6922848370803208
+          },
+          {
+            "update": 750,
+            "loss": 0.5466371178627014,
+            "nodes": 10097,
+            "positive_fraction": 0.5047043561935425,
+            "auc": 0.7621924202286702,
+            "f1": 0.6989800874210782,
+            "accuracy": 0.6930771516291968
+          },
+          {
+            "update": 1000,
+            "loss": 0.5954346656799316,
+            "nodes": 10097,
+            "positive_fraction": 0.5047043561935425,
+            "auc": 0.7635953186128865,
+            "f1": 0.721009918845807,
+            "accuracy": 0.6935723482222442
+          }
+        ]
+      },
+      "canonical": {
+        "nodes": 10097,
+        "positive_fraction": 0.5047043561935425,
+        "auc": 0.7635953186128865,
+        "f1": 0.721009918845807,
+        "accuracy": 0.6935723482222442
+      },
+      "reordered": {
+        "nodes": 10097,
+        "positive_fraction": 0.5047043561935425,
+        "auc": 0.7635953186128865,
+        "f1": 0.721009918845807,
+        "accuracy": 0.6935723482222442
+      },
+      "larger": {
+        "nodes": 20473,
+        "positive_fraction": 0.3282860219478607,
+        "auc": 0.7603810900151549,
+        "f1": 0.5754319992837318,
+        "accuracy": 0.5367557270551458
+      }
+    }
+  },
+  "dag_max_reordering_logit_difference": null
+}

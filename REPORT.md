@@ -61,9 +61,22 @@ The decisive scaled run used 2,048 fresh training targets, 128 validation target
 
 These are matched best-of-8 results. They establish target use on this distribution, including replication on the gated final split. They do not show competitive state preparation: only 7.0% of final targets reached fidelity 0.99, versus exact fidelity from the compiler baseline.
 
+## Where the DAG representation helps
+
+A wider development study tested a quantum-compiler task with a direct graph inductive bias: identify gates lying on a maximum wire-dependency path. The study included a raw bidirectional sequence, token Transformer, deterministic earliest-layer grid, fixed-depth DAG MPNN, and full-depth recurrent DAG. Negative and superseded development trials are retained under `experiments/schedule_*_development_20261027`.
+
+The final protocol was frozen before generating new data. It compared an 87,745-parameter six-layer DAG MPNN against an 88,417-parameter canonical-grid bidirectional GRU. Both received identical gate, wire-membership, control/target and angle features, 6,000 updates and validation-only checkpoint selection. Three paired seeds trained on 4–8-qubit, 24–56-gate circuits and tested on both same-size circuits and 9–12-qubit, 64–96-gate circuits.
+
+| Encoding | Same-size AUROC | Reordered AUROC | Larger-circuit AUROC | Larger F1 |
+|---|---:|---:|---:|---:|
+| Wire-dependency DAG | 0.8556 ± 0.0042 | 0.8556 ± 0.0042 | **0.8078 ± 0.0015** | **0.6341 ± 0.0033** |
+| Canonical layer grid | **0.9406 ± 0.0008** | **0.9406 ± 0.0008** | 0.7861 ± 0.0035 | 0.6055 ± 0.0037 |
+
+The paired larger-circuit AUROC gains were +0.0202, +0.0177 and +0.0274, satisfying the predeclared all-seed and mean-gain gates. DAG logits are equivariant to legal topological reordering by construction and test to 1e-6 tolerance. The honest positive claim is narrow: explicit wire-dependency message passing improves transfer of critical-path reasoning to wider and longer quantum circuits. The canonical grid is substantially better in-distribution, so this is not universal DAG superiority.
+
 ## Verification and provenance
 
-- Tests: 21 passed, covering matrices and operand direction, continuous-angle round trips, global-phase density features, layer-zero STOP, hard masks, contradictions/statuses, canonical scheduling, factorized action uniqueness, wire-frontier readout and native index-add aggregation against a dense oracle.
+- Tests: 24 passed, covering matrices and operand direction, continuous-angle round trips, global-phase density features, layer-zero STOP, hard masks, contradictions/statuses, canonical scheduling, factorized action uniqueness, wire-frontier readout, critical-path labels, topological canonicalization/equivariance and native index-add aggregation against a dense oracle.
 - Compiler replay: 144 original and 96 gate-repair rows verified; 24 target hashes matched; maximum NumPy/Qiskit fidelity difference 1.11e-15.
 - Source: official LayerDAG checkout, clean at `bc22fed6f112c3eef2e991551bb0677038df3467`. Upstream code was inspected and kept read-only. The portable model reimplements bidirectional sparse aggregation with native PyTorch; DGL/upstream runtime parity is unverified.
 - Runtime: Python 3.12, PyTorch 2.8.0+cpu, Qiskit 2.2.3, NumPy 2.3.4, SciPy 1.16.3, pytest 8.4.2.
