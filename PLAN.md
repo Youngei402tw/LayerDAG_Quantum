@@ -47,3 +47,7 @@ Measure joint success, fidelity, count/depth, repairs, unchanged/origin, calls a
 Supported: zero-input pure-state targets; 1-3-qubit operation registry including CSWAP/CCX; logical allowed/forbidden/required and gate/total/depth/two-qubit-depth quotas; ordered connectivity; zero ancillas; alias normalization; ordered wire DAG serialization; independent final verification.
 
 Unsupported explicitly: native/routed/scheduled constraints, noise, ancillas, protected edit windows, angle constraint predicates, terminal readout, dynamic circuits, learned generation, natural-language parser. Registry simulation support does not imply learned support. Implemented boundaries are tracked in STATUS.md.
+
+## Routed rewrite development and paper — 1 November 2026
+
+A structured-circuit routed rewrite benchmark was frozen before development. The first gate was invalidated after discovering that recovery clipped harmful selections. A corrected listwise run and one final candidate-aware revision were retained. The candidate-aware DAG (106,785 parameters) removed 6.3047 routed CX gates on average versus 6.6641 for the grid (100,641 parameters); the development gate failed, so no final routed test was opened. All safe templates passed statevector verification. The conference-style draft in `paper/` centers the earlier frozen critical-path size-transfer result, reports every downstream failure, and targets IEEE QAI or IEEE Quantum Week/QCE after venue-specific formatting and author completion.

@@ -20,6 +20,12 @@ seeds, but the +3.79-point mean gain missed the predeclared +5-point
 confirmatory threshold. This is supporting evidence; natural rewrite benchmarks
 are still required for a paper-level compiler claim.
 
+A structured routed-rewrite development study did not establish a further DAG
+advantage: the final candidate-aware DAG removed 6.305 routed CX gates on
+average versus 6.664 for grid. Both learned methods beat exact source
+criticality, but the routed final test was not opened after the development
+gate failed. The conference-style draft and venue strategy are under `paper/`.
+
 Install and verify from `/workspace`:
 
 ```sh

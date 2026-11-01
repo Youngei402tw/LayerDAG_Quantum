@@ -1,0 +1,166 @@
+{
+  "protocol": "frozen routed-rewrite development protocol",
+  "updates": 1500,
+  "splits": {
+    "train": 240,
+    "validation": 72,
+    "evaluation": 128
+  },
+  "methods": {
+    "dag": {
+      "training": {
+        "kind": "dag",
+        "seed": 111,
+        "updates": 1500,
+        "parameters": 87745,
+        "train_seconds": 117.33280211400006,
+        "best_validation_cx_recovery": 0.6737089157104492,
+        "history": [
+          {
+            "update": 250,
+            "loss": 0.10926971584558487,
+            "validation_cx_recovery": 0.6737089157104492
+          },
+          {
+            "update": 500,
+            "loss": 0.002258019056171179,
+            "validation_cx_recovery": 0.6643192768096924
+          },
+          {
+            "update": 750,
+            "loss": 0.0008588983910158277,
+            "validation_cx_recovery": 0.6643192768096924
+          },
+          {
+            "update": 1000,
+            "loss": 0.00048077452811412513,
+            "validation_cx_recovery": 0.67136150598526
+          },
+          {
+            "update": 1250,
+            "loss": 0.00026940592215396464,
+            "validation_cx_recovery": 0.6643192768096924
+          },
+          {
+            "update": 1500,
+            "loss": 0.0001467393449274823,
+            "validation_cx_recovery": 0.6643192768096924
+          }
+        ]
+      },
+      "evaluation": {
+        "circuits": 128,
+        "mean_cx_reduction": 6.8046875,
+        "mean_depth_reduction": 5.890625,
+        "exact_oracle_choice_rate": 0.5,
+        "oracle_mean_cx_reduction": 12.671875,
+        "oracle_mean_depth_reduction": 10.7578125,
+        "cx_recovery": 0.6818742156028748,
+        "mean_cx_regret": 5.8671875
+      }
+    },
+    "canonical_grid": {
+      "training": {
+        "kind": "canonical_grid",
+        "seed": 111,
+        "updates": 1500,
+        "parameters": 88417,
+        "train_seconds": 119.22772537599997,
+        "best_validation_cx_recovery": 0.7276995182037354,
+        "history": [
+          {
+            "update": 250,
+            "loss": 0.6189464926719666,
+            "validation_cx_recovery": 0.7206572890281677
+          },
+          {
+            "update": 500,
+            "loss": 0.756787121295929,
+            "validation_cx_recovery": 0.68544602394104
+          },
+          {
+            "update": 750,
+            "loss": 0.3780687749385834,
+            "validation_cx_recovery": 0.6995305418968201
+          },
+          {
+            "update": 1000,
+            "loss": 0.31134283542633057,
+            "validation_cx_recovery": 0.7276995182037354
+          },
+          {
+            "update": 1250,
+            "loss": 0.0390496551990509,
+            "validation_cx_recovery": 0.7136150002479553
+          },
+          {
+            "update": 1500,
+            "loss": 0.02748311311006546,
+            "validation_cx_recovery": 0.7253521084785461
+          }
+        ]
+      },
+      "evaluation": {
+        "circuits": 128,
+        "mean_cx_reduction": 6.828125,
+        "mean_depth_reduction": 5.2890625,
+        "exact_oracle_choice_rate": 0.4453125,
+        "oracle_mean_cx_reduction": 12.671875,
+        "oracle_mean_depth_reduction": 10.7578125,
+        "cx_recovery": 0.6344019770622253,
+        "mean_cx_regret": 5.84375
+      }
+    },
+    "critical_path": {
+      "evaluation": {
+        "circuits": 128,
+        "mean_cx_reduction": 3.265625,
+        "mean_depth_reduction": 2.8046875,
+        "exact_oracle_choice_rate": 0.1953125,
+        "oracle_mean_cx_reduction": 12.671875,
+        "oracle_mean_depth_reduction": 10.7578125,
+        "cx_recovery": 0.32182490825653076,
+        "mean_cx_regret": 9.40625
+      }
+    },
+    "source_depth": {
+      "evaluation": {
+        "circuits": 128,
+        "mean_cx_reduction": 5.3828125,
+        "mean_depth_reduction": 5.15625,
+        "exact_oracle_choice_rate": 0.3671875,
+        "oracle_mean_cx_reduction": 12.671875,
+        "oracle_mean_depth_reduction": 10.7578125,
+        "cx_recovery": 0.4549938440322876,
+        "mean_cx_regret": 7.2890625
+      }
+    },
+    "first": {
+      "evaluation": {
+        "circuits": 128,
+        "mean_cx_reduction": 0.0,
+        "mean_depth_reduction": 0.296875,
+        "exact_oracle_choice_rate": 0.0,
+        "oracle_mean_cx_reduction": 12.671875,
+        "oracle_mean_depth_reduction": 10.7578125,
+        "cx_recovery": 0.0,
+        "mean_cx_regret": 12.671875
+      }
+    },
+    "random": {
+      "evaluation": {
+        "circuits": 128,
+        "mean_cx_reduction": 1.8125,
+        "mean_depth_reduction": 1.859375,
+        "exact_oracle_choice_rate": 0.140625,
+        "oracle_mean_cx_reduction": 12.671875,
+        "oracle_mean_depth_reduction": 10.7578125,
+        "cx_recovery": 0.18927250802516937,
+        "mean_cx_regret": 10.859375
+      }
+    }
+  },
+  "development_gate_passed": false,
+  "invalidated_gate_reason": "cx_recovery clipped negative selected utilities; mean CX reduction DAG 6.8047 did not exceed grid 6.8281",
+  "status": "completed_metric_gate_invalidated_before_final_data"
+}

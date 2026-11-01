@@ -88,9 +88,15 @@ The second experiment removed that shortcut. Each 9–12-qubit circuit contained
 
 DAG beat grid in every paired seed by +0.0455, +0.0404 and +0.0278 recovered-oracle fraction. The mean +0.0379 advantage did not reach the predeclared +0.05 confirmatory threshold, so the final gate failed. This is consistent downstream evidence, not a confirmatory paper claim. The injected identities are controlled synthetic rewrites; natural compiler-generated opportunities remain necessary.
 
+### Routed structured-circuit development
+
+A further development benchmark used QAOA-like, hardware-efficient VQE, reversible arithmetic and held-out chemistry-inspired circuits. Candidate templates covered parameter-bound zero rotations, inverse rotations and self-inverse CX pairs; complete statevector checks verified every rewrite. Exhaustive Qiskit compilation to a line coupling graph supplied routed-CX utility, while a learned ranker selected one candidate.
+
+The first nominal gate was invalidated because the recovery metric clipped harmful selections. A corrected listwise node-scoring run failed, followed by one pre-final candidate-aware revision with near-matched parameters (106,785 DAG; 100,641 grid). That final development revision also failed: DAG mean routed-CX reduction was 6.3047 versus 6.6641 for grid. DAG still exceeded exact source-criticality scoring (3.2656), source-depth lookahead (5.3828), and random choice (1.8125). No routed final test was opened. The result shows that the confirmed critical-path size-transfer advantage does not automatically produce a hardware-routing advantage.
+
 ## Verification and provenance
 
-- Tests: 27 passed, covering matrices and operand direction, continuous-angle round trips, global-phase density features, layer-zero STOP, hard masks, contradictions/statuses, canonical scheduling, factorized action uniqueness, wire-frontier readout, critical-path labels, topological canonicalization/equivariance, deletion fidelity, rewrite utility and native index-add aggregation against a dense oracle.
+- Tests: 28 passed, covering matrices and operand direction, continuous-angle round trips, global-phase density features, layer-zero STOP, hard masks, contradictions/statuses, canonical scheduling, factorized action uniqueness, wire-frontier readout, critical-path labels, topological canonicalization/equivariance, deletion fidelity, rewrite utility, routed template equivalence and native index-add aggregation against a dense oracle.
 - Compiler replay: 144 original and 96 gate-repair rows verified; 24 target hashes matched; maximum NumPy/Qiskit fidelity difference 1.11e-15.
 - Source: official LayerDAG checkout, clean at `bc22fed6f112c3eef2e991551bb0677038df3467`. Upstream code was inspected and kept read-only. The portable model reimplements bidirectional sparse aggregation with native PyTorch; DGL/upstream runtime parity is unverified.
 - Runtime: Python 3.12, PyTorch 2.8.0+cpu, Qiskit 2.2.3, NumPy 2.3.4, SciPy 1.16.3, pytest 8.4.2.
@@ -100,6 +106,6 @@ DAG beat grid in every paired seed by +0.0455, +0.0404 and +0.0278 recovered-ora
 
 ## Compute and limits
 
-Measured compute-job wall time with internal timers is at least 7,656.72 seconds (127.61 minutes), including the invalidated run, repaired 256-target run, scaled run, representation study and downstream rewrite experiments. The guidance sweep did not record its own timer and is excluded from that lower bound. Every training job remained below 30 minutes. Failed setup/replay attempts, process startup and engineering time were not all measured, and historic consumption before this workspace is unknown.
+Measured compute-job wall time with internal timers is at least 9,229.12 seconds (153.82 minutes), including the invalidated run, repaired 256-target run, scaled run, representation study and downstream rewrite experiments. Routed oracle labeling and the guidance sweep did not record complete timers and are excluded from that lower bound. Every training job remained below 30 minutes. Failed setup/replay attempts, process startup and engineering time were not all measured, and historic consumption before this workspace is unknown.
 
 No GPU, paid resource, external dashboard, publication or deployment was used. The multi-seed representation matrix, fidelity-aligned completion guidance, internal-window editor, terminal measurements and dynamic/hardware extensions remain unrun.
