@@ -74,9 +74,23 @@ The final protocol was frozen before generating new data. It compared an 87,745-
 
 The paired larger-circuit AUROC gains were +0.0202, +0.0177 and +0.0274, satisfying the predeclared all-seed and mean-gain gates. DAG logits are equivariant to legal topological reordering by construction and test to 1e-6 tolerance. The honest positive claim is narrow: explicit wire-dependency message passing improves transfer of critical-path reasoning to wider and longer quantum circuits. The canonical grid is substantially better in-distribution, so this is not universal DAG superiority.
 
+## Downstream compiler utility
+
+Two follow-ups tested whether the representation result leads to useful rewrite prioritization. The first ranked arbitrary single-gate deletions using exact state-fidelity labels. It failed: a smallest-angle heuristic and the canonical grid found a safe deletion on every size-shifted circuit with one verification, while DAG succeeded on 96.9%. This negative result is retained under `experiments/rewrite_ranking_pilot_20261029`.
+
+The second experiment removed that shortcut. Each 9–12-qubit circuit contained several explicit RZ(0) identities, all exactly fidelity preserving. Models received one choice and attempted to select the candidate producing the largest actual dependency-depth reduction. A development pilot favored DAG, followed by a frozen fresh-data test with three paired seeds and 512 final circuits.
+
+| Ranking | Oracle depth recovered | Mean depth reduction | Oracle-best choice |
+|---|---:|---:|---:|
+| Wire-dependency DAG | **0.5194 ± 0.0058** | **0.4017 ± 0.0045** | **0.6283 ± 0.0045** |
+| Canonical grid | 0.4815 ± 0.0119 | 0.3724 ± 0.0092 | 0.5990 ± 0.0092 |
+| Random | 0.1793 | 0.1387 | 0.3652 |
+
+DAG beat grid in every paired seed by +0.0455, +0.0404 and +0.0278 recovered-oracle fraction. The mean +0.0379 advantage did not reach the predeclared +0.05 confirmatory threshold, so the final gate failed. This is consistent downstream evidence, not a confirmatory paper claim. The injected identities are controlled synthetic rewrites; natural compiler-generated opportunities remain necessary.
+
 ## Verification and provenance
 
-- Tests: 24 passed, covering matrices and operand direction, continuous-angle round trips, global-phase density features, layer-zero STOP, hard masks, contradictions/statuses, canonical scheduling, factorized action uniqueness, wire-frontier readout, critical-path labels, topological canonicalization/equivariance and native index-add aggregation against a dense oracle.
+- Tests: 27 passed, covering matrices and operand direction, continuous-angle round trips, global-phase density features, layer-zero STOP, hard masks, contradictions/statuses, canonical scheduling, factorized action uniqueness, wire-frontier readout, critical-path labels, topological canonicalization/equivariance, deletion fidelity, rewrite utility and native index-add aggregation against a dense oracle.
 - Compiler replay: 144 original and 96 gate-repair rows verified; 24 target hashes matched; maximum NumPy/Qiskit fidelity difference 1.11e-15.
 - Source: official LayerDAG checkout, clean at `bc22fed6f112c3eef2e991551bb0677038df3467`. Upstream code was inspected and kept read-only. The portable model reimplements bidirectional sparse aggregation with native PyTorch; DGL/upstream runtime parity is unverified.
 - Runtime: Python 3.12, PyTorch 2.8.0+cpu, Qiskit 2.2.3, NumPy 2.3.4, SciPy 1.16.3, pytest 8.4.2.
@@ -86,6 +100,6 @@ The paired larger-circuit AUROC gains were +0.0202, +0.0177 and +0.0274, satisfy
 
 ## Compute and limits
 
-Measured compute-job wall time with internal timers is at least 3,608.07 seconds (60.13 minutes), including the invalidated run, repaired 256-target run, and scaled run. The guidance sweep did not record its own timer and is excluded from that lower bound. Every training job remained below 30 minutes. Failed setup/replay attempts, process startup and engineering time were not all measured, and historic consumption before this workspace is unknown.
+Measured compute-job wall time with internal timers is at least 7,656.72 seconds (127.61 minutes), including the invalidated run, repaired 256-target run, scaled run, representation study and downstream rewrite experiments. The guidance sweep did not record its own timer and is excluded from that lower bound. Every training job remained below 30 minutes. Failed setup/replay attempts, process startup and engineering time were not all measured, and historic consumption before this workspace is unknown.
 
 No GPU, paid resource, external dashboard, publication or deployment was used. The multi-seed representation matrix, fidelity-aligned completion guidance, internal-window editor, terminal measurements and dynamic/hardware extensions remain unrun.

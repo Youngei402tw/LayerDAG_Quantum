@@ -1,0 +1,873 @@
+{
+  "protocol": "frozen fresh-data three-seed safe-rewrite prioritization under circuit-size shift",
+  "updates_per_model": 3000,
+  "seed_results": [
+    {
+      "seed": 91,
+      "models": {
+        "dag": {
+          "training": {
+            "kind": "dag",
+            "seed": 91,
+            "updates": 3000,
+            "parameters": 87745,
+            "width": 64,
+            "train_seconds": 157.35686823499987,
+            "best_validation_auc": 0.86021973570011,
+            "history": [
+              {
+                "update": 250,
+                "loss": 0.5256361961364746,
+                "nodes": 10130,
+                "positive_fraction": 0.5055281519889832,
+                "auc": 0.8012053991158036,
+                "f1": 0.6698816308636563,
+                "accuracy": 0.7026653504442251
+              },
+              {
+                "update": 500,
+                "loss": 0.4392341673374176,
+                "nodes": 10130,
+                "positive_fraction": 0.5055281519889832,
+                "auc": 0.8303807686293553,
+                "f1": 0.7564600094652153,
+                "accuracy": 0.7460019743336624
+              },
+              {
+                "update": 750,
+                "loss": 0.3810608983039856,
+                "nodes": 10130,
+                "positive_fraction": 0.5055281519889832,
+                "auc": 0.847412053344012,
+                "f1": 0.7669958222559817,
+                "accuracy": 0.7577492596248766
+              },
+              {
+                "update": 1000,
+                "loss": 0.3638603091239929,
+                "nodes": 10130,
+                "positive_fraction": 0.5055281519889832,
+                "auc": 0.8574524847658515,
+                "f1": 0.787114337568058,
+                "accuracy": 0.7684106614017769
+              },
+              {
+                "update": 1250,
+                "loss": 0.3902481198310852,
+                "nodes": 10130,
+                "positive_fraction": 0.5055281519889832,
+                "auc": 0.8569694643373621,
+                "f1": 0.7700566074565685,
+                "accuracy": 0.7674234945705825
+              },
+              {
+                "update": 1500,
+                "loss": 0.39858415722846985,
+                "nodes": 10130,
+                "positive_fraction": 0.5055281519889832,
+                "auc": 0.86021973570011,
+                "f1": 0.7702743142144638,
+                "accuracy": 0.7726554787759131
+              },
+              {
+                "update": 1750,
+                "loss": 0.32155460119247437,
+                "nodes": 10130,
+                "positive_fraction": 0.5055281519889832,
+                "auc": 0.8585736847273814,
+                "f1": 0.7857007754870436,
+                "accuracy": 0.7763079960513327
+              },
+              {
+                "update": 2000,
+                "loss": 0.36392858624458313,
+                "nodes": 10130,
+                "positive_fraction": 0.5055281519889832,
+                "auc": 0.8559547315905379,
+                "f1": 0.7639683017353797,
+                "accuracy": 0.7677196446199408
+              },
+              {
+                "update": 2250,
+                "loss": 0.35209140181541443,
+                "nodes": 10130,
+                "positive_fraction": 0.5055281519889832,
+                "auc": 0.853105067001249,
+                "f1": 0.7746250119422948,
+                "accuracy": 0.7671273445212241
+              },
+              {
+                "update": 2500,
+                "loss": 0.2532673180103302,
+                "nodes": 10130,
+                "positive_fraction": 0.5055281519889832,
+                "auc": 0.8493352075617531,
+                "f1": 0.7473565342367313,
+                "accuracy": 0.7570582428430405
+              },
+              {
+                "update": 2750,
+                "loss": 0.3680405020713806,
+                "nodes": 10130,
+                "positive_fraction": 0.5055281519889832,
+                "auc": 0.8429331012028378,
+                "f1": 0.7603952646512083,
+                "accuracy": 0.7582428430404738
+              },
+              {
+                "update": 3000,
+                "loss": 0.2931981384754181,
+                "nodes": 10130,
+                "positive_fraction": 0.5055281519889832,
+                "auc": 0.8475947356465061,
+                "f1": 0.7604083266613291,
+                "accuracy": 0.7636722606120434
+              }
+            ]
+          },
+          "utility": {
+            "circuits": 512,
+            "mean_depth_reduction": 0.404296875,
+            "any_depth_reduction_rate": 0.404296875,
+            "exact_oracle_choice_rate": 0.630859375,
+            "oracle_mean_depth_reduction": 0.7734375,
+            "oracle_reduction_recovered": 0.5227272727272727
+          }
+        },
+        "canonical_grid": {
+          "training": {
+            "kind": "canonical_grid",
+            "seed": 91,
+            "updates": 3000,
+            "parameters": 88417,
+            "width": 96,
+            "train_seconds": 134.09076332300015,
+            "best_validation_auc": 0.816911632874534,
+            "history": [
+              {
+                "update": 250,
+                "loss": 0.6061073541641235,
+                "nodes": 10130,
+                "positive_fraction": 0.5055281519889832,
+                "auc": 0.7270893645100214,
+                "f1": 0.6463685379004123,
+                "accuracy": 0.6697926949654491
+              },
+              {
+                "update": 500,
+                "loss": 0.5923188328742981,
+                "nodes": 10130,
+                "positive_fraction": 0.5055281519889832,
+                "auc": 0.7303362052192014,
+                "f1": 0.6349102773246329,
+                "accuracy": 0.6686080947680157
+              },
+              {
+                "update": 750,
+                "loss": 0.5796937346458435,
+                "nodes": 10130,
+                "positive_fraction": 0.5055281519889832,
+                "auc": 0.7306211054041409,
+                "f1": 0.6599979375064453,
+                "accuracy": 0.6745310957551827
+              },
+              {
+                "update": 1000,
+                "loss": 0.5548109412193298,
+                "nodes": 10130,
+                "positive_fraction": 0.5055281519889832,
+                "auc": 0.7343266400892375,
+                "f1": 0.6633704161516275,
+                "accuracy": 0.6773938795656466
+              },
+              {
+                "update": 1250,
+                "loss": 0.562781810760498,
+                "nodes": 10130,
+                "positive_fraction": 0.5055281519889832,
+                "auc": 0.7429012078200656,
+                "f1": 0.6610975996616263,
+                "accuracy": 0.6836130306021717
+              },
+              {
+                "update": 1500,
+                "loss": 0.5366230010986328,
+                "nodes": 10130,
+                "positive_fraction": 0.5055281519889832,
+                "auc": 0.7563529563988491,
+                "f1": 0.6748819059355103,
+                "accuracy": 0.6874629812438302
+              },
+              {
+                "update": 1750,
+                "loss": 0.5538032650947571,
+                "nodes": 10130,
+                "positive_fraction": 0.5055281519889832,
+                "auc": 0.7615618580560068,
+                "f1": 0.6791987673343606,
+                "accuracy": 0.6917077986179664
+              },
+              {
+                "update": 2000,
+                "loss": 0.5255219340324402,
+                "nodes": 10130,
+                "positive_fraction": 0.5055281519889832,
+                "auc": 0.7701688610569322,
+                "f1": 0.6595139040945917,
+                "accuracy": 0.6929911154985192
+              },
+              {
+                "update": 2250,
+                "loss": 0.5468825697898865,
+                "nodes": 10130,
+                "positive_fraction": 0.5055281519889832,
+                "auc": 0.7778888841717402,
+                "f1": 0.7140443109275253,
+                "accuracy": 0.6993089832181638
+              },
+              {
+                "update": 2500,
+                "loss": 0.5126519799232483,
+                "nodes": 10130,
+                "positive_fraction": 0.5055281519889832,
+                "auc": 0.7880577311941805,
+                "f1": 0.7096118675066043,
+                "accuracy": 0.7178677196446199
+              },
+              {
+                "update": 2750,
+                "loss": 0.5161778330802917,
+                "nodes": 10130,
+                "positive_fraction": 0.5055281519889832,
+                "auc": 0.8046829902621289,
+                "f1": 0.729285014691479,
+                "accuracy": 0.727147087857848
+              },
+              {
+                "update": 3000,
+                "loss": 0.5326446890830994,
+                "nodes": 10130,
+                "positive_fraction": 0.5055281519889832,
+                "auc": 0.816911632874534,
+                "f1": 0.7340352258191479,
+                "accuracy": 0.7331688055281342
+              }
+            ]
+          },
+          "utility": {
+            "circuits": 512,
+            "mean_depth_reduction": 0.369140625,
+            "any_depth_reduction_rate": 0.369140625,
+            "exact_oracle_choice_rate": 0.595703125,
+            "oracle_mean_depth_reduction": 0.7734375,
+            "oracle_reduction_recovered": 0.4772727272727273
+          }
+        }
+      }
+    },
+    {
+      "seed": 92,
+      "models": {
+        "dag": {
+          "training": {
+            "kind": "dag",
+            "seed": 92,
+            "updates": 3000,
+            "parameters": 87745,
+            "width": 64,
+            "train_seconds": 159.21987520499988,
+            "best_validation_auc": 0.8601069529640633,
+            "history": [
+              {
+                "update": 250,
+                "loss": 0.5200572609901428,
+                "nodes": 10130,
+                "positive_fraction": 0.5055281519889832,
+                "auc": 0.8105022753614866,
+                "f1": 0.7357987037743042,
+                "accuracy": 0.7263573543928924
+              },
+              {
+                "update": 500,
+                "loss": 0.5151576995849609,
+                "nodes": 10130,
+                "positive_fraction": 0.5055281519889832,
+                "auc": 0.8369843479159891,
+                "f1": 0.7623471419091857,
+                "accuracy": 0.7525172754195459
+              },
+              {
+                "update": 750,
+                "loss": 0.40873983502388,
+                "nodes": 10130,
+                "positive_fraction": 0.5055281519889832,
+                "auc": 0.8493509963651056,
+                "f1": 0.7581738437001595,
+                "accuracy": 0.7605133267522212
+              },
+              {
+                "update": 1000,
+                "loss": 0.41110295057296753,
+                "nodes": 10130,
+                "positive_fraction": 0.5055281519889832,
+                "auc": 0.8544248550227244,
+                "f1": 0.75,
+                "accuracy": 0.7611056268509379
+              },
+              {
+                "update": 1250,
+                "loss": 0.3517010509967804,
+                "nodes": 10130,
+                "positive_fraction": 0.5055281519889832,
+                "auc": 0.8601069529640633,
+                "f1": 0.7629824206910487,
+                "accuracy": 0.7684106614017769
+              },
+              {
+                "update": 1500,
+                "loss": 0.3857046365737915,
+                "nodes": 10130,
+                "positive_fraction": 0.5055281519889832,
+                "auc": 0.8553313662433591,
+                "f1": 0.7340904221127063,
+                "accuracy": 0.754985192497532
+              },
+              {
+                "update": 1750,
+                "loss": 0.37520909309387207,
+                "nodes": 10130,
+                "positive_fraction": 0.5055281519889832,
+                "auc": 0.8545198997204368,
+                "f1": 0.7728596389050669,
+                "accuracy": 0.7690029615004936
+              },
+              {
+                "update": 2000,
+                "loss": 0.2870166599750519,
+                "nodes": 10130,
+                "positive_fraction": 0.5055281519889832,
+                "auc": 0.8485582035133089,
+                "f1": 0.7709284627092846,
+                "accuracy": 0.7622902270483711
+              },
+              {
+                "update": 2250,
+                "loss": 0.3378716707229614,
+                "nodes": 10130,
+                "positive_fraction": 0.5055281519889832,
+                "auc": 0.8491424282220532,
+                "f1": 0.7628825271470878,
+                "accuracy": 0.7628825271470878
+              },
+              {
+                "update": 2500,
+                "loss": 0.3362959325313568,
+                "nodes": 10130,
+                "positive_fraction": 0.5055281519889832,
+                "auc": 0.8485707565865918,
+                "f1": 0.7777042985356637,
+                "accuracy": 0.7677196446199408
+              },
+              {
+                "update": 2750,
+                "loss": 0.2236080765724182,
+                "nodes": 10130,
+                "positive_fraction": 0.5055281519889832,
+                "auc": 0.8455314314335738,
+                "f1": 0.7777674677554051,
+                "accuracy": 0.763573543928924
+              },
+              {
+                "update": 3000,
+                "loss": 0.2231198251247406,
+                "nodes": 10130,
+                "positive_fraction": 0.5055281519889832,
+                "auc": 0.8308575904906026,
+                "f1": 0.7535581984792357,
+                "accuracy": 0.7504442250740375
+              }
+            ]
+          },
+          "utility": {
+            "circuits": 512,
+            "mean_depth_reduction": 0.396484375,
+            "any_depth_reduction_rate": 0.396484375,
+            "exact_oracle_choice_rate": 0.623046875,
+            "oracle_mean_depth_reduction": 0.7734375,
+            "oracle_reduction_recovered": 0.5126262626262627
+          }
+        },
+        "canonical_grid": {
+          "training": {
+            "kind": "canonical_grid",
+            "seed": 92,
+            "updates": 3000,
+            "parameters": 88417,
+            "width": 96,
+            "train_seconds": 133.74620406600025,
+            "best_validation_auc": 0.8298541243219733,
+            "history": [
+              {
+                "update": 250,
+                "loss": 0.6087831854820251,
+                "nodes": 10130,
+                "positive_fraction": 0.5055281519889832,
+                "auc": 0.7287327645231748,
+                "f1": 0.6369015599784831,
+                "accuracy": 0.6668311944718658
+              },
+              {
+                "update": 500,
+                "loss": 0.6193179488182068,
+                "nodes": 10130,
+                "positive_fraction": 0.5055281519889832,
+                "auc": 0.7310418282826121,
+                "f1": 0.6667339727410398,
+                "accuracy": 0.6741362290227049
+              },
+              {
+                "update": 750,
+                "loss": 0.5837321877479553,
+                "nodes": 10130,
+                "positive_fraction": 0.5055281519889832,
+                "auc": 0.731230943060546,
+                "f1": 0.6580391344859716,
+                "accuracy": 0.673938795656466
+              },
+              {
+                "update": 1000,
+                "loss": 0.5976669788360596,
+                "nodes": 10130,
+                "positive_fraction": 0.5055281519889832,
+                "auc": 0.7369234499166878,
+                "f1": 0.6510188840285928,
+                "accuracy": 0.6770977295162882
+              },
+              {
+                "update": 1250,
+                "loss": 0.5691365003585815,
+                "nodes": 10130,
+                "positive_fraction": 0.5055281519889832,
+                "auc": 0.7480040321095139,
+                "f1": 0.6598877237580765,
+                "accuracy": 0.6830207305034551
+              },
+              {
+                "update": 1500,
+                "loss": 0.5674300789833069,
+                "nodes": 10130,
+                "positive_fraction": 0.5055281519889832,
+                "auc": 0.7577831880743933,
+                "f1": 0.6672300866258187,
+                "accuracy": 0.6890424481737414
+              },
+              {
+                "update": 1750,
+                "loss": 0.5849076509475708,
+                "nodes": 10130,
+                "positive_fraction": 0.5055281519889832,
+                "auc": 0.7773604855528746,
+                "f1": 0.690738813735692,
+                "accuracy": 0.706614017769003
+              },
+              {
+                "update": 2000,
+                "loss": 0.5160918235778809,
+                "nodes": 10130,
+                "positive_fraction": 0.5055281519889832,
+                "auc": 0.7931787223536592,
+                "f1": 0.7109398763053838,
+                "accuracy": 0.7185587364264561
+              },
+              {
+                "update": 2250,
+                "loss": 0.5641729235649109,
+                "nodes": 10130,
+                "positive_fraction": 0.5055281519889832,
+                "auc": 0.8007645601323203,
+                "f1": 0.7096370463078848,
+                "accuracy": 0.725172754195459
+              },
+              {
+                "update": 2500,
+                "loss": 0.45768311619758606,
+                "nodes": 10130,
+                "positive_fraction": 0.5055281519889832,
+                "auc": 0.8079959490218914,
+                "f1": 0.7171428571428572,
+                "accuracy": 0.7263573543928924
+              },
+              {
+                "update": 2750,
+                "loss": 0.4677366018295288,
+                "nodes": 10130,
+                "positive_fraction": 0.5055281519889832,
+                "auc": 0.8162905286399341,
+                "f1": 0.72697603263641,
+                "accuracy": 0.7357354392892399
+              },
+              {
+                "update": 3000,
+                "loss": 0.4396052956581116,
+                "nodes": 10130,
+                "positive_fraction": 0.5055281519889832,
+                "auc": 0.8298541243219733,
+                "f1": 0.7354838709677419,
+                "accuracy": 0.745014807502468
+              }
+            ]
+          },
+          "utility": {
+            "circuits": 512,
+            "mean_depth_reduction": 0.365234375,
+            "any_depth_reduction_rate": 0.365234375,
+            "exact_oracle_choice_rate": 0.591796875,
+            "oracle_mean_depth_reduction": 0.7734375,
+            "oracle_reduction_recovered": 0.4722222222222222
+          }
+        }
+      }
+    },
+    {
+      "seed": 93,
+      "models": {
+        "dag": {
+          "training": {
+            "kind": "dag",
+            "seed": 93,
+            "updates": 3000,
+            "parameters": 87745,
+            "width": 64,
+            "train_seconds": 158.2209798470003,
+            "best_validation_auc": 0.8600602103091998,
+            "history": [
+              {
+                "update": 250,
+                "loss": 0.5704154372215271,
+                "nodes": 10130,
+                "positive_fraction": 0.5055281519889832,
+                "auc": 0.8053532931876694,
+                "f1": 0.7441860465116279,
+                "accuracy": 0.7263573543928924
+              },
+              {
+                "update": 500,
+                "loss": 0.5437918305397034,
+                "nodes": 10130,
+                "positive_fraction": 0.5055281519889832,
+                "auc": 0.8324840321594144,
+                "f1": 0.7602098164106407,
+                "accuracy": 0.7472852912142152
+              },
+              {
+                "update": 750,
+                "loss": 0.4861873984336853,
+                "nodes": 10130,
+                "positive_fraction": 0.5055281519889832,
+                "auc": 0.8432816244175833,
+                "f1": 0.7587009209888512,
+                "accuracy": 0.7542941757156959
+              },
+              {
+                "update": 1000,
+                "loss": 0.40026140213012695,
+                "nodes": 10130,
+                "positive_fraction": 0.5055281519889832,
+                "auc": 0.8563352612436844,
+                "f1": 0.7587893610516662,
+                "accuracy": 0.7663376110562685
+              },
+              {
+                "update": 1250,
+                "loss": 0.41120579838752747,
+                "nodes": 10130,
+                "positive_fraction": 0.5055281519889832,
+                "auc": 0.8600602103091998,
+                "f1": 0.7772493448510143,
+                "accuracy": 0.7734452122408687
+              },
+              {
+                "update": 1500,
+                "loss": 0.35496726632118225,
+                "nodes": 10130,
+                "positive_fraction": 0.5055281519889832,
+                "auc": 0.8580206867630454,
+                "f1": 0.7732888801725829,
+                "accuracy": 0.7717670286278381
+              },
+              {
+                "update": 1750,
+                "loss": 0.36326971650123596,
+                "nodes": 10130,
+                "positive_fraction": 0.5055281519889832,
+                "auc": 0.858876673812952,
+                "f1": 0.7637619337802153,
+                "accuracy": 0.7703849950641658
+              },
+              {
+                "update": 2000,
+                "loss": 0.31688204407691956,
+                "nodes": 10130,
+                "positive_fraction": 0.5055281519889832,
+                "auc": 0.8575979366801932,
+                "f1": 0.7726867887184562,
+                "accuracy": 0.7732477788746298
+              },
+              {
+                "update": 2250,
+                "loss": 0.336245596408844,
+                "nodes": 10130,
+                "positive_fraction": 0.5055281519889832,
+                "auc": 0.854885576203022,
+                "f1": 0.7741128954707184,
+                "accuracy": 0.7681145113524186
+              },
+              {
+                "update": 2500,
+                "loss": 0.26543545722961426,
+                "nodes": 10130,
+                "positive_fraction": 0.5055281519889832,
+                "auc": 0.847662101207477,
+                "f1": 0.7703530784943099,
+                "accuracy": 0.7669299111549852
+              },
+              {
+                "update": 2750,
+                "loss": 0.2804349362850189,
+                "nodes": 10130,
+                "positive_fraction": 0.5055281519889832,
+                "auc": 0.8516648942272977,
+                "f1": 0.7838417762851012,
+                "accuracy": 0.7712734452122408
+              },
+              {
+                "update": 3000,
+                "loss": 0.2451111078262329,
+                "nodes": 10130,
+                "positive_fraction": 0.5055281519889832,
+                "auc": 0.8483253479023835,
+                "f1": 0.7670753064798599,
+                "accuracy": 0.7636722606120434
+              }
+            ]
+          },
+          "utility": {
+            "circuits": 512,
+            "mean_depth_reduction": 0.404296875,
+            "any_depth_reduction_rate": 0.404296875,
+            "exact_oracle_choice_rate": 0.630859375,
+            "oracle_mean_depth_reduction": 0.7734375,
+            "oracle_reduction_recovered": 0.5227272727272727
+          }
+        },
+        "canonical_grid": {
+          "training": {
+            "kind": "canonical_grid",
+            "seed": 93,
+            "updates": 3000,
+            "parameters": 88417,
+            "width": 96,
+            "train_seconds": 127.06895105399963,
+            "best_validation_auc": 0.8456848362266413,
+            "history": [
+              {
+                "update": 250,
+                "loss": 0.6409189701080322,
+                "nodes": 10130,
+                "positive_fraction": 0.5055281519889832,
+                "auc": 0.7246360183772315,
+                "f1": 0.6394835933297471,
+                "accuracy": 0.6692003948667324
+              },
+              {
+                "update": 500,
+                "loss": 0.6077799201011658,
+                "nodes": 10130,
+                "positive_fraction": 0.5055281519889832,
+                "auc": 0.729109785553354,
+                "f1": 0.649163667160703,
+                "accuracy": 0.672852912142152
+              },
+              {
+                "update": 750,
+                "loss": 0.6072990894317627,
+                "nodes": 10130,
+                "positive_fraction": 0.5055281519889832,
+                "auc": 0.7294464184347105,
+                "f1": 0.6668006027122049,
+                "accuracy": 0.6725567620927937
+              },
+              {
+                "update": 1000,
+                "loss": 0.5844007134437561,
+                "nodes": 10130,
+                "positive_fraction": 0.5055281519889832,
+                "auc": 0.7323266860132137,
+                "f1": 0.642702468601126,
+                "accuracy": 0.6742349457058243
+              },
+              {
+                "update": 1250,
+                "loss": 0.6058027744293213,
+                "nodes": 10130,
+                "positive_fraction": 0.5055281519889832,
+                "auc": 0.7353525224601576,
+                "f1": 0.6689746461663781,
+                "accuracy": 0.6790720631786772
+              },
+              {
+                "update": 1500,
+                "loss": 0.5561890006065369,
+                "nodes": 10130,
+                "positive_fraction": 0.5055281519889832,
+                "auc": 0.7463579811367853,
+                "f1": 0.6756701868399675,
+                "accuracy": 0.6846989141164856
+              },
+              {
+                "update": 1750,
+                "loss": 0.5568343997001648,
+                "nodes": 10130,
+                "positive_fraction": 0.5055281519889832,
+                "auc": 0.7657631611663739,
+                "f1": 0.6886974151039027,
+                "accuracy": 0.6968410661401777
+              },
+              {
+                "update": 2000,
+                "loss": 0.5237067341804504,
+                "nodes": 10130,
+                "positive_fraction": 0.5055281519889832,
+                "auc": 0.7900552292341273,
+                "f1": 0.7089893346876587,
+                "accuracy": 0.7171767028627838
+              },
+              {
+                "update": 2250,
+                "loss": 0.5458859205245972,
+                "nodes": 10130,
+                "positive_fraction": 0.5055281519889832,
+                "auc": 0.8079857350305868,
+                "f1": 0.7268365817091454,
+                "accuracy": 0.7302073050345509
+              },
+              {
+                "update": 2500,
+                "loss": 0.4933604598045349,
+                "nodes": 10130,
+                "positive_fraction": 0.5055281519889832,
+                "auc": 0.8212880162709661,
+                "f1": 0.7195467422096318,
+                "accuracy": 0.7361303060217177
+              },
+              {
+                "update": 2750,
+                "loss": 0.46802714467048645,
+                "nodes": 10130,
+                "positive_fraction": 0.5055281519889832,
+                "auc": 0.832203186383237,
+                "f1": 0.7525894078561657,
+                "accuracy": 0.7500493583415597
+              },
+              {
+                "update": 3000,
+                "loss": 0.44282257556915283,
+                "nodes": 10130,
+                "positive_fraction": 0.5055281519889832,
+                "auc": 0.8456848362266413,
+                "f1": 0.7535496957403651,
+                "accuracy": 0.7601184600197434
+              }
+            ]
+          },
+          "utility": {
+            "circuits": 512,
+            "mean_depth_reduction": 0.3828125,
+            "any_depth_reduction_rate": 0.3828125,
+            "exact_oracle_choice_rate": 0.609375,
+            "oracle_mean_depth_reduction": 0.7734375,
+            "oracle_reduction_recovered": 0.494949494949495
+          }
+        }
+      }
+    }
+  ],
+  "aggregate": {
+    "dag": {
+      "mean_depth_reduction_mean": 0.4016927083333333,
+      "mean_depth_reduction_sample_std": 0.004510548978043952,
+      "mean_depth_reduction_values": [
+        0.404296875,
+        0.396484375,
+        0.404296875
+      ],
+      "any_depth_reduction_rate_mean": 0.4016927083333333,
+      "any_depth_reduction_rate_sample_std": 0.004510548978043952,
+      "any_depth_reduction_rate_values": [
+        0.404296875,
+        0.396484375,
+        0.404296875
+      ],
+      "exact_oracle_choice_rate_mean": 0.6282552083333334,
+      "exact_oracle_choice_rate_sample_std": 0.004510548978043951,
+      "exact_oracle_choice_rate_values": [
+        0.630859375,
+        0.623046875,
+        0.630859375
+      ],
+      "oracle_reduction_recovered_mean": 0.5193602693602694,
+      "oracle_reduction_recovered_sample_std": 0.005831820900905284,
+      "oracle_reduction_recovered_values": [
+        0.5227272727272727,
+        0.5126262626262627,
+        0.5227272727272727
+      ]
+    },
+    "canonical_grid": {
+      "mean_depth_reduction_mean": 0.3723958333333333,
+      "mean_depth_reduction_sample_std": 0.009230108645024626,
+      "mean_depth_reduction_values": [
+        0.369140625,
+        0.365234375,
+        0.3828125
+      ],
+      "any_depth_reduction_rate_mean": 0.3723958333333333,
+      "any_depth_reduction_rate_sample_std": 0.009230108645024626,
+      "any_depth_reduction_rate_values": [
+        0.369140625,
+        0.365234375,
+        0.3828125
+      ],
+      "exact_oracle_choice_rate_mean": 0.5989583333333334,
+      "exact_oracle_choice_rate_sample_std": 0.009230108645024626,
+      "exact_oracle_choice_rate_values": [
+        0.595703125,
+        0.591796875,
+        0.609375
+      ],
+      "oracle_reduction_recovered_mean": 0.48148148148148145,
+      "oracle_reduction_recovered_sample_std": 0.011933877844072257,
+      "oracle_reduction_recovered_values": [
+        0.4772727272727273,
+        0.4722222222222222,
+        0.494949494949495
+      ]
+    }
+  },
+  "random": {
+    "circuits": 512,
+    "mean_depth_reduction": 0.138671875,
+    "any_depth_reduction_rate": 0.138671875,
+    "exact_oracle_choice_rate": 0.365234375,
+    "oracle_mean_depth_reduction": 0.7734375,
+    "oracle_reduction_recovered": 0.17929292929292928
+  },
+  "recovery_paired_differences": [
+    0.045454545454545414,
+    0.04040404040404044,
+    0.027777777777777735
+  ],
+  "recovery_mean_difference": 0.037878787878787866,
+  "positive_claim_passed": false,
+  "limitation": "rewrite candidates are injected exact RZ(0) identities; natural rewrite validation is not claimed"
+}

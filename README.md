@@ -14,6 +14,12 @@ On 9–12-qubit, 64–96-gate circuits, the wire-dependency DAG reached AUROC
 0.8078 versus 0.7861 for a parameter-matched canonical grid, winning all three
 paired seeds. The grid remained better in-distribution.
 
+In a downstream safe-rewrite test, DAG recovered 51.94% of oracle depth
+reduction versus 48.15% for grid and 17.93% for random choice. DAG won all three
+seeds, but the +3.79-point mean gain missed the predeclared +5-point
+confirmatory threshold. This is supporting evidence; natural rewrite benchmarks
+are still required for a paper-level compiler claim.
+
 Install and verify from `/workspace`:
 
 ```sh

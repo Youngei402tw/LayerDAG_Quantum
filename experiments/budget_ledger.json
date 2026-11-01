@@ -1,5 +1,5 @@
 {
-  "execution_date": "2026-10-21 through 2026-10-28",
+  "execution_date": "2026-10-21 through 2026-10-29",
   "profile": "handoff_cpu_development",
   "global_cpu_ceiling_seconds": 21600,
   "prior_consumption_seconds": null,
@@ -15,10 +15,10 @@
   ],
   "accounting_limits": "Measured in-process wall durations, not CPU core-seconds. Engineering/tool time, startup, two failed validation-generation attempts, and failed replay attempts are not fully timed. The invalid noncanonical learned run is included. Historic consumption before this workspace remains unknown.",
   "gpu_job_hours": 0,
-  "measured_compute_job_wall_seconds": 6298.975792804,
-  "measured_compute_job_wall_minutes": 104.9829298801,
-  "nominal_ceiling_remaining_seconds_if_no_historic_usage": 15301.024207196,
-  "minimum_reserved_seconds_if_no_historic_usage": 3825.256051799,
+  "measured_compute_job_wall_seconds": 7656.723701244,
+  "measured_compute_job_wall_minutes": 127.6120616874,
+  "nominal_ceiling_remaining_seconds_if_no_historic_usage": 13943.276298756,
+  "minimum_reserved_seconds_if_no_historic_usage": 3485.819074689,
   "checkpoint": "multiple; see runs/registry.jsonl",
   "learned_training_runs": 8,
   "invalidated_learned_training_runs": 1,
@@ -39,5 +39,10 @@
   "repair_iteration_status": "scaled target-conditioning gate passed on validation and untouched final split",
   "schedule_representation_exploration_status": "frozen three-seed larger-circuit DAG advantage gate passed",
   "schedule_final_training_seconds": 1574.114877847,
-  "schedule_compute_accounting": "development and final model training timers included; final evaluation/orchestration and small smoke runs excluded from lower bound"
+  "schedule_compute_accounting": "development and final model training timers included; downstream deletion and rewrite-utility training included; final evaluation/orchestration and small smoke runs excluded from lower bound",
+  "rewrite_deletion_pilot_training_seconds": 217.887714522,
+  "critical_rewrite_utility_pilot_training_seconds": 270.156552187,
+  "critical_rewrite_utility_final_training_seconds": 869.70364173,
+  "rewrite_deletion_pilot_status": "failed; smallest-angle heuristic saturated one-call success",
+  "critical_rewrite_utility_final_status": "DAG favored in all three seeds; frozen +0.05 recovery-advantage gate missed with +0.0378788"
 }

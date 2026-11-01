@@ -1,0 +1,358 @@
+{
+  "protocol": "development rewrite-ranking pilot; labels and acceptance from complete statevector simulation",
+  "updates": 3000,
+  "train_circuits": 600,
+  "validation_circuits": 128,
+  "size_shift_evaluation_circuits": 256,
+  "training": {
+    "dag": {
+      "kind": "dag",
+      "seed": 71,
+      "updates": 3000,
+      "parameters": 87745,
+      "width": 64,
+      "train_seconds": 123.84550770999999,
+      "best_validation_auc": 0.961401981962381,
+      "history": [
+        {
+          "update": 250,
+          "loss": 0.3357533812522888,
+          "nodes": 3849,
+          "positive_fraction": 0.37568199634552,
+          "auc": 0.9425464596179626,
+          "f1": 0.829531051964512,
+          "accuracy": 0.8602234346583528
+        },
+        {
+          "update": 500,
+          "loss": 0.28189826011657715,
+          "nodes": 3849,
+          "positive_fraction": 0.37568199634552,
+          "auc": 0.9539234325005224,
+          "f1": 0.8554297135243171,
+          "accuracy": 0.8872434398545077
+        },
+        {
+          "update": 750,
+          "loss": 0.19518202543258667,
+          "nodes": 3849,
+          "positive_fraction": 0.37568199634552,
+          "auc": 0.9588256726118631,
+          "f1": 0.8593155893536122,
+          "accuracy": 0.8942582488958171
+        },
+        {
+          "update": 1000,
+          "loss": 0.11046256124973297,
+          "nodes": 3849,
+          "positive_fraction": 0.37568199634552,
+          "auc": 0.9601696588347093,
+          "f1": 0.8567454798331016,
+          "accuracy": 0.8929592101844634
+        },
+        {
+          "update": 1250,
+          "loss": 0.043029360473155975,
+          "nodes": 3849,
+          "positive_fraction": 0.37568199634552,
+          "auc": 0.961401981962381,
+          "f1": 0.8654931916306875,
+          "accuracy": 0.8947778643803586
+        },
+        {
+          "update": 1500,
+          "loss": 0.027027014642953873,
+          "nodes": 3849,
+          "positive_fraction": 0.37568199634552,
+          "auc": 0.959948059393255,
+          "f1": 0.8646228039958663,
+          "accuracy": 0.8978955572876072
+        },
+        {
+          "update": 1750,
+          "loss": 0.00948161631822586,
+          "nodes": 3849,
+          "positive_fraction": 0.37568199634552,
+          "auc": 0.9600908039685294,
+          "f1": 0.8673116793365584,
+          "accuracy": 0.9002338269680437
+        },
+        {
+          "update": 2000,
+          "loss": 0.004527018405497074,
+          "nodes": 3849,
+          "positive_fraction": 0.37568199634552,
+          "auc": 0.9579864726491609,
+          "f1": 0.8658157985512246,
+          "accuracy": 0.89893478825669
+        },
+        {
+          "update": 2250,
+          "loss": 0.003745605470612645,
+          "nodes": 3849,
+          "positive_fraction": 0.37568199634552,
+          "auc": 0.9590487110107294,
+          "f1": 0.8648097826086957,
+          "accuracy": 0.8965965185762536
+        },
+        {
+          "update": 2500,
+          "loss": 0.0009913669200614095,
+          "nodes": 3849,
+          "positive_fraction": 0.37568199634552,
+          "auc": 0.9585355787975957,
+          "f1": 0.8670120898100173,
+          "accuracy": 0.8999740192257729
+        },
+        {
+          "update": 2750,
+          "loss": 0.0005451996112242341,
+          "nodes": 3849,
+          "positive_fraction": 0.37568199634552,
+          "auc": 0.9585511195376457,
+          "f1": 0.8676671214188267,
+          "accuracy": 0.8991945959989608
+        },
+        {
+          "update": 3000,
+          "loss": 0.00028967426624149084,
+          "nodes": 3849,
+          "positive_fraction": 0.37568199634552,
+          "auc": 0.9587531491582962,
+          "f1": 0.8667582417582418,
+          "accuracy": 0.8991945959989608
+        }
+      ]
+    },
+    "canonical_grid": {
+      "kind": "canonical_grid",
+      "seed": 71,
+      "updates": 3000,
+      "parameters": 88417,
+      "width": 96,
+      "train_seconds": 94.0422068119999,
+      "best_validation_auc": 0.9530269620328209,
+      "history": [
+        {
+          "update": 250,
+          "loss": 0.6549272537231445,
+          "nodes": 3849,
+          "positive_fraction": 0.37568199634552,
+          "auc": 0.87056750753582,
+          "f1": 0.7367127496159754,
+          "accuracy": 0.7773447648739933
+        },
+        {
+          "update": 500,
+          "loss": 0.4913206696510315,
+          "nodes": 3849,
+          "positive_fraction": 0.37568199634552,
+          "auc": 0.9060591043123252,
+          "f1": 0.7882534775888718,
+          "accuracy": 0.822031696544557
+        },
+        {
+          "update": 750,
+          "loss": 0.44026318192481995,
+          "nodes": 3849,
+          "positive_fraction": 0.37568199634552,
+          "auc": 0.9272155195585969,
+          "f1": 0.8002406738868832,
+          "accuracy": 0.8274876591322421
+        },
+        {
+          "update": 1000,
+          "loss": 0.33111777901649475,
+          "nodes": 3849,
+          "positive_fraction": 0.37568199634552,
+          "auc": 0.9330795588041458,
+          "f1": 0.8227807826916959,
+          "accuracy": 0.8552870875552091
+        },
+        {
+          "update": 1250,
+          "loss": 0.36704176664352417,
+          "nodes": 3849,
+          "positive_fraction": 0.37568199634552,
+          "auc": 0.9371903723388642,
+          "f1": 0.8300368756285619,
+          "accuracy": 0.8682774746687452
+        },
+        {
+          "update": 1500,
+          "loss": 0.35364919900894165,
+          "nodes": 3849,
+          "positive_fraction": 0.37568199634552,
+          "auc": 0.9383044131672661,
+          "f1": 0.8265659427132515,
+          "accuracy": 0.8568459340088335
+        },
+        {
+          "update": 1750,
+          "loss": 0.38992470502853394,
+          "nodes": 3849,
+          "positive_fraction": 0.37568199634552,
+          "auc": 0.9419625307001563,
+          "f1": 0.8355006501950585,
+          "accuracy": 0.8685372824110158
+        },
+        {
+          "update": 2000,
+          "loss": 0.364590048789978,
+          "nodes": 3849,
+          "positive_fraction": 0.37568199634552,
+          "auc": 0.9442553654405023,
+          "f1": 0.8325820991629105,
+          "accuracy": 0.8648999740192258
+        },
+        {
+          "update": 2250,
+          "loss": 0.2810785174369812,
+          "nodes": 3849,
+          "positive_fraction": 0.37568199634552,
+          "auc": 0.9459383700296252,
+          "f1": 0.8298144593730007,
+          "accuracy": 0.8617822811119772
+        },
+        {
+          "update": 2500,
+          "loss": 0.31083786487579346,
+          "nodes": 3849,
+          "positive_fraction": 0.37568199634552,
+          "auc": 0.9480867334458023,
+          "f1": 0.8379523964786436,
+          "accuracy": 0.8708755520914523
+        },
+        {
+          "update": 2750,
+          "loss": 0.32453155517578125,
+          "nodes": 3849,
+          "positive_fraction": 0.37568199634552,
+          "auc": 0.9516824002270099,
+          "f1": 0.8432258064516129,
+          "accuracy": 0.8737334372564303
+        },
+        {
+          "update": 3000,
+          "loss": 0.2981331944465637,
+          "nodes": 3849,
+          "positive_fraction": 0.37568199634552,
+          "auc": 0.9530269620328209,
+          "f1": 0.8406270411495754,
+          "accuracy": 0.8732138217718888
+        }
+      ]
+    }
+  },
+  "validation_node_metrics": {
+    "dag": {
+      "nodes": 3849,
+      "positive_fraction": 0.37568199634552,
+      "auc": 0.961401981962381,
+      "f1": 0.8654931916306875,
+      "accuracy": 0.8947778643803586
+    },
+    "canonical_grid": {
+      "nodes": 3849,
+      "positive_fraction": 0.37568199634552,
+      "auc": 0.9530269620328209,
+      "f1": 0.8406270411495754,
+      "accuracy": 0.8732138217718888
+    }
+  },
+  "evaluation_node_metrics": {
+    "dag": {
+      "nodes": 13193,
+      "positive_fraction": 0.37497156858444214,
+      "auc": 0.933533068768088,
+      "f1": 0.8104248482684755,
+      "accuracy": 0.8390055332373229
+    },
+    "canonical_grid": {
+      "nodes": 13193,
+      "positive_fraction": 0.37497156858444214,
+      "auc": 0.9459039037175089,
+      "f1": 0.8295081967213115,
+      "accuracy": 0.8738725081482605
+    }
+  },
+  "downstream": {
+    "dag": {
+      "circuits": 256,
+      "oracle_has_safe_deletion": 1.0,
+      "budget_1": {
+        "success_rate": 0.96875,
+        "mean_verification_calls": 1.0,
+        "mean_selected_fidelity": 0.9999676919867965
+      },
+      "budget_4": {
+        "success_rate": 1.0,
+        "mean_verification_calls": 1.03515625,
+        "mean_selected_fidelity": 0.9999659722685982
+      },
+      "budget_8": {
+        "success_rate": 1.0,
+        "mean_verification_calls": 1.03515625,
+        "mean_selected_fidelity": 0.9999659722685982
+      }
+    },
+    "canonical_grid": {
+      "circuits": 256,
+      "oracle_has_safe_deletion": 1.0,
+      "budget_1": {
+        "success_rate": 1.0,
+        "mean_verification_calls": 1.0,
+        "mean_selected_fidelity": 0.99997170009762
+      },
+      "budget_4": {
+        "success_rate": 1.0,
+        "mean_verification_calls": 1.0,
+        "mean_selected_fidelity": 0.99997170009762
+      },
+      "budget_8": {
+        "success_rate": 1.0,
+        "mean_verification_calls": 1.0,
+        "mean_selected_fidelity": 0.99997170009762
+      }
+    },
+    "angle_heuristic": {
+      "circuits": 256,
+      "oracle_has_safe_deletion": 1.0,
+      "budget_1": {
+        "success_rate": 1.0,
+        "mean_verification_calls": 1.0,
+        "mean_selected_fidelity": 0.9999928820260516
+      },
+      "budget_4": {
+        "success_rate": 1.0,
+        "mean_verification_calls": 1.0,
+        "mean_selected_fidelity": 0.9999928820260516
+      },
+      "budget_8": {
+        "success_rate": 1.0,
+        "mean_verification_calls": 1.0,
+        "mean_selected_fidelity": 0.9999928820260516
+      }
+    },
+    "random": {
+      "circuits": 256,
+      "oracle_has_safe_deletion": 1.0,
+      "budget_1": {
+        "success_rate": 0.359375,
+        "mean_verification_calls": 1.0,
+        "mean_selected_fidelity": 0.999847541064149
+      },
+      "budget_4": {
+        "success_rate": 0.85546875,
+        "mean_verification_calls": 2.265625,
+        "mean_selected_fidelity": 0.9998793689240553
+      },
+      "budget_8": {
+        "success_rate": 0.9609375,
+        "mean_verification_calls": 2.64453125,
+        "mean_selected_fidelity": 0.9998846627205561
+      }
+    }
+  },
+  "pilot_gate_passed": false
+}
