@@ -1,6 +1,6 @@
 # Paper draft
 
-`main.tex` is a portable two-column conference-style draft centered on the frozen three-seed size-transfer result. It treats downstream rewrite experiments as secondary evidence and reports their failed confirmatory gates. Author names, affiliations and final venue formatting remain placeholders.
+`main.tex` is a portable two-column conference-style draft centered on the frozen three-seed representation-reversal result. It explains the contribution as a controlled size-generalization study and confines failed downstream experiments to the scope discussion. `CONTRIBUTION_EXPLAINER.md` gives the same argument in plain language. Author names, affiliations and final venue formatting remain placeholders.
 
 Build from this directory with `pdflatex main.tex`, `bibtex main`, then two more `pdflatex` passes. The built `main.pdf` is committed for review. The generated figure is committed under `figures/results.pdf`; its source values come from the checked experiment JSON files.
 
