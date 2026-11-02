@@ -25,11 +25,7 @@ Quantum-circuit learning is often developed on small circuits because simulation
 
 A quantum circuit has a visual layout, an operation sequence, and a dependency graph. These encodings contain related information, but they make different regularities easy for a neural model to learn. A layer grid exposes stable coordinates such as ``wire 2, layer 5.'' A wire-dependency DAG exposes relations such as ``this CX follows the previous operation on its control wire.'' Grid coordinates change as width and depth grow; the meaning of a predecessor edge does not.
 
-This paper tests one hypothesis:
-
-\begin{quote}
-\textbf{If a prediction depends on wire dependencies, then explicitly encoding those dependencies should transfer better from small circuits to larger circuits, even when a positional grid fits the training distribution better.}
-\end{quote}
+\noindent\textbf{Size-transfer hypothesis.} After training on 4--8-qubit circuits, the wire DAG will achieve higher AUROC than a matched layer grid on 9--12-qubit circuits.
 
 The experiment produces a representation reversal. On same-size circuits, the grid leads by 0.0850 AUROC. On larger circuits, the DAG leads by 0.0217 AUROC and 0.0286 F1, winning every paired seed. A practitioner using only same-size validation would therefore select the model that generalizes worse to larger circuits.
 
