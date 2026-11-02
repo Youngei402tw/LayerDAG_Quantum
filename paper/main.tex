@@ -27,16 +27,18 @@ A quantum circuit has a visual layout, an operation sequence, and a dependency g
 
 \noindent\textbf{Size-transfer hypothesis.} After training on 4--8-qubit circuits, the wire DAG will achieve higher AUROC than a matched layer grid on 9--12-qubit circuits.
 
-The experiment produces a representation reversal. On same-size circuits, the grid leads by 0.0850 AUROC. On larger circuits, the DAG leads by 0.0217 AUROC and 0.0286 F1, winning every paired seed. A practitioner using only same-size validation would therefore select the model that generalizes worse to larger circuits.
+The ranking reverses: the grid leads by 0.0850 AUROC at the training sizes, while the DAG leads by 0.0217 AUROC on larger circuits and wins every seed.
 
 \begin{figure}[t]
 \centering
 \includegraphics[width=\columnwidth]{figures/representation.pdf}
-\caption{Why the encodings extrapolate differently. Adding wires and independent operations expands and shifts grid coordinates. The local wire-dependency motif retains the same typed predecessor relations. The experiment asks which inductive bias survives this size change.}
+\caption{Schematic motivation. When a circuit gains wires and independent operations, its grid becomes wider and longer and a gate occupies a different coordinate. The corresponding DAG still connects that gate to its immediate predecessors on the same wires. The diagram motivates the size-shift test; it is not itself an experimental result.}
 \label{fig:concept}
 \end{figure}
 
-The contribution is an empirical result about \emph{representation and extrapolation}. Depth-critical labels are exactly computable, so the learned model is not intended to replace the critical-path algorithm. Exact labels instead provide a clean probe: supervision has no simulator noise, and success requires combining information along precisely the relations the DAG represents. This separates representation behavior from approximation error in a quantum simulator or compiler oracle.
+Concretely, this paper contributes a controlled model-selection result. Same-size evaluation would select the grid because its AUROC is 0.9406 versus 0.8556 for the DAG. Larger-circuit evaluation reverses that choice: the DAG reaches 0.8078 versus 0.7861 for the grid. The data, node features, parameter counts, training updates, and paired seeds are matched, so the comparison isolates the effect of circuit representation under the tested size shift.
+
+The depth-critical label is exactly computable and is used to remove label and simulator noise from this comparison. We are not proposing a learned critical-path algorithm. We use critical-path membership as a stress test whose answer depends on the wire relations encoded by the DAG.
 
 \section{Why size transfer matters}
 
