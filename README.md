@@ -14,6 +14,13 @@ On 9–12-qubit, 64–96-gate circuits, the wire-dependency DAG reached AUROC
 0.8078 versus 0.7861 for a parameter-matched canonical grid, winning all three
 paired seeds. The grid remained better in-distribution.
 
+A fresh five-seed replication on structured QAOA-like, VQE and arithmetic
+families separated width from depth shift. DAG reached AUROC 0.8902 versus
+0.8495 under simultaneous shift and won all five seeds. Width shift produced a
++0.0514 advantage; depth-only shift produced +0.0025. Held-out chemistry
+favored grid, so the claim is within-family size transfer rather than universal
+out-of-distribution generalization.
+
 In a downstream safe-rewrite test, DAG recovered 51.94% of oracle depth
 reduction versus 48.15% for grid and 17.93% for random choice. DAG won all three
 seeds, but the +3.79-point mean gain missed the predeclared +5-point

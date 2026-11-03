@@ -24,13 +24,15 @@ The best representation changes with the evaluation regime:
 
 The DAG wins the larger-circuit comparison in all three paired training seeds. Therefore, validation on familiar sizes would select the grid, even though the DAG transfers better to larger circuits.
 
+A second frozen study tests structured QAOA-like, VQE and arithmetic circuits with five new paired seeds. Under simultaneous width-and-depth shift, DAG reaches 0.8902 AUROC versus 0.8495 for grid and wins every seed. Separating the axes shows +0.0514 AUROC from width shift and only +0.0025 from depth shift. The advantage is therefore associated mainly with adding qubit wires. On a held-out chemistry-inspired family, grid AUROC is higher and both models are weak; size transfer does not imply family transfer.
+
 ## Why it happens
 
 Grid coordinates such as “wire 2, layer 5” are useful and easy to memorize when circuit dimensions are familiar. Adding wires and layers changes those coordinates. A DAG edge means “the previous operation on this wire,” which retains the same meaning at different widths and lengths. The DAG pays for that structural bias with lower in-distribution accuracy, but it loses less under the tested size shift.
 
 ## What is new
 
-The contribution is the controlled evidence that **in-distribution accuracy can select the wrong quantum-circuit encoding for size extrapolation**. The study matches parameter count, features, data, optimization steps, and paired seeds; freezes its final gate in advance; and reports both sides of the reversal.
+The contribution is controlled evidence across two studies and eight paired seeds that **explicit wire dependencies improve within-family extrapolation when quantum circuits gain qubit wires**. The random-circuit study also shows that in-distribution accuracy can select the wrong encoding. Both studies match parameter count, features, data, optimization steps, and paired seeds; freeze final gates in advance; and report negative results.
 
 ## What is not claimed
 

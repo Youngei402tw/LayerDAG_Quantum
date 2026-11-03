@@ -74,6 +74,12 @@ The final protocol was frozen before generating new data. It compared an 87,745-
 
 The paired larger-circuit AUROC gains were +0.0202, +0.0177 and +0.0274, satisfying the predeclared all-seed and mean-gain gates. DAG logits are equivariant to legal topological reordering by construction and test to 1e-6 tolerance. The honest positive claim is narrow: explicit wire-dependency message passing improves transfer of critical-path reasoning to wider and longer quantum circuits. The canonical grid is substantially better in-distribution, so this is not universal DAG superiority.
 
+## Structured-family replication and shift decomposition
+
+A fresh five-seed final study replicated size transfer on balanced QAOA-like, hardware-efficient VQE and reversible linear-arithmetic circuits. Models trained on 4--7-qubit, 32--64-gate circuits and were tested separately on width, depth and simultaneous shifts. The frozen gate passed: simultaneous-shift DAG AUROC was 0.8902 versus 0.8495 for grid, with paired advantages +0.0321, +0.0243, +0.0533, +0.0414 and +0.0525. Mean F1 was 0.8351 versus 0.7928.
+
+The decomposition localizes the effect. Width-only AUROC improved by +0.0514, while depth-only AUROC improved by only +0.0025. On same-size structured circuits DAG was slightly stronger (+0.0054), so the original in-distribution ranking reversal is not universal across circuit distributions. On an unseen chemistry-inspired family both methods transferred poorly and grid AUROC was higher by 0.0266. The supported extension is size transfer within the three training families, not family generalization.
+
 ## Downstream compiler utility
 
 Two follow-ups tested whether the representation result leads to useful rewrite prioritization. The first ranked arbitrary single-gate deletions using exact state-fidelity labels. It failed: a smallest-angle heuristic and the canonical grid found a safe deletion on every size-shifted circuit with one verification, while DAG succeeded on 96.9%. This negative result is retained under `experiments/rewrite_ranking_pilot_20261029`.
@@ -106,6 +112,6 @@ The first nominal gate was invalidated because the recovery metric clipped harmf
 
 ## Compute and limits
 
-Measured compute-job wall time with internal timers is at least 9,229.12 seconds (153.82 minutes), including the invalidated run, repaired 256-target run, scaled run, representation study and downstream rewrite experiments. Routed oracle labeling and the guidance sweep did not record complete timers and are excluded from that lower bound. Every training job remained below 30 minutes. Failed setup/replay attempts, process startup and engineering time were not all measured, and historic consumption before this workspace is unknown.
+Measured compute-job wall time with internal timers is at least 11,437.00 seconds (190.62 minutes), including the invalidated run, repaired 256-target run, scaled run, representation studies and downstream rewrite experiments. Routed oracle labeling and the guidance sweep did not record complete timers and are excluded from that lower bound. Every training job remained below 30 minutes. Failed setup/replay attempts, process startup and engineering time were not all measured, and historic consumption before this workspace is unknown.
 
 No GPU, paid resource, external dashboard, publication or deployment was used. The multi-seed representation matrix, fidelity-aligned completion guidance, internal-window editor, terminal measurements and dynamic/hardware extensions remain unrun.

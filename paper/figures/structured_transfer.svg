@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="920" height="430" viewBox="0 0 920 430">
+<rect width="100%" height="100%" fill="white"/>
+<style>text{font-family:Arial,sans-serif;fill:#222}.axis{stroke:#333;stroke-width:1.5}.grid{stroke:#bbb;stroke-width:1;opacity:.5}.err{stroke:#222;stroke-width:1.5}.title{font-size:20px;font-weight:bold}</style>
+<text class="title" x="460.0" y="27" text-anchor="middle">Structured circuit-family transfer (five paired seeds)</text>
+<line class="grid" x1="75" y1="295.63829787234044" x2="895" y2="295.63829787234044"/>
+<text x="65" y="300.63829787234044" text-anchor="end" font-size="15">0.6</text>
+<line class="grid" x1="75" y1="233.936170212766" x2="895" y2="233.936170212766"/>
+<text x="65" y="238.936170212766" text-anchor="end" font-size="15">0.7</text>
+<line class="grid" x1="75" y1="172.23404255319147" x2="895" y2="172.23404255319147"/>
+<text x="65" y="177.23404255319147" text-anchor="end" font-size="15">0.8</text>
+<line class="grid" x1="75" y1="110.531914893617" x2="895" y2="110.531914893617"/>
+<text x="65" y="115.531914893617" text-anchor="end" font-size="15">0.9</text>
+<line class="axis" x1="75" y1="55" x2="75" y2="345"/>
+<line class="axis" x1="75" y1="345" x2="895" y2="345"/>
+<text transform="translate(22,200.0) rotate(-90)" text-anchor="middle" font-size="17">AUROC</text>
+<rect x="90.0" y="68.7595744680851" width="52" height="276.24042553191487" fill="#2878B5"/>
+<line class="err" x1="116" y1="68.08085106382978" x2="116" y2="69.43829787234041"/>
+<line class="err" x1="110" y1="68.08085106382978" x2="122" y2="68.08085106382978"/>
+<line class="err" x1="110" y1="69.43829787234041" x2="122" y2="69.43829787234041"/>
+<rect x="148.0" y="72.09148936170209" width="52" height="272.9085106382979" fill="#F28E2B"/>
+<line class="err" x1="174" y1="71.35106382978722" x2="174" y2="72.83191489361698"/>
+<line class="err" x1="168" y1="71.35106382978722" x2="180" y2="71.35106382978722"/>
+<line class="err" x1="168" y1="72.83191489361698" x2="180" y2="72.83191489361698"/>
+<text x="145" y="370" text-anchor="middle" font-size="14">Same</text>
+<text x="145" y="388" text-anchor="middle" font-size="14">size</text>
+<rect x="260.0" y="115.34468085106383" width="52" height="229.65531914893617" fill="#2878B5"/>
+<line class="err" x1="286" y1="111.3957446808511" x2="286" y2="119.29361702127657"/>
+<line class="err" x1="280" y1="111.3957446808511" x2="292" y2="111.3957446808511"/>
+<line class="err" x1="280" y1="119.29361702127657" x2="292" y2="119.29361702127657"/>
+<rect x="318.0" y="147.05957446808512" width="52" height="197.94042553191488" fill="#F28E2B"/>
+<line class="err" x1="344" y1="139.4085106382979" x2="344" y2="154.71063829787232"/>
+<line class="err" x1="338" y1="139.4085106382979" x2="350" y2="139.4085106382979"/>
+<line class="err" x1="338" y1="154.71063829787232" x2="350" y2="154.71063829787232"/>
+<text x="315" y="370" text-anchor="middle" font-size="14">Width</text>
+<text x="315" y="388" text-anchor="middle" font-size="14">shift</text>
+<rect x="430.0" y="74.18936170212767" width="52" height="270.81063829787234" fill="#2878B5"/>
+<line class="err" x1="456" y1="73.26382978723409" x2="456" y2="75.11489361702125"/>
+<line class="err" x1="450" y1="73.26382978723409" x2="462" y2="73.26382978723409"/>
+<line class="err" x1="450" y1="75.11489361702125" x2="462" y2="75.11489361702125"/>
+<rect x="488.0" y="75.731914893617" width="52" height="269.268085106383" fill="#F28E2B"/>
+<line class="err" x1="514" y1="75.29999999999995" x2="514" y2="76.16382978723405"/>
+<line class="err" x1="508" y1="75.29999999999995" x2="520" y2="75.29999999999995"/>
+<line class="err" x1="508" y1="76.16382978723405" x2="520" y2="76.16382978723405"/>
+<text x="485" y="370" text-anchor="middle" font-size="14">Depth</text>
+<text x="485" y="388" text-anchor="middle" font-size="14">shift</text>
+<rect x="600.0" y="116.57872340425533" width="52" height="228.42127659574467" fill="#2878B5"/>
+<line class="err" x1="626" y1="113.61702127659574" x2="626" y2="119.5404255319149"/>
+<line class="err" x1="620" y1="113.61702127659574" x2="632" y2="113.61702127659574"/>
+<line class="err" x1="620" y1="119.5404255319149" x2="632" y2="119.5404255319149"/>
+<rect x="658.0" y="141.6914893617021" width="52" height="203.3085106382979" fill="#F28E2B"/>
+<line class="err" x1="684" y1="133.60851063829784" x2="684" y2="149.77446808510638"/>
+<line class="err" x1="678" y1="133.60851063829784" x2="690" y2="133.60851063829784"/>
+<line class="err" x1="678" y1="149.77446808510638" x2="690" y2="149.77446808510638"/>
+<text x="655" y="370" text-anchor="middle" font-size="14">Width</text>
+<text x="655" y="388" text-anchor="middle" font-size="14">+ depth</text>
+<rect x="770.0" y="322.10851063829784" width="52" height="22.891489361702156" fill="#2878B5"/>
+<line class="err" x1="796" y1="314.27234042553187" x2="796" y2="329.9446808510638"/>
+<line class="err" x1="790" y1="314.27234042553187" x2="802" y2="314.27234042553187"/>
+<line class="err" x1="790" y1="329.9446808510638" x2="802" y2="329.9446808510638"/>
+<rect x="828.0" y="305.6957446808511" width="52" height="39.30425531914892" fill="#F28E2B"/>
+<line class="err" x1="854" y1="302.1170212765957" x2="854" y2="309.27446808510643"/>
+<line class="err" x1="848" y1="302.1170212765957" x2="860" y2="302.1170212765957"/>
+<line class="err" x1="848" y1="309.27446808510643" x2="860" y2="309.27446808510643"/>
+<text x="825" y="370" text-anchor="middle" font-size="14">Held-out</text>
+<text x="825" y="388" text-anchor="middle" font-size="14">family</text>
+<rect x="92" y="55" width="17" height="17" fill="#2878B5"/><text x="116" y="69" font-size="14">Wire DAG</text>
+<rect x="205" y="55" width="17" height="17" fill="#F28E2B"/><text x="229" y="69" font-size="14">Canonical grid</text>
+</svg>

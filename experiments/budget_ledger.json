@@ -1,5 +1,5 @@
 {
-  "execution_date": "2026-10-21 through 2026-11-01",
+  "execution_date": "2026-10-21 through 2026-11-02",
   "profile": "handoff_cpu_development",
   "global_cpu_ceiling_seconds": 21600,
   "prior_consumption_seconds": null,
@@ -15,10 +15,10 @@
   ],
   "accounting_limits": "Measured in-process wall durations, not CPU core-seconds. Engineering/tool time, startup, two failed validation-generation attempts, and failed replay attempts are not fully timed. The invalid noncanonical learned run is included. Historic consumption before this workspace remains unknown.",
   "gpu_job_hours": 0,
-  "measured_compute_job_wall_seconds": 9229.115127808,
-  "measured_compute_job_wall_minutes": 153.81858546346666,
-  "nominal_ceiling_remaining_seconds_if_no_historic_usage": 12370.884872192,
-  "minimum_reserved_seconds_if_no_historic_usage": 3092.721218048,
+  "measured_compute_job_wall_seconds": 11437.000640523,
+  "measured_compute_job_wall_minutes": 190.61667734205,
+  "nominal_ceiling_remaining_seconds_if_no_historic_usage": 10162.999359477,
+  "minimum_reserved_seconds_if_no_historic_usage": 2540.74983986925,
   "checkpoint": "multiple; see runs/registry.jsonl",
   "learned_training_runs": 8,
   "invalidated_learned_training_runs": 1,
@@ -47,5 +47,8 @@
   "critical_rewrite_utility_final_status": "DAG favored in all three seeds; frozen +0.05 recovery-advantage gate missed with +0.0378788",
   "routed_rewrite_training_seconds": 1572.391426564,
   "routed_rewrite_status": "three development runs complete; metric defect corrected; candidate-aware final development gate failed; no final test opened",
-  "routed_rewrite_accounting": "six model-training timers included; Qiskit exhaustive candidate labeling and orchestration excluded from measured lower bound"
+  "routed_rewrite_accounting": "six model-training timers included; Qiskit exhaustive candidate labeling and orchestration excluded from measured lower bound",
+  "structured_transfer_development_training_seconds": 185.716402967,
+  "structured_transfer_final_training_seconds": 2022.169109748,
+  "structured_transfer_status": "fresh five-seed simultaneous width-and-depth gate passed; width effect dominant; held-out chemistry negative"
 }
