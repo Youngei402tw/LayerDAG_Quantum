@@ -8,8 +8,9 @@ tmp="$(mktemp -d)"
 git archive --format=tar HEAD | tar -x -C "$tmp"
 # drop archived/obsolete manuscripts and build products from the anonymous copy
 rm -rf "$tmp/paper/archive" "$tmp"/paper/*.aux "$tmp"/paper/*.log "$tmp"/paper/*.bbl "$tmp"/paper/*.blg
-# fail if identifying strings remain (extend IDENTIFIERS with every author name/handle/email before use)
-IDENTIFIERS="${IDENTIFIERS:-Youngei402tw|YANG-CHE|yangche|u\.nus\.edu|gmail\.com}"
+# fail if identifying strings remain. IDENTIFIERS must be supplied by the caller (never stored in the repo),
+# e.g. IDENTIFIERS='Name1|Name2|github-handle|email-domain' bash scripts/make_anonymous_artifact.sh
+: "${IDENTIFIERS:?set IDENTIFIERS to a regex of author names, handles and emails}"
 if grep -rIEn "$IDENTIFIERS" "$tmp"; then echo "identifying strings found; aborting" >&2; exit 1; fi
 # strip PDF metadata author fields if exiftool/qpdf are present (best effort)
 command -v exiftool >/dev/null && find "$tmp" -name '*.pdf' -exec exiftool -q -overwrite_original -Author= -Creator= {} + || true
