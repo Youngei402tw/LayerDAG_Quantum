@@ -1,11 +1,23 @@
-# Paper draft
+# Paper directory
 
-`qai_paper.tex` and `qai_paper.pdf` are the active conference submission. They center the frozen qubit-label-invariant five-seed result, far-width transfer to 20 qubits, and matched GRU/Transformer controls. `main.*` and `qce_paper.*` are retained research-history drafts and should not be submitted. Author names and the current official QAI template remain placeholders.
+**Active submission (IEEE QAI):** `qai_paper.tex` → `qai_paper.pdf`. The versioned copy is `qai_submission_v2.pdf`, built 2026-11-06 on branch `migration/qai-submission-20261106`. The source uses IEEEtran V1.8b (`conference,a4paper`), is double-blind, and is 5 pages including references.
 
-`qai_submission_v1.pdf` is a versioned copy of the active QAI PDF for review tools that cache files by path.
+Build: `latexmk -pdf qai_paper.tex` (needs TeX Live `texlive-publishers` for IEEEtran). Figures: `PYTHONPATH=.. python ../scripts/make_figures.py` from this directory, or `PYTHONPATH=. python scripts/make_figures.py` from the repo root. Number audit: `python ../scripts/check_manuscript_numbers.py`.
 
-Build from this directory with `pdflatex main.tex`, `bibtex main`, then two more `pdflatex` passes. The built `main.pdf` is committed for review. The generated figure is committed under `figures/results.pdf`; its source values come from the checked experiment JSON files.
+Submission documents are in `submission/`:
 
-`size_transfer_paper_v3.pdf` is a versioned copy of the current shared build for review tools that cache `main.pdf` by path. `representation_reversal_paper_v2.pdf` is retained as the pre-replication draft and should not be submitted.
+- `COMPLIANCE_REPORT.md`: official QAI rules with URLs, and template compliance;
+- `CLAIM_EVIDENCE.md`: claim-to-evidence table, limitations and negative-results audit, and discrepancies;
+- `CITATION_AUDIT.md`;
+- `PORTAL_MATERIALS.md`: abstract, keywords, contribution and limitation statements, disclosures;
+- `SUBMISSION_CHECKLIST.md`: checklist and unresolved author and venue fields;
+- `CHANGELOG_FROM_304144c.md`.
 
-Transfer `qai_paper.tex` into the live official QAI template only after confirming the current call's page limit, anonymity policy, and artifact rules. Direct access to the official site was blocked by the execution proxy, so no deadline or formatting rule is asserted in this repository.
+History, kept unchanged:
+
+- `archive/qai_paper_handoff_304144c.{tex,pdf}`: the handoff QAI draft;
+- `qai_submission_v1.pdf`: the handoff versioned PDF (SHA-256 `426cb5f3…`);
+- `archive/references_handoff_304144c.bib`;
+- `figures/{qai_invariant,representation,results,structured_transfer}.*`: handoff figures, with no plotting scripts recorded.
+
+The archived manuscripts `main.*`, `qce_paper.*`, `size_transfer_paper_v3.pdf` and `representation_reversal_paper_v2.pdf` are not under development and must not be submitted. They still build against the shared `references.bib`, whose two bibliographic errors were corrected.

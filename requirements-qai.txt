@@ -1,0 +1,8 @@
+# Recorded QAI stack (handoff): Python 3.12, CPU only.
+# Use the CPU wheel index when reachable:  pip install --index-url https://download.pytorch.org/whl/cpu torch==2.8.0
+torch==2.8.0
+numpy==2.3.4
+qiskit==2.2.3
+pytest==8.4.2
+# figure regeneration only
+matplotlib>=3.8
