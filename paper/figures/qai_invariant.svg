@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="410" viewBox="0 0 800 410">
+<rect width="100%" height="100%" fill="white"/>
+<style>text{font-family:Arial,sans-serif;fill:#222}.axis{stroke:#333;stroke-width:1.5}.grid{stroke:#bbb;stroke-width:1;opacity:.5}.err{stroke:#222;stroke-width:1.5}.title{font-size:20px;font-weight:bold}</style>
+<text class="title" x="400.0" y="27" text-anchor="middle">Qubit-label-invariant transfer (five paired seeds)</text>
+<line class="grid" x1="70" y1="308.04761904761904" x2="780" y2="308.04761904761904"/>
+<text x="61" y="313.04761904761904" text-anchor="end" font-size="14">0.80</text>
+<line class="grid" x1="70" y1="240.6666666666667" x2="780" y2="240.6666666666667"/>
+<text x="61" y="245.6666666666667" text-anchor="end" font-size="14">0.85</text>
+<line class="grid" x1="70" y1="173.28571428571428" x2="780" y2="173.28571428571428"/>
+<text x="61" y="178.28571428571428" text-anchor="end" font-size="14">0.90</text>
+<line class="grid" x1="70" y1="105.90476190476195" x2="780" y2="105.90476190476195"/>
+<text x="61" y="110.90476190476195" text-anchor="end" font-size="14">0.95</text>
+<line class="axis" x1="70" y1="52" x2="70" y2="335"/>
+<line class="axis" x1="70" y1="335" x2="780" y2="335"/>
+<text transform="translate(18,193.5) rotate(-90)" text-anchor="middle" font-size="16">AUROC</text>
+<rect x="92.0" y="75.9876190476191" width="54" height="259.0123809523809" fill="#2878B5"/>
+<line class="err" x1="119" y1="74.77476190476195" x2="119" y2="77.20047619047627"/>
+<line class="err" x1="113" y1="74.77476190476195" x2="125" y2="74.77476190476195"/>
+<line class="err" x1="113" y1="77.20047619047627" x2="125" y2="77.20047619047627"/>
+<rect x="154.0" y="120.59380952380947" width="54" height="214.40619047619055" fill="#F28E2B"/>
+<line class="err" x1="181" y1="116.82047619047609" x2="181" y2="124.36714285714282"/>
+<line class="err" x1="175" y1="116.82047619047609" x2="187" y2="116.82047619047609"/>
+<line class="err" x1="175" y1="124.36714285714282" x2="187" y2="124.36714285714282"/>
+<text x="150" y="361" text-anchor="middle" font-size="14">Same size</text>
+<rect x="277.0" y="124.50190476190471" width="54" height="210.4980952380953" fill="#2878B5"/>
+<line class="err" x1="304" y1="123.42380952380944" x2="304" y2="125.57999999999998"/>
+<line class="err" x1="298" y1="123.42380952380944" x2="310" y2="123.42380952380944"/>
+<line class="err" x1="298" y1="125.57999999999998" x2="310" y2="125.57999999999998"/>
+<rect x="339.0" y="193.09571428571434" width="54" height="141.90428571428566" fill="#F28E2B"/>
+<line class="err" x1="366" y1="189.45714285714286" x2="366" y2="196.73428571428582"/>
+<line class="err" x1="360" y1="189.45714285714286" x2="372" y2="189.45714285714286"/>
+<line class="err" x1="360" y1="196.73428571428582" x2="372" y2="196.73428571428582"/>
+<text x="335" y="361" text-anchor="middle" font-size="14">8–12 qubits</text>
+<rect x="462.0" y="139.32571428571427" width="54" height="195.67428571428573" fill="#2878B5"/>
+<line class="err" x1="489" y1="136.63047619047614" x2="489" y2="142.02095238095234"/>
+<line class="err" x1="483" y1="136.63047619047614" x2="495" y2="136.63047619047614"/>
+<line class="err" x1="483" y1="142.02095238095234" x2="495" y2="142.02095238095234"/>
+<rect x="524.0" y="199.29476190476186" width="54" height="135.70523809523814" fill="#F28E2B"/>
+<line class="err" x1="551" y1="193.23047619047622" x2="551" y2="205.35904761904752"/>
+<line class="err" x1="545" y1="193.23047619047622" x2="557" y2="193.23047619047622"/>
+<line class="err" x1="545" y1="205.35904761904752" x2="557" y2="205.35904761904752"/>
+<text x="520" y="361" text-anchor="middle" font-size="14">13–20 qubits</text>
+<rect x="647.0" y="75.9876190476191" width="54" height="259.0123809523809" fill="#2878B5"/>
+<line class="err" x1="674" y1="74.77476190476195" x2="674" y2="77.20047619047627"/>
+<line class="err" x1="668" y1="74.77476190476195" x2="680" y2="74.77476190476195"/>
+<line class="err" x1="668" y1="77.20047619047627" x2="680" y2="77.20047619047627"/>
+<rect x="709.0" y="268.42761904761903" width="54" height="66.57238095238097" fill="#F28E2B"/>
+<line class="err" x1="736" y1="261.2852380952381" x2="736" y2="275.56999999999994"/>
+<line class="err" x1="730" y1="261.2852380952381" x2="742" y2="261.2852380952381"/>
+<line class="err" x1="730" y1="275.56999999999994" x2="742" y2="275.56999999999994"/>
+<text x="705" y="361" text-anchor="middle" font-size="14">Relabeled</text>
+<rect x="88" y="55" width="17" height="17" fill="#2878B5"/><text x="112" y="69" font-size="14">Role-invariant DAG</text>
+<rect x="260" y="55" width="17" height="17" fill="#F28E2B"/><text x="284" y="69" font-size="14">Invariant-feature grid</text>
+</svg>

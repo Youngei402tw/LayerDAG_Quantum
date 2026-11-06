@@ -1,12 +1,12 @@
 # Venue strategy
 
-## Primary target
+## Active target
 
-Target the next available **IEEE International Conference on Quantum Artificial Intelligence (QAI)** call whose scope includes learning for quantum software or circuit optimization. The five-seed structured replication, eight paired seeds overall, and explicit width/depth/family decomposition support a research-paper submission. Confirm the live call, page limit and double-blind policy before submission.
+Target the next available **IEEE International Conference on Quantum Artificial Intelligence (QAI)** call whose scope includes quantum-circuit learning. The active paper now contributes exact qubit-label symmetry, a frozen five-seed 13--20-qubit OOD test, and matched recurrent/attention controls. Confirm the live call, page limit and double-blind policy before submission; the official site was inaccessible through the execution proxy.
 
-## Strong alternative
+## Archived alternative
 
-Submit to **IEEE International Conference on Quantum Computing and Engineering (QCE / IEEE Quantum Week)** in a quantum software, compilation or machine-learning track. For QCE, emphasize compiler representation, exact dependency semantics, structured QAOA/VQE/arithmetic replication, and reproducibility. QCE is the strongest fit for the current evidence. Public circuit-suite replication would still improve acceptance odds.
+The QCE draft is retained but is not under active development. Current work should change only the QAI paper unless the submission strategy changes explicitly.
 
 ## Stretch targets
 

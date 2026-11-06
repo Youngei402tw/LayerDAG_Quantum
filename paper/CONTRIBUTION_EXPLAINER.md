@@ -24,6 +24,8 @@ The best representation changes with the evaluation regime:
 
 The DAG wins the larger-circuit comparison in all three paired training seeds. Therefore, validation on familiar sizes would select the grid, even though the DAG transfers better to larger circuits.
 
+The active QAI result goes further. It removes every absolute qubit-index feature and encodes only operand roles on DAG edges. This makes predictions exactly invariant when logical-qubit names are permuted and allows evaluation beyond the old 12-qubit feature limit. After training on 4--7 qubits, the invariant DAG reaches 0.9252 AUROC on 13--20 qubits versus 0.8807 for grid and 0.7471 for a canonical Transformer. DAG wins all five frozen seeds. Grid AUROC drops by 0.1097 under relabeling; DAG changes by exactly zero.
+
 A second frozen study tests structured QAOA-like, VQE and arithmetic circuits with five new paired seeds. Under simultaneous width-and-depth shift, DAG reaches 0.8902 AUROC versus 0.8495 for grid and wins every seed. Separating the axes shows +0.0514 AUROC from width shift and only +0.0025 from depth shift. The advantage is therefore associated mainly with adding qubit wires. On a held-out chemistry-inspired family, grid AUROC is higher and both models are weak; size transfer does not imply family transfer.
 
 ## Why it happens
@@ -32,7 +34,7 @@ Grid coordinates such as “wire 2, layer 5” are useful and easy to memorize w
 
 ## What is new
 
-The contribution is controlled evidence across two studies and eight paired seeds that **explicit wire dependencies improve within-family extrapolation when quantum circuits gain qubit wires**. The random-circuit study also shows that in-distribution accuracy can select the wrong encoding. Both studies match parameter count, features, data, optimization steps, and paired seeds; freeze final gates in advance; and report negative results.
+The active contribution is that **operand-role dependency graphs enforce a physically correct qubit-label symmetry and improve within-family extrapolation from 4--7 to 13--20 qubits**. The result uses matched parameter counts, index-free node features, paired data and seeds, a frozen final gate, and recurrent plus attention controls.
 
 ## What is not claimed
 

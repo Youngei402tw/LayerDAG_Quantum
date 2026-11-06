@@ -21,6 +21,12 @@ families separated width from depth shift. DAG reached AUROC 0.8902 versus
 favored grid, so the claim is within-family size transfer rather than universal
 out-of-distribution generalization.
 
+The active QAI model removes absolute qubit indices and encodes only operand
+roles on dependency edges. Trained on 4–7 qubits, it reaches AUROC 0.9252 on
+13–20-qubit circuits versus 0.8807 for a matched grid and 0.7471 for a canonical
+Transformer. Its logits are exactly unchanged by logical-qubit renaming; grid
+AUROC drops by 0.1097 after the same relabeling.
+
 In a downstream safe-rewrite test, DAG recovered 51.94% of oracle depth
 reduction versus 48.15% for grid and 17.93% for random choice. DAG won all three
 seeds, but the +3.79-point mean gain missed the predeclared +5-point

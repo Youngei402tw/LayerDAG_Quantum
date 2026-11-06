@@ -80,6 +80,14 @@ A fresh five-seed final study replicated size transfer on balanced QAOA-like, ha
 
 The decomposition localizes the effect. Width-only AUROC improved by +0.0514, while depth-only AUROC improved by only +0.0025. On same-size structured circuits DAG was slightly stronger (+0.0054), so the original in-distribution ranking reversal is not universal across circuit distributions. On an unseen chemistry-inspired family both methods transferred poorly and grid AUROC was higher by 0.0266. The supported extension is size transfer within the three training families, not family generalization.
 
+## QAI qubit-label-invariant final
+
+The QAI-focused encoder removes absolute wire slots entirely. Nodes contain gate type, angle and arity; dependency edges encode source and destination operand roles. This makes DAG logits exactly invariant to arbitrary logical-qubit permutations and removes the previous 12-qubit input ceiling. The matched index-free grid uses canonical earliest-layer order.
+
+A frozen fresh five-seed test trained on 4--7-qubit structured circuits and evaluated 512 circuits each at 4--7, 8--12 and 13--20 qubits. Far-width DAG AUROC was 0.9252 versus 0.8807 for grid; paired differences were +0.0419, +0.0419, +0.0417, +0.0482 and +0.0484. F1 was 0.8458 versus 0.8011. DAG logits and aggregate metrics were exactly unchanged under random logical-qubit relabeling, while grid AUROC fell from 0.9391 to 0.8294.
+
+A fixed post-confirmatory canonical Transformer control (88,065 parameters) used identical index-free node features and reached 0.7471 far-width AUROC and 0.7806 relabeled AUROC. It was not part of the predeclared primary gate. The QAI claim is exact qubit-label symmetry and within-family width extrapolation, not unseen-family or optimizer generalization.
+
 ## Downstream compiler utility
 
 Two follow-ups tested whether the representation result leads to useful rewrite prioritization. The first ranked arbitrary single-gate deletions using exact state-fidelity labels. It failed: a smallest-angle heuristic and the canonical grid found a safe deletion on every size-shifted circuit with one verification, while DAG succeeded on 96.9%. This negative result is retained under `experiments/rewrite_ranking_pilot_20261029`.
@@ -112,6 +120,6 @@ The first nominal gate was invalidated because the recovery metric clipped harmf
 
 ## Compute and limits
 
-Measured compute-job wall time with internal timers is at least 11,437.00 seconds (190.62 minutes), including the invalidated run, repaired 256-target run, scaled run, representation studies and downstream rewrite experiments. Routed oracle labeling and the guidance sweep did not record complete timers and are excluded from that lower bound. Every training job remained below 30 minutes. Failed setup/replay attempts, process startup and engineering time were not all measured, and historic consumption before this workspace is unknown.
+Measured compute-job wall time with internal timers is at least 14,244.91 seconds (237.42 minutes), including the invalidated run, repaired 256-target run, scaled run, representation studies and downstream rewrite experiments. Routed oracle labeling and the guidance sweep did not record complete timers and are excluded from that lower bound. Every training job remained below 30 minutes. Failed setup/replay attempts, process startup and engineering time were not all measured, and historic consumption before this workspace is unknown.
 
 No GPU, paid resource, external dashboard, publication or deployment was used. The multi-seed representation matrix, fidelity-aligned completion guidance, internal-window editor, terminal measurements and dynamic/hardware extensions remain unrun.

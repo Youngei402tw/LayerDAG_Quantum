@@ -4,185 +4,155 @@
 \usepackage{graphicx}
 \usepackage{amsmath}
 \usepackage{hyperref}
-\usepackage{xcolor}
 \usepackage{enumitem}
+\usepackage{balance}
 \setlist{nosep,leftmargin=*}
 
-\definecolor{dagblue}{RGB}{40,120,181}
-\definecolor{gridorange}{RGB}{242,142,43}
-
-\title{Which Quantum-Circuit Encoding Generalizes? Dependency DAGs versus Layer Grids under Size Shift}
+\title{Qubit-Label-Invariant Dependency Graphs for Out-of-Distribution Quantum-Circuit Learning}
 \author{Anonymous Authors \\ Affiliation withheld for review}
-\date{November 2, 2026}
+\date{November 6, 2026}
 
 \begin{document}
 \maketitle
 
 \begin{abstract}
-Out-of-distribution generalization is central to quantum-circuit learning because labeled training data are usually generated on smaller circuits than target workloads. We compare two circuit inductive biases using exact depth-critical gate prediction: a wire-dependency DAG network and a parameter-matched canonical layer-grid GRU with identical node features. On random circuits, in-distribution evaluation would select the grid (0.9406 versus 0.8556 AUROC), but the ranking reverses after scaling from 4--8 to 9--12 qubits: DAG reaches 0.8078 versus 0.7861 and wins all three paired seeds. A fresh five-seed replication trains on structured QAOA-like, VQE, and arithmetic families. Under simultaneous width-and-depth shift, DAG achieves 0.8902 AUROC and 0.8351 F1 versus 0.8495 and 0.7928 for grid. Width shift produces +0.0514 AUROC while depth-only shift produces +0.0025, identifying qubit-count growth as the dominant tested source of advantage. On an unseen chemistry-inspired family, both models perform poorly and grid AUROC is higher. The study separates size generalization from family generalization and shows across eight paired seeds that relational circuit structure improves within-family extrapolation without providing universal out-of-distribution robustness.
+Quantum-circuit models are commonly trained on fewer qubits than target workloads, yet many encoders contain absolute wire-index features that impose a fixed width and change under arbitrary logical-qubit renaming. We introduce a qubit-label-invariant circuit encoder: nodes contain only gate type, angle, and arity, while directed dependency edges encode whether their shared wire is a single-qubit operand, CX control, or CX target at each endpoint. This representation is exactly invariant to any permutation of logical-qubit labels and accepts widths unseen during training. We compare an 80,833-parameter six-layer dependency GNN with an 84,961-parameter canonical-grid GRU using identical index-free node features. Models train on structured QAOA-like, VQE, and arithmetic circuits with 4--7 qubits and test on circuits up to 20 qubits. Across five frozen paired seeds, the GNN reaches 0.9252 AUROC and 0.8458 F1 on 13--20-qubit circuits versus 0.8807 and 0.8011 for the grid; the GNN wins every seed by 0.0417--0.0484 AUROC. Logical-qubit relabeling changes GNN logits by exactly zero, while grid AUROC falls by 0.1097. A fixed post-confirmatory canonical Transformer reaches 0.7471 far-width AUROC. The results show that enforcing a physically irrelevant symmetry through dependency roles improves within-family out-of-distribution generalization. Unseen-family and practical compiler generalization remain open.
 \end{abstract}
 
-\section{The contribution}
+\section{Introduction}
 
-A quantum circuit has a visual layout, an operation sequence, and a dependency graph. These encodings contain related information, but they make different regularities easy for a neural model to learn. A layer grid exposes stable coordinates such as ``wire 2, layer 5.'' A wire-dependency DAG exposes relations such as ``this CX follows the previous operation on its control wire.'' Grid coordinates change as width and depth grow; the meaning of a predecessor edge does not.
+Quantum-circuit learning has an unavoidable scale mismatch. Exact simulation, compiler search, and labeled-data generation are easiest on small circuits, while useful workloads contain more qubits and operations. A learned circuit representation must therefore extrapolate beyond its training width rather than only interpolate among familiar shapes.
 
-\noindent\textbf{Size-transfer hypothesis.} After training on 4--8-qubit circuits, the wire DAG will achieve higher AUROC than a matched layer grid on 9--12-qubit circuits.
+Absolute logical-qubit labels should not determine a structural prediction. Relabeling qubits by a permutation changes symbols such as $q_0$ and $q_7$ but preserves gate types, shared-wire dependencies, circuit depth, and critical-path membership. Nevertheless, common tensor and sequence encodings allocate one feature slot or grid row per wire. They have a fixed maximum width and do not guarantee identical predictions after relabeling.
 
-The ranking reverses: the grid leads by 0.0850 AUROC at the training sizes, while the DAG leads by 0.0217 AUROC on larger circuits and wins every seed.
+We study whether encoding this symmetry improves out-of-distribution (OOD) learning. Our diagnostic task is depth-critical gate prediction: identify operations lying on at least one maximum wire-dependency path. Critical paths are exactly computable, so this is not a learned replacement for the algorithm. Exact labels remove simulator and oracle noise and isolate how representation affects relational reasoning.
 
-\begin{figure}[t]
-\centering
-\includegraphics[width=\columnwidth]{figures/representation.pdf}
-\caption{Schematic motivation. When a circuit gains wires and independent operations, its grid becomes wider and longer and a gate occupies a different coordinate. The corresponding DAG still connects that gate to its immediate predecessors on the same wires. The diagram motivates the size-shift test; it is not itself an experimental result.}
-\label{fig:concept}
-\end{figure}
-
-Concretely, this paper contributes a controlled model-selection result. Same-size evaluation would select the grid because its AUROC is 0.9406 versus 0.8556 for the DAG. Larger-circuit evaluation reverses that choice: the DAG reaches 0.8078 versus 0.7861 for the grid. The data, node features, parameter counts, training updates, and paired seeds are matched, so the comparison isolates the effect of circuit representation under the tested size shift.
-
-The depth-critical label is exactly computable and is used to remove label and simulator noise from this comparison. We are not proposing a learned critical-path algorithm. We use critical-path membership as a stress test whose answer depends on the wire relations encoded by the DAG.
-
-The first study uses random circuits and reveals the in-distribution ranking reversal. The second is a fresh replication on three structured circuit families with five paired seeds. It changes width and depth separately, then together, and reserves chemistry-inspired circuits as an unseen family. The replication both strengthens and narrows the conclusion: DAG improves transfer when known circuit families become wider, while a new family remains a separate generalization problem.
-
-\section{Why size transfer matters}
-
-Quantum machine-learning systems frequently train on smaller instances than those of ultimate interest. Classical simulation cost grows rapidly with qubit count, hardware data are limited, and compiler searches can be expensive. Frameworks for quantum machine learning make circuit data accessible \cite{broughton2021tfq}, but a model that interpolates among familiar sizes may still rely on coordinates that do not persist at deployment scale.
-
-The issue is especially relevant to compilation. Circuit depth, two-qubit gates, and routing overhead constrain near-term workloads \cite{preskill2018nisq,li2019tackling,cowtan2019qubit}. Many learned compiler components consume a circuit encoding before predicting cost, selecting transformations, or guiding search. Their first design choice is therefore representational: flatten the circuit, place it on a grid, or preserve dependencies as a graph.
-
-Graph message passing supplies a relational inductive bias \cite{gilmer2017mpnn,kipf2017gcn}. It can also be harder to optimize and may discard useful global coordinates. We should not expect a graph to win everywhere. The scientifically useful question is where its bias helps and what an in-distribution benchmark would miss.
-
-Our study contributes:
+Our contributions are:
 \begin{enumerate}
-    \item a matched DAG-versus-grid experiment that changes circuit size rather than merely resampling circuits of the same shape;
-    \item a frozen three-seed result showing that representation ranking reverses between interpolation and size extrapolation;
-    \item a mechanism check for legal topological reordering and strong sequence, Transformer, canonical-grid, and recurrent-DAG development controls;
-    \item a complete record of protocols, split hashes, negative trials, and follow-up tasks that did not establish a practical optimizer advantage.
+    \item a circuit DAG whose node and edge features contain no absolute qubit identity and whose per-operation predictions are exactly invariant under every logical-qubit permutation;
+    \item a frozen five-seed comparison that trains on 4--7 qubits and tests on structured circuits with 13--20 qubits, beyond the original encoder's 12-wire feature ceiling;
+    \item near-matched canonical-grid GRU and canonical Transformer controls using the same index-free node features;
+    \item a separation between within-family width extrapolation, exact relabeling symmetry, and the still-unresolved problems of unseen-family and practical compiler generalization.
 \end{enumerate}
 
-\section{Controlled representation probe}
+\section{Symmetry-aware circuit representation}
 
-\subsection{Wire-dependency labels}
+\subsection{Wire-dependency graph}
 
-Let a circuit contain operations $V=\{v_i\}_{i=1}^m$ on $n$ logical qubits. For every qubit wire, connect consecutive operations that touch that wire. Their union is a directed acyclic graph $G=(V,E)$. Each edge retains its wire identity. Independent operations have no edge between them, even if one happens to be serialized first.
+Let a circuit contain ordered operations $V=\{v_i\}_{i=1}^{m}$ on logical qubits $Q$. For each $q\in Q$, connect consecutive operations that touch $q$. The union of these directed edges is a DAG $G=(V,E)$. Independent operations have no edge even when one happens to be serialized first.
 
-Let $f(v)$ be the longest predecessor path ending at $v$, $b(v)$ the longest successor path beginning at $v$, and $D=\max_v f(v)$. The exact node label is
+Every node has seven features: a four-way gate type (H, RY, RZ, or CX), sine and cosine of its rotation angle, and normalized arity. No feature identifies a wire number. For an edge induced by shared wire $q$, each endpoint receives one of three roles: single-qubit operand, CX control, or CX target. Concatenating source and destination roles gives a six-dimensional edge attribute.
+
+This construction adapts sparse LayerDAG-style aggregation \cite{li2025layerdag} to quantum-circuit dependencies. Six residual blocks pass messages in both dependency directions. A message concatenates the sender state with the six role features. A linear head emits one logit per operation.
+
+\subsection{Exact qubit-label invariance}
+
+Let $\pi:Q\rightarrow Q$ be any permutation of logical-qubit labels. Relabeling every operand by $\pi$ preserves whether two operations share a wire and preserves the operand role at each endpoint. Node features, edge incidence, and edge-role attributes are therefore unchanged. The message-passing computation and every per-operation logit are identical:
 \begin{equation}
- y_v=\mathbf{1}\!\left[f(v)+b(v)-1=D\right].
+ f_{\mathrm{DAG}}(\pi(C)) = f_{\mathrm{DAG}}(C).
 \end{equation}
-Thus, $y_v=1$ when gate $v$ belongs to at least one maximum dependency path. The label is a scheduling property of the complete circuit, not a local gate attribute.
+This is architectural invariance, requiring neither data augmentation nor a learned approximation. It follows the geometric-learning principle of matching model symmetry to task symmetry \cite{battaglia2018relational,bronstein2021geometric}.
 
-Consider two chains that merge at a CX: $H(q_0)\rightarrow CX(q_0,q_1)$ and $R_Z(q_2)\rightarrow R_Y(q_2)$, followed by $CX(q_1,q_2)$. Operations on the two chains can be interleaved in several legal sequences. Their indices and grid occupancy vary, while their typed predecessor relations and critical-path calculation remain unchanged. Larger circuits add more such independent and merging chains.
+\subsection{Matched controls}
 
-\subsection{Matched encoders}
+The \textbf{canonical-grid GRU} receives the same seven-dimensional node features. It computes deterministic earliest dependency layers, orders gates by operands and type, and applies a two-layer bidirectional GRU. It does not ingest an absolute index feature, but qubit relabeling can change its canonical order, so invariance is not guaranteed.
 
-Every operation receives the same features in both models: one-hot gate type, membership of each wire, CX control and target roles, sine and cosine of the rotation angle, and arity. The maximum feature width supports the full 12-qubit evaluation range.
+The \textbf{canonical Transformer} uses the same canonical order and node features, width 64, two encoder layers, four heads, feed-forward width 160, learned positions, and no dropout. It is a fixed post-confirmatory robustness control rather than part of the predeclared DAG-versus-grid gate.
 
-The \textbf{DAG model} adapts LayerDAG-style sparse graph aggregation \cite{li2025layerdag} to circuit dependencies. It projects features to width 64 and applies six residual bidirectional message-passing blocks. Forward messages come from predecessors, backward messages come from successors, and the wire identity is concatenated to every message. A linear head predicts one logit per gate.
+Parameter counts are 80,833 for DAG, 84,961 for grid, and 88,065 for Transformer.
 
-The \textbf{grid model} computes deterministic earliest dependency layers, then orders gates within each layer by operands, type, and parameters. A two-layer bidirectional GRU of width 96 processes this canonical sequence and predicts the same node labels. Canonicalization makes this a strong control: it removes arbitrary serialization noise rather than giving the DAG an artificially weak sequence baseline.
+\section{Controlled prediction task}
 
-The DAG has 87,745 trainable parameters and the grid 88,417, a 0.77\% difference. Both receive 6,000 updates, the same batches, AdamW optimizer, node features, labels, and validation-only checkpoint selection.
+For node $v$, let $a(v)$ be the longest predecessor path ending at $v$, $b(v)$ the longest successor path beginning at $v$, and $D=\max_v a(v)$. The exact label is
+\begin{equation}
+ y_v=\mathbf{1}[a(v)+b(v)-1=D].
+\end{equation}
+The label depends on global wire structure rather than gate type alone. It is invariant to legal operation reordering and logical-qubit relabeling.
 
-\section{Experimental firewall}
+The task is a representation probe. A production compiler should calculate critical paths directly. Here the exact algorithm supplies noise-free supervision for testing OOD inductive bias.
 
-Deterministic circuits contain H, RY, RZ, and directed CX operations. Training and validation use 4--8 qubits and 24--56 gates. The in-distribution test uses the same range with a fresh seed. The size-shifted test uses 9--12 qubits and 64--96 gates. Training, validation, same-size test, reordered test, and larger test have distinct stored SHA-256 hashes.
+\section{Experimental design}
 
-Development considered raw bidirectional sequence, token Transformer, canonical-grid GRU, fixed-depth DAG, and full-depth recurrent-DAG encoders. The final comparison froze the selected six-layer DAG and canonical grid, all data ranges, 6,000 updates, metrics, and success rule before final data generation. Three paired seeds (51, 52, and 53) train on identical examples.
+\subsection{Data and shifts}
 
-The predeclared size-transfer claim required (i) positive DAG-minus-grid larger-circuit AUROC for every seed, (ii) mean improvement of at least 0.015 AUROC, and (iii) positive mean F1 improvement. Same-size superiority was not required. We report node-level AUROC and F1, with mean and sample standard deviation across seeds.
+Circuits are balanced across QAOA-like \cite{farhi2014qaoa}, hardware-efficient VQE \cite{peruzzo2014vqe}, and reversible linear-arithmetic generators. Training contains 1,000 circuits with 4--7 qubits and 32--64 gates; validation contains 256 fresh circuits. Four final splits contain 512 circuits each:
+\begin{itemize}
+    \item \textbf{same size}: 4--7 qubits and 32--64 gates;
+    \item \textbf{near width}: 8--12 qubits and 72--104 gates;
+    \item \textbf{far width}: 13--20 qubits and 96--144 gates;
+    \item \textbf{relabeled}: the same-size circuits after independent random permutations of logical-qubit labels.
+\end{itemize}
+All content hashes are stored with the results.
 
-The structured replication uses a separate development/final firewall. Training contains 1,000 balanced QAOA-like \cite{farhi2014qaoa}, hardware-efficient VQE \cite{peruzzo2014vqe}, and reversible linear-arithmetic circuits with 4--7 qubits and 32--64 gates. Five fresh paired seeds (81--85) receive 4,000 updates. Each 512-circuit final split isolates same size, width shift (8--12 qubits), depth shift (72--104 gates), simultaneous width and depth shift, or an unseen chemistry-inspired family. The final gate requires DAG to win simultaneous-shift AUROC in all five seeds with mean gain at least 0.015, improve simultaneous-shift F1, and improve width-shift AUROC.
+\subsection{Training and firewall}
 
-\section{Results across two circuit distributions}
+DAG and grid train with paired seeds 111--115, identical circuits and minibatch indices, AdamW at $3\times10^{-4}$, batch size 16, gradient clipping at 1.0, and 4,000 updates. Checkpoints use validation AUROC only. No final split affects training or checkpoint selection.
+
+A separate development seed fixed the architecture and ranges before fresh final data. The final claim required DAG to beat grid in far-width AUROC for all five seeds, mean gain at least 0.03, positive mean F1 gain, maximum relabeling logit difference at most $10^{-6}$, and identical same-versus-relabeled DAG metrics. The Transformer architecture and budget were fixed after the primary result opened; it is reported descriptively and was not tuned after inspection.
+
+We report node-level AUROC, F1, and accuracy. Means and sample standard deviations are over training seeds.
+
+\section{Results}
 
 \begin{figure}[t]
 \centering
-\includegraphics[width=\columnwidth]{figures/results.pdf}
-\caption{The central result. In-distribution evaluation selects the grid; larger-circuit evaluation selects the DAG. Error bars are sample standard deviations over three paired seeds.}
+\includegraphics[width=\columnwidth]{figures/qai_invariant.pdf}
+\caption{Qubit-label-invariant final results. The DAG transfers from 4--7 training qubits to 13--20 test qubits and is unchanged by logical-qubit relabeling. Error bars show sample standard deviation across five paired seeds.}
 \label{fig:main}
 \end{figure}
 
 \begin{table}[t]
 \centering
-\caption{Frozen final results (mean $\pm$ sample standard deviation).}
+\caption{Five-seed AUROC (mean $\pm$ sample standard deviation). Transformer is a post-confirmatory control.}
 \label{tab:main}
 \resizebox{\columnwidth}{!}{%
 \begin{tabular}{lccc}
 \toprule
-Encoding & Same AUROC & Larger AUROC & Larger F1\\
+Split & Role DAG & Grid GRU & Transformer\\
 \midrule
-Wire DAG & $0.8556\pm.0042$ & $\mathbf{0.8078\pm.0015}$ & $\mathbf{0.6341\pm.0033}$\\
-Layer grid & $\mathbf{0.9406\pm.0008}$ & $0.7861\pm.0035$ & $0.6055\pm.0037$\\
+Same size & $\mathbf{.9722\pm.0009}$ & $.9391\pm.0028$ & $.8888\pm.0010$\\
++8--12 qubits & $\mathbf{.9362\pm.0008}$ & $.8853\pm.0027$ & $.7467\pm.0070$\\
++13--20 qubits & $\mathbf{.9252\pm.0020}$ & $.8807\pm.0045$ & $.7471\pm.0128$\\
+Relabeled & $\mathbf{.9722\pm.0009}$ & $.8294\pm.0053$ & $.7806\pm.0064$\\
 \bottomrule
 \end{tabular}}
 \end{table}
 
-Table~\ref{tab:main} shows the reversal. The grid is substantially better on the same size distribution. This is evidence that its canonical coordinates are useful, not that it is a weak baseline. Under size shift, however, paired DAG-minus-grid AUROC differences are $+0.0202$, $+0.0177$, and $+0.0274$. Their mean is $+0.0217$, exceeding the frozen $+0.015$ gate. Larger-circuit F1 improves by $+0.0286$ on average. Every seed favors the DAG on both shifted metrics.
+\subsection{Far-width transfer}
 
-Descriptive seed-level 95\% $t$ intervals are [0.0093, 0.0342] for the AUROC difference and [0.0219, 0.0353] for the F1 difference. With three seeds, these intervals describe consistency rather than supplying strong asymptotic inference. The all-seed result and frozen effect-size criterion are the primary evidence.
+The predeclared gate passes. DAG-minus-grid far-width AUROC differences are +0.0419, +0.0419, +0.0417, +0.0482, and +0.0484; mean +0.0444. The descriptive seed-level 95\% $t$ interval is [+0.0400, +0.0488]. DAG far-width F1 is 0.8458 versus 0.8011 for grid, a +0.0446 gain. The DAG retains 95.2\% of its same-size AUROC at far width, while grid retains 93.8\%.
 
+The canonical Transformer is weaker on every split and reaches 0.7471 far-width AUROC. Because this control was specified after opening the primary result, it strengthens baseline coverage but is not confirmatory evidence.
 
-\subsection{Structured-family replication}
+\subsection{Logical-qubit relabeling}
 
-\begin{figure}[t]
-\centering
-\includegraphics[width=\columnwidth]{figures/structured_transfer.pdf}
-\caption{Fresh five-seed structured-circuit results. DAG's advantage is concentrated in splits that add qubit wires. Error bars show sample standard deviation across paired seeds.}
-\label{fig:structured}
-\end{figure}
+DAG's maximum logit difference across 320 final circuit/relabel pairs is exactly 0.0, and AUROC, F1, and accuracy are identical before and after relabeling. Grid AUROC falls from 0.9391 to 0.8294, a 0.1097 drop. Transformer falls from 0.8888 to 0.7806.
 
-\begin{table}[t]
-\centering
-\caption{Structured final AUROC (five-seed mean $\pm$ sample standard deviation).}
-\label{tab:structured}
-\resizebox{\columnwidth}{!}{%
-\begin{tabular}{lccc}
-\toprule
-Split & Wire DAG & Layer grid & Difference\\
-\midrule
-Same size & $0.9677\pm.0011$ & $0.9623\pm.0012$ & $+0.0054$\\
-Width shift & $\mathbf{0.8922\pm.0064}$ & $0.8408\pm.0124$ & $\mathbf{+0.0514}$\\
-Depth shift & $\mathbf{0.9589\pm.0015}$ & $0.9564\pm.0007$ & $+0.0025$\\
-Width + depth & $\mathbf{0.8902\pm.0048}$ & $0.8495\pm.0131$ & $\mathbf{+0.0407}$\\
-Held-out chemistry & $0.5571\pm.0127$ & $\mathbf{0.5837\pm.0058}$ & $-0.0266$\\
-\bottomrule
-\end{tabular}}
-\end{table}
+The controls receive no absolute qubit-index feature, yet their canonical token order depends on labels. Removing explicit indices is therefore insufficient; the computation itself must respect the symmetry.
 
-The structured confirmatory gate passes. Simultaneous-shift paired AUROC differences are +0.0321, +0.0243, +0.0533, +0.0414, and +0.0525. DAG also improves simultaneous-shift F1 from 0.7928 to 0.8351. The width-only gain is +0.0514 AUROC, whereas the depth-only gain is +0.0025. Thus, adding qubit wires is the dominant tested source of representation advantage. The unseen-family result reverses: grid leads chemistry AUROC by 0.0266 and both AUROCs are below 0.59. Size transfer within known families does not imply family transfer.
+\section{Relation to earlier size-transfer evidence}
 
-\subsection{What explains the result?}
+Before the invariant redesign, a fixed-width encoder with absolute wire slots was tested on random and structured circuits up to 12 qubits. DAG beat grid on every larger-circuit seed across a three-seed random study and a five-seed structured replication. Separating axes gave +0.0514 AUROC for width shift and +0.0025 for depth-only shift. These frozen studies motivated removing absolute labels and extending evaluation to 20 qubits. They are supporting evidence rather than pooled with the invariant final because the architectures differ.
 
-The grid can learn that certain canonical positions are commonly critical within the training size range. Wider circuits change wire-membership patterns, the number of simultaneously active chains, and merge locations. The five-seed decomposition shows that this width change matters much more than merely extending circuit depth. The bidirectional GRU can process the larger canonical sequence, but it must extrapolate positional patterns across new wire configurations.
+A held-out chemistry-inspired family in the earlier structured study favored grid AUROC and left both models weak. Three rewrite-ranking follow-ups also failed to establish production optimization superiority. These negative results bound the claim: qubit-label symmetry and within-family width transfer do not imply unseen-family or compiler-policy generalization.
 
-The DAG performs the same six local dependency updates regardless of total serialization length. A predecessor message still means ``the previous operation on this wire'' on a 12-qubit circuit. This does not make the model an exact longest-path solver; six layers cannot propagate across an arbitrarily long graph. It does make its learned features depend on relations whose semantics remain stable when the circuit grows.
+\section{Related work}
 
-A legal topological-reordering test supports this mechanism: DAG logits agree within $10^{-6}$ across reorderings. The canonical grid is also stable because it explicitly re-canonicalizes. A raw sequence control is not stable and reached only 0.7303 AUROC on larger development circuits, compared with 0.7687 for the canonical grid and 0.7933 for the selected DAG at that development stage. A token Transformer and recurrent DAG were weaker development controls. These development comparisons motivated the final architectures; only Table~\ref{tab:main} is confirmatory.
+Graph neural networks encode relational inductive bias through message passing \cite{gilmer2017mpnn,kipf2017gcn,battaglia2018relational}. Geometric deep learning emphasizes architectures that respect known group actions \cite{bronstein2021geometric}. LayerDAG develops layerwise autoregressive generation for generic DAGs \cite{li2025layerdag}; our model instead predicts circuit-node labels using typed wire-dependency edges.
 
-\section{What the result does and does not mean}
-
-The confirmed statement is:
-
-\begin{quote}
-Across random circuits and structured QAOA-like, VQE, and arithmetic families, explicit wire-dependency message passing transfers better than a parameter- and update-matched canonical layer grid when test circuits contain more qubit wires. This result holds for all eight paired seeds across the two frozen studies.
-\end{quote}
-
-This establishes neither universal DAG superiority nor a new quantum compiler. Critical paths are exactly computable in linear time, so using a neural network for this label alone would be unnecessary. The value of the task is experimental control: it reveals whether an encoder learns dependency structure that survives a size change.
-
-We attempted three downstream checks. Fidelity-safe single-gate deletion was saturated by a smallest-angle heuristic. Controlled identity-rewrite prioritization favored DAG in all three seeds (51.94\% versus 48.15\% oracle depth recovered) but missed its predeclared five-point effect-size gate. A structured routed-rewrite development task used verified safe templates from QAOA-like, VQE, arithmetic, and chemistry-inspired circuits; its candidate-aware grid remained stronger (6.664 versus 6.305 mean routed-CX reduction), so no final routed test was opened. These failures prevent a practical optimizer claim. They do not alter the frozen representation result, which asks a different question.
-
-The next practical test should predict a cost that is expensive to compute directly from the source DAG, such as post-routing performance over many transformations, calibrated noise-aware utility, or synthesis interactions. It should use public circuit families, several hardware graphs, and enough repeated workloads to amortize training cost.
+Quantum-machine-learning software supports hybrid circuit models \cite{broughton2021tfq}, while quantum compilation must manage depth, two-qubit gates, and routing \cite{preskill2018nisq,li2019tackling,cowtan2019qubit}. Our work addresses an earlier representation question: whether the circuit encoder preserves physically irrelevant qubit-label symmetry and extrapolates beyond training width.
 
 \section{Limitations and reproducibility}
 
-Circuits are deterministic and synthetic, although the replication uses QAOA-like, VQE, arithmetic, and chemistry-inspired structures. They contain at most 12 qubits. The task probes one topological property. Parameter counts and updates are matched, but neither model receives an exhaustive independent hyperparameter search. The native PyTorch DAG is source-informed by LayerDAG-style message passing; DGL runtime parity is not claimed. The failed chemistry transfer shows that structural family shift remains unsolved.
+The benchmark is deterministic and synthetic, uses four gate types, and tests one exactly computable topological label. QAOA-like, VQE, and arithmetic generators provide structured diversity but are not a public application corpus. The invariant final does not test unseen families, hardware noise, device connectivity, or an expensive compiler objective. The Transformer receives one fixed matched configuration rather than a broad independent tuning sweep.
 
-Reproducibility artifacts include the pre-final protocol, deterministic generators, split hashes, training histories, parameter counts, every development and final metric, failed downstream studies, and a compute ledger. Twenty-nine tests cover gate semantics, canonical scheduling, graph aggregation, topological equivariance, fidelity labels, and exact rewrite templates. The complete internally timed CPU training lower bound exceeds 190 minutes; no GPU or paid resource was used.
+Every protocol predates its corresponding final result. The artifact stores generators, dataset hashes, five-seed histories, negative studies, tests, and compute accounting. The implementation is native PyTorch and does not claim runtime parity with upstream DGL LayerDAG. No GPU or paid resource is used.
 
 \section{Conclusion}
 
-Across random and structured circuits, eight paired seeds support the same central conclusion: explicit wire dependencies improve critical-gate prediction when known circuit distributions grow in size. The structured decomposition identifies circuit width as the main driver. In-distribution ranking is distribution dependent, and unseen-family chemistry transfer remains poor. Explicit dependency structure is therefore a justified inductive bias for within-family size extrapolation, not a universal circuit representation or a demonstrated production optimizer.
+Absolute qubit labels are a nuisance variable for structural circuit prediction. Encoding only operand roles on wire-dependency edges gives exact label invariance and supports widths beyond the training representation. Across five paired seeds, the resulting DAG outperforms matched recurrent and attention controls after extrapolating from 4--7 to 13--20 qubits. The result establishes a symmetry-aware inductive bias for within-family quantum-circuit OOD learning. Family shift and practical compiler utility remain separate open problems.
 
+\balance
 \bibliographystyle{unsrt}
 \bibliography{references}
 \end{document}
