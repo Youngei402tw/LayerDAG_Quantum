@@ -63,5 +63,10 @@
     "pointer_transformer": 602.34,
     "role_ablated_dag": 1481.81
   },
-  "connectivity_controls_status": "2026-11-13 post-confirmatory; pointer GRU reading information_explains_gap (DAG wins 2/5, mean far-width AUROC diff -0.0023); not added to measured_compute_job_wall_seconds, which remains the handoff lower bound"
+  "connectivity_controls_status": "2026-11-13 post-confirmatory; pointer GRU reading information_explains_gap (DAG wins 2/5, mean far-width AUROC diff -0.0023); not added to measured_compute_job_wall_seconds, which remains the handoff lower bound",
+  "augmentation_control_training_seconds": {
+    "aug_pointer_grid": 1531.41,
+    "aug_grid": 1430.67
+  },
+  "augmentation_control_status": "2026-11-13 post-confirmatory; augmented pointer GRU reading intermediate (relabel gaps 0.0035/-0.0024 AUROC, DAG far lead +0.0103, 5/5); not added to measured_compute_job_wall_seconds"
 }

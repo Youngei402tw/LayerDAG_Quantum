@@ -1,0 +1,10 @@
+aug_pointer_grid 111 {'same': 0.9764, 'near_width': 0.9299, 'far_width': 0.9164, 'renamed': 0.9719, 'far_renamed': 0.9198} 302s
+aug_pointer_grid 112 {'same': 0.9765, 'near_width': 0.9308, 'far_width': 0.9188, 'renamed': 0.9741, 'far_renamed': 0.9211} 268s
+aug_pointer_grid 113 {'same': 0.974, 'near_width': 0.9277, 'far_width': 0.9128, 'renamed': 0.9711, 'far_renamed': 0.9146} 311s
+aug_pointer_grid 114 {'same': 0.9737, 'near_width': 0.93, 'far_width': 0.9121, 'renamed': 0.9701, 'far_renamed': 0.9153} 321s
+aug_pointer_grid 115 {'same': 0.9778, 'near_width': 0.9294, 'far_width': 0.9144, 'renamed': 0.9735, 'far_renamed': 0.9157} 330s
+aug_grid 111 {'same': 0.8905, 'near_width': 0.8656, 'far_width': 0.8667, 'renamed': 0.8927, 'far_renamed': 0.868} 289s
+aug_grid 112 {'same': 0.8884, 'near_width': 0.8603, 'far_width': 0.865, 'renamed': 0.8927, 'far_renamed': 0.8645} 244s
+aug_grid 113 {'same': 0.8864, 'near_width': 0.8663, 'far_width': 0.8692, 'renamed': 0.8913, 'far_renamed': 0.8708} 289s
+aug_grid 114 {'same': 0.8866, 'near_width': 0.8655, 'far_width': 0.8685, 'renamed': 0.8904, 'far_renamed': 0.8703} 297s
+aug_grid 115 {'same': 0.8897, 'near_width': 0.8587, 'far_width': 0.8591, 'renamed': 0.8917, 'far_renamed': 0.8629} 312s
