@@ -6,6 +6,7 @@ Outputs vector PDFs (and PNG previews) into paper/figures/.
 Inputs (read-only):
     experiments/qai_invariant_final_20261102/final_result.json        (primary, frozen)
     experiments/qai_transformer_control_20261106/control_result.json  (post-confirmatory control)
+    experiments/qai_connectivity_controls_20261113/controls_result.json (post-confirmatory connectivity controls)
 Figure 1 is computed with the repository's own graph/serialization code on a toy circuit.
 """
 import json
@@ -28,7 +29,7 @@ OUT = ROOT / "paper" / "figures"
 OUT.mkdir(parents=True, exist_ok=True)
 
 # Okabe-Ito colour-blind-safe hues; Transformer is deliberately de-emphasised (grey + hatch)
-C_DAG, C_GRID, C_TF, INK, MUTED = "#0072B2", "#D55E00", "#7F7F7F", "#222222", "#666666"
+C_DAG, C_GRID, C_TF, C_PTR, INK, MUTED = "#0072B2", "#D55E00", "#7F7F7F", "#009E73", "#222222", "#666666"
 plt.rcParams.update({
     "font.family": "serif", "font.serif": ["Times New Roman", "Nimbus Roman", "Liberation Serif", "DejaVu Serif"],
     "font.size": 7.5, "axes.titlesize": 8, "axes.labelsize": 7.5, "xtick.labelsize": 7, "ytick.labelsize": 7,
@@ -146,40 +147,46 @@ def figure_representation():
 def figure_results():
     P = json.loads((ROOT / "experiments/qai_invariant_final_20261102/final_result.json").read_text())
     T = json.loads((ROOT / "experiments/qai_transformer_control_20261106/control_result.json").read_text())
+    K = json.loads((ROOT / "experiments/qai_connectivity_controls_20261113/controls_result.json").read_text())
     splits = ["same", "near_width", "far_width", "renamed"]
     xlabels = ["same size\n4–7 q", "near width\n8–12 q", "far width\n13–20 q", "relabeled\n4–7 q"]
     fig, (ax, bx) = plt.subplots(1, 2, figsize=(3.5, 1.75), gridspec_kw={"width_ratios": [2.25, 1], "wspace": 0.55})
-    x = np.arange(len(splits)); w = 0.24
+    x = np.arange(len(splits)); w = 0.19
     series = [("Role DAG", C_DAG, [P["aggregate"]["dag"][s] for s in splits], None),
               ("Grid GRU", C_GRID, [P["aggregate"]["grid"][s] for s in splits], None),
-              ("Transformer (post-confirmatory)", C_TF, [T["aggregate"][s] for s in splits], "////")]
-    markers = ["o", "s", "^"]
+              ("Pointer GRU*", C_PTR, [K["aggregate"]["pointer_grid"][s] for s in splits], "////"),
+              ("Transformer*", C_TF, [T["aggregate"][s] for s in splits], "////")]
+    markers = ["o", "s", "D", "^"]
     for k, (name, color, rows, hatch) in enumerate(series):
         means = np.array([r["auc_mean"] for r in rows])
-        xs = x + (k - 1) * w
+        xs = x + (k - 1.5) * w
         for i, r in enumerate(rows):  # individual seeds
             ax.scatter(np.full(len(r["auc_values"]), xs[i]), r["auc_values"], s=3, color=color, alpha=0.55,
                        zorder=2, linewidths=0)
         ax.plot(xs, means, ls="none", marker=markers[k], ms=4.2, mfc=color if hatch is None else "white",
                 mec=color, mew=1.0, label=name, zorder=3)
     ax.set_xticks(x); ax.set_xticklabels(xlabels, fontsize=6.2)
-    ax.set_ylim(0.72, 0.99); ax.set_ylabel("node AUROC")
+    ax.set_ylim(0.72, 1.0); ax.set_ylabel("node AUROC")
     ax.yaxis.grid(True, lw=0.4, color="#dddddd"); ax.set_axisbelow(True)
-    fig.legend(loc="upper center", bbox_to_anchor=(0.5, 1.07), ncol=3, frameon=False, handlelength=1.2,
+    fig.legend(loc="upper center", bbox_to_anchor=(0.5, 1.07), ncol=4, frameon=False, handlelength=1.2,
                columnspacing=0.7, fontsize=5.9)
     ax.set_title("(a) mean AUROC; small dots are seeds", fontsize=6.8, loc="left", pad=3)
     # (b) paired far-width differences per seed
     d = np.array(P["far_width_auc_paired_differences"]); seeds = P["seeds"]
+    dp = np.array(K["comparisons"]["pointer_grid"]["recorded_dag_minus_model_far_auc"])
     bx.axhline(0, color=INK, lw=0.6)
     bx.axhline(0.03, color=MUTED, lw=0.6, ls="--")
     bx.text(0.35, 0.0312, "frozen +0.03\nmean threshold", fontsize=5.5, color=MUTED, va="bottom")
-    bx.scatter(np.arange(5), d, s=12, color=C_DAG, zorder=3)
+    bx.scatter(np.arange(5), d, s=12, color=C_DAG, zorder=3, label="vs grid")
     bx.axhline(d.mean(), color=C_DAG, lw=0.8)
+    bx.scatter(np.arange(5), dp, s=12, marker="D", facecolor="white", edgecolor=C_PTR, lw=0.9, zorder=3, label="vs pointer GRU*")
+    bx.axhline(dp.mean(), color=C_PTR, lw=0.8, ls=":")
+    bx.legend(loc="center right", fontsize=5.2, frameon=False, handletextpad=0.2, borderaxespad=0.1)
     bx.set_xticks(np.arange(5)); bx.set_xticklabels([str(s) for s in seeds], fontsize=5.8, rotation=45)
     bx.set_xlabel("paired seed", fontsize=6.5, labelpad=1)
-    bx.set_ylim(-0.005, 0.055); bx.set_ylabel("DAG − grid AUROC\n(far width)", fontsize=6.5)
+    bx.set_ylim(-0.012, 0.055); bx.set_ylabel("DAG − model AUROC\n(far width)", fontsize=6.5)
     bx.yaxis.grid(True, lw=0.4, color="#dddddd"); bx.set_axisbelow(True)
-    bx.set_title(f"(b) mean +{d.mean():.4f}", fontsize=6.8, loc="left", pad=3)
+    bx.set_title("(b) paired, per seed", fontsize=6.8, loc="left", pad=3)
     save(fig, "fig_results")
 
 

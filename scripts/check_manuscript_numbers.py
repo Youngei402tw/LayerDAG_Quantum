@@ -14,6 +14,7 @@ T = json.loads((ROOT / "experiments/qai_transformer_control_20261106/control_res
 S = json.loads((ROOT / "experiments/schedule_dag_final_20261028/final_result.json").read_text())
 R = json.loads((ROOT / "experiments/structured_transfer_final_20261102/final_result.json").read_text())
 C = json.loads((ROOT / "experiments/critical_rewrite_utility_final_20261029/final_result.json").read_text())
+K = json.loads((ROOT / "experiments/qai_connectivity_controls_20261113/controls_result.json").read_text())
 W = json.loads((ROOT / "experiments/routed_rewrite_development_revision2_20261101/development_result.json").read_text())
 
 vals = set()
@@ -52,14 +53,22 @@ for x in S["larger_auc_paired_differences"]: add(x)
 add(float(C["recovery_mean_difference"]))
 add(W["methods"]["dag"]["evaluation"]["mean_cx_reduction"], (2, 4))
 add(W["methods"]["canonical_grid"]["evaluation"]["mean_cx_reduction"], (2, 4))
+for m, agg in K["aggregate"].items():
+    for sp, r in agg.items():
+        for k in ("auc_mean", "auc_sample_std", "f1_mean"):
+            add(r[k])
+    add(agg["same"]["auc_mean"] - agg["renamed"]["auc_mean"])
+for m, c in K["comparisons"].items():
+    add(c["sample_std"]); add(c["mean"]); add(c["mean"] - c["t95_half_width"]); add(c["mean"] + c["t95_half_width"])
+    add(statistics.mean(c["model_minus_recorded_grid_far_auc"]))
 # protocol thresholds / constants that legitimately appear
-vals |= {"0.03", ".03", "0.05", ".05", "0.99", "0.0", "1.0", "0.5"}
+vals |= {"0.03", ".03", "0.05", ".05", "0.99", "0.0", "1.0", "0.5", "0.02", "0.01"}
 
 found = re.findall(r"(?<![\w.])[+-]?(?:0)?\.\d{2,4}(?!\d)", tex)
 unknown = sorted({f.lstrip("+-") for f in found} - vals)
 print("manuscript decimals checked:", len(set(found)))
 print("NOT derivable from results (review by hand):", unknown if unknown else "none")
-required = ["0.9252", "0.8807", "0.7471", "0.0444", "0.1097", "+0.0400", "+0.0488", "80,833", "84,961", "88,065", "0.0514", "0.0025"]
+required = ["0.9252", "0.8807", "0.7471", "0.0444", "0.1097", "+0.0400", "+0.0488", "80,833", "84,961", "88,065", "0.0514", "0.0025", "0.9274", "-0.0023", "-0.0083", "+0.0038", "0.0615", "0.0053", "87,457", "89,729"]
 missing = [r for r in required if r not in tex]
 print("required headline values missing:", missing if missing else "none")
 sys.exit(1 if (missing or unknown) else 0)

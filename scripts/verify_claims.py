@@ -27,6 +27,7 @@ EXPECTED_HASHES = {
     "experiments/qai_transformer_control_20261106/control_result.json": "6989761a20ef5b3b0c7ea1f50b5f0cee8aced285fec62ac3d7b85fa3747f9cb0",
     "experiments/schedule_dag_final_20261028/final_result.json": "9144132e2bcdb0aa0628cb62f75dc017d28d52498366aca178b2e5569625b435",
     "experiments/structured_transfer_final_20261102/final_result.json": "5235c71446f61e66251aea5e3482d39921f7cf42b4b93f40eb611081bb255692",
+    "experiments/qai_connectivity_controls_20261113/controls_result.json": "52f063262faf8e938df42ca44d1c5fadf4db2d1f6c866533819212764c4fc7d3",
 }
 for p, h in EXPECTED_HASHES.items():
     ok = sha(p) == h
@@ -91,6 +92,48 @@ tp = {sr["training"]["parameters"] for sr in T["seed_results"]}
 print("      transformer parameters:", tp)
 if tp != {88065}:
     FAIL.append("transformer params")
+
+# ---------------- connectivity controls (post-confirmatory, 2026-11-13) ----------------
+K = load("experiments/qai_connectivity_controls_20261113/controls_result.json")
+assert K["seeds"] == P["seeds"] and K["dataset_hashes"] == P["dataset_hashes"]
+KA = K["aggregate"]
+expected_controls = {
+    "pointer_grid": {"same": (0.9895, 0.0010), "near_width": (0.9447, 0.0026), "far_width": (0.9274, 0.0050), "renamed": (0.9279, 0.0044)},
+    "pointer_transformer": {"same": (0.9481, 0.0019), "near_width": (0.7533, 0.0168), "far_width": (0.6900, 0.0192), "renamed": (0.8838, 0.0035)},
+    "role_ablated_dag": {"same": (0.9670, 0.0013), "near_width": (0.9282, 0.0019), "far_width": (0.9199, 0.0025), "renamed": (0.9670, 0.0013)},
+}
+rec = {sr["seed"]: sr["models"] for sr in P["seed_results"]}
+for m, splits in expected_controls.items():
+    for s, (auc, sd) in splits.items():
+        check(f"control {m} {s} AUROC", KA[m][s]["auc_mean"], auc, 5e-5)
+        check(f"control {m} {s} AUROC sd", KA[m][s]["auc_sample_std"], sd, 5e-5)
+    d = [rec[r["seed"]]["dag"]["far_width"]["auc"] - r["far_width"]["auc"] for r in K["seed_results"][m]]
+    for got, stored in zip(d, K["comparisons"][m]["recorded_dag_minus_model_far_auc"]):
+        check(f"control {m} recomputed paired diff", got, stored, 1e-12)
+dp = K["comparisons"]["pointer_grid"]["recorded_dag_minus_model_far_auc"]
+mp, sp = statistics.mean(dp), statistics.stdev(dp); hp = t975_df4 * sp / math.sqrt(5)
+check("pointer GRU paired mean", mp, -0.0023, 5e-5); check("pointer GRU paired sd", sp, 0.0049, 5e-5)
+check("pointer GRU interval low", mp - hp, -0.0083, 5e-5); check("pointer GRU interval high", mp + hp, 0.0038, 5e-5)
+check("pointer GRU DAG wins", sum(x > 0 for x in dp), 2, 0)
+check("pointer GRU minus grid far", statistics.mean(K["comparisons"]["pointer_grid"]["model_minus_recorded_grid_far_auc"]), 0.0467, 5e-5)
+check("pointer GRU relabel drop", KA["pointer_grid"]["same"]["auc_mean"] - KA["pointer_grid"]["renamed"]["auc_mean"], 0.0615, 5e-5)
+check("pointer GRU far F1", KA["pointer_grid"]["far_width"]["f1_mean"], 0.8081, 5e-5)
+f1d = [rec[r["seed"]]["dag"]["far_width"]["f1"] - r["far_width"]["f1"] for r in K["seed_results"]["pointer_grid"]]
+check("DAG beats pointer GRU far F1 in all seeds", sum(x > 0 for x in f1d), 5, 0)
+check("pointer transformer paired mean", K["comparisons"]["pointer_transformer"]["mean"], 0.2352, 5e-5)
+da = K["comparisons"]["role_ablated_dag"]["recorded_dag_minus_model_far_auc"]
+ma, ha = statistics.mean(da), t975_df4 * statistics.stdev(da) / math.sqrt(5)
+check("role ablation mean", ma, 0.0053, 5e-5); check("role ablation low", ma - ha, 0.0019, 5e-5); check("role ablation high", ma + ha, 0.0086, 5e-5)
+check("role ablation DAG wins", sum(x > 0 for x in da), 5, 0)
+check("role-ablated DAG max relabel logit diff", max(r["max_relabel_logit_difference_first64"] for r in K["seed_results"]["role_ablated_dag"]), 0.0, 0.0)
+kp = {m: {r["training"]["parameters"] for r in v} for m, v in K["seed_results"].items()}
+print("      control parameters:", kp, "readings:", K["readings"])
+if kp != {"pointer_grid": {87457}, "pointer_transformer": {89729}, "role_ablated_dag": {80833}}:
+    FAIL.append("control params")
+if K["readings"] != {"pointer_grid_H1": "information_explains_gap", "pointer_transformer_descriptive": "topology_supported", "role_ablated_dag_descriptive": "roles_not_needed"}:
+    FAIL.append("control readings")
+E = load("experiments/qai_env_check_seed112_20261113/spot_reproduction.json")
+check("env check max AUROC deviation", max(v["abs_diff"] for m in E["models"].values() for v in m.values() if isinstance(v, dict)), 0.0, 0.0)
 
 # ---------------- earlier random-circuit study ----------------
 S = load("experiments/schedule_dag_final_20261028/final_result.json")

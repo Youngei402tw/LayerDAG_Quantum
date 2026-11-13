@@ -29,3 +29,11 @@ PYTHONPATH=. python scripts/make_figures.py
 cd paper && latexmk -pdf qai_paper.tex                  # 5 pages, A4, no overfull boxes
 python scripts/check_manuscript_numbers.py              # 85 decimals, all derivable
 ```
+
+## v3 (2026-11-13, branch `claude/compassionate-heisenberg-yl7gi8`)
+- Owner-approved connectivity-controls protocol frozen and pushed before any code (`experiments/QAI_CONNECTIVITY_CONTROLS_PROTOCOL_20261113.md`, replacing the 2026-11-06 draft).
+- New module `qdag/connectivity_controls.py` and `tests/test_connectivity_controls.py`; frozen modules untouched.
+- Results in `experiments/qai_connectivity_controls_20261113/`; environment check (seed 112 bitwise match) in `experiments/qai_env_check_seed112_20261113/`; registry and ledger entries.
+- Outcome: pointer GRU ties the DAG at far width (0.9274 vs 0.9252; DAG wins 2/5; mean −0.0023), so the pre-declared reading is *information explains the gap*. Pointer Transformer 0.6900. Role-ablated DAG 0.9199 (−0.0053; roles not needed by the 0.01 rule).
+- Manuscript reframed: new title, abstract, Q3, contribution (iii), Table I pointer column, new Table III and Section V-D, Fig. 2 adds the pointer GRU, limitations and conclusion rewritten, AI-use disclosure finalized without placeholder brackets. 6 pages (limit 6).
+- `scripts/verify_claims.py` and `scripts/check_manuscript_numbers.py` extend to the new results (127 decimals checked).

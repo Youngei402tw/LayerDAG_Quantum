@@ -1,4 +1,4 @@
-% IEEE QAI submission draft -- migration branch migration/qai-submission-20261106
+% IEEE QAI submission draft v3 -- adds the 2026-11-13 post-confirmatory connectivity controls
 % Template: IEEEtran.cls V1.8b (IEEE conference proceedings), A4, double-blind.
 % Every number in this file is checked by scripts/verify_claims.py and scripts/check_manuscript_numbers.py.
 \documentclass[conference,a4paper]{IEEEtran}
@@ -15,7 +15,7 @@
 
 \begin{document}
 
-\title{Qubit-Label-Invariant Dependency Graphs for\\ Within-Family Width Extrapolation in\\ Quantum-Circuit Learning}
+\title{Name-Free Wire Connectivity for\\ Quantum-Circuit Learning: Exact Relabeling\\ Invariance and Width Extrapolation}
 
 \author{\IEEEauthorblockN{Anonymous Authors}
 \IEEEauthorblockA{Affiliation withheld for double-blind review}}
@@ -23,7 +23,7 @@
 \maketitle
 
 \begin{abstract}
-Learned quantum-circuit models are usually trained on circuits that are smaller than the circuits they are meant to handle. Grid and sequence encodings expose a gate's layer, token index, or canonical position. These positions are tied to the training size and to the arbitrary names of logical qubits. We encode a circuit as a wire-dependency directed acyclic graph (DAG) whose nodes carry only gate type, angle, and arity. Each edge records the operand roles (single-qubit, control, or target) that the two operations play on their shared wire. No feature names a qubit, so the model's per-gate predictions are exactly invariant to any permutation of logical-qubit labels. We test this inductive bias on an exactly labeled probe task: predicting which gates lie on a maximum dependency path. Models were trained on 4--7-qubit QAOA-like, hardware-efficient VQE, and reversible-arithmetic circuits, and the evaluation criteria were frozen before the final runs. On 13--20-qubit circuits from the same families, the 80,833-parameter DAG reaches AUROC 0.9252 and the 84,961-parameter canonical-grid GRU reaches 0.8807. The DAG wins all five paired seeds (mean $+0.0444$) and its logits do not change at all under qubit relabeling. A canonical Transformer added after the primary result reaches 0.7471. An earlier study isolates width as the main source of the gain. A held-out chemistry-inspired family and three downstream compiler tasks did not favor the DAG. The evidence supports a narrow claim: the right symmetry improves within-family width extrapolation of dependency reasoning. It does not show unseen-family robustness, a compiler advantage, or general graph superiority.
+Learned quantum-circuit models are usually trained on circuits that are smaller than the circuits they are meant to handle. Grid and sequence encodings expose a gate's layer, token index, or canonical position, and these positions are tied to the training size and to the arbitrary names of logical qubits. We encode a circuit as a wire-dependency directed acyclic graph (DAG) whose nodes carry only gate type, angle, and arity and whose edges record the operand roles (single-qubit, control, or target) of the two operations on their shared wire. No feature names a qubit, so per-gate predictions are exactly invariant to any permutation of logical-qubit labels. We test the encoding on an exactly labeled probe: predicting which gates lie on a maximum dependency path. Models were trained on 4--7-qubit QAOA-like, VQE, and arithmetic circuits under criteria frozen before the final runs. On 13--20-qubit circuits from the same families, the 80,833-parameter DAG reaches AUROC 0.9252 against 0.8807 for an 84,961-parameter canonical-grid GRU that sees no connectivity, winning all five paired seeds (mean $+0.0444$), and its logits do not change at all under relabeling. Pre-registered post-confirmatory controls then locate the source of the gain. A GRU given name-free predecessor and successor pointers on each wire ties the DAG at 13--20 qubits (0.9274; paired difference $-0.0023$, interval $[-0.0083,+0.0038]$) but loses 0.0615 AUROC when qubits are renamed. Removing the DAG's operand roles costs only 0.0053. The width gain therefore comes from exposing wire connectivity without qubit names; what the graph adds is exact relabeling invariance by construction. A held-out chemistry-inspired family and three downstream compiler tasks did not favor the DAG.
 \end{abstract}
 
 \begin{IEEEkeywords}
@@ -38,14 +38,13 @@ Many encoders serialize a circuit as a grid or token sequence. Each gate then ha
 
 Other relations keep their meaning at every size and under every renaming. One example is ``this CX is the next operation, in its target role, after an RZ on the same wire.'' The wire-dependency DAG is built from exactly these relations. We encode them with \emph{operand roles} on the edges instead of absolute wire identifiers. Relabeling the qubits then leaves the input graph unchanged (Fig.~\ref{fig:rep}(c)), and the model is invariant by construction rather than by augmentation.
 
-We ask two questions. (Q1) Can a dependency-graph encoder enforce exact invariance to logical-qubit relabeling? (Q2) Does this encoder extrapolate better from small to much wider circuits within the same circuit families? We probe both with \emph{maximum dependency-path membership}: label each gate by whether it lies on a longest path of the dependency DAG. The labels are exactly computable, so the probe has no simulator or label noise. The task isolates whether a representation supports multi-hop dependency reasoning. We do not propose the network as a replacement for the linear-time exact algorithm.
+We ask three questions. (Q1) Can a dependency-graph encoder enforce exact invariance to logical-qubit relabeling? (Q2) Does it extrapolate better from small to much wider circuits within the same families? (Q3) If so, is the gain due to graph message passing, or to exposing which operations share a wire? We probe both with \emph{maximum dependency-path membership}: label each gate by whether it lies on a longest path of the dependency DAG. The labels are exactly computable, so the probe has no simulator or label noise. The task isolates whether a representation supports multi-hop dependency reasoning. We do not propose the network as a replacement for the linear-time exact algorithm.
 
 \textbf{Contributions.}
 (i) An index-free circuit representation whose per-gate predictions are provably invariant to logical-qubit permutations (Proposition~\ref{prop:inv}).
-(ii) A five-seed out-of-distribution benchmark with success criteria frozen before the final runs. Models train at 4--7 qubits and are tested on circuits with up to 20 qubits. The DAG beats a near-matched canonical-grid GRU on every seed.
-(iii) A descriptive canonical-Transformer control, added after the primary result was known and labeled as such.
-(iv) Supporting earlier evidence showing that width growth, not depth growth, accounts for most of the DAG's advantage.
-(v) Negative results that limit the claim to within-family structural extrapolation.
+(ii) A five-seed out-of-distribution benchmark with success criteria frozen before the final runs. Models train at 4--7 qubits and are tested at up to 20 qubits. The DAG beats a near-matched canonical-grid GRU without connectivity on every seed.
+(iii) Pre-registered connectivity controls, whose protocol was committed before any code or result existed. They show that a sequence model with name-free wire pointers matches the DAG's width extrapolation but not its relabeling invariance, and that operand roles contribute little. The width gain is about \emph{exposing connectivity without names}, not about graphs as such.
+(iv) Supporting earlier evidence that width growth, not depth growth, accounts for most of the advantage, and negative results that limit the claim to within-family structural extrapolation.
 
 \begin{figure*}[t]
 \centering
@@ -79,25 +78,27 @@ Node features do not depend on $\mathbf{w}_i$. Operation $i$ acts on $\pi(q)$ in
 Because the model is permutation-equivariant over nodes, its predictions also follow any legal reordering of commuting operations. The guarantee is exact in exact arithmetic. In floating point, summing edges in a different order could perturb the last bits, so the protocol tolerance was set at $10^{-6}$.
 
 \subsection{Sequence baselines and what each model receives}
-Both baselines receive the same seven index-free node features. Gates are sorted by the key (earliest dependency layer, wire tuple, gate, angle). The \emph{canonical-grid GRU}~\cite{cho2014gru} (two bidirectional layers, width 96, 84,961 parameters) reads this sequence. The \emph{canonical Transformer}~\cite{vaswani2017attention} (width 64, two layers, four heads, feed-forward width 160, learned positions for up to 192 tokens, no dropout, 88,065 parameters) reads the same sequence. Table~\ref{tab:access} states exactly what each model sees. The sequence models get no wire identifiers, but they also get no explicit connectivity. Shared-wire structure reaches them only through the canonical order, and wire names enter that order only as a tie-breaker. The primary comparison is therefore between an index-free encoding that \emph{exposes} dependency relations and index-free serializations that \emph{do not}. Section~\ref{sec:support} reports earlier experiments in which both model types saw absolute wire identities.
+Both baselines receive the same seven index-free node features. Gates are sorted by the key (earliest dependency layer, wire tuple, gate, angle). The \emph{canonical-grid GRU}~\cite{cho2014gru} (two bidirectional layers, width 96, 84,961 parameters) reads this sequence. The \emph{canonical Transformer}~\cite{vaswani2017attention} (width 64, two layers, four heads, feed-forward width 160, learned positions for up to 192 tokens, no dropout, 88,065 parameters) reads the same sequence. Table~\ref{tab:access} states exactly what each model sees. The sequence models get no wire identifiers, but they also get no explicit connectivity. Shared-wire structure reaches them only through the canonical order, and wire names enter that order only as a tie-breaker. The primary comparison is therefore between an index-free encoding that \emph{exposes} dependency relations and index-free serializations that \emph{do not}.
+
+\emph{Connectivity controls.} To separate connectivity from graph structure, a \emph{pointer GRU} (87,457 parameters) reads the same canonical sequence with 26 extra features per token. For each operand (control or single-qubit operand first, then target) it receives the operand's role and, for the previous and the next operation on the same wire, an existence flag, that operation's role, and the log canonical-position distance. Wire names are used only to find these neighbors and are never emitted. Roles and existence flags are invariant to relabeling, but the distances are measured in the canonical order, whose tie-breaks depend on names, so the model is not invariant. A \emph{pointer Transformer} (89,729 parameters) uses the same features with the Transformer configuration above. A \emph{role-ablated DAG} sets every edge attribute to zero, keeping topology only. Section~\ref{sec:support} reports earlier experiments in which both model types saw absolute wire identities.
 
 \begin{table}[t]
 \centering
 \caption{Inputs and properties of the compared encoders}
 \label{tab:access}
-\setlength{\tabcolsep}{3pt}
-\begin{tabular}{@{}lccc@{}}
+\setlength{\tabcolsep}{2pt}
+\begin{tabular}{@{}lcccc@{}}
 \toprule
- & Role DAG & Grid GRU & Transformer \\
+ & Role DAG & Grid GRU & Transf. & Ptr.\ GRU \\
 \midrule
-Gate type, $\sin\theta$, $\cos\theta$, arity & \cmark & \cmark & \cmark \\
-Absolute wire identifiers & \xmark & \xmark & \xmark \\
-Shared-wire connectivity & edges & implicit & implicit \\
-Operand roles & on edges & \xmark & \xmark \\
-Order depends on qubit names & \xmark & tie-breaks & tie-breaks \\
-Exactly relabeling-invariant & \cmark & \xmark & \xmark \\
-Parameters & 80,833 & 84,961 & 88,065 \\
-Evidence tier & primary & primary & post-confirm. \\
+Gate, $\sin\theta$, $\cos\theta$, arity & \cmark & \cmark & \cmark & \cmark \\
+Absolute wire identifiers & \xmark & \xmark & \xmark & \xmark \\
+Shared-wire connectivity & edges & implicit & implicit & pointers \\
+Operand roles & on edges & \xmark & \xmark & per token \\
+Order depends on names & \xmark & tie-breaks & tie-breaks & tie-breaks \\
+Exactly invariant & \cmark & \xmark & \xmark & \xmark \\
+Parameters & 80,833 & 84,961 & 88,065 & 87,457 \\
+Evidence tier & primary & primary & post & post \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -113,7 +114,7 @@ Let $a(v)$ be the number of operations on the longest dependency path ending at 
 
 \emph{Frozen gate.} A development run on separate data (one seed, 2,000 updates) fixed the architectures and size ranges. According to the project records, the final protocol then fixed the following success criteria before the final data were generated (see the provenance note in Section~VI). (1) The DAG's far-width AUROC exceeds the grid's in all five seeds. (2) The mean improvement is at least $+0.03$. (3) The DAG's mean far-width F1 exceeds the grid's. (4) The maximum change in DAG logits under relabeling is at most $10^{-6}$. (5) The DAG's same-size metrics are unchanged by relabeling.
 
-\emph{Evidence tiers.} \emph{Primary confirmatory:} the five-seed DAG-versus-grid final. \emph{Post-confirmatory control:} the Transformer. Its configuration was fixed after the primary result had been opened, it uses the same data and seeds, and it was not tuned afterwards. \emph{Supporting:} two earlier frozen studies with a different, wire-indexed architecture (Section~\ref{sec:support}). We never pool statistics across tiers.
+\emph{Evidence tiers.} \emph{Primary confirmatory:} the five-seed DAG-versus-grid final. \emph{Post-confirmatory controls:} the Transformer, whose configuration was fixed after the primary result had been opened, and the three connectivity controls, whose protocol, including pass/fail readings, was committed and pushed to the project repository before their code was written. All use the same data and seeds and received no tuning. \emph{Supporting:} two earlier frozen studies with a different, wire-indexed architecture (Section~\ref{sec:support}). We never pool statistics across tiers.
 
 \emph{Statistics.} We report node-level AUROC and F1 (threshold 0.5), with means and sample standard deviations over the five training seeds. Each seed's DAG and grid share data and minibatches, so we report per-seed paired differences and a descriptive Student-$t$ interval over seeds ($\mathrm{df}=4$). The test sets are fixed, so this interval covers training randomness only, not sampling of circuits. Gates within a circuit are not independent, and we do not treat them as replicates.
 
@@ -143,7 +144,7 @@ Relabeled & $.9722{\pm}.0009$ & .9383 & $.8294{\pm}.0053$ & .8199 & $.7806{\pm}.
 \begin{figure}[t]
 \centering
 \includegraphics[width=\columnwidth]{figures/fig_results.pdf}
-\caption{(a)~Mean AUROC per split, with individual seeds as small dots. The Transformer (open triangles) is a post-confirmatory control. (b)~Paired far-width differences between the DAG and the grid. All five seeds clear zero, and their mean clears the frozen $+0.03$ threshold.}
+\caption{(a)~Mean AUROC per split, with individual seeds as small dots. Open markers (*) are post-confirmatory controls. (b)~Paired far-width differences, DAG minus model. Against the grid (filled) all five seeds clear zero and the mean clears the frozen $+0.03$ threshold; against the pointer GRU (open) the differences straddle zero.}
 \label{fig:results}
 \end{figure}
 
@@ -155,6 +156,33 @@ On the 64 circuit--relabeling pairs checked per seed (320 in total), the largest
 
 \subsection{Post-confirmatory Transformer control}
 The Transformer is weaker than both primary models on every split (far width 0.7471). Its near- and far-width scores are nearly equal, so its loss happens mostly between the training and near-width regimes. This control shows that the conclusion does not hinge on a recurrent baseline. Because the control was added after the primary result was known and was not tuned, it is not confirmatory. A tuned attention model could do better.
+
+\subsection{Post-confirmatory connectivity controls}\label{sec:controls}
+\begin{table}[t]
+\centering
+\caption{Connectivity controls (post-confirmatory): AUROC (mean $\pm$ s.d.) and DAG$-$model far-width paired differences}
+\label{tab:controls}
+\setlength{\tabcolsep}{2.4pt}
+\resizebox{\columnwidth}{!}{%
+\begin{tabular}{@{}lcccc@{}}
+\toprule
+Split & Role DAG & Pointer GRU & Pointer Transf. & Role-ablated DAG \\
+\midrule
+Same, 4--7 q & $.9722{\pm}.0009$ & $.9895{\pm}.0010$ & $.9481{\pm}.0019$ & $.9670{\pm}.0013$ \\
+Near, 8--12 q & $.9362{\pm}.0008$ & $.9447{\pm}.0026$ & $.7533{\pm}.0168$ & $.9282{\pm}.0019$ \\
+Far, 13--20 q & $.9252{\pm}.0020$ & $.9274{\pm}.0050$ & $.6900{\pm}.0192$ & $.9199{\pm}.0025$ \\
+Relabeled & $.9722{\pm}.0009$ & $.9279{\pm}.0044$ & $.8838{\pm}.0035$ & $.9670{\pm}.0013$ \\
+\midrule
+DAG$-$model, far & --- & $-.0023$ & $+.2352$ & $+.0053$ \\
+DAG wins (of 5) & --- & 2 & 5 & 5 \\
+\bottomrule
+\end{tabular}}\\[2pt]
+\footnotesize{Role DAG values are the recorded primary results. A re-run of seed 112 in the controls' software environment reproduced every recorded DAG and grid AUROC bit for bit.}
+\end{table}
+
+Table~\ref{tab:controls} answers Q3. The protocol fixed three readings for the pointer GRU before any code existed: \emph{topology supported} if the DAG wins all five seeds by a mean of at least $+0.02$; \emph{information explains the gap} if the mean is below $+0.01$ or the pointer GRU wins at least three seeds; intermediate otherwise. The pointer GRU wins three seeds and the paired far-width difference is $-0.0023$ (s.d.\ 0.0049, interval $[-0.0083,+0.0038]$), so the pre-declared reading is \emph{information explains the gap}. Given name-free wire pointers, a plain bidirectional GRU matches the DAG at 13--20 qubits and beats it at the training size (0.9895). It exceeds the canonical grid by $+0.0467$ at far width, about the size of the DAG's own margin. At the fixed 0.5 threshold the DAG keeps a higher far-width F1 (0.8458 against 0.8081, all five seeds), so the two models differ in calibration under shift, but this was not a pre-declared criterion. The pointer GRU is not invariant: its AUROC falls by 0.0615 under relabeling, to 0.9279 against the DAG's unchanged 0.9722.
+
+The pointer Transformer also improves at the training size (0.9481) but collapses with width (0.6900), probably because its learned absolute positions never see sequences this long; relative positions were not tested. Removing operand roles from the DAG lowers far-width AUROC by 0.0053 (interval $[+0.0019,+0.0086]$, all five seeds), below the protocol's 0.01 threshold, so roles are \emph{not needed} for this probe by the pre-declared rule even though their small effect is consistent.
 
 \subsection{Supporting evidence: width versus depth}\label{sec:support}
 Two earlier frozen studies used a different architecture. In both, the DAG and the grid received \emph{absolute} wire-membership, control, and target one-hots (at most 12 wires), so both had full connectivity information. Neither study is pooled with the primary result.
@@ -177,7 +205,7 @@ Held-out chemistry (8--12; 72--104) & .5571 & .5837 & $-.0266$ & 0/5 \\
 \end{tabular}
 \end{table}
 
-\emph{Structured-family decomposition} (Table~\ref{tab:shift}). This study used the same three families with 87,745-parameter (DAG) and 88,417-parameter (grid) models. It separated the two shift axes. Adding wires produced a $+0.0514$ advantage, whereas adding depth alone produced $+0.0025$. Most of the structural advantage therefore comes from width growth. This finding motivated removing wire identifiers so that evaluation could go beyond 12 qubits. Because both models had wire identities here, the result also suggests that the advantage is not explained only by the information gap noted in Table~\ref{tab:access}. It is suggestive rather than conclusive, because the architectures and the width range differ from the primary study.
+\emph{Structured-family decomposition} (Table~\ref{tab:shift}). This study used the same three families with 87,745-parameter (DAG) and 88,417-parameter (grid) models. It separated the two shift axes. Adding wires produced a $+0.0514$ advantage, whereas adding depth alone produced $+0.0025$. Most of the structural advantage therefore comes from width growth. This finding motivated removing wire identifiers so that evaluation could go beyond 12 qubits. Both models had absolute wire identities here, yet the DAG still gained with width. Together with Section~\ref{sec:controls}, this suggests that what transfers is \emph{local, name-free} neighbor information: absolute identities carry connectivity only through names that do not generalize, whereas dependency edges and relative pointers expose it directly. The comparison is suggestive, because the architectures and the width range differ from the primary study.
 
 \emph{Random-circuit reversal.} An earlier three-seed study on random circuits (trained on 4--8 qubits) found a reversal. The grid was clearly better at the training size (0.9406 against 0.8556 AUROC). The DAG was better on 9--12-qubit, 64--96-gate circuits (0.8078 against 0.7861), winning all three seeds by $+0.0177$ to $+0.0274$. Validation at the training size alone would have selected the representation that transfers worse.
 
@@ -189,15 +217,17 @@ Held-out chemistry (8--12; 72--104) & .5571 & .5837 & $-.0266$ & 0/5 \\
 
 \emph{Downstream tasks.} Three compiler-facing follow-ups did not establish a DAG advantage. First, in small-angle deletion ranking, a simple heuristic saturated the task. Second, in safe identity-rewrite prioritization, the DAG was favored in all three final seeds, but its $+0.0379$ oracle-recovery gain missed the frozen $+0.05$ threshold, so that gate failed. Third, in routed-rewrite selection, the development runs favored the grid (6.30 against 6.66 routed CX gates removed on average), and no final test was opened. In a separate target-conditioned state-preparation study, a DAG generator was shown to use its conditioning. However, only 9 of 128 targets reached fidelity 0.99, whereas an exact compiler is essentially exact. We claim no compiler or generation advantage.
 
-\emph{Statistical and design limits.} Five seeds on fixed test sets bound training variance only. The sequence baselines lack explicit connectivity (Table~\ref{tab:access}). A wire-pointer serialization that keeps connectivity without names, and a symmetry-aware graph Transformer, are the most important missing controls. The Transformer received one fixed configuration. The models are near-matched (80,833, 84,961, and 88,065 parameters), not exactly matched.
+\emph{What the DAG does not uniquely provide.} On this probe, width extrapolation is matched by a sequence model with name-free wire pointers, so the primary gain over the canonical grid should not be attributed to graph message passing. The DAG's distinct benefit here is exact relabeling invariance at no accuracy cost. A sequence model trained with relabeling augmentation could narrow that gap approximately; we did not test this.
 
-\emph{Provenance.} The protocols, code, and results are archived with dataset hashes, per-seed training histories, and a compute ledger (a lower bound of 237 minutes of recorded wall-clock CPU time; no GPU). According to the project records, each frozen protocol was written before its final run. However, the protocols were committed to version control in the same commit as their results, so the repository alone does not timestamp them independently. The implementation follows LayerDAG's design in native PyTorch and claims no runtime parity with the upstream DGL code.
+\emph{Statistical and design limits.} Five seeds on fixed test sets bound training variance only. No model was tuned, and each Transformer received one fixed configuration; relative-position attention and symmetry-aware graph Transformers remain untested. The models are near-matched (80,833 to 89,729 parameters), not exactly matched.
+
+\emph{Provenance.} The protocols, code, and results are archived with dataset hashes, per-seed training histories, and a compute ledger (a lower bound of 237 minutes of recorded wall-clock CPU time; no GPU). According to the project records, each primary and supporting protocol was written before its final run. However, those protocols were committed in the same commit as their results, so the repository alone does not timestamp them independently. The connectivity-control protocol was committed and pushed before its code and results, and records one pre-implementation correction: its text called every pointer feature relabeling-invariant, which is false for the distance features. The implementation follows LayerDAG's design in native PyTorch and claims no runtime parity with the upstream DGL code.
 
 \section{Conclusion}
-Operand-role dependency graphs encode the symmetry of logical-qubit relabeling by construction. In a frozen experiment, models trained on 4--7-qubit QAOA-like, VQE, and arithmetic circuits were tested on 13--20-qubit circuits from the same families. The role DAG improved maximum-path prediction over a near-matched canonical-grid GRU on all five paired seeds (AUROC 0.9252 against 0.8807), and a post-confirmatory canonical Transformer was weaker still. The result is a statement about representation: the correct symmetry, built in, improves within-family width extrapolation of dependency reasoning. It does not establish universal graph superiority, robustness to unseen families, or a practical compiler advantage.
+Operand-role dependency graphs encode the symmetry of logical-qubit relabeling by construction. In a frozen experiment, models trained on 4--7-qubit QAOA-like, VQE, and arithmetic circuits were tested on 13--20-qubit circuits from the same families. The role DAG beat a near-matched canonical-grid GRU on all five paired seeds (AUROC 0.9252 against 0.8807). Pre-registered controls show where this gain comes from: a GRU given name-free predecessor and successor pointers matches the DAG at width, and operand roles add little. Exposing wire connectivity without qubit names is what drives width extrapolation on this probe. The dependency graph is one clean way to do so, and the only encoder tested that is also exactly invariant to relabeling; the pointer GRU loses 0.0615 AUROC when qubits are renamed. The results do not establish graph superiority, robustness to unseen families, or a practical compiler advantage.
 
 \section*{Acknowledgment}
-[Funding and acknowledgments withheld for double-blind review.] [AUTHOR TO CONFIRM: Under IEEE policy on AI-generated content, the authors disclose that a large language model (Anthropic Claude) was used to edit and restructure the manuscript text, generate figure-plotting code, and audit the manuscript's numbers against the machine-readable results. The authors take responsibility for all content.]
+Funding and acknowledgments are withheld for double-blind review. In accordance with IEEE policy on AI-generated content, the authors disclose that a large language model (Anthropic Claude) was used to edit and restructure the manuscript text, to generate figure-plotting code, to implement and run the post-confirmatory connectivity controls under an author-approved protocol, and to audit the manuscript's numbers against the machine-readable results. The authors take responsibility for all content.
 
 \bibliographystyle{IEEEtran}
 \bibliography{references}
