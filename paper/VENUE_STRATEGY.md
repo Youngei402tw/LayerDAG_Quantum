@@ -23,3 +23,7 @@ Use `qce_paper.tex` for QCE and `qai_paper.tex` for QAI. Do not claim universal 
 3. Evaluate widths beyond 12 qubits and hold out circuit families.
 4. Add graph-transformer and position-free set/sequence controls with matched tuning budgets.
 5. Predict an expensive hardware-aware compiler cost that cannot be computed exactly from the source DAG, then demonstrate amortized compiler-call savings.
+
+## Migration note (2026-11-06)
+
+Official QAI 2026 rules have now been verified; see `submission/COMPLIANCE_REPORT.md`. The full-paper call is closed, the late-breaking call closes 6 Nov 2026 and is non-archival, and no QAI 2027 call exists yet. The phrase "all eight paired seeds" above counts seeds across two separate studies (3 + 5) with different data and architectures. The active manuscript reports them separately and never aggregates them.

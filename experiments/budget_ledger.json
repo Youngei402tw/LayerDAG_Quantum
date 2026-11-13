@@ -54,5 +54,7 @@
   "qai_invariant_development_training_seconds": 216.561746482,
   "qai_invariant_final_training_seconds": 2242.833556027,
   "qai_transformer_control_training_seconds": 348.512641992,
-  "qai_invariant_status": "fresh five-seed 13-20-qubit gate passed; exact qubit-relabel invariance; canonical Transformer control weaker"
+  "qai_invariant_status": "fresh five-seed 13-20-qubit gate passed; exact qubit-relabel invariance; canonical Transformer control weaker",
+  "migration_spot_reproduction_training_seconds": 587.44,
+  "migration_spot_reproduction_status": "2026-11-06 post-hoc seed-111 DAG+grid integrity re-run; bitwise match; not added to measured_compute_job_wall_seconds, which remains the handoff lower bound"
 }
