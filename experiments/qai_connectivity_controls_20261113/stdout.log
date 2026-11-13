@@ -1,0 +1,36 @@
+pointer_grid 111 {'same': 0.9904, 'near_width': 0.9453, 'far_width': 0.9302, 'renamed': 0.9222} 355s
+pointer_transformer 111 {'same': 0.9486, 'near_width': 0.742, 'far_width': 0.6723, 'renamed': 0.8848} 135s
+role_ablated_dag 111 {'same': 0.9672, 'near_width': 0.9292, 'far_width': 0.922, 'renamed': 0.9672} 298s
+pointer_grid 112 {'same': 0.9898, 'near_width': 0.9469, 'far_width': 0.9316, 'renamed': 0.9338} 344s
+pointer_transformer 112 {'same': 0.9486, 'near_width': 0.7364, 'far_width': 0.6724, 'renamed': 0.8867} 120s
+role_ablated_dag 112 {'same': 0.9652, 'near_width': 0.9285, 'far_width': 0.9216, 'renamed': 0.9652} 292s
+pointer_grid 113 {'same': 0.9892, 'near_width': 0.9466, 'far_width': 0.9313, 'renamed': 0.9302} 334s
+pointer_transformer 113 {'same': 0.9485, 'near_width': 0.7762, 'far_width': 0.7116, 'renamed': 0.8866} 113s
+role_ablated_dag 113 {'same': 0.9669, 'near_width': 0.9278, 'far_width': 0.9191, 'renamed': 0.9669} 296s
+pointer_grid 114 {'same': 0.9878, 'near_width': 0.9403, 'far_width': 0.9213, 'renamed': 0.9269} 346s
+pointer_transformer 114 {'same': 0.945, 'near_width': 0.7464, 'far_width': 0.6846, 'renamed': 0.8784} 115s
+role_ablated_dag 114 {'same': 0.9668, 'near_width': 0.9252, 'far_width': 0.9159, 'renamed': 0.9668} 295s
+pointer_grid 115 {'same': 0.99, 'near_width': 0.9445, 'far_width': 0.9228, 'renamed': 0.9265} 345s
+pointer_transformer 115 {'same': 0.95, 'near_width': 0.7656, 'far_width': 0.7088, 'renamed': 0.8826} 118s
+role_ablated_dag 115 {'same': 0.9687, 'near_width': 0.9304, 'far_width': 0.921, 'renamed': 0.9687} 300s
+{
+  "readings": {
+    "pointer_grid_H1": "information_explains_gap",
+    "pointer_transformer_descriptive": "topology_supported",
+    "role_ablated_dag_descriptive": "roles_not_needed"
+  },
+  "comparisons": {
+    "pointer_grid": {
+      "mean": -0.0022693333958398567,
+      "dag_wins": 2
+    },
+    "pointer_transformer": {
+      "mean": 0.23520319943103188,
+      "dag_wins": 5
+    },
+    "role_ablated_dag": {
+      "mean": 0.005251425068057447,
+      "dag_wins": 5
+    }
+  }
+}

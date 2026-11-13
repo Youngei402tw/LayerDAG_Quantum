@@ -1,0 +1,57 @@
+{
+  "seed": 112,
+  "torch": "2.8.0+cpu",
+  "models": {
+    "dag": {
+      "parameters": 80833,
+      "train_seconds": 316.78807553600006,
+      "best_validation_auc": 0.9721893734540152,
+      "same": {
+        "auc": 0.9733007644637445,
+        "recorded_auc": 0.9733007644637445,
+        "abs_diff": 0.0
+      },
+      "near_width": {
+        "auc": 0.935598704604478,
+        "recorded_auc": 0.935598704604478,
+        "abs_diff": 0.0
+      },
+      "far_width": {
+        "auc": 0.9229630271804591,
+        "recorded_auc": 0.9229630271804591,
+        "abs_diff": 0.0
+      },
+      "renamed": {
+        "auc": 0.9733007644637445,
+        "recorded_auc": 0.9733007644637445,
+        "abs_diff": 0.0
+      },
+      "max_relabel_logit_diff_all_512": 0.0
+    },
+    "grid": {
+      "parameters": 84961,
+      "train_seconds": 346.83937756600005,
+      "best_validation_auc": 0.9373649966917458,
+      "same": {
+        "auc": 0.9418253697824969,
+        "recorded_auc": 0.9418253697824969,
+        "abs_diff": 0.0
+      },
+      "near_width": {
+        "auc": 0.8820845181818324,
+        "recorded_auc": 0.8820845181818324,
+        "abs_diff": 0.0
+      },
+      "far_width": {
+        "auc": 0.8810361883727157,
+        "recorded_auc": 0.8810361883727157,
+        "abs_diff": 0.0
+      },
+      "renamed": {
+        "auc": 0.8231242845683252,
+        "recorded_auc": 0.8231242845683252,
+        "abs_diff": 0.0
+      }
+    }
+  }
+}
