@@ -1,0 +1,22 @@
+{
+  "dag": {
+    "seconds_per_update": 0.1132,
+    "eval_seconds_per_far_circuit": 0.0043,
+    "estimated_seconds_per_seed": 471
+  },
+  "grid": {
+    "seconds_per_update": 0.2083,
+    "eval_seconds_per_far_circuit": 0.0099,
+    "estimated_seconds_per_seed": 863
+  },
+  "pointer_grid": {
+    "seconds_per_update": 0.2122,
+    "eval_seconds_per_far_circuit": 0.0106,
+    "estimated_seconds_per_seed": 881
+  },
+  "aug_pointer_grid": {
+    "seconds_per_update": 0.2172,
+    "eval_seconds_per_far_circuit": 0.01,
+    "estimated_seconds_per_seed": 899
+  }
+}

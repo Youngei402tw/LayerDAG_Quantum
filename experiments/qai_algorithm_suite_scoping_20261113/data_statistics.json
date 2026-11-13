@@ -1,0 +1,344 @@
+{
+  "train_like": {
+    "gen_seconds": 1.4,
+    "comm_label_seconds": 0.9,
+    "reproducible_prefix": true,
+    "circuits": 220,
+    "nodes": 14074,
+    "gates_mean": 64.0,
+    "gates_max": 462,
+    "node_pos_wire": 0.767,
+    "node_pos_comm": 0.571,
+    "node_label_agree": 0.714,
+    "unique": 220,
+    "families": {
+      "qft": {
+        "n": 20,
+        "gates_min": 43,
+        "gates_mean": 77.8,
+        "gates_max": 127,
+        "pos_wire": 0.752,
+        "pos_comm": 0.368,
+        "label_agree": 0.41
+      },
+      "qpe": {
+        "n": 20,
+        "gates_min": 40,
+        "gates_mean": 90.4,
+        "gates_max": 128,
+        "pos_wire": 0.761,
+        "pos_comm": 0.729,
+        "label_agree": 0.845
+      },
+      "bv": {
+        "n": 20,
+        "gates_min": 10,
+        "gates_mean": 12.4,
+        "gates_max": 19,
+        "pos_wire": 0.557,
+        "pos_comm": 1.0,
+        "label_agree": 0.557
+      },
+      "graphstate": {
+        "n": 20,
+        "gates_min": 8,
+        "gates_mean": 12.3,
+        "gates_max": 19,
+        "pos_wire": 0.735,
+        "pos_comm": 0.654,
+        "label_agree": 0.719
+      },
+      "qaoa": {
+        "n": 20,
+        "gates_min": 33,
+        "gates_mean": 55.1,
+        "gates_max": 102,
+        "pos_wire": 0.621,
+        "pos_comm": 0.411,
+        "label_agree": 0.654
+      },
+      "vqe": {
+        "n": 20,
+        "gates_min": 11,
+        "gates_mean": 33.1,
+        "gates_max": 66,
+        "pos_wire": 0.68,
+        "pos_comm": 0.625,
+        "label_agree": 0.945
+      },
+      "trotter": {
+        "n": 20,
+        "gates_min": 30,
+        "gates_mean": 118.8,
+        "gates_max": 462,
+        "pos_wire": 0.757,
+        "pos_comm": 0.661,
+        "label_agree": 0.904
+      },
+      "adder": {
+        "n": 20,
+        "gates_min": 39,
+        "gates_mean": 76.7,
+        "gates_max": 110,
+        "pos_wire": 0.745,
+        "pos_comm": 0.68,
+        "label_agree": 0.794
+      },
+      "qv": {
+        "n": 20,
+        "gates_min": 52,
+        "gates_mean": 120.0,
+        "gates_max": 201,
+        "pos_wire": 0.904,
+        "pos_comm": 0.385,
+        "label_agree": 0.481
+      },
+      "iqp": {
+        "n": 20,
+        "gates_min": 20,
+        "gates_mean": 37.0,
+        "gates_max": 62,
+        "pos_wire": 0.639,
+        "pos_comm": 0.419,
+        "label_agree": 0.651
+      },
+      "excitation": {
+        "n": 20,
+        "gates_min": 45,
+        "gates_mean": 70.0,
+        "gates_max": 120,
+        "pos_wire": 0.742,
+        "pos_comm": 0.742,
+        "label_agree": 1.0
+      }
+    }
+  },
+  "near_like": {
+    "gen_seconds": 0.6,
+    "comm_label_seconds": 2.1,
+    "reproducible_prefix": true,
+    "circuits": 110,
+    "nodes": 15303,
+    "gates_mean": 139.1,
+    "gates_max": 792,
+    "node_pos_wire": 0.767,
+    "node_pos_comm": 0.534,
+    "node_label_agree": 0.688,
+    "unique": 110,
+    "families": {
+      "qft": {
+        "n": 10,
+        "gates_min": 167,
+        "gates_mean": 250.0,
+        "gates_max": 371,
+        "pos_wire": 0.821,
+        "pos_comm": 0.204,
+        "label_agree": 0.246
+      },
+      "qpe": {
+        "n": 10,
+        "gates_min": 164,
+        "gates_mean": 236.1,
+        "gates_max": 307,
+        "pos_wire": 0.808,
+        "pos_comm": 0.745,
+        "label_agree": 0.823
+      },
+      "bv": {
+        "n": 10,
+        "gates_min": 10,
+        "gates_mean": 16.3,
+        "gates_max": 25,
+        "pos_wire": 0.513,
+        "pos_comm": 1.0,
+        "label_agree": 0.513
+      },
+      "graphstate": {
+        "n": 10,
+        "gates_min": 17,
+        "gates_mean": 22.6,
+        "gates_max": 30,
+        "pos_wire": 0.589,
+        "pos_comm": 0.446,
+        "label_agree": 0.724
+      },
+      "qaoa": {
+        "n": 10,
+        "gates_min": 53,
+        "gates_mean": 107.5,
+        "gates_max": 173,
+        "pos_wire": 0.48,
+        "pos_comm": 0.289,
+        "label_agree": 0.679
+      },
+      "vqe": {
+        "n": 10,
+        "gates_min": 27,
+        "gates_mean": 54.4,
+        "gates_max": 85,
+        "pos_wire": 0.647,
+        "pos_comm": 0.62,
+        "label_agree": 0.973
+      },
+      "trotter": {
+        "n": 10,
+        "gates_min": 63,
+        "gates_mean": 262.7,
+        "gates_max": 792,
+        "pos_wire": 0.789,
+        "pos_comm": 0.705,
+        "label_agree": 0.916
+      },
+      "adder": {
+        "n": 10,
+        "gates_min": 107,
+        "gates_mean": 152.0,
+        "gates_max": 185,
+        "pos_wire": 0.716,
+        "pos_comm": 0.656,
+        "label_agree": 0.819
+      },
+      "qv": {
+        "n": 10,
+        "gates_min": 104,
+        "gates_mean": 206.0,
+        "gates_max": 396,
+        "pos_wire": 0.917,
+        "pos_comm": 0.42,
+        "label_agree": 0.503
+      },
+      "iqp": {
+        "n": 10,
+        "gates_min": 55,
+        "gates_mean": 79.1,
+        "gates_max": 104,
+        "pos_wire": 0.475,
+        "pos_comm": 0.291,
+        "label_agree": 0.7
+      },
+      "excitation": {
+        "n": 10,
+        "gates_min": 73,
+        "gates_mean": 143.6,
+        "gates_max": 205,
+        "pos_wire": 0.729,
+        "pos_comm": 0.729,
+        "label_agree": 1.0
+      }
+    }
+  },
+  "far_like": {
+    "gen_seconds": 0.9,
+    "comm_label_seconds": 9.5,
+    "reproducible_prefix": true,
+    "circuits": 110,
+    "nodes": 31036,
+    "gates_mean": 282.1,
+    "gates_max": 1320,
+    "node_pos_wire": 0.785,
+    "node_pos_comm": 0.511,
+    "node_label_agree": 0.658,
+    "unique": 110,
+    "families": {
+      "qft": {
+        "n": 10,
+        "gates_min": 503,
+        "gates_mean": 704.0,
+        "gates_max": 1019,
+        "pos_wire": 0.884,
+        "pos_comm": 0.12,
+        "label_agree": 0.149
+      },
+      "qpe": {
+        "n": 10,
+        "gates_min": 433,
+        "gates_mean": 645.2,
+        "gates_max": 1017,
+        "pos_wire": 0.861,
+        "pos_comm": 0.76,
+        "label_agree": 0.818
+      },
+      "bv": {
+        "n": 10,
+        "gates_min": 13,
+        "gates_mean": 24.1,
+        "gates_max": 31,
+        "pos_wire": 0.451,
+        "pos_comm": 1.0,
+        "label_agree": 0.451
+      },
+      "graphstate": {
+        "n": 10,
+        "gates_min": 32,
+        "gates_mean": 41.5,
+        "gates_max": 52,
+        "pos_wire": 0.421,
+        "pos_comm": 0.331,
+        "label_agree": 0.64
+      },
+      "qaoa": {
+        "n": 10,
+        "gates_min": 91,
+        "gates_mean": 180.9,
+        "gates_max": 273,
+        "pos_wire": 0.38,
+        "pos_comm": 0.206,
+        "label_agree": 0.747
+      },
+      "vqe": {
+        "n": 10,
+        "gates_min": 56,
+        "gates_mean": 108.4,
+        "gates_max": 160,
+        "pos_wire": 0.607,
+        "pos_comm": 0.554,
+        "label_agree": 0.943
+      },
+      "trotter": {
+        "n": 10,
+        "gates_min": 105,
+        "gates_mean": 496.5,
+        "gates_max": 1320,
+        "pos_wire": 0.782,
+        "pos_comm": 0.704,
+        "label_agree": 0.922
+      },
+      "adder": {
+        "n": 10,
+        "gates_min": 212,
+        "gates_mean": 276.6,
+        "gates_max": 327,
+        "pos_wire": 0.71,
+        "pos_comm": 0.654,
+        "label_agree": 0.824
+      },
+      "qv": {
+        "n": 10,
+        "gates_min": 182,
+        "gates_mean": 274.8,
+        "gates_max": 465,
+        "pos_wire": 0.91,
+        "pos_comm": 0.462,
+        "label_agree": 0.552
+      },
+      "iqp": {
+        "n": 10,
+        "gates_min": 97,
+        "gates_mean": 133.0,
+        "gates_max": 186,
+        "pos_wire": 0.346,
+        "pos_comm": 0.188,
+        "label_agree": 0.717
+      },
+      "excitation": {
+        "n": 10,
+        "gates_min": 118,
+        "gates_mean": 218.6,
+        "gates_max": 324,
+        "pos_wire": 0.743,
+        "pos_comm": 0.743,
+        "label_agree": 1.0
+      }
+    }
+  }
+}
