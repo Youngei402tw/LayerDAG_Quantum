@@ -27,6 +27,7 @@ EXPECTED_HASHES = {
     "experiments/qai_transformer_control_20261106/control_result.json": "6989761a20ef5b3b0c7ea1f50b5f0cee8aced285fec62ac3d7b85fa3747f9cb0",
     "experiments/schedule_dag_final_20261028/final_result.json": "9144132e2bcdb0aa0628cb62f75dc017d28d52498366aca178b2e5569625b435",
     "experiments/structured_transfer_final_20261102/final_result.json": "5235c71446f61e66251aea5e3482d39921f7cf42b4b93f40eb611081bb255692",
+    "experiments/qai_augmentation_control_20261113/augmentation_result.json": "709b55490388103a7bcc48b02d4c301a04ed4521eb85279fed3b0a77f721efd2",
     "experiments/qai_connectivity_controls_20261113/controls_result.json": "52f063262faf8e938df42ca44d1c5fadf4db2d1f6c866533819212764c4fc7d3",
 }
 for p, h in EXPECTED_HASHES.items():
@@ -134,6 +135,27 @@ if K["readings"] != {"pointer_grid_H1": "information_explains_gap", "pointer_tra
     FAIL.append("control readings")
 E = load("experiments/qai_env_check_seed112_20261113/spot_reproduction.json")
 check("env check max AUROC deviation", max(v["abs_diff"] for m in E["models"].values() for v in m.values() if isinstance(v, dict)), 0.0, 0.0)
+
+# ---------------- relabeling-augmentation control (post-confirmatory, 2026-11-13) ----------------
+G = load("experiments/qai_augmentation_control_20261113/augmentation_result.json")
+assert G["seeds"] == P["seeds"] and G["dataset_hashes"] == P["dataset_hashes"]
+GA = G["aggregate"]["aug_pointer_grid"]
+for s_, (auc, sd) in {"same": (0.9757, 0.0018), "near_width": (0.9296, 0.0012), "far_width": (0.9149, 0.0027),
+                      "renamed": (0.9721, 0.0017), "far_renamed": (0.9173, 0.0029)}.items():
+    check(f"aug pointer {s_} AUROC", GA[s_]["auc_mean"], auc, 5e-5); check(f"aug pointer {s_} AUROC sd", GA[s_]["auc_sample_std"], sd, 5e-5)
+check("aug pointer same gap", GA["same_relabel_gap_mean"], 0.0035, 5e-5)
+check("aug pointer far gap", GA["far_relabel_gap_mean"], -0.0024, 5e-5)
+check("aug pointer mean |dp| same", GA["same_pair_changes"]["mean_abs_probability_change"], 0.053, 5e-4)
+check("aug pointer max logit same", GA["same_pair_changes"]["max_logit_change"], 10.8, 0.05)
+dg = [rec[r["seed"]]["dag"]["far_width"]["auc"] - r["far_width"]["auc"] for r in G["seed_results"]["aug_pointer_grid"]]
+mg, hg = statistics.mean(dg), t975_df4 * statistics.stdev(dg) / math.sqrt(5)
+check("aug pointer DAG lead", mg, 0.0103, 5e-5); check("aug pointer lead low", mg - hg, 0.0055, 5e-5); check("aug pointer lead high", mg + hg, 0.0150, 5e-5)
+check("aug pointer DAG wins", sum(x > 0 for x in dg), 5, 0)
+check("aug grid far AUROC", G["aggregate"]["aug_grid"]["far_width"]["auc_mean"], 0.8657, 5e-5)
+check("pointer GRU max logit (control)", max(r["max_relabel_logit_difference_first64"] for r in K["seed_results"]["pointer_grid"]), 19.2, 0.05)
+check("pointer Transformer max logit (control)", max(r["max_relabel_logit_difference_first64"] for r in K["seed_results"]["pointer_transformer"]), 27.2, 0.05)
+if G["reading_aug_pointer_grid"] != "intermediate":
+    FAIL.append("augmentation reading")
 
 # ---------------- earlier random-circuit study ----------------
 S = load("experiments/schedule_dag_final_20261028/final_result.json")

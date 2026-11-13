@@ -37,3 +37,8 @@ python scripts/check_manuscript_numbers.py              # 85 decimals, all deriv
 - Outcome: pointer GRU ties the DAG at far width (0.9274 vs 0.9252; DAG wins 2/5; mean −0.0023), so the pre-declared reading is *information explains the gap*. Pointer Transformer 0.6900. Role-ablated DAG 0.9199 (−0.0053; roles not needed by the 0.01 rule).
 - Manuscript reframed: new title, abstract, Q3, contribution (iii), Table I pointer column, new Table III and Section V-D, Fig. 2 adds the pointer GRU, limitations and conclusion rewritten, AI-use disclosure finalized without placeholder brackets. 6 pages (limit 6).
 - `scripts/verify_claims.py` and `scripts/check_manuscript_numbers.py` extend to the new results (127 decimals checked).
+
+## v4 (2026-11-13, same branch)
+- Relabeling-augmentation protocol frozen and pushed before code (`experiments/QAI_AUGMENTATION_CONTROL_PROTOCOL_20261113.md`); new `qdag/augmentation_control.py` and tests.
+- Outcome (pre-declared reading *intermediate*): augmented pointer GRU relabel AUROC gaps 0.0035 (4–7 q) and −0.0024 (13–20 q relabeled), mean per-gate probability change 0.053, far AUROC 0.9149; DAG leads in 5/5 seeds by +0.0103 [+0.0055, +0.0150]. Augmented grid far 0.8657.
+- Manuscript: abstract, Q3, contribution (iii), Table III (new column and rows), new augmentation paragraph, limitations and conclusion updated. Still 6 pages. Checks: 147 decimals derivable; 39 tests pass.

@@ -22,6 +22,7 @@ Every numeric value is re-derived by `scripts/verify_claims.py` (handoff values)
 | 15 | Pointer GRU ties the DAG at far width: 0.9274 vs 0.9252; paired −0.0023 (s.d. 0.0049, [−0.0083, +0.0038]); DAG wins 2/5; reading *information explains the gap* | Post-confirmatory (protocol pushed before code) | `qai_connectivity_controls_20261113/controls_result.json`; `QAI_CONNECTIVITY_CONTROLS_PROTOCOL_20261113.md` | Verified 2026-11-13 |
 | 16 | Pointer GRU relabel drop 0.0615; DAG far F1 higher (0.8458 vs 0.8081, 5/5, not pre-declared) | Post-confirmatory | same | Verified |
 | 17 | Pointer Transformer far 0.6900; role-ablated DAG far 0.9199 (−0.0053, [+0.0019, +0.0086], 5/5; below 0.01 rule) | Post-confirmatory, descriptive | same | Verified |
+| 18 | Augmented pointer GRU: relabel gaps 0.0035 / −0.0024; mean per-gate |Δp| 0.053, max logit 10.8; far 0.9149; DAG +0.0103 [+0.0055, +0.0150], 5/5; reading *intermediate*. Augmented grid far 0.8657 | Post-confirmatory (protocol pushed before code) | `qai_augmentation_control_20261113/augmentation_result.json`; `QAI_AUGMENTATION_CONTROL_PROTOCOL_20261113.md` | Verified 2026-11-13 |
 | 14 | Rewrite gate failed (+0.0379 vs +0.05); routed dev 6.30 vs 6.66 CX; state-prep 9/128 at fidelity 0.99 | Negative | `critical_rewrite_utility_final_20261029/final_result.json`; `routed_rewrite_development_revision2_20261101/development_result.json`; `REPORT.md` table | Verified |
 
 ## Claims deliberately NOT made
