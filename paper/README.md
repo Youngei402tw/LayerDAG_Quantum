@@ -1,6 +1,6 @@
 # Paper directory
 
-**Active submission (IEEE QAI):** `qai_paper.tex` → `qai_paper.pdf`. The versioned copy is `qai_submission_v2.pdf`, built 2026-11-06 on branch `migration/qai-submission-20261106`. The source uses IEEEtran V1.8b (`conference,a4paper`), is double-blind, and is 5 pages including references.
+**Active submission (IEEE QAI):** `qai_paper.tex` → `qai_paper.pdf`. The current versioned copy is `qai_submission_v5.pdf`, built 2026-11-14 on branch `claude/compassionate-heisenberg-yl7gi8` (v2 = migration build of 2026-11-06; v3 adds the connectivity controls; v4 the augmentation control; v5 the standard-algorithm suite). The source uses IEEEtran V1.8b (`conference,a4paper`), is double-blind, and is 6 pages including references.
 
 Build: `latexmk -pdf qai_paper.tex` (needs TeX Live `texlive-publishers` for IEEEtran). Figures: `PYTHONPATH=.. python ../scripts/make_figures.py` from this directory, or `PYTHONPATH=. python scripts/make_figures.py` from the repo root. Number audit: `python ../scripts/check_manuscript_numbers.py`.
 

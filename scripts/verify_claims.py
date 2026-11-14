@@ -27,6 +27,9 @@ EXPECTED_HASHES = {
     "experiments/qai_transformer_control_20261106/control_result.json": "6989761a20ef5b3b0c7ea1f50b5f0cee8aced285fec62ac3d7b85fa3747f9cb0",
     "experiments/schedule_dag_final_20261028/final_result.json": "9144132e2bcdb0aa0628cb62f75dc017d28d52498366aca178b2e5569625b435",
     "experiments/structured_transfer_final_20261102/final_result.json": "5235c71446f61e66251aea5e3482d39921f7cf42b4b93f40eb611081bb255692",
+    "experiments/qai_algorithm_suite_20261114/data_manifest.json": "9e161851cbace5251544aa22ec45635c3a38d9425c9f55a31d0bf4ce2a0980b5",
+    "experiments/qai_algorithm_suite_20261114/phaseA_result.json": "5ffa0bf4835df0cef514183329a2a204003039cfe185647b2918201abdffac97",
+    "experiments/qai_algorithm_suite_20261114/phaseB_result.json": "4ae4d095d4aef94698707d264bc913db4983c6083b0c03613bb4bca7b3895cdf",
     "experiments/qai_augmentation_control_20261113/augmentation_result.json": "709b55490388103a7bcc48b02d4c301a04ed4521eb85279fed3b0a77f721efd2",
     "experiments/qai_connectivity_controls_20261113/controls_result.json": "52f063262faf8e938df42ca44d1c5fadf4db2d1f6c866533819212764c4fc7d3",
 }
@@ -156,6 +159,71 @@ check("pointer GRU max logit (control)", max(r["max_relabel_logit_difference_fir
 check("pointer Transformer max logit (control)", max(r["max_relabel_logit_difference_first64"] for r in K["seed_results"]["pointer_transformer"]), 27.2, 0.05)
 if G["reading_aug_pointer_grid"] != "intermediate":
     FAIL.append("augmentation reading")
+
+# ---------------- standard-algorithm suite (post-confirmatory, 2026-11-14) ----------------
+SUITE = "experiments/qai_algorithm_suite_20261114"
+MAN = load(f"{SUITE}/data_manifest.json")
+check("suite training circuits", MAN["statistics"]["training"]["circuits"], 1100, 0); check("suite validation circuits", MAN["statistics"]["validation"]["circuits"], 264, 0)
+for s_ in ("same", "near_width", "far_width"): check(f"suite {s_} circuits", MAN["statistics"][s_]["circuits"], 528, 0)
+check("suite far max gates", MAN["statistics"]["far_width"]["gates_max"], 1191, 0)
+check("suite label disagreement training", 1 - MAN["statistics"]["training"]["node_label_agreement_A_B"], 0.28, 0.005)
+check("suite label disagreement far", 1 - MAN["statistics"]["far_width"]["node_label_agreement_A_B"], 0.36, 0.005)
+fg = [v["gates_mean"] for v in MAN["statistics"]["far_width"]["families"].values()]
+check("suite far family size ratio", max(fg) / min(fg), 33, 0.5); check("suite families", len(MAN["families"]), 11, 0)
+if not all(v["labels_recomputed_and_equal"] for v in MAN["renaming_checks"].values()): FAIL.append("suite renaming label check")
+EXPECT = {
+    "A": {"readings": {"R1_connectivity": "replicated", "R2_dag_vs_pointer": "tie", "R3_augmentation": "suffices", "R4_dag_invariance": "exact_within_1e-6"},
+          "macro": {("dag", "same"): (0.9803, 0.0012), ("pointer_grid", "same"): (0.9920, 0.0004), ("aug_pointer_grid", "same"): (0.9884, 0.0004), ("grid", "same"): (0.9663, 0.0009),
+                    ("dag", "far_width"): (0.9455, 0.0010), ("pointer_grid", "far_width"): (0.9442, 0.0040), ("aug_pointer_grid", "far_width"): (0.9450, 0.0044), ("grid", "far_width"): (0.8617, 0.0231),
+                    ("dag", "far_relabeled"): (0.9455, 0.0010), ("pointer_grid", "far_relabeled"): (0.9205, 0.0056), ("aug_pointer_grid", "far_relabeled"): (0.9463, 0.0039), ("grid", "far_relabeled"): (0.7961, 0.0234)},
+          "diff": {"grid": (0.0838, 5), "pointer_grid": (0.0013, 3), "aug_pointer_grid": (0.0005, 4)}},
+    "B": {"readings": {"R1_connectivity": "replicated", "R2_dag_vs_pointer": "graph_advantage", "R3_augmentation": "insufficient", "R4_dag_invariance": "exact_within_1e-6", "roles": "roles_contribute"},
+          "macro": {("dag", "same"): (0.9635, 0.0016), ("pointer_grid", "same"): (0.9562, 0.0017), ("aug_pointer_grid", "same"): (0.9476, 0.0017), ("grid", "same"): (0.9222, 0.0009), ("role_ablated_dag", "same"): (0.9376, 0.0013),
+                    ("dag", "far_width"): (0.9354, 0.0006), ("pointer_grid", "far_width"): (0.8991, 0.0046), ("aug_pointer_grid", "far_width"): (0.8933, 0.0055), ("grid", "far_width"): (0.8243, 0.0105), ("role_ablated_dag", "far_width"): (0.9002, 0.0026),
+                    ("dag", "far_relabeled"): (0.9354, 0.0006), ("pointer_grid", "far_relabeled"): (0.8516, 0.0030), ("aug_pointer_grid", "far_relabeled"): (0.8921, 0.0039), ("grid", "far_relabeled"): (0.7505, 0.0079), ("role_ablated_dag", "far_relabeled"): (0.9002, 0.0026)},
+          "diff": {"grid": (0.1111, 5), "pointer_grid": (0.0363, 5), "aug_pointer_grid": (0.0421, 5), "role_ablated_dag": (0.0352, 5)}},
+}
+SUITE_RESULT = {}
+for phase, exp in EXPECT.items():
+    Q = load(f"{SUITE}/phase{phase}_result.json"); SUITE_RESULT[phase] = Q; QA = Q["aggregate"]
+    assert Q["seeds"] == P["seeds"] and Q["data_hashes"] == MAN["hashes"][phase]
+    units = {k: [load(f"{SUITE}/phase{phase}_{k}_seed{sd_}.json") for sd_ in Q["seeds"]] for k in QA}
+    for k, rows_ in units.items():  # every unit carries the manifest check, the right parameter count and 4,000 updates
+        if not all(u["data_hashes_match_manifest"] and u["training"]["updates"] == 4000 and u["training"]["parameters"] == QA[k]["parameters"] for u in rows_): FAIL.append(f"suite unit {phase} {k}")
+    for (k, s_), (m_, sd_) in exp["macro"].items():
+        vals_ = [u["splits"][s_]["macro_auc"] for u in units[k]]
+        check(f"suite {phase} {k} {s_} macro AUROC (recomputed from units)", statistics.mean(vals_), m_, 5e-5)
+        check(f"suite {phase} {k} {s_} macro AUROC sd", statistics.stdev(vals_), sd_, 5e-5)
+        check(f"suite {phase} {k} {s_} aggregate equals units", QA[k]["splits"][s_]["macro_auc_mean"], statistics.mean(vals_), 1e-12)
+    for k, (m_, wins_) in exp["diff"].items():
+        d_ = [a_["splits"]["far_width"]["macro_auc"] - b_["splits"]["far_width"]["macro_auc"] for a_, b_ in zip(units["dag"], units[k])]
+        check(f"suite {phase} DAG minus {k} far (recomputed)", statistics.mean(d_), m_, 5e-5); check(f"suite {phase} DAG wins vs {k}", sum(x > 0 for x in d_), wins_, 0)
+        check(f"suite {phase} stored comparison {k}", Q["comparisons_far_macro_auc"][f"dag_minus_{k}"]["mean"], statistics.mean(d_), 1e-12)
+    for key, value in exp["readings"].items():
+        if Q["readings"][key] != value: FAIL.append(f"suite {phase} reading {key}")
+    check(f"suite {phase} DAG max logit change", Q["readings"]["R4_dag_max_logit_change"], 0.0, 0.0)
+    check(f"suite {phase} renamed pairs per seed", sum(v["pairs"] for v in units["dag"][0]["pair_changes"].values()), 2112, 0)
+    print(f"      suite phase {phase} readings:", Q["readings"])
+CA = SUITE_RESULT["A"]["comparisons_far_macro_auc"]; CB = SUITE_RESULT["B"]["comparisons_far_macro_auc"]; AA = SUITE_RESULT["A"]["aggregate"]; AB = SUITE_RESULT["B"]["aggregate"]
+check("suite A pointer minus grid", CA["pointer_grid_minus_grid"]["mean"], 0.0825, 5e-5); check("suite A pointer wins vs grid", CA["pointer_grid_minus_grid"]["first_wins"], 5, 0)
+check("suite A tie low", CA["dag_minus_pointer_grid"]["t95_low"], -0.0033, 5e-5); check("suite A tie high", CA["dag_minus_pointer_grid"]["t95_high"], 0.0060, 5e-5)
+check("suite A pointer far relabel gap", AA["pointer_grid"]["gaps"]["far_relabeled"]["mean"], 0.0237, 5e-5); check("suite A pointer far reversal gap", AA["pointer_grid"]["gaps"]["far_reversed"]["mean"], 0.0362, 5e-5)
+check("suite A grid far relabel gap", AA["grid"]["gaps"]["far_relabeled"]["mean"], 0.0656, 5e-5); check("suite A grid far reversal gap", AA["grid"]["gaps"]["far_reversed"]["mean"], 0.0828, 5e-5)
+check("suite A aug same gap", AA["aug_pointer_grid"]["gaps"]["same_relabeled"]["mean"], 0.0005, 5e-5); check("suite A aug far gap", AA["aug_pointer_grid"]["gaps"]["far_relabeled"]["mean"], -0.0013, 5e-5)
+check("suite A aug far mean |dp|", AA["aug_pointer_grid"]["pair_changes"]["far_relabeled"]["mean_abs_probability_change"], 0.072, 5e-4)
+for k, f1 in (("dag", 0.9738), ("pointer_grid", 0.8112), ("aug_pointer_grid", 0.9004)): check(f"suite A {k} far F1", AA[k]["splits"]["far_width"]["f1_mean"], f1, 5e-5)
+fam = {k: AA[k]["splits"]["far_width"]["family_auc_mean"] for k in AA}
+for f_ in ("graphstate", "iqp", "qaoa"):
+    if not min(fam["pointer_grid"][f_], fam["aug_pointer_grid"][f_]) > fam["dag"][f_]: FAIL.append(f"suite A family claim {f_}")
+for f_ in ("qft", "qpe", "qv", "vqe"):
+    if not fam["dag"][f_] > max(fam["pointer_grid"][f_], fam["aug_pointer_grid"][f_]): FAIL.append(f"suite A family claim {f_}")
+check("suite B pointer minus grid", CB["pointer_grid_minus_grid"]["mean"], 0.0748, 5e-5)
+check("suite B graph advantage low", CB["dag_minus_pointer_grid"]["t95_low"], 0.0303, 5e-5); check("suite B graph advantage high", CB["dag_minus_pointer_grid"]["t95_high"], 0.0422, 5e-5)
+check("suite B aug lead low", CB["dag_minus_aug_pointer_grid"]["t95_low"], 0.0351, 5e-5); check("suite B aug lead high", CB["dag_minus_aug_pointer_grid"]["t95_high"], 0.0491, 5e-5)
+check("suite B roles low", CB["dag_minus_role_ablated_dag"]["t95_low"], 0.0323, 5e-5); check("suite B roles high", CB["dag_minus_role_ablated_dag"]["t95_high"], 0.0381, 5e-5)
+check("suite B roles minimum seed", min(CB["dag_minus_role_ablated_dag"]["differences"]), 0.033, 5e-4)
+check("suite B aug max |relabel gap|", max(abs(AB["aug_pointer_grid"]["gaps"][v]["mean"]) for v in ("same_relabeled", "far_relabeled")), 0.0012, 5e-5)
+if AB["dag"]["splits"]["far_width"]["macro_excluded_single_class"] != ["oracle"] or AA["dag"]["splits"]["far_width"]["macro_excluded_single_class"]: FAIL.append("suite excluded families")
 
 # ---------------- earlier random-circuit study ----------------
 S = load("experiments/schedule_dag_final_20261028/final_result.json")

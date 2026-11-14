@@ -37,11 +37,11 @@ Confirm any of these with the chairs (qai2026@ntu.ac.uk per the EasyChair mirror
 |---|---|
 | IEEE conference template | Yes. `IEEEtran.cls` V1.8b (2015/08/26), `[conference,a4paper]`, which is the class distributed on IEEE's template page |
 | A4 | Yes, 595.3 × 841.9 pt |
-| ≤ 6 pages including references | Yes, 5 pages |
+| ≤ 6 pages including references | Yes. 6 pages as of v5 (2026-11-14); 5 pages in the 2026-11-06 build. There is no slack for further additions without cuts or paid extra pages |
 | Double-blind author block | Yes, "Anonymous Authors". PDF Author/Title metadata empty. No self-identifying text |
 | No page numbers | Yes (IEEEtran conference mode) |
-| Fonts embedded, no Type 3 | Yes. `pdffonts` shows 24 fonts, all embedded, none Type 3 (the handoff PDF had one Type 3 bitmap font) |
-| AI-use disclosure in acknowledgements | Drafted; **author must confirm wording** |
+| Fonts embedded, no Type 3 | Yes. `pdffonts` shows 25 fonts in v5, all embedded, none Type 3 (the handoff PDF had one Type 3 bitmap font) |
+| AI-use disclosure in acknowledgements | Present without placeholder since v3; v5 wording also covers the controls and the suite. **The authors should still confirm it matches their actual use before submitting** |
 | IEEE PDF eXpress | Not mentioned for submission. Expected only at camera-ready; not run here |
 | Copyright notice | Not required at submission; insert the IEEE copyright line at camera-ready |
 

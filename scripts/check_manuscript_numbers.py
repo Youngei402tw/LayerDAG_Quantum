@@ -16,6 +16,7 @@ R = json.loads((ROOT / "experiments/structured_transfer_final_20261102/final_res
 C = json.loads((ROOT / "experiments/critical_rewrite_utility_final_20261029/final_result.json").read_text())
 K = json.loads((ROOT / "experiments/qai_connectivity_controls_20261113/controls_result.json").read_text())
 G = json.loads((ROOT / "experiments/qai_augmentation_control_20261113/augmentation_result.json").read_text())
+SUITE = {ph: json.loads((ROOT / f"experiments/qai_algorithm_suite_20261114/phase{ph}_result.json").read_text()) for ph in ("A", "B")}
 W = json.loads((ROOT / "experiments/routed_rewrite_development_revision2_20261101/development_result.json").read_text())
 
 vals = set()
@@ -70,6 +71,15 @@ for m, agg in G["aggregate"].items():
     add(agg["same_pair_changes"]["mean_abs_probability_change"], (3,))
 for m, c in G["comparisons"].items():
     add(c["mean"]); add(c["mean"] - c["t95_half_width"]); add(c["mean"] + c["t95_half_width"])
+for ph, Q in SUITE.items():
+    for kind, agg in Q["aggregate"].items():
+        for sp, r in agg["splits"].items():
+            for k in ("macro_auc_mean", "macro_auc_sample_std", "auc_mean", "f1_mean"):
+                add(r[k])
+        for g in agg["gaps"].values(): add(g["mean"])
+        for c in agg["pair_changes"].values(): add(c["mean_abs_probability_change"], (3,))
+    for c in Q["comparisons_far_macro_auc"].values():
+        add(c["mean"]); add(c["sample_std"]); add(c["t95_low"]); add(c["t95_high"])
 # protocol thresholds / constants that legitimately appear
 vals |= {"0.03", ".03", "0.05", ".05", "0.99", "0.0", "1.0", "0.5", "0.02", "0.01", "0.005"}
 
@@ -77,7 +87,8 @@ found = re.findall(r"(?<![\w.])[+-]?(?:0)?\.\d{2,4}(?!\d)", tex)
 unknown = sorted({f.lstrip("+-") for f in found} - vals)
 print("manuscript decimals checked:", len(set(found)))
 print("NOT derivable from results (review by hand):", unknown if unknown else "none")
-required = ["0.9252", "0.8807", "0.7471", "0.0444", "0.1097", "+0.0400", "+0.0488", "80,833", "84,961", "88,065", "0.0514", "0.0025", "0.9274", "-0.0023", "-0.0083", "+0.0038", "0.0615", "0.0053", "87,457", "89,729", "0.0103", "0.9149", "0.053"]
+required = ["0.9252", "0.8807", "0.7471", "0.0444", "0.1097", "+0.0400", "+0.0488", "80,833", "84,961", "88,065", "0.0514", "0.0025", ".9274", "-0.0023", "-0.0083", "+0.0038", "0.0615", "0.0053", "87,457", "89,729", "0.0103", "0.9149", "0.053",
+            ".9455", ".9354", "+0.0838", "+0.0825", "+0.0013", "+0.0005", "0.0363", "0.0421", "0.0352", "+0.0748", "0.0237", "0.0362", "0.072", "1,100", "1,191", "2,112"]
 missing = [r for r in required if r not in tex]
 print("required headline values missing:", missing if missing else "none")
 sys.exit(1 if (missing or unknown) else 0)

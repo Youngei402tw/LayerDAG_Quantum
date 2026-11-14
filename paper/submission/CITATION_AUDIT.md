@@ -23,5 +23,8 @@ Each entry cited in `paper/qai_paper.tex` was checked against a primary or publi
 | vaswani2017attention | mlanthology NeurIPS 2017 pp. 5998–6008 | Added |
 | farhi2014qaoa | arXiv 1411.4028 | Unchanged |
 | peruzzo2014vqe | Nat. Commun. 5, 4213 (2014), DOI 10.1038/ncomms5213 | Unchanged |
+| qiskit2024 | arXiv 2405.08810 abstract page (accessed 2026-11-14): title "Quantum computing with Qiskit", 12 authors from Javadi-Abhari to Gambetta, v1 14 May 2024 | Added in v5 |
 
 The previously verified entries (Preskill, Gilmer, Kipf, Farhi, Peruzzo, Battaglia, Bronstein) are standard and their bibliographic fields were not changed. Re-check page ranges against the publisher if the camera-ready requires DOIs for every entry.
+
+v5 note (2026-11-14): `references.bib` now carries an `@IEEEtranBSTCTL` control entry so that references with more than six authors print as first author "et al." (IEEE reference style). The full author lists remain in the `.bib` file.

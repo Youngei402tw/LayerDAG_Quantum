@@ -1,6 +1,6 @@
 # Claim-to-evidence table and limitations and negative-results audit
 
-Every numeric value is re-derived by `scripts/verify_claims.py` (handoff values) and `scripts/check_manuscript_numbers.py` (all 85 decimals in the manuscript). Both passed on 2026-11-06.
+Every numeric value is re-derived by `scripts/verify_claims.py` (handoff values) and `scripts/check_manuscript_numbers.py` (every decimal in the manuscript; 195 in v5). Both passed on 2026-11-14 for v5; the 2026-11-06 migration build had 85 decimals.
 
 ## Claims made in `paper/qai_paper.tex`
 
@@ -23,13 +23,18 @@ Every numeric value is re-derived by `scripts/verify_claims.py` (handoff values)
 | 16 | Pointer GRU relabel drop 0.0615; DAG far F1 higher (0.8458 vs 0.8081, 5/5, not pre-declared) | Post-confirmatory | same | Verified |
 | 17 | Pointer Transformer far 0.6900; role-ablated DAG far 0.9199 (−0.0053, [+0.0019, +0.0086], 5/5; below 0.01 rule) | Post-confirmatory, descriptive | same | Verified |
 | 18 | Augmented pointer GRU: relabel gaps 0.0035 / −0.0024; mean per-gate |Δp| 0.053, max logit 10.8; far 0.9149; DAG +0.0103 [+0.0055, +0.0150], 5/5; reading *intermediate*. Augmented grid far 0.8657 | Post-confirmatory (protocol pushed before code) | `qai_augmentation_control_20261113/augmentation_result.json`; `QAI_AUGMENTATION_CONTROL_PROTOCOL_20261113.md` | Verified 2026-11-13 |
+| 19 | Suite data: 11 families, 1,100 / 264 / 528×3 circuits, up to 1,191 gates at far width, no repeated circuit, labels disagree on 28% (training) and 36% (far) of gates, family sizes differ 33× at far width; carried labels recomputed and equal on every renamed circuit | Post-confirmatory (protocol pushed before run code; manifest before training) | `qai_algorithm_suite_20261114/data_manifest.json`; `QAI_ALGORITHM_SUITE_PROTOCOL_20261114.md` | Verified 2026-11-14 |
+| 20 | Phase A: DAG +0.0838 and pointer GRU +0.0825 over grid (5/5 each, *replicated*); DAG − pointer +0.0013 [−0.0033, +0.0060] (*tie*); pointer far gaps 0.0237 (relabel) / 0.0362 (reversal), grid 0.0656 / 0.0828; augmented gaps 0.0005 / −0.0013 and DAG lead +0.0005 (*suffices*); augmented far mean per-gate probability change 0.072; DAG change exactly 0 on 2,112 renamed circuits per seed; far F1 0.9738 / 0.8112 / 0.9004 | Post-confirmatory | `phaseA_result.json` and 20 unit files | Verified |
+| 21 | Phase A family pattern: pointer models better on graph states, IQP, QAOA; DAG better on QFT, phase estimation, quantum volume, hardware-efficient ansatz | Post-confirmatory, descriptive | `phaseA_result.json` (`family_auc_mean`); asserted in `verify_claims.py` | Verified |
+| 22 | Phase B: DAG − pointer +0.0363 [+0.0303, +0.0422] 5/5 (*graph advantage*); DAG − augmented +0.0421 [+0.0351, +0.0491] with AUROC gaps at most 0.0012 (*insufficient* by the lead criterion); roles +0.0352 [+0.0323, +0.0381] 5/5 (*roles contribute*); same-size 0.9635 vs 0.9562; pointer GRU +0.0748 over grid (*replicated*); oracle family excluded as single-class | Post-confirmatory | `phaseB_result.json` and 25 unit files | Verified |
 | 14 | Rewrite gate failed (+0.0379 vs +0.05); routed dev 6.30 vs 6.66 CX; state-prep 9/128 at fidelity 0.99 | Negative | `critical_rewrite_utility_final_20261029/final_result.json`; `routed_rewrite_development_revision2_20261101/development_result.json`; `REPORT.md` table | Verified |
 
 ## Claims deliberately NOT made
 
 The paper does not claim, and its discussion and conclusion explicitly rule out:
 
-- universal DAG superiority;
+- universal DAG superiority (the Phase B advantage is stated as one commutation-aware label on one suite with untuned models);
+- that either suite label is practically useful to learn (both are exactly computable);
 - unseen-family generalization;
 - compiler or routing improvement;
 - competitive state preparation;

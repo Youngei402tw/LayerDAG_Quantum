@@ -13,7 +13,7 @@ Recorded stack: Python 3.12, PyTorch 2.8.0+cpu, NumPy 2.3.4, Qiskit 2.2.3, pytes
 
 ## Fast checks (under one minute, read-only)
 ```sh
-PYTHONPATH=. pytest -q                           # expect: 39 passed
+PYTHONPATH=. pytest -q                           # expect: 49 passed
 python scripts/verify_claims.py                  # hashes + every headline number; expect FAILURES: none
 PYTHONPATH=. python scripts/check_dataset_hashes.py   # regenerates frozen splits; expect 6 x OK
 python scripts/check_manuscript_numbers.py       # every decimal in the paper is derivable from JSON
@@ -33,10 +33,11 @@ cd paper && latexmk -pdf qai_paper.tex           # needs TeX Live with IEEEtran 
 | `PYTHONPATH=. python -m qdag.invariant_benchmark --transformer-control --output experiments/qai_transformer_control_reproduction` | `control_result.json` | ~6–10 min (recorded 349 s) |
 | `PYTHONPATH=. python -m qdag.connectivity_controls --output experiments/qai_connectivity_controls_reproduction` | `controls_result.json` (pointer GRU, pointer Transformer, role-ablated DAG; 5 seeds) | ~65 min (recorded 3,807 s) |
 | `PYTHONPATH=. python -m qdag.augmentation_control --kind aug_pointer_grid --output <dir>` and `--kind aug_grid`, then `--aggregate --output <dir>` | `augmentation_result.json` (relabeling-augmented pointer GRU and grid GRU; 5 seeds each) | ~50 min sequential, ~27 min as two parallel processes (recorded 2,962 s) |
+| `python -m qdag.algorithm_suite_run prepare --output <dir> --cache <file>`, then `unit --output <dir> --cache <file> --phase {A,B} --kind <model> --seed <111..115>` for each model and seed, then `aggregate --output <dir> --phase {A,B}` (set `PYTHONPATH=. QISKIT_PARALLEL=FALSE OMP_NUM_THREADS=2`; add `OMP_WAIT_POLICY=PASSIVE` when running four units in parallel) | `data_manifest.json`, 45 unit files, `phaseA_result.json`, `phaseB_result.json` (standard-algorithm suite) | about 5 min of data generation; recorded 35,242 s of training summed over units, about 2 h 36 min wall clock with four parallel processes |
 | `PYTHONPATH=. python -m qdag.structured_transfer --final --output experiments/structured_transfer_final_reproduction` | supporting width/depth study | ~35–45 min (recorded 2,022 s) |
 | `PYTHONPATH=. python -m qdag.schedule_benchmark --final --updates 6000 --output experiments/schedule_dag_final_reproduction` | supporting random-circuit study | ~30 min (recorded 1,574 s) |
 
-Never point `--output` at a frozen directory (`*_final_2026*`, `qai_transformer_control_20261106`, `qai_connectivity_controls_20261113`, `qai_augmentation_control_20261113`).
+Never point `--output` at a frozen directory (`*_final_2026*`, `qai_transformer_control_20261106`, `qai_connectivity_controls_20261113`, `qai_augmentation_control_20261113`, `qai_algorithm_suite_20261114`).
 
 ## Seeds and data
 | Study | Data base seeds | Model seeds | Splits |

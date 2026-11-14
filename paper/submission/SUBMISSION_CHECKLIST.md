@@ -18,8 +18,11 @@
 - [x] Original draft preserved under `paper/archive/`
 
 ## Owner decisions and inputs (cannot be done without you)
+- [x] (2026-11-13/14, branch `claude/compassionate-heisenberg-yl7gi8`) Connectivity controls, augmentation control and standard-algorithm suite run under protocols pushed before their code; manuscript v5 (6 pages); 49/49 tests; 195 decimals derivable
 - [ ] **Choose the target:** QAI 2026 late-breaking (deadline 6 Nov 2026, non-archival, CMT) **or** the next full-paper call (QAI 2027; not yet announced)
-- [ ] Decide whether to approve and run `experiments/DRAFT_QAI_SERIALIZATION_CONTROL_PROTOCOL_20261106.md` before a full-paper submission (recommended; about 30 CPU-min)
+- [x] Serialization control approved and run (frozen as `experiments/QAI_CONNECTIVITY_CONTROLS_PROTOCOL_20261113.md`)
+- [ ] Decide whether the compressed supporting-studies paragraph in v5 is acceptable, or restore it using paid extra pages or a venue with a longer limit
+- [ ] Optional: approve an isolated MQT Bench install for an evaluation-only public test set (blocked in the 2026-11-14 session; it would upgrade the pinned Qiskit)
 - [ ] Confirm or amend the generative-AI disclosure in the Acknowledgment
 - [ ] Fill in the fields in "Unresolved fields" below at camera-ready (not before; the review is double-blind)
 - [ ] Decide on license and citation metadata for the code release (no LICENSE file exists)
@@ -37,7 +40,7 @@
 | Corresponding author | Not supplied |
 | Funding acknowledgments | Not supplied |
 | Conflicts of interest | Not supplied |
-| Generative-AI disclosure (final wording) | Drafted; needs author confirmation |
+| Generative-AI disclosure (final wording) | In the manuscript since v3; authors to confirm it matches actual use |
 | Track (late-breaking vs. full paper) | Owner decision |
 | Artifact hosting URL (anonymous) | Not created |
 | Code license | Not chosen |

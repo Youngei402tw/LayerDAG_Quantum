@@ -75,3 +75,11 @@ The sections above are the handoff record and are kept unchanged. Additions:
 - Draft, unexecuted protocol: `experiments/DRAFT_QAI_SERIALIZATION_CONTROL_PROTOCOL_20261106.md`.
 - Environment pin: `requirements-qai.txt`. Full instructions: `REPRODUCIBILITY.md`. Anonymous export: `scripts/make_anonymous_artifact.sh`.
 - Correction to the Manuscripts list above: `qai_paper.pdf` now uses the official IEEE conference class rather than portable two-column LaTeX.
+
+## Update (2026-11-13/14, branch `claude/compassionate-heisenberg-yl7gi8`)
+
+- Active manuscript is now v5: `qai_paper.tex` / `qai_paper.pdf` / `qai_submission_v5.pdf` (6 pages). `qai_submission_v2.pdf` to `v4.pdf` are kept as earlier builds.
+- The draft serialization protocol was frozen as `experiments/QAI_CONNECTIVITY_CONTROLS_PROTOCOL_20261113.md` and executed (`experiments/qai_connectivity_controls_20261113/`, `qai_env_check_seed112_20261113/`).
+- Further frozen protocols and results: `QAI_AUGMENTATION_CONTROL_PROTOCOL_20261113.md` (`qai_augmentation_control_20261113/`) and `QAI_ALGORITHM_SUITE_PROTOCOL_20261114.md` (`qai_algorithm_suite_20261114/`, scoping record in `qai_algorithm_suite_scoping_20261113/`).
+- New source modules: `qdag/connectivity_controls.py`, `qdag/augmentation_control.py`, `qdag/algorithm_suite.py`, `qdag/algorithm_suite_run.py`, each with tests. The frozen modules are unchanged.
+- Environment for all 2026-11-13/14 runs: Python 3.13.18, PyTorch 2.8.0+cpu, NumPy 2.3.4, Qiskit 2.2.3; seed 112 of the frozen final was reproduced bit for bit in this environment before the controls.
