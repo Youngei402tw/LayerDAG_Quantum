@@ -1,0 +1,726 @@
+{
+  "protocol": "QAI_ALGORITHM_SUITE_PROTOCOL_20261114",
+  "families": [
+    "qft",
+    "qpe",
+    "oracle",
+    "graphstate",
+    "qaoa",
+    "vqe",
+    "trotter",
+    "adder",
+    "qv",
+    "iqp",
+    "excitation"
+  ],
+  "split_specs": [
+    [
+      "training",
+      15100,
+      1100,
+      [
+        4,
+        7
+      ]
+    ],
+    [
+      "validation",
+      15101,
+      264,
+      [
+        4,
+        7
+      ]
+    ],
+    [
+      "same",
+      15102,
+      528,
+      [
+        4,
+        7
+      ]
+    ],
+    [
+      "near_width",
+      15103,
+      528,
+      [
+        8,
+        12
+      ]
+    ],
+    [
+      "far_width",
+      15104,
+      528,
+      [
+        13,
+        20
+      ]
+    ]
+  ],
+  "relabel_seeds": {
+    "same": 15105,
+    "far_width": 15106
+  },
+  "hashes": {
+    "A": {
+      "training": "a78d5516c19b36d85c23862ec85ea71144a0a79104e0f60f537b42f121dd4ca1",
+      "validation": "0804e70180d6a76fca8bad4c649677d09259d6702b7e2690f2e89c9b3bd72891",
+      "same": "dc3adc3b8c486177f25289488365043b1cd059dbee4df313a3bb2b5f03ee7416",
+      "near_width": "0089c77116e9d5111ec5a567acebd02e84ee70e5bcb681252b297600631263db",
+      "far_width": "3de593eee11e9bb36cd78af4ad8ea111e2eeb60e729b8e9a7da6581e307d7ff3",
+      "same_relabeled": "9642b721b34b141860e07984c6ddce36395c4d0fa02c3e84f644002d64bda248",
+      "far_relabeled": "735bbb0d297e99986f4169e59296a6cdaa8d9bfa02101054bf93d1e06aedb85b",
+      "same_reversed": "a28775d2d09195706362c8457f8da3528f3533ab691b8c8156a32c3bd5d9c60d",
+      "far_reversed": "124d0bebb63d25e534f94e1719eec1b0d38c0907964ba1f28b27b6fc4d6aa7ea"
+    },
+    "B": {
+      "training": "4c6d86ee0ce4c987236f54b58e762b7e90129e716c5fbc2f5fcb879e659d73b1",
+      "validation": "d70d64a1fd02f1d955fc632b9ce7ca09c3910e6dc7b0ad5a1c259cc66150a57a",
+      "same": "9350f1c16c0a106a31319cc8fab6006dea71eab4a70a6934bef694aeb6f4b721",
+      "near_width": "6f5757c03e006da2a451e29f1b00769af53677a056c41c388dee9af02e0d9517",
+      "far_width": "329379f530d169234dcf289edb56f70230c88ac89892584ef688810384123373",
+      "same_relabeled": "65d34d1e2290a7993cfea885496545861944059ba6c8c7efea31387bf35518d2",
+      "far_relabeled": "f8bb9d9b2ba894855dc0573c0ce7cea9b59f56d16f0f856007d4a43694231fd9",
+      "same_reversed": "c185727d1734438117f1cf9244e17b42e29e51439009be4d79116c7651609693",
+      "far_reversed": "4f289e67438eeb4647bf42253b1f7f152f1012e1957f62616baab87f05704163"
+    }
+  },
+  "statistics": {
+    "training": {
+      "circuits": 1100,
+      "nodes": 72041,
+      "gates_mean": 65.49181818181818,
+      "gates_max": 399,
+      "positive_fraction_A": 0.7724490165710449,
+      "positive_fraction_B": 0.5861107110977173,
+      "node_label_agreement_A_B": 0.7241848391887953,
+      "families": {
+        "adder": {
+          "circuits": 100,
+          "nodes": 7619,
+          "gates_mean": 76.19,
+          "gates_max": 112,
+          "qubits_min": 4,
+          "qubits_max": 7,
+          "positive_fraction_A": 0.7392046451568604,
+          "positive_fraction_B": 0.6798792481422424
+        },
+        "excitation": {
+          "circuits": 100,
+          "nodes": 6613,
+          "gates_mean": 66.13,
+          "gates_max": 120,
+          "qubits_min": 4,
+          "qubits_max": 7,
+          "positive_fraction_A": 0.7473158836364746,
+          "positive_fraction_B": 0.7473158836364746
+        },
+        "graphstate": {
+          "circuits": 100,
+          "nodes": 1326,
+          "gates_mean": 13.26,
+          "gates_max": 20,
+          "qubits_min": 4,
+          "qubits_max": 7,
+          "positive_fraction_A": 0.7526395320892334,
+          "positive_fraction_B": 0.662895917892456
+        },
+        "iqp": {
+          "circuits": 100,
+          "nodes": 4092,
+          "gates_mean": 40.92,
+          "gates_max": 66,
+          "qubits_min": 4,
+          "qubits_max": 7,
+          "positive_fraction_A": 0.6170576810836792,
+          "positive_fraction_B": 0.4125122129917145
+        },
+        "oracle": {
+          "circuits": 100,
+          "nodes": 1159,
+          "gates_mean": 11.59,
+          "gates_max": 16,
+          "qubits_min": 4,
+          "qubits_max": 7,
+          "positive_fraction_A": 0.5634167194366455,
+          "positive_fraction_B": 1.0
+        },
+        "qaoa": {
+          "circuits": 100,
+          "nodes": 6185,
+          "gates_mean": 61.85,
+          "gates_max": 121,
+          "qubits_min": 4,
+          "qubits_max": 7,
+          "positive_fraction_A": 0.6046887636184692,
+          "positive_fraction_B": 0.4257073700428009
+        },
+        "qft": {
+          "circuits": 100,
+          "nodes": 7938,
+          "gates_mean": 79.38,
+          "gates_max": 127,
+          "qubits_min": 4,
+          "qubits_max": 7,
+          "positive_fraction_A": 0.7608969807624817,
+          "positive_fraction_B": 0.3401360511779785
+        },
+        "qpe": {
+          "circuits": 100,
+          "nodes": 8576,
+          "gates_mean": 85.76,
+          "gates_max": 128,
+          "qubits_min": 4,
+          "qubits_max": 7,
+          "positive_fraction_A": 0.7621268630027771,
+          "positive_fraction_B": 0.734375
+        },
+        "qv": {
+          "circuits": 100,
+          "nodes": 12195,
+          "gates_mean": 121.95,
+          "gates_max": 201,
+          "qubits_min": 4,
+          "qubits_max": 7,
+          "positive_fraction_A": 0.8961869478225708,
+          "positive_fraction_B": 0.3782697916030884
+        },
+        "trotter": {
+          "circuits": 100,
+          "nodes": 13236,
+          "gates_mean": 132.36,
+          "gates_max": 399,
+          "qubits_min": 4,
+          "qubits_max": 7,
+          "positive_fraction_A": 0.8819129467010498,
+          "positive_fraction_B": 0.779691755771637
+        },
+        "vqe": {
+          "circuits": 100,
+          "nodes": 3102,
+          "gates_mean": 31.02,
+          "gates_max": 77,
+          "qubits_min": 4,
+          "qubits_max": 7,
+          "positive_fraction_A": 0.6382978558540344,
+          "positive_fraction_B": 0.5841392874717712
+        }
+      }
+    },
+    "validation": {
+      "circuits": 264,
+      "nodes": 18896,
+      "gates_mean": 71.57575757575758,
+      "gates_max": 462,
+      "positive_fraction_A": 0.7820173501968384,
+      "positive_fraction_B": 0.5932472348213196,
+      "node_label_agreement_A_B": 0.7349174428450466,
+      "families": {
+        "adder": {
+          "circuits": 24,
+          "nodes": 1910,
+          "gates_mean": 79.58333333333333,
+          "gates_max": 110,
+          "qubits_min": 4,
+          "qubits_max": 7,
+          "positive_fraction_A": 0.7345549464225769,
+          "positive_fraction_B": 0.672251284122467
+        },
+        "excitation": {
+          "circuits": 24,
+          "nodes": 1850,
+          "gates_mean": 77.08333333333333,
+          "gates_max": 120,
+          "qubits_min": 4,
+          "qubits_max": 7,
+          "positive_fraction_A": 0.7416216135025024,
+          "positive_fraction_B": 0.7416216135025024
+        },
+        "graphstate": {
+          "circuits": 24,
+          "nodes": 327,
+          "gates_mean": 13.625,
+          "gates_max": 20,
+          "qubits_min": 5,
+          "qubits_max": 7,
+          "positive_fraction_A": 0.7339449524879456,
+          "positive_fraction_B": 0.639143705368042
+        },
+        "iqp": {
+          "circuits": 24,
+          "nodes": 893,
+          "gates_mean": 37.208333333333336,
+          "gates_max": 65,
+          "qubits_min": 4,
+          "qubits_max": 7,
+          "positive_fraction_A": 0.6382978558540344,
+          "positive_fraction_B": 0.4053751528263092
+        },
+        "oracle": {
+          "circuits": 24,
+          "nodes": 282,
+          "gates_mean": 11.75,
+          "gates_max": 19,
+          "qubits_min": 5,
+          "qubits_max": 7,
+          "positive_fraction_A": 0.5602836608886719,
+          "positive_fraction_B": 1.0
+        },
+        "qaoa": {
+          "circuits": 24,
+          "nodes": 1436,
+          "gates_mean": 59.833333333333336,
+          "gates_max": 103,
+          "qubits_min": 4,
+          "qubits_max": 7,
+          "positive_fraction_A": 0.6121169924736023,
+          "positive_fraction_B": 0.41643452644348145
+        },
+        "qft": {
+          "circuits": 24,
+          "nodes": 1750,
+          "gates_mean": 72.91666666666667,
+          "gates_max": 127,
+          "qubits_min": 4,
+          "qubits_max": 7,
+          "positive_fraction_A": 0.7559999823570251,
+          "positive_fraction_B": 0.35428571701049805
+        },
+        "qpe": {
+          "circuits": 24,
+          "nodes": 2038,
+          "gates_mean": 84.91666666666667,
+          "gates_max": 128,
+          "qubits_min": 4,
+          "qubits_max": 7,
+          "positive_fraction_A": 0.7639843225479126,
+          "positive_fraction_B": 0.7320902943611145
+        },
+        "qv": {
+          "circuits": 24,
+          "nodes": 3317,
+          "gates_mean": 138.20833333333334,
+          "gates_max": 201,
+          "qubits_min": 4,
+          "qubits_max": 7,
+          "positive_fraction_A": 0.8926740884780884,
+          "positive_fraction_B": 0.3512209951877594
+        },
+        "trotter": {
+          "circuits": 24,
+          "nodes": 4184,
+          "gates_mean": 174.33333333333334,
+          "gates_max": 462,
+          "qubits_min": 4,
+          "qubits_max": 7,
+          "positive_fraction_A": 0.8926864266395569,
+          "positive_fraction_B": 0.7913479804992676
+        },
+        "vqe": {
+          "circuits": 24,
+          "nodes": 909,
+          "gates_mean": 37.875,
+          "gates_max": 77,
+          "qubits_min": 4,
+          "qubits_max": 7,
+          "positive_fraction_A": 0.6369637250900269,
+          "positive_fraction_B": 0.5665566325187683
+        }
+      }
+    },
+    "same": {
+      "circuits": 528,
+      "nodes": 34618,
+      "gates_mean": 65.56439393939394,
+      "gates_max": 462,
+      "positive_fraction_A": 0.7738748788833618,
+      "positive_fraction_B": 0.5855913162231445,
+      "node_label_agreement_A_B": 0.725114102490034,
+      "families": {
+        "adder": {
+          "circuits": 48,
+          "nodes": 4097,
+          "gates_mean": 85.35416666666667,
+          "gates_max": 112,
+          "qubits_min": 4,
+          "qubits_max": 7,
+          "positive_fraction_A": 0.7368806600570679,
+          "positive_fraction_B": 0.678301215171814
+        },
+        "excitation": {
+          "circuits": 48,
+          "nodes": 3058,
+          "gates_mean": 63.708333333333336,
+          "gates_max": 120,
+          "qubits_min": 4,
+          "qubits_max": 7,
+          "positive_fraction_A": 0.7462393641471863,
+          "positive_fraction_B": 0.7462393641471863
+        },
+        "graphstate": {
+          "circuits": 48,
+          "nodes": 621,
+          "gates_mean": 12.9375,
+          "gates_max": 19,
+          "qubits_min": 4,
+          "qubits_max": 7,
+          "positive_fraction_A": 0.7342995405197144,
+          "positive_fraction_B": 0.6795490980148315
+        },
+        "iqp": {
+          "circuits": 48,
+          "nodes": 1956,
+          "gates_mean": 40.75,
+          "gates_max": 65,
+          "qubits_min": 4,
+          "qubits_max": 7,
+          "positive_fraction_A": 0.6431492567062378,
+          "positive_fraction_B": 0.4105316996574402
+        },
+        "oracle": {
+          "circuits": 48,
+          "nodes": 573,
+          "gates_mean": 11.9375,
+          "gates_max": 16,
+          "qubits_min": 5,
+          "qubits_max": 7,
+          "positive_fraction_A": 0.5567190051078796,
+          "positive_fraction_B": 1.0
+        },
+        "qaoa": {
+          "circuits": 48,
+          "nodes": 2575,
+          "gates_mean": 53.645833333333336,
+          "gates_max": 109,
+          "qubits_min": 4,
+          "qubits_max": 7,
+          "positive_fraction_A": 0.6485437154769897,
+          "positive_fraction_B": 0.41825243830680847
+        },
+        "qft": {
+          "circuits": 48,
+          "nodes": 3900,
+          "gates_mean": 81.25,
+          "gates_max": 127,
+          "qubits_min": 4,
+          "qubits_max": 7,
+          "positive_fraction_A": 0.7635897397994995,
+          "positive_fraction_B": 0.33589744567871094
+        },
+        "qpe": {
+          "circuits": 48,
+          "nodes": 4029,
+          "gates_mean": 83.9375,
+          "gates_max": 128,
+          "qubits_min": 4,
+          "qubits_max": 7,
+          "positive_fraction_A": 0.7619757056236267,
+          "positive_fraction_B": 0.7361628413200378
+        },
+        "qv": {
+          "circuits": 48,
+          "nodes": 5802,
+          "gates_mean": 120.875,
+          "gates_max": 201,
+          "qubits_min": 4,
+          "qubits_max": 7,
+          "positive_fraction_A": 0.9002068042755127,
+          "positive_fraction_B": 0.3903826177120209
+        },
+        "trotter": {
+          "circuits": 48,
+          "nodes": 6228,
+          "gates_mean": 129.75,
+          "gates_max": 462,
+          "qubits_min": 4,
+          "qubits_max": 7,
+          "positive_fraction_A": 0.8684971332550049,
+          "positive_fraction_B": 0.7665382027626038
+        },
+        "vqe": {
+          "circuits": 48,
+          "nodes": 1779,
+          "gates_mean": 37.0625,
+          "gates_max": 77,
+          "qubits_min": 4,
+          "qubits_max": 7,
+          "positive_fraction_A": 0.6216976046562195,
+          "positive_fraction_B": 0.5739179253578186
+        }
+      }
+    },
+    "near_width": {
+      "circuits": 528,
+      "nodes": 78239,
+      "gates_mean": 148.17992424242425,
+      "gates_max": 726,
+      "positive_fraction_A": 0.7667275667190552,
+      "positive_fraction_B": 0.5254284739494324,
+      "node_label_agreement_A_B": 0.6802489806873809,
+      "families": {
+        "adder": {
+          "circuits": 48,
+          "nodes": 7730,
+          "gates_mean": 161.04166666666666,
+          "gates_max": 187,
+          "qubits_min": 8,
+          "qubits_max": 12,
+          "positive_fraction_A": 0.7150064706802368,
+          "positive_fraction_B": 0.6565330028533936
+        },
+        "excitation": {
+          "circuits": 48,
+          "nodes": 5908,
+          "gates_mean": 123.08333333333333,
+          "gates_max": 205,
+          "qubits_min": 8,
+          "qubits_max": 12,
+          "positive_fraction_A": 0.7440758347511292,
+          "positive_fraction_B": 0.7440758347511292
+        },
+        "graphstate": {
+          "circuits": 48,
+          "nodes": 1156,
+          "gates_mean": 24.083333333333332,
+          "gates_max": 37,
+          "qubits_min": 8,
+          "qubits_max": 12,
+          "positive_fraction_A": 0.5371972322463989,
+          "positive_fraction_B": 0.4723183512687683
+        },
+        "iqp": {
+          "circuits": 48,
+          "nodes": 3669,
+          "gates_mean": 76.4375,
+          "gates_max": 125,
+          "qubits_min": 8,
+          "qubits_max": 12,
+          "positive_fraction_A": 0.48678115010261536,
+          "positive_fraction_B": 0.2782774567604065
+        },
+        "oracle": {
+          "circuits": 48,
+          "nodes": 720,
+          "gates_mean": 15.0,
+          "gates_max": 28,
+          "qubits_min": 8,
+          "qubits_max": 12,
+          "positive_fraction_A": 0.5111111402511597,
+          "positive_fraction_B": 1.0
+        },
+        "qaoa": {
+          "circuits": 48,
+          "nodes": 5960,
+          "gates_mean": 124.16666666666667,
+          "gates_max": 234,
+          "qubits_min": 8,
+          "qubits_max": 12,
+          "positive_fraction_A": 0.4345637559890747,
+          "positive_fraction_B": 0.26895973086357117
+        },
+        "qft": {
+          "circuits": 48,
+          "nodes": 12902,
+          "gates_mean": 268.7916666666667,
+          "gates_max": 371,
+          "qubits_min": 8,
+          "qubits_max": 12,
+          "positive_fraction_A": 0.8328166007995605,
+          "positive_fraction_B": 0.1883428990840912
+        },
+        "qpe": {
+          "circuits": 48,
+          "nodes": 12340,
+          "gates_mean": 257.0833333333333,
+          "gates_max": 369,
+          "qubits_min": 8,
+          "qubits_max": 12,
+          "positive_fraction_A": 0.8135332465171814,
+          "positive_fraction_B": 0.7482982277870178
+        },
+        "qv": {
+          "circuits": 48,
+          "nodes": 10205,
+          "gates_mean": 212.60416666666666,
+          "gates_max": 333,
+          "qubits_min": 8,
+          "qubits_max": 12,
+          "positive_fraction_A": 0.9010289311408997,
+          "positive_fraction_B": 0.27849093079566956
+        },
+        "trotter": {
+          "circuits": 48,
+          "nodes": 14647,
+          "gates_mean": 305.1458333333333,
+          "gates_max": 726,
+          "qubits_min": 8,
+          "qubits_max": 12,
+          "positive_fraction_A": 0.8796340823173523,
+          "positive_fraction_B": 0.7860995531082153
+        },
+        "vqe": {
+          "circuits": 48,
+          "nodes": 3002,
+          "gates_mean": 62.541666666666664,
+          "gates_max": 129,
+          "qubits_min": 8,
+          "qubits_max": 12,
+          "positive_fraction_A": 0.6119253635406494,
+          "positive_fraction_B": 0.5756162405014038
+        }
+      }
+    },
+    "far_width": {
+      "circuits": 528,
+      "nodes": 154419,
+      "gates_mean": 292.46022727272725,
+      "gates_max": 1191,
+      "positive_fraction_A": 0.7859007120132446,
+      "positive_fraction_B": 0.49175941944122314,
+      "node_label_agreement_A_B": 0.6367869238888997,
+      "families": {
+        "adder": {
+          "circuits": 48,
+          "nodes": 12728,
+          "gates_mean": 265.1666666666667,
+          "gates_max": 330,
+          "qubits_min": 13,
+          "qubits_max": 20,
+          "positive_fraction_A": 0.7105593681335449,
+          "positive_fraction_B": 0.6535198092460632
+        },
+        "excitation": {
+          "circuits": 48,
+          "nodes": 10965,
+          "gates_mean": 228.4375,
+          "gates_max": 340,
+          "qubits_min": 13,
+          "qubits_max": 20,
+          "positive_fraction_A": 0.7332421541213989,
+          "positive_fraction_B": 0.7332421541213989
+        },
+        "graphstate": {
+          "circuits": 48,
+          "nodes": 1924,
+          "gates_mean": 40.083333333333336,
+          "gates_max": 56,
+          "qubits_min": 13,
+          "qubits_max": 20,
+          "positive_fraction_A": 0.41424116492271423,
+          "positive_fraction_B": 0.37733888626098633
+        },
+        "iqp": {
+          "circuits": 48,
+          "nodes": 6255,
+          "gates_mean": 130.3125,
+          "gates_max": 181,
+          "qubits_min": 13,
+          "qubits_max": 20,
+          "positive_fraction_A": 0.3443644940853119,
+          "positive_fraction_B": 0.18896882236003876
+        },
+        "oracle": {
+          "circuits": 48,
+          "nodes": 1077,
+          "gates_mean": 22.4375,
+          "gates_max": 37,
+          "qubits_min": 13,
+          "qubits_max": 20,
+          "positive_fraction_A": 0.45218199491500854,
+          "positive_fraction_B": 1.0
+        },
+        "qaoa": {
+          "circuits": 48,
+          "nodes": 8504,
+          "gates_mean": 177.16666666666666,
+          "gates_max": 398,
+          "qubits_min": 13,
+          "qubits_max": 20,
+          "positive_fraction_A": 0.31267639994621277,
+          "positive_fraction_B": 0.20990122854709625
+        },
+        "qft": {
+          "circuits": 48,
+          "nodes": 33702,
+          "gates_mean": 702.125,
+          "gates_max": 1019,
+          "qubits_min": 13,
+          "qubits_max": 20,
+          "positive_fraction_A": 0.8866239190101624,
+          "positive_fraction_B": 0.11690700799226761
+        },
+        "qpe": {
+          "circuits": 48,
+          "nodes": 35537,
+          "gates_mean": 740.3541666666666,
+          "gates_max": 1017,
+          "qubits_min": 13,
+          "qubits_max": 20,
+          "positive_fraction_A": 0.8732306957244873,
+          "positive_fraction_B": 0.7642456889152527
+        },
+        "qv": {
+          "circuits": 48,
+          "nodes": 18068,
+          "gates_mean": 376.4166666666667,
+          "gates_max": 660,
+          "qubits_min": 13,
+          "qubits_max": 20,
+          "positive_fraction_A": 0.9059110283851624,
+          "positive_fraction_B": 0.2761235237121582
+        },
+        "trotter": {
+          "circuits": 48,
+          "nodes": 20400,
+          "gates_mean": 425.0,
+          "gates_max": 1191,
+          "qubits_min": 13,
+          "qubits_max": 20,
+          "positive_fraction_A": 0.8545098304748535,
+          "positive_fraction_B": 0.7668627500534058
+        },
+        "vqe": {
+          "circuits": 48,
+          "nodes": 5259,
+          "gates_mean": 109.5625,
+          "gates_max": 220,
+          "qubits_min": 13,
+          "qubits_max": 20,
+          "positive_fraction_A": 0.6586803793907166,
+          "positive_fraction_B": 0.5850922465324402
+        }
+      }
+    }
+  },
+  "renaming_checks": {
+    "same_relabeled": {
+      "circuits": 528,
+      "changed_circuits": 525,
+      "labels_recomputed_and_equal": true
+    },
+    "far_relabeled": {
+      "circuits": 528,
+      "changed_circuits": 528,
+      "labels_recomputed_and_equal": true
+    },
+    "same_reversed": {
+      "circuits": 528,
+      "changed_circuits": 528,
+      "labels_recomputed_and_equal": true
+    },
+    "far_reversed": {
+      "circuits": 528,
+      "changed_circuits": 528,
+      "labels_recomputed_and_equal": true
+    }
+  },
+  "generation_seconds": 282.25673452399997,
+  "versions": {
+    "qiskit": "2.2.3",
+    "torch": "2.8.0+cpu",
+    "numpy": "2.3.4"
+  }
+}
