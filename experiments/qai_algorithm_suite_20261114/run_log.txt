@@ -1,0 +1,101 @@
+START A dag 111 04:53:22
+START A grid 111 04:53:22
+START A pointer_grid 111 04:53:22
+START A aug_pointer_grid 111 04:53:22
+DONE A dag 111 {'same': 0.9792, 'near_width': 0.9627, 'far_width': 0.9459, 'far_relabeled': 0.9459} 362s
+START A dag 112 04:59:43
+DONE A dag 112 {'same': 0.9788, 'near_width': 0.9627, 'far_width': 0.947, 'far_relabeled': 0.947} 361s
+START A grid 112 05:06:01
+DONE A grid 111 {'same': 0.9654, 'near_width': 0.9049, 'far_width': 0.8409, 'far_relabeled': 0.7777} 921s
+START A pointer_grid 112 05:09:14
+DONE A aug_pointer_grid 111 {'same': 0.9881, 'near_width': 0.9669, 'far_width': 0.9442, 'far_relabeled': 0.9454} 964s
+START A aug_pointer_grid 112 05:09:57
+DONE A pointer_grid 111 {'same': 0.9922, 'near_width': 0.9702, 'far_width': 0.9427, 'far_relabeled': 0.9252} 965s
+GROUP phase A seed 111 complete 05:09:59
+START A dag 113 05:09:59
+DONE A dag 113 {'same': 0.9808, 'near_width': 0.9625, 'far_width': 0.9453, 'far_relabeled': 0.9453} 363s
+START A grid 113 05:16:20
+DONE A grid 112 {'same': 0.9657, 'near_width': 0.9238, 'far_width': 0.8751, 'far_relabeled': 0.8054} 957s
+START A pointer_grid 113 05:22:23
+DONE A pointer_grid 112 {'same': 0.9918, 'near_width': 0.973, 'far_width': 0.9492, 'far_relabeled': 0.9277} 962s
+START A aug_pointer_grid 113 05:25:45
+DONE A aug_pointer_grid 112 {'same': 0.9881, 'near_width': 0.9677, 'far_width': 0.9466, 'far_relabeled': 0.9484} 963s
+GROUP phase A seed 112 complete 05:26:30
+START A dag 114 05:26:30
+DONE A grid 113 {'same': 0.9657, 'near_width': 0.9111, 'far_width': 0.8351, 'far_relabeled': 0.7674} 942s
+START A grid 114 05:32:28
+DONE A dag 114 {'same': 0.9809, 'near_width': 0.9621, 'far_width': 0.9444, 'far_relabeled': 0.9444} 363s
+START A pointer_grid 114 05:32:51
+DONE A pointer_grid 113 {'same': 0.9925, 'near_width': 0.9717, 'far_width': 0.9398, 'far_relabeled': 0.9173} 983s
+START A aug_pointer_grid 114 05:39:16
+DONE A aug_pointer_grid 113 {'same': 0.9885, 'near_width': 0.9682, 'far_width': 0.9392, 'far_relabeled': 0.9412} 999s
+GROUP phase A seed 113 complete 05:42:54
+START A dag 115 05:42:54
+DONE A grid 114 {'same': 0.9674, 'near_width': 0.9264, 'far_width': 0.8896, 'far_relabeled': 0.8257} 942s
+START A grid 115 05:48:37
+DONE A dag 115 {'same': 0.9815, 'near_width': 0.9621, 'far_width': 0.9449, 'far_relabeled': 0.9449} 364s
+START A pointer_grid 115 05:49:17
+DONE A pointer_grid 114 {'same': 0.992, 'near_width': 0.9721, 'far_width': 0.9475, 'far_relabeled': 0.9169} 980s
+START A aug_pointer_grid 115 05:49:41
+DONE A aug_pointer_grid 114 {'same': 0.9884, 'near_width': 0.9695, 'far_width': 0.9512, 'far_relabeled': 0.9515} 979s
+GROUP phase A seed 114 complete 05:56:04
+START B dag 111 05:56:04
+DONE B dag 111 {'same': 0.9638, 'near_width': 0.9439, 'far_width': 0.9364, 'far_relabeled': 0.9364} 344s
+START B grid 111 06:02:06
+DONE A grid 115 {'same': 0.9672, 'near_width': 0.9188, 'far_width': 0.8679, 'far_relabeled': 0.8043} 902s
+START B pointer_grid 111 06:04:03
+DONE A pointer_grid 115 {'same': 0.9913, 'near_width': 0.9673, 'far_width': 0.9419, 'far_relabeled': 0.9153} 933s
+START B aug_pointer_grid 111 06:05:19
+DONE A aug_pointer_grid 115 {'same': 0.989, 'near_width': 0.9686, 'far_width': 0.9439, 'far_relabeled': 0.9451} 932s
+GROUP phase A seed 115 complete 06:05:43
+START B role_ablated_dag 111 06:05:43
+DONE B role_ablated_dag 111 {'same': 0.9379, 'near_width': 0.9147, 'far_width': 0.9034, 'far_relabeled': 0.9034} 359s
+START B dag 112 06:12:00
+DONE B grid 111 {'same': 0.9226, 'near_width': 0.879, 'far_width': 0.8137, 'far_relabeled': 0.7479} 900s
+START B grid 112 06:17:31
+DONE B dag 112 {'same': 0.9617, 'near_width': 0.9423, 'far_width': 0.9347, 'far_relabeled': 0.9347} 350s
+START B pointer_grid 112 06:18:07
+DONE B pointer_grid 111 {'same': 0.9539, 'near_width': 0.9246, 'far_width': 0.8938, 'far_relabeled': 0.8505} 940s
+START B aug_pointer_grid 112 06:20:14
+DONE B aug_pointer_grid 111 {'same': 0.9467, 'near_width': 0.9182, 'far_width': 0.8943, 'far_relabeled': 0.8906} 948s
+GROUP phase B seed 111 complete 06:21:37
+START B role_ablated_dag 112 06:21:37
+DONE B role_ablated_dag 112 {'same': 0.9385, 'near_width': 0.9157, 'far_width': 0.9017, 'far_relabeled': 0.9017} 365s
+START B dag 113 06:28:00
+DONE B grid 112 {'same': 0.9234, 'near_width': 0.8863, 'far_width': 0.8345, 'far_relabeled': 0.7504} 947s
+START B grid 113 06:33:43
+DONE B dag 113 {'same': 0.962, 'near_width': 0.9402, 'far_width': 0.935, 'far_relabeled': 0.935} 368s
+START B pointer_grid 113 06:34:27
+DONE B pointer_grid 112 {'same': 0.9576, 'near_width': 0.9273, 'far_width': 0.8988, 'far_relabeled': 0.8535} 991s
+START B aug_pointer_grid 113 06:35:08
+DONE B aug_pointer_grid 112 {'same': 0.9489, 'near_width': 0.9206, 'far_width': 0.8934, 'far_relabeled': 0.8967} 984s
+GROUP phase B seed 112 complete 06:37:07
+START B role_ablated_dag 113 06:37:07
+DONE B role_ablated_dag 113 {'same': 0.9358, 'near_width': 0.9138, 'far_width': 0.8987, 'far_relabeled': 0.8987} 387s
+START B dag 114 06:43:52
+DONE B dag 114 {'same': 0.9653, 'near_width': 0.9439, 'far_width': 0.9356, 'far_relabeled': 0.9356} 372s
+START B grid 114 06:50:22
+DONE B grid 113 {'same': 0.9221, 'near_width': 0.881, 'far_width': 0.8362, 'far_relabeled': 0.7623} 974s
+START B pointer_grid 114 06:50:23
+DONE B pointer_grid 113 {'same': 0.9549, 'near_width': 0.9266, 'far_width': 0.8979, 'far_relabeled': 0.852} 1026s
+START B aug_pointer_grid 114 06:52:04
+DONE B aug_pointer_grid 113 {'same': 0.9456, 'near_width': 0.9172, 'far_width': 0.8966, 'far_relabeled': 0.8934} 1020s
+GROUP phase B seed 113 complete 06:52:37
+START B role_ablated_dag 114 06:52:37
+DONE B role_ablated_dag 114 {'same': 0.9391, 'near_width': 0.9143, 'far_width': 0.9002, 'far_relabeled': 0.9002} 406s
+START B dag 115 06:59:43
+DONE B dag 115 {'same': 0.9647, 'near_width': 0.9429, 'far_width': 0.9353, 'far_relabeled': 0.9353} 419s
+START B grid 115 07:07:04
+DONE B grid 114 {'same': 0.9213, 'near_width': 0.8766, 'far_width': 0.8218, 'far_relabeled': 0.7514} 1058s
+START B pointer_grid 115 07:08:26
+DONE B pointer_grid 114 {'same': 0.9577, 'near_width': 0.9278, 'far_width': 0.9065, 'far_relabeled': 0.8549} 1076s
+START B aug_pointer_grid 115 07:08:53
+DONE B aug_pointer_grid 114 {'same': 0.9499, 'near_width': 0.9179, 'far_width': 0.884, 'far_relabeled': 0.8862} 1072s
+GROUP phase B seed 114 complete 07:10:27
+START B role_ablated_dag 115 07:10:27
+DONE B role_ablated_dag 115 {'same': 0.9369, 'near_width': 0.915, 'far_width': 0.8968, 'far_relabeled': 0.8968} 355s
+DONE B grid 115 {'same': 0.9214, 'near_width': 0.8736, 'far_width': 0.8154, 'far_relabeled': 0.7405} 1109s
+DONE B pointer_grid 115 {'same': 0.9568, 'near_width': 0.9241, 'far_width': 0.8986, 'far_relabeled': 0.8472} 1175s
+DONE B aug_pointer_grid 115 {'same': 0.9471, 'near_width': 0.9175, 'far_width': 0.8981, 'far_relabeled': 0.8933} 1155s
+GROUP phase B seed 115 complete 07:28:52
+ALLDONE

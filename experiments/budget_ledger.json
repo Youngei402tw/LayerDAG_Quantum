@@ -68,5 +68,22 @@
     "aug_pointer_grid": 1531.41,
     "aug_grid": 1430.67
   },
-  "augmentation_control_status": "2026-11-13 post-confirmatory; augmented pointer GRU reading intermediate (relabel gaps 0.0035/-0.0024 AUROC, DAG far lead +0.0103, 5/5); not added to measured_compute_job_wall_seconds"
+  "augmentation_control_status": "2026-11-13 post-confirmatory; augmented pointer GRU reading intermediate (relabel gaps 0.0035/-0.0024 AUROC, DAG far lead +0.0103, 5/5); not added to measured_compute_job_wall_seconds",
+  "algorithm_suite_training_seconds": {
+    "A": {
+      "dag": 1812.95,
+      "grid": 4665.01,
+      "pointer_grid": 4824.23,
+      "aug_pointer_grid": 4836.51
+    },
+    "B": {
+      "dag": 1854.47,
+      "grid": 4988.66,
+      "pointer_grid": 5208.82,
+      "aug_pointer_grid": 5179.5,
+      "role_ablated_dag": 1871.73
+    }
+  },
+  "algorithm_suite_data_generation_seconds": 282.3,
+  "algorithm_suite_status": "2026-11-14 post-confirmatory; 45 units, wall clock about 2 h 36 min with four parallel processes (per-unit seconds are inflated by sharing 4 cores); Phase A readings replicated/tie/suffices/exact; Phase B replicated/graph_advantage/insufficient/exact/roles_contribute; not added to measured_compute_job_wall_seconds"
 }
