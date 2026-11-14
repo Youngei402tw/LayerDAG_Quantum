@@ -1,9 +1,9 @@
-"""PROTOTYPE (scoping only, 2026-11-13): randomized standard-algorithm circuit families.
+"""Randomized standard-algorithm circuit families for the QAI algorithm-suite study.
 
 Built with Qiskit's circuit library and compiled by the Qiskit transpiler to the {H, RY, RZ, CX}
-basis that the frozen QAI encoders already read, so no model code changes. This module exists to
-support the DRAFT protocol experiments/DRAFT_QAI_ALGORITHM_SUITE_PROTOCOL_20261113.md. No model
-has been trained or evaluated on its output. Family list and parameters are not frozen.
+basis that the frozen QAI encoders already read, so no model code changes.
+Protocol: experiments/QAI_ALGORITHM_SUITE_PROTOCOL_20261114.md. The family list and parameters
+below were fixed before any model was trained or evaluated on these circuits.
 """
 from __future__ import annotations
 
@@ -39,13 +39,19 @@ def _qpe(rng, n):
     qc.append(_lib().QFTGate(m).inverse(), range(m)); return qc
 
 
-def _bv(rng, n):
+def _oracle(rng, n):
+    """Bernstein-Vazirani, or Deutsch-Jozsa with a balanced oracle wrapped in a random input mask."""
     from qiskit import QuantumCircuit
     secret = rng.integers(0, 2, n - 1)
     if not secret.any(): secret[int(rng.integers(n - 1))] = 1
+    mask = rng.integers(0, 2, n - 1) if rng.random() < .5 else np.zeros(n - 1, int)
     qc = QuantumCircuit(n); qc.x(n - 1); qc.h(range(n))
+    for i, bit in enumerate(mask):
+        if bit: qc.x(i)
     for i, bit in enumerate(secret):
         if bit: qc.cx(i, n - 1)
+    for i, bit in enumerate(mask):
+        if bit: qc.x(i)
     qc.h(range(n - 1)); return qc
 
 
@@ -121,7 +127,7 @@ def _excitation(rng, n):
     return qc.compose(ansatz.assign_parameters(rng.uniform(-math.pi, math.pi, ansatz.num_parameters)))
 
 
-FAMILIES = {"qft": _qft, "qpe": _qpe, "bv": _bv, "graphstate": _graphstate, "qaoa": _qaoa, "vqe": _vqe,
+FAMILIES = {"qft": _qft, "qpe": _qpe, "oracle": _oracle, "graphstate": _graphstate, "qaoa": _qaoa, "vqe": _vqe,
             "trotter": _trotter, "adder": _adder, "qv": _qv, "iqp": _iqp, "excitation": _excitation}
 
 
@@ -145,12 +151,16 @@ def to_ops(compiled) -> list[Op]:
 
 def generate_suite(seed: int, count: int, qubits: tuple[int, int], families: tuple[str, ...] = tuple(FAMILIES),
                    exclude: set[str] | None = None, return_compiled: bool = False):
-    """Returns (examples, family_names[, compiled circuits]). Rejects circuits below MIN_GATES and exact duplicates."""
+    """Returns (examples, family_names[, compiled circuits]).
+
+    Rejects circuits below MIN_GATES and exact duplicates (within the call and against `exclude`, a set of
+    examples_hash([example]) keys). Raises instead of ever accepting a duplicate.
+    """
     rng = np.random.default_rng(seed); examples = []; names = []; compiled_list = []
     seen = set(exclude or ())
     for index in range(count):
         family = families[index % len(families)]
-        for attempt in range(200):
+        for attempt in range(2000):
             n = int(rng.integers(qubits[0], qubits[1] + 1))
             with warnings.catch_warnings():
                 warnings.simplefilter("ignore")
@@ -159,7 +169,7 @@ def generate_suite(seed: int, count: int, qubits: tuple[int, int], families: tup
             if len(ops) < MIN_GATES: continue
             example = CircuitExample(compiled.num_qubits, ops, critical_labels(compiled.num_qubits, ops))
             key = examples_hash([example])
-            if key in seen and attempt < 199: continue
+            if key in seen: continue
             seen.add(key); examples.append(example); names.append(family); compiled_list.append(compiled); break
         else:
             raise RuntimeError(f"could not generate {family} for qubits {qubits}")

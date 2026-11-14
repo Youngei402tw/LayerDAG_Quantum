@@ -1,0 +1,422 @@
+{
+  "training": {
+    "circuits": 1100,
+    "nodes": 69681,
+    "comm_label_seconds": 4.2,
+    "families": {
+      "qft": {
+        "n": 100,
+        "gates_mean": 74.6,
+        "gates_max": 127,
+        "pos_wire": 0.759,
+        "pos_comm": 0.35
+      },
+      "qpe": {
+        "n": 100,
+        "gates_mean": 81.8,
+        "gates_max": 128,
+        "pos_wire": 0.762,
+        "pos_comm": 0.736
+      },
+      "oracle": {
+        "n": 100,
+        "gates_mean": 11.3,
+        "gates_max": 19,
+        "pos_wire": 0.57,
+        "pos_comm": 1.0
+      },
+      "graphstate": {
+        "n": 100,
+        "gates_mean": 12.6,
+        "gates_max": 18,
+        "pos_wire": 0.763,
+        "pos_comm": 0.67
+      },
+      "qaoa": {
+        "n": 100,
+        "gates_mean": 58.9,
+        "gates_max": 133,
+        "pos_wire": 0.639,
+        "pos_comm": 0.428
+      },
+      "vqe": {
+        "n": 100,
+        "gates_mean": 32.2,
+        "gates_max": 77,
+        "pos_wire": 0.613,
+        "pos_comm": 0.575
+      },
+      "trotter": {
+        "n": 100,
+        "gates_mean": 130.0,
+        "gates_max": 462,
+        "pos_wire": 0.863,
+        "pos_comm": 0.762
+      },
+      "adder": {
+        "n": 100,
+        "gates_mean": 73.2,
+        "gates_max": 112,
+        "pos_wire": 0.74,
+        "pos_comm": 0.68
+      },
+      "qv": {
+        "n": 100,
+        "gates_mean": 115.3,
+        "gates_max": 201,
+        "pos_wire": 0.898,
+        "pos_comm": 0.384
+      },
+      "iqp": {
+        "n": 100,
+        "gates_mean": 41.4,
+        "gates_max": 88,
+        "pos_wire": 0.637,
+        "pos_comm": 0.422
+      },
+      "excitation": {
+        "n": 100,
+        "gates_mean": 65.8,
+        "gates_max": 120,
+        "pos_wire": 0.745,
+        "pos_comm": 0.745
+      }
+    }
+  },
+  "validation": {
+    "circuits": 264,
+    "nodes": 17106,
+    "comm_label_seconds": 1.1,
+    "families": {
+      "qft": {
+        "n": 24,
+        "gates_mean": 86.8,
+        "gates_max": 127,
+        "pos_wire": 0.765,
+        "pos_comm": 0.326
+      },
+      "qpe": {
+        "n": 24,
+        "gates_mean": 99.1,
+        "gates_max": 128,
+        "pos_wire": 0.758,
+        "pos_comm": 0.728
+      },
+      "oracle": {
+        "n": 24,
+        "gates_mean": 11.5,
+        "gates_max": 16,
+        "pos_wire": 0.565,
+        "pos_comm": 1.0
+      },
+      "graphstate": {
+        "n": 24,
+        "gates_mean": 13.2,
+        "gates_max": 20,
+        "pos_wire": 0.703,
+        "pos_comm": 0.633
+      },
+      "qaoa": {
+        "n": 24,
+        "gates_mean": 67.8,
+        "gates_max": 121,
+        "pos_wire": 0.597,
+        "pos_comm": 0.424
+      },
+      "vqe": {
+        "n": 24,
+        "gates_mean": 33.0,
+        "gates_max": 77,
+        "pos_wire": 0.613,
+        "pos_comm": 0.544
+      },
+      "trotter": {
+        "n": 24,
+        "gates_mean": 105.5,
+        "gates_max": 266,
+        "pos_wire": 0.842,
+        "pos_comm": 0.742
+      },
+      "adder": {
+        "n": 24,
+        "gates_mean": 85.7,
+        "gates_max": 112,
+        "pos_wire": 0.729,
+        "pos_comm": 0.669
+      },
+      "qv": {
+        "n": 24,
+        "gates_mean": 114.5,
+        "gates_max": 201,
+        "pos_wire": 0.889,
+        "pos_comm": 0.427
+      },
+      "iqp": {
+        "n": 24,
+        "gates_mean": 37.4,
+        "gates_max": 55,
+        "pos_wire": 0.629,
+        "pos_comm": 0.427
+      },
+      "excitation": {
+        "n": 24,
+        "gates_mean": 58.3,
+        "gates_max": 120,
+        "pos_wire": 0.744,
+        "pos_comm": 0.744
+      }
+    }
+  },
+  "same": {
+    "circuits": 528,
+    "nodes": 35928,
+    "comm_label_seconds": 2.3,
+    "families": {
+      "qft": {
+        "n": 48,
+        "gates_mean": 81.4,
+        "gates_max": 127,
+        "pos_wire": 0.762,
+        "pos_comm": 0.336
+      },
+      "qpe": {
+        "n": 48,
+        "gates_mean": 86.6,
+        "gates_max": 128,
+        "pos_wire": 0.76,
+        "pos_comm": 0.734
+      },
+      "oracle": {
+        "n": 48,
+        "gates_mean": 12.2,
+        "gates_max": 19,
+        "pos_wire": 0.552,
+        "pos_comm": 1.0
+      },
+      "graphstate": {
+        "n": 48,
+        "gates_mean": 13.6,
+        "gates_max": 24,
+        "pos_wire": 0.716,
+        "pos_comm": 0.606
+      },
+      "qaoa": {
+        "n": 48,
+        "gates_mean": 60.3,
+        "gates_max": 115,
+        "pos_wire": 0.621,
+        "pos_comm": 0.397
+      },
+      "vqe": {
+        "n": 48,
+        "gates_mean": 34.6,
+        "gates_max": 77,
+        "pos_wire": 0.62,
+        "pos_comm": 0.557
+      },
+      "trotter": {
+        "n": 48,
+        "gates_mean": 142.8,
+        "gates_max": 396,
+        "pos_wire": 0.894,
+        "pos_comm": 0.793
+      },
+      "adder": {
+        "n": 48,
+        "gates_mean": 89.3,
+        "gates_max": 114,
+        "pos_wire": 0.733,
+        "pos_comm": 0.675
+      },
+      "qv": {
+        "n": 48,
+        "gates_mean": 118.9,
+        "gates_max": 201,
+        "pos_wire": 0.889,
+        "pos_comm": 0.348
+      },
+      "iqp": {
+        "n": 48,
+        "gates_mean": 40.8,
+        "gates_max": 69,
+        "pos_wire": 0.639,
+        "pos_comm": 0.368
+      },
+      "excitation": {
+        "n": 48,
+        "gates_mean": 68.0,
+        "gates_max": 120,
+        "pos_wire": 0.753,
+        "pos_comm": 0.753
+      }
+    }
+  },
+  "near": {
+    "circuits": 528,
+    "nodes": 76613,
+    "comm_label_seconds": 10.9,
+    "families": {
+      "qft": {
+        "n": 48,
+        "gates_mean": 264.6,
+        "gates_max": 371,
+        "pos_wire": 0.831,
+        "pos_comm": 0.19
+      },
+      "qpe": {
+        "n": 48,
+        "gates_mean": 255.7,
+        "gates_max": 369,
+        "pos_wire": 0.808,
+        "pos_comm": 0.741
+      },
+      "oracle": {
+        "n": 48,
+        "gates_mean": 15.4,
+        "gates_max": 28,
+        "pos_wire": 0.506,
+        "pos_comm": 1.0
+      },
+      "graphstate": {
+        "n": 48,
+        "gates_mean": 23.7,
+        "gates_max": 33,
+        "pos_wire": 0.535,
+        "pos_comm": 0.507
+      },
+      "qaoa": {
+        "n": 48,
+        "gates_mean": 114.1,
+        "gates_max": 204,
+        "pos_wire": 0.442,
+        "pos_comm": 0.304
+      },
+      "vqe": {
+        "n": 48,
+        "gates_mean": 63.4,
+        "gates_max": 132,
+        "pos_wire": 0.565,
+        "pos_comm": 0.531
+      },
+      "trotter": {
+        "n": 48,
+        "gates_mean": 282.2,
+        "gates_max": 726,
+        "pos_wire": 0.877,
+        "pos_comm": 0.782
+      },
+      "adder": {
+        "n": 48,
+        "gates_mean": 156.6,
+        "gates_max": 191,
+        "pos_wire": 0.714,
+        "pos_comm": 0.654
+      },
+      "qv": {
+        "n": 48,
+        "gates_mean": 215.9,
+        "gates_max": 396,
+        "pos_wire": 0.904,
+        "pos_comm": 0.316
+      },
+      "iqp": {
+        "n": 48,
+        "gates_mean": 75.5,
+        "gates_max": 113,
+        "pos_wire": 0.475,
+        "pos_comm": 0.299
+      },
+      "excitation": {
+        "n": 48,
+        "gates_mean": 128.9,
+        "gates_max": 205,
+        "pos_wire": 0.743,
+        "pos_comm": 0.743
+      }
+    }
+  },
+  "far": {
+    "circuits": 528,
+    "nodes": 152346,
+    "comm_label_seconds": 50.7,
+    "families": {
+      "qft": {
+        "n": 48,
+        "gates_mean": 658.3,
+        "gates_max": 1019,
+        "pos_wire": 0.884,
+        "pos_comm": 0.121
+      },
+      "qpe": {
+        "n": 48,
+        "gates_mean": 710.6,
+        "gates_max": 1017,
+        "pos_wire": 0.87,
+        "pos_comm": 0.762
+      },
+      "oracle": {
+        "n": 48,
+        "gates_mean": 23.3,
+        "gates_max": 40,
+        "pos_wire": 0.448,
+        "pos_comm": 1.0
+      },
+      "graphstate": {
+        "n": 48,
+        "gates_mean": 39.3,
+        "gates_max": 53,
+        "pos_wire": 0.411,
+        "pos_comm": 0.387
+      },
+      "qaoa": {
+        "n": 48,
+        "gates_mean": 199.2,
+        "gates_max": 338,
+        "pos_wire": 0.341,
+        "pos_comm": 0.196
+      },
+      "vqe": {
+        "n": 48,
+        "gates_mean": 104.7,
+        "gates_max": 220,
+        "pos_wire": 0.57,
+        "pos_comm": 0.55
+      },
+      "trotter": {
+        "n": 48,
+        "gates_mean": 468.9,
+        "gates_max": 1257,
+        "pos_wire": 0.887,
+        "pos_comm": 0.787
+      },
+      "adder": {
+        "n": 48,
+        "gates_mean": 273.3,
+        "gates_max": 329,
+        "pos_wire": 0.707,
+        "pos_comm": 0.65
+      },
+      "qv": {
+        "n": 48,
+        "gates_mean": 369.3,
+        "gates_max": 660,
+        "pos_wire": 0.905,
+        "pos_comm": 0.264
+      },
+      "iqp": {
+        "n": 48,
+        "gates_mean": 132.4,
+        "gates_max": 190,
+        "pos_wire": 0.363,
+        "pos_comm": 0.21
+      },
+      "excitation": {
+        "n": 48,
+        "gates_mean": 194.6,
+        "gates_max": 324,
+        "pos_wire": 0.735,
+        "pos_comm": 0.735
+      }
+    }
+  }
+}

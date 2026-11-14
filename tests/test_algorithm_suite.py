@@ -26,3 +26,9 @@ def test_commutation_labels_hand_example():
     examples, _, compiled = generate_suite(9, 11, (4, 7), return_compiled=True)
     for x, c in zip(examples, compiled):
         labels = commutation_labels(c); assert labels.shape == x.labels.shape and labels.max() == 1.0
+
+
+def test_exclusion_set_prevents_duplicates_across_splits():
+    first, _ = generate_suite(11, 44, (4, 7)); keys = {examples_hash([x]) for x in first}
+    second, _ = generate_suite(11, 44, (4, 7), exclude=keys)  # same seed would reproduce `first` without exclusion
+    assert not keys & {examples_hash([x]) for x in second}
