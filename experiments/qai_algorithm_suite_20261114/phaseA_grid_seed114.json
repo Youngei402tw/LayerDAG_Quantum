@@ -1,0 +1,655 @@
+{
+ "protocol": "QAI_ALGORITHM_SUITE_PROTOCOL_20261114",
+ "phase": "A",
+ "kind": "grid",
+ "seed": 114,
+ "torch": "2.8.0+cpu",
+ "data_hashes_match_manifest": true,
+ "training": {
+  "kind": "grid",
+  "seed": 114,
+  "updates": 4000,
+  "parameters": 84961,
+  "train_seconds": 942.0887492510001,
+  "best_validation_auc": 0.9879041928229015,
+  "history": [
+   {
+    "update": 250,
+    "loss": 0.2560950815677643,
+    "nodes": 18896,
+    "positive_fraction": 0.7820173501968384,
+    "auc": 0.8141450571885539,
+    "f1": 0.7346302224411064,
+    "accuracy": 0.6578111769686706
+   },
+   {
+    "update": 500,
+    "loss": 0.23537495732307434,
+    "nodes": 18896,
+    "positive_fraction": 0.7820173501968384,
+    "auc": 0.8733231139125005,
+    "f1": 0.8576435795392311,
+    "accuracy": 0.793660033869602
+   },
+   {
+    "update": 750,
+    "loss": 0.1641046702861786,
+    "nodes": 18896,
+    "positive_fraction": 0.7820173501968384,
+    "auc": 0.9112264663711444,
+    "f1": 0.8925146701016173,
+    "accuracy": 0.8410245554614734
+   },
+   {
+    "update": 1000,
+    "loss": 0.14234885573387146,
+    "nodes": 18896,
+    "positive_fraction": 0.7820173501968384,
+    "auc": 0.9399555055466259,
+    "f1": 0.9062096658540083,
+    "accuracy": 0.8615580016934801
+   },
+   {
+    "update": 1250,
+    "loss": 0.13090161979198456,
+    "nodes": 18896,
+    "positive_fraction": 0.7820173501968384,
+    "auc": 0.9516044656644498,
+    "f1": 0.9281678203136036,
+    "accuracy": 0.8923581710414903
+   },
+   {
+    "update": 1500,
+    "loss": 0.12311907112598419,
+    "nodes": 18896,
+    "positive_fraction": 0.7820173501968384,
+    "auc": 0.9621730278626507,
+    "f1": 0.9160778658976207,
+    "accuracy": 0.8767993226079593
+   },
+   {
+    "update": 1750,
+    "loss": 0.14055827260017395,
+    "nodes": 18896,
+    "positive_fraction": 0.7820173501968384,
+    "auc": 0.9690296115941549,
+    "f1": 0.9403430014379406,
+    "accuracy": 0.9099809483488569
+   },
+   {
+    "update": 2000,
+    "loss": 0.10584104061126709,
+    "nodes": 18896,
+    "positive_fraction": 0.7820173501968384,
+    "auc": 0.9740229032201198,
+    "f1": 0.9471921869550052,
+    "accuracy": 0.9198772226926334
+   },
+   {
+    "update": 2250,
+    "loss": 0.14584249258041382,
+    "nodes": 18896,
+    "positive_fraction": 0.7820173501968384,
+    "auc": 0.9775804781033522,
+    "f1": 0.9476923076923077,
+    "accuracy": 0.9208298052497883
+   },
+   {
+    "update": 2500,
+    "loss": 0.07692863047122955,
+    "nodes": 18896,
+    "positive_fraction": 0.7820173501968384,
+    "auc": 0.9801365490877957,
+    "f1": 0.9549505808912779,
+    "accuracy": 0.9312552921253175
+   },
+   {
+    "update": 2750,
+    "loss": 0.09457819908857346,
+    "nodes": 18896,
+    "positive_fraction": 0.7820173501968384,
+    "auc": 0.9828563227010579,
+    "f1": 0.953542675913986,
+    "accuracy": 0.9294559695173582
+   },
+   {
+    "update": 3000,
+    "loss": 0.04185889661312103,
+    "nodes": 18896,
+    "positive_fraction": 0.7820173501968384,
+    "auc": 0.9841801058819534,
+    "f1": 0.9566184649610678,
+    "accuracy": 0.9339542760372566
+   },
+   {
+    "update": 3250,
+    "loss": 0.06861528754234314,
+    "nodes": 18896,
+    "positive_fraction": 0.7820173501968384,
+    "auc": 0.9855289931994241,
+    "f1": 0.9586352761693423,
+    "accuracy": 0.9368649449618967
+   },
+   {
+    "update": 3500,
+    "loss": 0.07334428280591965,
+    "nodes": 18896,
+    "positive_fraction": 0.7820173501968384,
+    "auc": 0.9856378544618241,
+    "f1": 0.962664462354481,
+    "accuracy": 0.9426333615580017
+   },
+   {
+    "update": 3750,
+    "loss": 0.09942440688610077,
+    "nodes": 18896,
+    "positive_fraction": 0.7820173501968384,
+    "auc": 0.9872028213632194,
+    "f1": 0.9646233712655138,
+    "accuracy": 0.9455440304826418
+   },
+   {
+    "update": 4000,
+    "loss": 0.056900233030319214,
+    "nodes": 18896,
+    "positive_fraction": 0.7820173501968384,
+    "auc": 0.9879041928229015,
+    "f1": 0.9629885374948212,
+    "accuracy": 0.9432684165961049
+   }
+  ]
+ },
+ "splits": {
+  "same": {
+   "nodes": 34618,
+   "positive_fraction": 0.7738748788833618,
+   "auc": 0.98927464468911,
+   "f1": 0.9625686878936989,
+   "accuracy": 0.9435264891097117,
+   "macro_auc": 0.9674350376351996,
+   "macro_families": 11,
+   "macro_excluded_single_class": [],
+   "families": {
+    "adder": {
+     "auc": 0.9951036754850695,
+     "nodes": 4097,
+     "positive_fraction": 0.7368806600570679
+    },
+    "excitation": {
+     "auc": 0.9982019751167812,
+     "nodes": 3058,
+     "positive_fraction": 0.7462393641471863
+    },
+    "graphstate": {
+     "auc": 0.8570175438596491,
+     "nodes": 621,
+     "positive_fraction": 0.7342995405197144
+    },
+    "iqp": {
+     "auc": 0.9371016895877843,
+     "nodes": 1956,
+     "positive_fraction": 0.6431492567062378
+    },
+    "oracle": {
+     "auc": 1.0,
+     "nodes": 573,
+     "positive_fraction": 0.5567190051078796
+    },
+    "qaoa": {
+     "auc": 0.9554226353921991,
+     "nodes": 2575,
+     "positive_fraction": 0.6485437154769897
+    },
+    "qft": {
+     "auc": 1.0,
+     "nodes": 3900,
+     "positive_fraction": 0.7635897397994995
+    },
+    "qpe": {
+     "auc": 0.9987259394116428,
+     "nodes": 4029,
+     "positive_fraction": 0.7619757056236267
+    },
+    "qv": {
+     "auc": 0.9646296753730097,
+     "nodes": 5802,
+     "positive_fraction": 0.9002068042755127
+    },
+    "trotter": {
+     "auc": 0.9966069755309911,
+     "nodes": 6228,
+     "positive_fraction": 0.8684971332550049
+    },
+    "vqe": {
+     "auc": 0.9389753042300675,
+     "nodes": 1779,
+     "positive_fraction": 0.6216976046562195
+    }
+   }
+  },
+  "near_width": {
+   "nodes": 78239,
+   "positive_fraction": 0.7667275667190552,
+   "auc": 0.9705105418468312,
+   "f1": 0.9428402356714665,
+   "accuracy": 0.9148123058832551,
+   "macro_auc": 0.9264077635540248,
+   "macro_families": 11,
+   "macro_excluded_single_class": [],
+   "families": {
+    "adder": {
+     "auc": 0.9950386338480653,
+     "nodes": 7730,
+     "positive_fraction": 0.7150064706802368
+    },
+    "excitation": {
+     "auc": 0.9989050291029363,
+     "nodes": 5908,
+     "positive_fraction": 0.7440758347511292
+    },
+    "graphstate": {
+     "auc": 0.7341821301187412,
+     "nodes": 1156,
+     "positive_fraction": 0.5371972322463989
+    },
+    "iqp": {
+     "auc": 0.8558874446259602,
+     "nodes": 3669,
+     "positive_fraction": 0.48678115010261536
+    },
+    "oracle": {
+     "auc": 1.0,
+     "nodes": 720,
+     "positive_fraction": 0.5111111402511597
+    },
+    "qaoa": {
+     "auc": 0.8210841744669638,
+     "nodes": 5960,
+     "positive_fraction": 0.4345637559890747
+    },
+    "qft": {
+     "auc": 0.9254403240458792,
+     "nodes": 12902,
+     "positive_fraction": 0.8328166007995605
+    },
+    "qpe": {
+     "auc": 0.9924899151457945,
+     "nodes": 12340,
+     "positive_fraction": 0.8135332465171814
+    },
+    "qv": {
+     "auc": 0.9459317644651904,
+     "nodes": 10205,
+     "positive_fraction": 0.9010289311408997
+    },
+    "trotter": {
+     "auc": 0.9977717749531885,
+     "nodes": 14647,
+     "positive_fraction": 0.8796340823173523
+    },
+    "vqe": {
+     "auc": 0.9237542083215543,
+     "nodes": 3002,
+     "positive_fraction": 0.6119253635406494
+    }
+   }
+  },
+  "far_width": {
+   "nodes": 154419,
+   "positive_fraction": 0.7859007120132446,
+   "auc": 0.950608087623005,
+   "f1": 0.9345037481004813,
+   "accuracy": 0.900077063055712,
+   "macro_auc": 0.8895618444058319,
+   "macro_families": 11,
+   "macro_excluded_single_class": [],
+   "families": {
+    "adder": {
+     "auc": 0.9948965271004682,
+     "nodes": 12728,
+     "positive_fraction": 0.7105593681335449
+    },
+    "excitation": {
+     "auc": 0.9981040098652039,
+     "nodes": 10965,
+     "positive_fraction": 0.7332421541213989
+    },
+    "graphstate": {
+     "auc": 0.661323129437253,
+     "nodes": 1924,
+     "positive_fraction": 0.41424116492271423
+    },
+    "iqp": {
+     "auc": 0.787160071699341,
+     "nodes": 6255,
+     "positive_fraction": 0.3443644940853119
+    },
+    "oracle": {
+     "auc": 0.9998886297984896,
+     "nodes": 1077,
+     "positive_fraction": 0.45218199491500854
+    },
+    "qaoa": {
+     "auc": 0.765585060470581,
+     "nodes": 8504,
+     "positive_fraction": 0.31267639994621277
+    },
+    "qft": {
+     "auc": 0.81050197099984,
+     "nodes": 33702,
+     "positive_fraction": 0.8866239190101624
+    },
+    "qpe": {
+     "auc": 0.9830755778503962,
+     "nodes": 35537,
+     "positive_fraction": 0.8732306957244873
+    },
+    "qv": {
+     "auc": 0.8921965743775516,
+     "nodes": 18068,
+     "positive_fraction": 0.9059110283851624
+    },
+    "trotter": {
+     "auc": 0.9966266881924867,
+     "nodes": 20400,
+     "positive_fraction": 0.8545098304748535
+    },
+    "vqe": {
+     "auc": 0.8958220486725379,
+     "nodes": 5259,
+     "positive_fraction": 0.6586803793907166
+    }
+   }
+  },
+  "same_relabeled": {
+   "nodes": 34618,
+   "positive_fraction": 0.7738748788833618,
+   "auc": 0.9023918026292425,
+   "f1": 0.9019736842105263,
+   "accuracy": 0.8536599456929921,
+   "macro_auc": 0.8820377452700673,
+   "macro_families": 11,
+   "macro_excluded_single_class": [],
+   "families": {
+    "adder": {
+     "auc": 0.8651911425535616,
+     "nodes": 4097,
+     "positive_fraction": 0.7368806600570679
+    },
+    "excitation": {
+     "auc": 0.9469876306730396,
+     "nodes": 3058,
+     "positive_fraction": 0.7462393641471863
+    },
+    "graphstate": {
+     "auc": 0.7677033492822967,
+     "nodes": 621,
+     "positive_fraction": 0.7342995405197144
+    },
+    "iqp": {
+     "auc": 0.8375394609171788,
+     "nodes": 1956,
+     "positive_fraction": 0.6431492567062378
+    },
+    "oracle": {
+     "auc": 0.9037469454249253,
+     "nodes": 573,
+     "positive_fraction": 0.5567190051078796
+    },
+    "qaoa": {
+     "auc": 0.8734085420319582,
+     "nodes": 2575,
+     "positive_fraction": 0.6485437154769897
+    },
+    "qft": {
+     "auc": 0.8883937741558122,
+     "nodes": 3900,
+     "positive_fraction": 0.7635897397994995
+    },
+    "qpe": {
+     "auc": 0.8792410661214008,
+     "nodes": 4029,
+     "positive_fraction": 0.7619757056236267
+    },
+    "qv": {
+     "auc": 0.9650899750241145,
+     "nodes": 5802,
+     "positive_fraction": 0.9002068042755127
+    },
+    "trotter": {
+     "auc": 0.9162091580283482,
+     "nodes": 6228,
+     "positive_fraction": 0.8684971332550049
+    },
+    "vqe": {
+     "auc": 0.8589041537581045,
+     "nodes": 1779,
+     "positive_fraction": 0.6216976046562195
+    }
+   }
+  },
+  "far_relabeled": {
+   "nodes": 154419,
+   "positive_fraction": 0.7859007120132446,
+   "auc": 0.8817174481934119,
+   "f1": 0.8984585165890944,
+   "accuracy": 0.8460034063165802,
+   "macro_auc": 0.8256824751321379,
+   "macro_families": 11,
+   "macro_excluded_single_class": [],
+   "families": {
+    "adder": {
+     "auc": 0.8729953536360541,
+     "nodes": 12728,
+     "positive_fraction": 0.7105593681335449
+    },
+    "excitation": {
+     "auc": 0.9607518816175532,
+     "nodes": 10965,
+     "positive_fraction": 0.7332421541213989
+    },
+    "graphstate": {
+     "auc": 0.6306390757710536,
+     "nodes": 1924,
+     "positive_fraction": 0.41424116492271423
+    },
+    "iqp": {
+     "auc": 0.7539849759224883,
+     "nodes": 6255,
+     "positive_fraction": 0.3443644940853119
+    },
+    "oracle": {
+     "auc": 0.9005951345143215,
+     "nodes": 1077,
+     "positive_fraction": 0.45218199491500854
+    },
+    "qaoa": {
+     "auc": 0.7222362774585145,
+     "nodes": 8504,
+     "positive_fraction": 0.31267639994621277
+    },
+    "qft": {
+     "auc": 0.7280096857375484,
+     "nodes": 33702,
+     "positive_fraction": 0.8866239190101624
+    },
+    "qpe": {
+     "auc": 0.8952334620608593,
+     "nodes": 35537,
+     "positive_fraction": 0.8732306957244873
+    },
+    "qv": {
+     "auc": 0.8936549436490139,
+     "nodes": 18068,
+     "positive_fraction": 0.9059110283851624
+    },
+    "trotter": {
+     "auc": 0.8990470692279526,
+     "nodes": 20400,
+     "positive_fraction": 0.8545098304748535
+    },
+    "vqe": {
+     "auc": 0.8253593668581575,
+     "nodes": 5259,
+     "positive_fraction": 0.6586803793907166
+    }
+   }
+  },
+  "same_reversed": {
+   "nodes": 34618,
+   "positive_fraction": 0.7738748788833618,
+   "auc": 0.8574961141969286,
+   "f1": 0.8764093161159443,
+   "accuracy": 0.816973828644058,
+   "macro_auc": 0.8491457620534458,
+   "macro_families": 11,
+   "macro_excluded_single_class": [],
+   "families": {
+    "adder": {
+     "auc": 0.7015148647311615,
+     "nodes": 4097,
+     "positive_fraction": 0.7368806600570679
+    },
+    "excitation": {
+     "auc": 0.9004208191403815,
+     "nodes": 3058,
+     "positive_fraction": 0.7462393641471863
+    },
+    "graphstate": {
+     "auc": 0.7069710260499734,
+     "nodes": 621,
+     "positive_fraction": 0.7342995405197144
+    },
+    "iqp": {
+     "auc": 0.7999633292486824,
+     "nodes": 1956,
+     "positive_fraction": 0.6431492567062378
+    },
+    "oracle": {
+     "auc": 0.9755757411201342,
+     "nodes": 573,
+     "positive_fraction": 0.5567190051078796
+    },
+    "qaoa": {
+     "auc": 0.829369107089688,
+     "nodes": 2575,
+     "positive_fraction": 0.6485437154769897
+    },
+    "qft": {
+     "auc": 0.813011250981529,
+     "nodes": 3900,
+     "positive_fraction": 0.7635897397994995
+    },
+    "qpe": {
+     "auc": 0.8595388111258674,
+     "nodes": 4029,
+     "positive_fraction": 0.7619757056236267
+    },
+    "qv": {
+     "auc": 0.9682995069304527,
+     "nodes": 5802,
+     "positive_fraction": 0.9002068042755127
+    },
+    "trotter": {
+     "auc": 0.8590911768948375,
+     "nodes": 6228,
+     "positive_fraction": 0.8684971332550049
+    },
+    "vqe": {
+     "auc": 0.9268477492751949,
+     "nodes": 1779,
+     "positive_fraction": 0.6216976046562195
+    }
+   }
+  },
+  "far_reversed": {
+   "nodes": 154419,
+   "positive_fraction": 0.7859007120132446,
+   "auc": 0.861995595986779,
+   "f1": 0.8961879319849044,
+   "accuracy": 0.8414573336182724,
+   "macro_auc": 0.8095351502502911,
+   "macro_families": 11,
+   "macro_excluded_single_class": [],
+   "families": {
+    "adder": {
+     "auc": 0.7574027489445976,
+     "nodes": 12728,
+     "positive_fraction": 0.7105593681335449
+    },
+    "excitation": {
+     "auc": 0.86229072585789,
+     "nodes": 10965,
+     "positive_fraction": 0.7332421541213989
+    },
+    "graphstate": {
+     "auc": 0.5749410778440447,
+     "nodes": 1924,
+     "positive_fraction": 0.41424116492271423
+    },
+    "iqp": {
+     "auc": 0.7502366544654621,
+     "nodes": 6255,
+     "positive_fraction": 0.3443644940853119
+    },
+    "oracle": {
+     "auc": 0.9677861692130999,
+     "nodes": 1077,
+     "positive_fraction": 0.45218199491500854
+    },
+    "qaoa": {
+     "auc": 0.7209896116004171,
+     "nodes": 8504,
+     "positive_fraction": 0.31267639994621277
+    },
+    "qft": {
+     "auc": 0.7434083532654755,
+     "nodes": 33702,
+     "positive_fraction": 0.8866239190101624
+    },
+    "qpe": {
+     "auc": 0.8928745065420994,
+     "nodes": 35537,
+     "positive_fraction": 0.8732306957244873
+    },
+    "qv": {
+     "auc": 0.8910296992697372,
+     "nodes": 18068,
+     "positive_fraction": 0.9059110283851624
+    },
+    "trotter": {
+     "auc": 0.8567432102747495,
+     "nodes": 20400,
+     "positive_fraction": 0.8545098304748535
+    },
+    "vqe": {
+     "auc": 0.8871838954756284,
+     "nodes": 5259,
+     "positive_fraction": 0.6586803793907166
+    }
+   }
+  }
+ },
+ "pair_changes": {
+  "same_relabeled": {
+   "pairs": 528,
+   "max_logit_change": 17.154198169708252,
+   "mean_abs_probability_change": 0.1495928177966834
+  },
+  "far_relabeled": {
+   "pairs": 528,
+   "max_logit_change": 18.201047897338867,
+   "mean_abs_probability_change": 0.15728062307544705
+  },
+  "same_reversed": {
+   "pairs": 528,
+   "max_logit_change": 17.16244077682495,
+   "mean_abs_probability_change": 0.1823952746703086
+  },
+  "far_reversed": {
+   "pairs": 528,
+   "max_logit_change": 19.20706605911255,
+   "mean_abs_probability_change": 0.17023646251316946
+  }
+ }
+}
