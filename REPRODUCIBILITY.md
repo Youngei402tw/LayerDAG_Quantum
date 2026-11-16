@@ -25,6 +25,13 @@ PYTHONPATH=. python scripts/make_figures.py      # writes paper/figures/fig_repr
 cd paper && latexmk -pdf qai_paper.tex           # needs TeX Live with IEEEtran (texlive-publishers)
 ```
 
+## Overleaf mirror
+```sh
+scripts/sync_overleaf.sh export ../LayerDAG_Quantum_Paper   # manuscript, bibliography, two figures -> paper repository (main.tex)
+scripts/sync_overleaf.sh import ../LayerDAG_Quantum_Paper   # Overleaf edits -> paper/qai_paper.tex, then check_manuscript_numbers.py
+```
+After an import, rebuild `paper/qai_paper.pdf` and run `python scripts/verify_claims.py` before committing.
+
 ## Training reproductions (write to NEW directories only)
 | Command | Output | Approx. CPU time (2 threads) |
 |---|---|---|

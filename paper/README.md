@@ -2,6 +2,8 @@
 
 **Active submission (IEEE QAI):** `qai_paper.tex` → `qai_paper.pdf`. The current versioned copy is `qai_submission_v5.pdf`, built 2026-11-14 on branch `claude/compassionate-heisenberg-yl7gi8` (v2 = migration build of 2026-11-06; v3 adds the connectivity controls; v4 the augmentation control; v5 the standard-algorithm suite). The source uses IEEEtran V1.8b (`conference,a4paper`), is double-blind, and is 6 pages including references.
 
+**Overleaf:** the manuscript is mirrored in the private repository `LayerDAG_Quantum_Paper`, which is linked to an Overleaf project (there the file is `main.tex`). `scripts/sync_overleaf.sh export <clone>` copies the manuscript, bibliography and the two figures out; `scripts/sync_overleaf.sh import <clone>` copies Overleaf edits back and re-checks every number. Overleaf syncs with that repository's `main` branch, manually, through **Integrations → GitHub**.
+
 Build: `latexmk -pdf qai_paper.tex` (needs TeX Live `texlive-publishers` for IEEEtran). Figures: `PYTHONPATH=.. python ../scripts/make_figures.py` from this directory, or `PYTHONPATH=. python scripts/make_figures.py` from the repo root. Number audit: `python ../scripts/check_manuscript_numbers.py`.
 
 Submission documents are in `submission/`:
