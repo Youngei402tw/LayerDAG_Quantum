@@ -28,3 +28,5 @@ Each entry cited in `paper/qai_paper.tex` was checked against a primary or publi
 The previously verified entries (Preskill, Gilmer, Kipf, Farhi, Peruzzo, Battaglia, Bronstein) are standard and their bibliographic fields were not changed. Re-check page ranges against the publisher if the camera-ready requires DOIs for every entry.
 
 v5 note (2026-11-14): `references.bib` now carries an `@IEEEtranBSTCTL` control entry so that references with more than six authors print as first author "et al." (IEEE reference style). The full author lists remain in the `.bib` file.
+
+v6 note (2026-11-18): added `iten2022pattern`, verified against the arXiv 1909.05270 abstract page: Iten, Moyard, Metger, Sutter, Woerner, "Exact and practical pattern matching for quantum circuit optimization", ACM Transactions on Quantum Computing 3(1), 2022, DOI 10.1145/3498325.

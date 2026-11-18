@@ -78,6 +78,12 @@ for ph, Q in SUITE.items():
                 add(r[k])
         for g in agg["gaps"].values(): add(g["mean"])
         for c in agg["pair_changes"].values(): add(c["mean_abs_probability_change"], (3,))
+    for sp in ("same", "near_width", "far_width"):  # DAG macro margin over each model by width
+        for kind in Q["aggregate"]:
+            add(Q["aggregate"]["dag"]["splits"][sp]["macro_auc_mean"] - Q["aggregate"][kind]["splits"][sp]["macro_auc_mean"])
+    for kind in Q["aggregate"]:  # pooled-AUROC paired differences, recomputed from the unit files
+        units = [json.loads((ROOT / f"experiments/qai_algorithm_suite_20261114/phase{ph}_{k}_seed{sd}.json").read_text()) for k in ("dag", kind) for sd in Q["seeds"]]
+        n = len(Q["seeds"]); add(statistics.mean(a_["splits"]["far_width"]["auc"] - b_["splits"]["far_width"]["auc"] for a_, b_ in zip(units[:n], units[n:])))
     for c in Q["comparisons_far_macro_auc"].values():
         add(c["mean"]); add(c["sample_std"]); add(c["t95_low"]); add(c["t95_high"])
 # protocol thresholds / constants that legitimately appear
@@ -87,8 +93,8 @@ found = re.findall(r"(?<![\w.])[+-]?(?:0)?\.\d{2,4}(?!\d)", tex)
 unknown = sorted({f.lstrip("+-") for f in found} - vals)
 print("manuscript decimals checked:", len(set(found)))
 print("NOT derivable from results (review by hand):", unknown if unknown else "none")
-required = ["0.9252", "0.8807", "0.7471", "0.0444", "0.1097", "+0.0400", "+0.0488", "80,833", "84,961", "88,065", "0.0514", "0.0025", ".9274", "-0.0023", "-0.0083", "+0.0038", "0.0615", "0.0053", "87,457", "89,729", "0.0103", "0.9149", "0.053",
-            ".9455", ".9354", "+0.0838", "+0.0825", "+0.0013", "+0.0005", "0.0363", "0.0421", "0.0352", "+0.0748", "0.0237", "0.0362", "0.072", "1,100", "1,191", "2,112"]
+required = ["0.9252", "0.8807", "0.7471", "0.0444", "0.1097", "+0.0400", "+0.0488", "80,833", "84,961", "88,065", "0.0514", "0.0025", ".9274", "-0.0023", "-0.0083", "+0.0038", "0.0615", "0.0053", "87,457", "89,729", "0.0103", ".9149", "0.053",
+            ".9455", ".9354", "+0.0838", "+0.0825", "+0.0013", "+0.0005", "0.0363", "0.0421", "0.0352", "+0.0748", "0.0237", "0.0362", "0.072", "1,100", "1,191", "2,112", "+0.0312", "+0.0164", "+0.0310", "iten2022pattern"]
 missing = [r for r in required if r not in tex]
 print("required headline values missing:", missing if missing else "none")
 sys.exit(1 if (missing or unknown) else 0)

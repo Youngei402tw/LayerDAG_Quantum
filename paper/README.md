@@ -1,6 +1,6 @@
 # Paper directory
 
-**Active submission (IEEE QAI):** `qai_paper.tex` → `qai_paper.pdf`. The current versioned copy is `qai_submission_v5.pdf`, built 2026-11-14 on branch `claude/compassionate-heisenberg-yl7gi8` (v2 = migration build of 2026-11-06; v3 adds the connectivity controls; v4 the augmentation control; v5 the standard-algorithm suite). The source uses IEEEtran V1.8b (`conference,a4paper`), is double-blind, and is 6 pages including references.
+**Active submission (IEEE QAI):** `qai_paper.tex` → `qai_paper.pdf`. The current versioned copy is `qai_submission_v6.pdf`, built 2026-11-18 after a simulated review (`submission/REVIEW_v5.md`, `submission/RESPONSE_TO_REVIEW_v5.md`); v5 was built 2026-11-14 on branch `claude/compassionate-heisenberg-yl7gi8` (v2 = migration build of 2026-11-06; v3 adds the connectivity controls; v4 the augmentation control; v5 the standard-algorithm suite). The source uses IEEEtran V1.8b (`conference,a4paper`), is double-blind, and is 6 pages including references.
 
 **Overleaf:** the manuscript is mirrored in the private repository `LayerDAG_Quantum_Paper`, which is linked to an Overleaf project (there the file is `main.tex`). `scripts/sync_overleaf.sh export <clone>` copies the manuscript, bibliography and the two figures out; `scripts/sync_overleaf.sh import <clone>` copies Overleaf edits back and re-checks every number. Overleaf syncs with that repository's `main` branch, manually, through **Integrations → GitHub**.
 

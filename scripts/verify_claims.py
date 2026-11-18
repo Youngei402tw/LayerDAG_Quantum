@@ -223,6 +223,26 @@ check("suite B aug lead low", CB["dag_minus_aug_pointer_grid"]["t95_low"], 0.035
 check("suite B roles low", CB["dag_minus_role_ablated_dag"]["t95_low"], 0.0323, 5e-5); check("suite B roles high", CB["dag_minus_role_ablated_dag"]["t95_high"], 0.0381, 5e-5)
 check("suite B roles minimum seed", min(CB["dag_minus_role_ablated_dag"]["differences"]), 0.033, 5e-4)
 check("suite B aug max |relabel gap|", max(abs(AB["aug_pointer_grid"]["gaps"][v]["mean"]) for v in ("same_relabeled", "far_relabeled")), 0.0012, 5e-5)
+# v6 review additions: pooled AUROC, per-family counts, margin by width, relative training time
+def pooled_diff(ph, other):
+    d_ = [load(f"{SUITE}/phase{ph}_dag_seed{sd_}.json")["splits"]["far_width"]["auc"] - load(f"{SUITE}/phase{ph}_{other}_seed{sd_}.json")["splits"]["far_width"]["auc"] for sd_ in P["seeds"]]
+    return statistics.mean(d_), sum(x > 0 for x in d_)
+for ph, other, m_, w_ in (("A", "pointer_grid", 0.0312, 5), ("A", "aug_pointer_grid", 0.0164, 5), ("B", "pointer_grid", 0.0310, 4)):
+    got_, wins_ = pooled_diff(ph, other); check(f"suite {ph} pooled DAG-{other}", got_, m_, 5e-5); check(f"suite {ph} pooled wins vs {other}", wins_, w_, 0)
+for k, v in (("dag", 0.9843), ("pointer_grid", 0.9532), ("aug_pointer_grid", 0.9679)): check(f"suite A pooled far {k}", AA[k]["splits"]["far_width"]["auc_mean"], v, 5e-5)
+check("suite A grid far macro sd", AA["grid"]["splits"]["far_width"]["macro_auc_sample_std"], 0.0231, 5e-5); check("suite A DAG far macro sd", AA["dag"]["splits"]["far_width"]["macro_auc_sample_std"], 0.0010, 5e-5)
+def family_counts(agg, other):
+    fd_, fo_ = agg["dag"]["splits"]["far_width"]["family_auc_mean"], agg[other]["splits"]["far_width"]["family_auc_mean"]
+    d_ = [fd_[f] - fo_[f] for f in fd_ if fd_[f] is not None]
+    return sum(x > .005 for x in d_), sum(abs(x) <= .005 for x in d_), sum(x < -.005 for x in d_)
+check("suite A families DAG better/within/worse vs pointer", 0, 0 if family_counts(AA, "pointer_grid") == (4, 4, 3) else 1, 0)
+check("suite B families DAG better/within/worse vs pointer", 0, 0 if family_counts(AB, "pointer_grid") == (7, 3, 0) else 1, 0)
+for sp, m_ in (("same", 0.0073), ("near_width", 0.0166), ("far_width", 0.0363)):
+    check(f"suite B DAG-pointer macro margin {sp}", AB["dag"]["splits"][sp]["macro_auc_mean"] - AB["pointer_grid"]["splits"][sp]["macro_auc_mean"], m_, 5e-5)
+for ph, agg in (("A", AA), ("B", AB)):
+    ratio_ = sum(agg["dag"]["train_seconds"]) / sum(agg["pointer_grid"]["train_seconds"])
+    print(f"      suite {ph} DAG/pointer training-time ratio {ratio_:.3f}")
+    if not ratio_ < 0.40: FAIL.append(f"suite {ph} training-time claim")
 if AB["dag"]["splits"]["far_width"]["macro_excluded_single_class"] != ["oracle"] or AA["dag"]["splits"]["far_width"]["macro_excluded_single_class"]: FAIL.append("suite excluded families")
 
 # ---------------- earlier random-circuit study ----------------
